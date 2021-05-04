@@ -43,6 +43,7 @@
     left: 0;
     bottom: 0;
     z-index: 10;
+    margin-top: 75px;
   }
   
   .top-level-nav {
@@ -52,3 +53,10 @@
     top: 0;
   }
   
+  .rightNavbar {
+    bottom: 0;
+    padding: 10px;
+    margin-left: 1000px;
+  }
+
+ 

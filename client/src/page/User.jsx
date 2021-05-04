@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faCog, faDatabase, faGripHorizontal, faPuzzlePiece, faTint, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { OverlayTrigger, Tooltip, Button } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 import Home from './Home';
 import HydraMap from './HydraMap';
@@ -22,7 +22,18 @@ class User extends React.Component {
     }
     render() {
         return (
+            
             <div className="App">
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" classname="navbar">
+                <Navbar.Brand href="home">水文與下陷監測巨量資料運算平台</Navbar.Brand>
+                    <Nav className='rightNavbar'>
+                        <Nav.Link href="notification">公告</Nav.Link>
+                        <Nav.Link href="profile">個人帳號</Nav.Link>
+                    </Nav>        
+                    
+                </Navbar>
+                
+
                 <div className="top-level-nav">
                     <Link to="/user/home">
                         <OverlayTrigger
@@ -121,7 +132,7 @@ class User extends React.Component {
                                         overlay={
                                             <Tooltip id='tooltip-right' className='tooltip'>
                                                 登出
-                        </Tooltip>
+                                            </Tooltip>
                                         }>
                                         <FontAwesomeIcon icon={faSignOutAlt} size="lg" color="white" />
                                     </OverlayTrigger>

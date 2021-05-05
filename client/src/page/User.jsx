@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faCog, faDatabase, faGripHorizontal, faPuzzlePiece, faTint, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView } from '@fortawesome/free-solid-svg-icons'
 import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 import Home from './Home';
@@ -32,8 +32,6 @@ class User extends React.Component {
                     </Nav>        
                     
                 </Navbar>
-                
-
                 <div className="top-level-nav">
                     <Link to="/user/home">
                         <OverlayTrigger
@@ -41,10 +39,10 @@ class User extends React.Component {
                             placement='right'
                             overlay={
                                 <Tooltip id='tooltip-right' className='tooltip'>
-                                    水文與下陷監測巨量資料運算平台
+                                    搜寻
                         </Tooltip>
                             }>
-                            <FontAwesomeIcon icon={faTint} size="lg" color="white" id='app-icon' />
+                            <FontAwesomeIcon icon={faSearch} size="lg" color="white" id='app-icon' />
                         </OverlayTrigger>
                     </Link>
                     <nav className='top-level-nav-normal'>
@@ -56,85 +54,66 @@ class User extends React.Component {
                                         placement='right'
                                         overlay={
                                             <Tooltip id='tooltip-right' className='tooltip'>
-                                                繪圖工具
-                        </Tooltip>
-                                        }>
-                                        <FontAwesomeIcon icon={faPen} size="lg" color="white" />
-                                    </OverlayTrigger>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link>
-                                    <OverlayTrigger
-                                        key='right'
-                                        placement='right'
-                                        overlay={
-                                            <Tooltip id='tooltip-right' className='tooltip'>
-                                                資料庫
-                        </Tooltip>
-                                        }>
-                                        <FontAwesomeIcon icon={faDatabase} size="lg" color="white" />
-                                    </OverlayTrigger>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link>
-                                    <OverlayTrigger
-                                        key='right'
-                                        placement='right'
-                                        overlay={
-                                            <Tooltip id='tooltip-right' className='tooltip'>
-                                                圖層管理
-                        </Tooltip>
-                                        }>
-                                        <FontAwesomeIcon icon={faGripHorizontal} size="lg" color="white" />
-                                    </OverlayTrigger>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link>
-                                    <OverlayTrigger
-                                        key='right'
-                                        placement='right'
-                                        overlay={
-                                            <Tooltip id='tooltip-right' className='tooltip'>
-                                                模型
-                        </Tooltip>
-                                        }>
-                                        <FontAwesomeIcon icon={faPuzzlePiece} size="lg" color="white" />
-                                    </OverlayTrigger>
-                                </Link>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <nav className='top-level-nav-footer'>
-                        <ul>
-                            <li>
-                                <Link to="/user/setting">
-                                    <OverlayTrigger
-                                        key='right'
-                                        placement='right'
-                                        overlay={
-                                            <Tooltip id='tooltip-right' className='tooltip'>
-                                                設定
-                        </Tooltip>
-                                        }>
-                                        <FontAwesomeIcon icon={faCog} size="lg" color="white" />
-                                    </OverlayTrigger>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link>
-                                    <OverlayTrigger
-                                        key='right'
-                                        placement='right'
-                                        overlay={
-                                            <Tooltip id='tooltip-right' className='tooltip'>
-                                                登出
+                                                圖層套疊
                                             </Tooltip>
                                         }>
-                                        <FontAwesomeIcon icon={faSignOutAlt} size="lg" color="white" />
+                                        <FontAwesomeIcon icon={faClone} size="lg" color="white" />
+                                    </OverlayTrigger>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/user/hydramap">
+                                    <OverlayTrigger
+                                        key='right'
+                                        placement='right'
+                                        overlay={
+                                            <Tooltip id='tooltip-right' className='tooltip'>
+                                                3D轉換
+                                            </Tooltip>
+                                        }>
+                                        <FontAwesomeIcon icon={faExchangeAlt} size="lg" color="white" />
+                                    </OverlayTrigger>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link>
+                                    <OverlayTrigger
+                                        key='right'
+                                        placement='right'
+                                        overlay={
+                                            <Tooltip id='tooltip-right' className='tooltip'>
+                                                環域分析
+                                            </Tooltip>
+                                        }>
+                                        <FontAwesomeIcon icon={faStreetView} size="lg" color="white" />
+                                    </OverlayTrigger>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link>
+                                    <OverlayTrigger
+                                        key='right'
+                                        placement='right'
+                                        overlay={
+                                            <Tooltip id='tooltip-right' className='tooltip'>
+                                                列印
+                        </Tooltip>
+                                        }>
+                                        <FontAwesomeIcon icon={faPrint} size="lg" color="white" />
+                                    </OverlayTrigger>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link>
+                                    <OverlayTrigger
+                                        key='right'
+                                        placement='right'
+                                        overlay={
+                                            <Tooltip id='tooltip-right' className='tooltip'>
+                                                定位
+                        </Tooltip>
+                                        }>
+                                        <FontAwesomeIcon icon={faMapMarker} size="lg" color="white" />
                                     </OverlayTrigger>
                                 </Link>
                             </li>

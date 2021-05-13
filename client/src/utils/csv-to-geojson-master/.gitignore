@@ -1,7 +1,0 @@
-*.pyc
-*.pyo
-env/
-.vscode/
-dist/
-build/
-csv_to_geojson.egg-info/

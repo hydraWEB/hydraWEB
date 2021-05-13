@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  client:
+    build: ./client 
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    depends_on:
+      - server
+volumes:
+  nginx_secrets:

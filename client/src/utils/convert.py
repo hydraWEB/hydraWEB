@@ -1,26 +1,25 @@
 import csv
 import json
 from collections import OrderedDict
+import random
 
 li = []
-with open('C://Users//User//Documents//GitHub//HydraWeb//client//src//utils//testcrash.csv', 'r') as csvfile:
-    reader = csv.reader(csvfile, delimiter=',')
-    for lat,log,name in reader:
-        d = OrderedDict()
-        d['type'] = 'Feature'
-        if lat == "" or lat == None or not lat or lat=="lat":
-          lat = "0.0"
-        if log == "" or log == None or not log or log=="log":
-          log = "0.0"
-        print(lat)
-        d['geometry'] = {
-            'type': 'Point',
-            'coordinates': [float(lat), float(log)]
-        }
-        li.append(d)
+lat = 0
+log = 0
+for i in range(0,1000):
+  d = OrderedDict() 
+  d['type'] = 'Feature' 
+  d['geometry'] = {
+      'type': 'Point',
+      'coordinates': [float(log),float(lat)]
+  }
+  li.append(d)
+  lat = random.uniform(21.88, 25.3)	
+  log = random.uniform(120,122)	
+  print(f"{i}")
 
 d = OrderedDict()
 d['type'] = 'FeatureCollection'
 d['features'] = li
-with open('GeoObs.json', 'w') as f:
+with open('GeoObs1000.json', 'w') as f:
     f.write(json.dumps(d, sort_keys=False, indent=4))

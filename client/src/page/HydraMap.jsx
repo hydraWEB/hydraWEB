@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-import jsonData from '../utils/mmm.json';
+import jsonData from '../utils/GeoObs1000.json';
 
 import './HydraMap.scss';
 
@@ -16,12 +16,12 @@ export default function HydraMap(props) {
     useEffect(() => {
         mapboxgl.accessToken = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
 
-        const map = new mapboxgl.Map({
+        const map = new mapboxgl.Map({  
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [lng, lat],
-            zoom: zoom
-        });
+            center: [lng, lat],  
+            zoom: zoom  
+        }); 
 
         var marker1 = new mapboxgl.Marker()
             .setLngLat([12.554729, 55.70651])
@@ -29,7 +29,7 @@ export default function HydraMap(props) {
 
         // Create a default Marker, colored black, rotated 45 degrees.
         var marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
-            .setLngLat([12.65147, 55.608166])
+            .setLngLat([12.65147, 55.608166]) 
             .addTo(map);
 
 

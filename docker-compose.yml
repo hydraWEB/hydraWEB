@@ -1,13 +1,45 @@
 version: "3.8"
 
 services:
+
+  influxdb:
+    image: influxdb
+    environment:
+      INFLUXDB_HOSTNAME: hydraweb.influxdbhost.com
+      INFLUXDB_ADMIN_USER: root
+      INFLUXDB_ADMIN_PASSWORD: 12345678
+    volumes:
+      - /var/lib/influxdb:/var/lib/influxdb
+    ports:
+      - "8086:8086"
+
+  influxdb_cli:
+    links:
+      - influxdb
+    image: quay.io/influxdb/influxdb:v2.0.3
+# Use these same configurations parameters in your telegraf configuration, mytelegraf.conf.
+    entrypoint: influx setup --bucket mybucket -t mytoken -o myorg --username=myusername --password=passwordpasswordpassword --host=http://influxdb:8086 -f
+      # Wait for the influxd service in the influxdb container has fully bootstrapped before trying to setup an influxdb instance with the influxdb_cli service. 
+    restart: on-failure:10
+    depends_on:
+      - influxdb
+
   client:
     build: ./client 
+    command: ["npm", "start"]
     volumes:
-      - ./client:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/.next
-    depends_on:
-      - server
+      - ./frontend:/app/client
+      - node-modules:/app/client/node_modules
+
+  server:
+    build: ./server
+    command:  >
+      sh -c "
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      - .:/server
+
 volumes:
-  nginx_secrets:
+  node-modules:

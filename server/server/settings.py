@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'influxdb_metrics',0
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INFLUXDB_HOST = 'influxdb'
+INFLUXDB_PORT = '8086'
+INFLUXDB_USER = 'root'
+INFLUXDB_PASSWORD = '12345678'
+INFLUXDB_DATABASE = 'hydraweb'
+
+INFLUXDB_TAGS_HOST = 'influxdb'
+INFLUXDB_TIMEOUT = 5
+INFLUXDB_USE_THREADING = False

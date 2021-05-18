@@ -4,7 +4,8 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package*.json /app/
-RUN yarn install
+RUN npm install
+RUN npm rebuild node-sass
 
 # Copying source files
 COPY . /app

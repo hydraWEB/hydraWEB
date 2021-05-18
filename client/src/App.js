@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Router, Switch, Route } from 'react-router-dom';
 
 import Guest from './page/Guest';
-import User from './page/User';
+import HydraMap from './page/HydraMap';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class App extends React.Component {
     return (
       <>
           <Switch>
-            <Route path="/user">
-              <User />
+            <Route path="/user/hydramap">
+              <HydraMap />
             </Route>
             <Route path="/guest">
                 <Guest />

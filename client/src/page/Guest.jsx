@@ -22,8 +22,7 @@ class Guest extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
     handleLogin() {
-        this.props.history.push("/user");
-        
+        this.props.history.push("/user/hydramap");
     }
     render() {
         return (

@@ -7,14 +7,15 @@ import {
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView } from '@fortawesome/free-solid-svg-icons'
-import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
-
+import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-import jsonData from '../utils/GeoObs1000.json';
+import jsonData from '../utils/108台北地區水準測量檢測成果表.json';
+import jsonData2 from '../utils/108彰化地區地層下陷加密水準檢測成果表.json';
 
 import './HydraMap.scss';
+
 
 
 export default function HydraMap(props) {
@@ -25,8 +26,10 @@ export default function HydraMap(props) {
     const [zoom, setZoon] = useState(7)
     const [currentFunction, setCurrentFunction] = useState(0)
     const [openSheet, setOpenSheet] = useState(false)
-
+    
+    
     useEffect(() => {
+        
         mapboxgl.accessToken = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
 
         const map = new mapboxgl.Map({
@@ -48,6 +51,12 @@ export default function HydraMap(props) {
 
         var Draw = new MapboxDraw();
 
+        var marker = new mapboxgl.Marker()
+            .setLngLat([12.554729, 55.70651])
+            .setPopup(new mapboxgl.Popup().setHTML("<h1 style='color:red'>Hello World!</h1>"))
+            .addTo(map);
+            console.log(marker.getPopup()); // return the popup instance
+
         map.addControl(Draw, 'top-left');
 
         map.on('load', function () {
@@ -58,8 +67,15 @@ export default function HydraMap(props) {
                 'type': 'geojson',
                 'data': jsonData
             }
+            var res2 = {
+                'type': 'geojson',
+                'data': jsonData2
+            }
+
             console.log(res)
             map.addSource("data", res)
+            map.addSource("data2", res2)
+            /*
             map.addLayer({
                 'id': 'park-boundary',
                 'type': 'fill',
@@ -70,9 +86,10 @@ export default function HydraMap(props) {
                 },
                 'filter': ['==', '$type', 'Polygon']
             });
+            */
 
             map.addLayer({
-                'id': 'park-volcanoes',
+                'id': 'data',
                 'type': 'circle',
                 'source': 'data',
                 'paint': {
@@ -81,8 +98,97 @@ export default function HydraMap(props) {
                 },
                 'filter': ['==', '$type', 'Point']
             });
-        });
+            /*
+            map.addLayer({
+                'id': 'data2',
+                'type': 'circle',
+                'source': 'data2',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            */
+            map.on('click','data', function (e){
+                var coordinates = e.features[0].geometry.coordinates.slice();
+                var otherCoordinates = e.features[0].properties.TWD97_Y;
+                const front = "<h1 style='color:red'>"
+                const back = "</h1>"
+                var otherCoordinates2 = front + otherCoordinates + back
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
 
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(otherCoordinates2)
+                    .addTo(map);
+            })
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'data', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+                 
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'data', function () {
+                map.getCanvas().style.cursor = '';
+            });
+
+        });
+        /*
+        map.on('idle', function () {
+            // If these two layers have been added to the style,
+            // add the toggle buttons.
+            if (map.getLayer('data') && map.getLayer('data2')) {
+                // Enumerate ids of the layers.
+                var toggleableLayerIds = ['contours', 'museums'];
+                // Set up the corresponding toggle button for each layer.
+                for (var i = 0; i < toggleableLayerIds.length; i++) {
+                    var id = toggleableLayerIds[i];
+                    if (!document.getElementById(id)) {
+                        // Create a link.
+                        var link = document.createElement('a');
+                        link.id = id;
+                        link.href = '#';
+                        link.textContent = id;
+                        link.className = 'active';
+                        // Show or hide layer when the toggle is clicked.
+                        link.onclick = function (e) {
+                            var clickedLayer = this.textContent;
+                            e.preventDefault();
+                            e.stopPropagation();
+    
+                            var visibility = map.getLayoutProperty(
+                                clickedLayer,
+                                'visibility'
+                            );
+    
+                            // Toggle layer visibility by changing the layout object's visibility property.
+                            if (visibility === 'visible') {
+                                map.setLayoutProperty(
+                                    clickedLayer,
+                                    'visibility',
+                                    'none'
+                                );
+                                this.className = '';
+                            } else {
+                                this.className = 'active';
+                                map.setLayoutProperty(
+                                    clickedLayer,
+                                    'visibility',
+                                    'visible'
+                                );
+                            }
+                        };
+    
+                        //var layers = document.getElementById('menu');
+                        //layers.appendChild(link);
+                    }
+                }
+            }
+        });
+        */
         return () => map.remove();
     }, []);
 
@@ -251,9 +357,12 @@ export default function HydraMap(props) {
                         </div>
                     }
                     {
-                        currentFunction == 1 && <div>
+                        currentFunction == 1 && <div id='menu'>
                             <h4 className="func-title">圖層套疊</h4>
-
+                            <input id='Test_A' type='radio' name='rtoggle' value='Test_A' checked='checked'></input>
+                            <label for='Test_A'>108</label>
+                            <input id='Test_B' type='radio' name='rtoggle' value='Test_B'></input>
+                            <label for='Test_B'>NKN</label>
                         </div>
                     }
                     {

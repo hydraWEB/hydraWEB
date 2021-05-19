@@ -59,7 +59,7 @@ export default function HydraMap(props) {
                 'data': jsonData
             }
             console.log(res)
-            map.addSource("data", res)
+            //map.addSource("data", res)
             map.addLayer({
                 'id': 'park-boundary',
                 'type': 'fill',
@@ -142,28 +142,7 @@ export default function HydraMap(props) {
     })
 
     return (
-        <div className="App">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" classname="navbar">
-                <Navbar.Brand href="home">水文與下陷監測巨量資料運算平台</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
-                        <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                    <Nav>
-                        <Nav.Link href="notification">公告</Nav.Link>
-                        <Nav.Link href="profile">個人帳號</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+        <>
             <div className="top-level-nav">
                 <nav className='top-level-nav-wrapper'>
                     <ul>
@@ -289,6 +268,6 @@ export default function HydraMap(props) {
                     <div className="map-container" ref={mapContainer} />
                 </div>
             </div>
-        </div>
+        </>
     )
 }

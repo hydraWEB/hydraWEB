@@ -16,7 +16,8 @@ import jsonData2 from '../utils/108彰化地區地層下陷加密水準檢測成
 
 import './HydraMap.scss';
 
-
+mapboxgl.accessToken = 
+    'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
 
 export default function HydraMap(props) {
 
@@ -26,37 +27,29 @@ export default function HydraMap(props) {
     const [zoom, setZoon] = useState(7)
     const [currentFunction, setCurrentFunction] = useState(0)
     const [openSheet, setOpenSheet] = useState(false)
-    
-    
-    useEffect(() => {
-        
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
+    const [showLayer,setShowLayer] = useState(false)
+    const showLayerToggle = ((e) =>{
+        setShowLayer(true)
+        alert(showLayer)
+    })
 
+    const hideLayerToggle = ((e)=>{
+        setShowLayer(false)
+        alert(showLayer)
+        
+    })
+
+    useEffect(() => {
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
             zoom: zoom
         });
-
-        var marker1 = new mapboxgl.Marker()
-            .setLngLat([12.554729, 55.70651])
-            .addTo(map);
-
-        // Create a default Marker, colored black, rotated 45 degrees.
-        var marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
-            .setLngLat([12.65147, 55.608166])
-            .addTo(map);
-
-
+        
         var Draw = new MapboxDraw();
 
-        var marker = new mapboxgl.Marker()
-            .setLngLat([12.554729, 55.70651])
-            .setPopup(new mapboxgl.Popup().setHTML("<h1 style='color:red'>Hello World!</h1>"))
-            .addTo(map);
-            console.log(marker.getPopup()); // return the popup instance
-
+        
         map.addControl(Draw, 'top-left');
 
         map.on('load', function () {
@@ -75,7 +68,6 @@ export default function HydraMap(props) {
             console.log(res)
             map.addSource("data", res)
             map.addSource("data2", res2)
-            /*
             map.addLayer({
                 'id': 'park-boundary',
                 'type': 'fill',
@@ -86,8 +78,7 @@ export default function HydraMap(props) {
                 },
                 'filter': ['==', '$type', 'Polygon']
             });
-            */
-
+            
             map.addLayer({
                 'id': 'data',
                 'type': 'circle',
@@ -98,7 +89,7 @@ export default function HydraMap(props) {
                 },
                 'filter': ['==', '$type', 'Point']
             });
-            /*
+            
             map.addLayer({
                 'id': 'data2',
                 'type': 'circle',
@@ -109,7 +100,7 @@ export default function HydraMap(props) {
                 },
                 'filter': ['==', '$type', 'Point']
             });
-            */
+            
             map.on('click','data', function (e){
                 var coordinates = e.features[0].geometry.coordinates.slice();
                 var otherCoordinates = e.features[0].properties.TWD97_Y;
@@ -135,63 +126,19 @@ export default function HydraMap(props) {
                 map.getCanvas().style.cursor = '';
             });
 
-        });
-        /*
-        map.on('idle', function () {
-            // If these two layers have been added to the style,
-            // add the toggle buttons.
-            if (map.getLayer('data') && map.getLayer('data2')) {
-                // Enumerate ids of the layers.
-                var toggleableLayerIds = ['contours', 'museums'];
-                // Set up the corresponding toggle button for each layer.
-                for (var i = 0; i < toggleableLayerIds.length; i++) {
-                    var id = toggleableLayerIds[i];
-                    if (!document.getElementById(id)) {
-                        // Create a link.
-                        var link = document.createElement('a');
-                        link.id = id;
-                        link.href = '#';
-                        link.textContent = id;
-                        link.className = 'active';
-                        // Show or hide layer when the toggle is clicked.
-                        link.onclick = function (e) {
-                            var clickedLayer = this.textContent;
-                            e.preventDefault();
-                            e.stopPropagation();
-    
-                            var visibility = map.getLayoutProperty(
-                                clickedLayer,
-                                'visibility'
-                            );
-    
-                            // Toggle layer visibility by changing the layout object's visibility property.
-                            if (visibility === 'visible') {
-                                map.setLayoutProperty(
-                                    clickedLayer,
-                                    'visibility',
-                                    'none'
-                                );
-                                this.className = '';
-                            } else {
-                                this.className = 'active';
-                                map.setLayoutProperty(
-                                    clickedLayer,
-                                    'visibility',
-                                    'visible'
-                                );
-                            }
-                        };
-    
-                        //var layers = document.getElementById('menu');
-                        //layers.appendChild(link);
-                    }
-                }
+            if(showLayer){
+                map.setLayoutProperty('data','visibility','none')
             }
+            
         });
-        */
-        return () => map.remove();
-    }, []);
 
+        
+        
+        return () => map.remove();
+    },showLayer);
+
+
+    
 
     const searchSheetToggle = ((e) => {
         if (openSheet && currentFunction == 0) {
@@ -247,29 +194,10 @@ export default function HydraMap(props) {
         setCurrentFunction(5)
     })
 
+    
+
     return (
-        <div className="App">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" classname="navbar">
-                <Navbar.Brand href="home">水文與下陷監測巨量資料運算平台</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
-                        <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                    <Nav>
-                        <Nav.Link href="notification">公告</Nav.Link>
-                        <Nav.Link href="profile">個人帳號</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+        <>
             <div className="top-level-nav">
                 <nav className='top-level-nav-wrapper'>
                     <ul>
@@ -359,16 +287,16 @@ export default function HydraMap(props) {
                     {
                         currentFunction == 1 && <div id='menu'>
                             <h4 className="func-title">圖層套疊</h4>
-                            <input id='Test_A' type='radio' name='rtoggle' value='Test_A' checked='checked'></input>
-                            <label for='Test_A'>108</label>
-                            <input id='Test_B' type='radio' name='rtoggle' value='Test_B'></input>
-                            <label for='Test_B'>NKN</label>
+                            <br></br>
+                            <div id = "toggle">
+                                <Button onClick={showLayerToggle}>Show</Button>
+                                <Button onClick={hideLayerToggle}>Hide</Button>
+                            </div>
                         </div>
                     }
                     {
                         currentFunction == 2 && <div>
                             <h4 className="func-title">3D轉換</h4>
-
                         </div>
                     }
                     {
@@ -386,7 +314,7 @@ export default function HydraMap(props) {
                     {
                         currentFunction == 5 && <div>
                             <h4 className="func-title">定位</h4>
-
+                            
                         </div>
                     }
                 </div> :
@@ -394,10 +322,10 @@ export default function HydraMap(props) {
             }
 
             <div className="fragment">
-                <div className="map">
+                <div className="map" id = "map">
                     <div className="map-container" ref={mapContainer} />
                 </div>
             </div>
-        </div>
+        </>
     )
 }

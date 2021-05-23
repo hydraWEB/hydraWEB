@@ -4,6 +4,7 @@ import { BrowserRouter, Router, Switch, Route } from 'react-router-dom';
 
 import Guest from './page/Guest';
 import HydraMap from './page/HydraMap';
+import User from './page/User';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class App extends React.Component {
     return (
       <>
           <Switch>
-            <Route path="/user/hydramap">
-              <HydraMap />
+            <Route path="/user">
+              <User />
             </Route>
             <Route path="/guest">
                 <Guest />

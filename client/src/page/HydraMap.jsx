@@ -22,6 +22,7 @@ mapboxgl.accessToken =
 export default function HydraMap(props) {
 
     const mapContainer = useRef();
+    const map = useRef(null);
     const [lng, setLng] = useState(121)
     const [lat, setLat] = useState(24)
     const [zoom, setZoon] = useState(7)
@@ -29,18 +30,15 @@ export default function HydraMap(props) {
     const [openSheet, setOpenSheet] = useState(false)
     const [showLayer,setShowLayer] = useState(false)
     const showLayerToggle = ((e) =>{
-        setShowLayer(true)
-        alert(showLayer)
+        map.current.setLayoutProperty('data','visibility','visible')
     })
 
     const hideLayerToggle = ((e)=>{
-        setShowLayer(false)
-        alert(showLayer)
-        
+        map.current.setLayoutProperty('data','visibility','none')
     })
 
     useEffect(() => {
-        const map = new mapboxgl.Map({
+        map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
@@ -50,9 +48,9 @@ export default function HydraMap(props) {
         var Draw = new MapboxDraw();
 
         
-        map.addControl(Draw, 'top-left');
+        map.current.addControl(Draw, 'top-left');
 
-        map.on('load', function () {
+        map.current.on('load', function () {
             // ALL YOUR APPLICATION CODE
             console.log("load")
 
@@ -66,9 +64,9 @@ export default function HydraMap(props) {
             }
 
             console.log(res)
-            map.addSource("data", res)
-            map.addSource("data2", res2)
-            map.addLayer({
+            map.current.addSource("data", res)
+            map.current.addSource("data2", res2)
+            map.current.addLayer({
                 'id': 'park-boundary',
                 'type': 'fill',
                 'source': 'data',
@@ -79,7 +77,7 @@ export default function HydraMap(props) {
                 'filter': ['==', '$type', 'Polygon']
             });
             
-            map.addLayer({
+            map.current.addLayer({
                 'id': 'data',
                 'type': 'circle',
                 'source': 'data',
@@ -90,7 +88,7 @@ export default function HydraMap(props) {
                 'filter': ['==', '$type', 'Point']
             });
             
-            map.addLayer({
+            map.current.addLayer({
                 'id': 'data2',
                 'type': 'circle',
                 'source': 'data2',
@@ -101,7 +99,7 @@ export default function HydraMap(props) {
                 'filter': ['==', '$type', 'Point']
             });
             
-            map.on('click','data', function (e){
+            map.current.on('click','data', function (e){
                 var coordinates = e.features[0].geometry.coordinates.slice();
                 var otherCoordinates = e.features[0].properties.TWD97_Y;
                 const front = "<h1 style='color:red'>"
@@ -114,28 +112,21 @@ export default function HydraMap(props) {
                 new mapboxgl.Popup()
                     .setLngLat(coordinates)
                     .setHTML(otherCoordinates2)
-                    .addTo(map);
+                    .addTo(map.current);
             })
             // Change the cursor to a pointer when the mouse is over the places layer.
-            map.on('mouseenter', 'data', function () {
-                map.getCanvas().style.cursor = 'pointer';
+            map.current.on('mouseenter', 'data', function () {
+                map.current.getCanvas().style.cursor = 'pointer';
             });
                  
             // Change it back to a pointer when it leaves.
-            map.on('mouseleave', 'data', function () {
-                map.getCanvas().style.cursor = '';
+            map.current.on('mouseleave', 'data', function () {
+                map.current.getCanvas().style.cursor = '';
             });
-
-            if(showLayer){
-                map.setLayoutProperty('data','visibility','none')
-            }
-            
         });
-
         
-        
-        return () => map.remove();
-    },showLayer);
+        return () => map.current.remove();
+    },[showLayer]);
 
 
     

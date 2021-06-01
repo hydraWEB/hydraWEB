@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 django-influxdb-metrics = "*"
+pymysql = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

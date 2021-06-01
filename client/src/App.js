@@ -1,34 +1,40 @@
 import './App.scss';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Router, Switch, Route } from 'react-router-dom';
+
+import UserProvider from './provider/UserProvider'
 
 import Guest from './page/Guest';
 import HydraMap from './page/HydraMap';
 import User from './page/User';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <>
-          <Switch>
-            <Route path="/user">
-              <User />
-            </Route>
-            <Route path="/guest">
-                <Guest />
-            </Route>
-            <Route path="/">
-                <Guest />
-            </Route>
-          </Switch>
-      </>
-    )
-  }
-}
+import Cookies from 'js-cookie'
 
-export default App;
+export default function App(props) {
+
+  const initialUser = useRef()
+
+  useEffect(()=>{
+    if (Cookies.get('user_token')) {
+      
+    }
+  },[]) 
+
+  return (
+    <>
+      <UserProvider initialUser={initialUser}>
+        <Switch>
+          <Route path="/user">
+            <User />
+          </Route>
+          <Route path="/guest">
+            <Guest />
+          </Route>
+          <Route path="/">
+            <Guest />
+          </Route>
+        </Switch>
+      </UserProvider>
+    </>
+  )
+}

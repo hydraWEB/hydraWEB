@@ -41,5 +41,20 @@ services:
     volumes:
       - .:/server
 
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      CERTBOT_EMAIL: "00857211@mail.ntou.edu.tw"
+    volumes:
+      - ./log:/var/log/nginx
+      - nginx_secrets:/etc/letsencrypt
+    depends_on:
+      - server
+
 volumes:
+  nginx_secrets:
   node-modules:

@@ -8,6 +8,8 @@ django = "*"
 django-influxdb-metrics = "*"
 pymysql = "*"
 djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

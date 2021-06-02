@@ -1,40 +1,57 @@
 import './App.scss';
-import React, { useEffect, useRef } from 'react';
-import { BrowserRouter, Router, Switch, Route } from 'react-router-dom';
+import React, {useContext, useEffect, useRef} from 'react';
+import {BrowserRouter, Router, Switch, Route, useLocation, useHistory} from 'react-router-dom';
 
-import UserProvider from './provider/UserProvider'
+import UserProvider, {userContext} from './provider/UserProvider'
 
-import Guest from './page/Guest';
-import HydraMap from './page/HydraMap';
-import User from './page/User';
+import Guest from './page/guest/Guest';
+import HydraMap from './page/user/HydraMap';
+import User from './page/user/User';
 
 import Cookies from 'js-cookie'
 
 export default function App(props) {
 
-  const initialUser = useRef()
+    const initialUser = useRef()
+    let history = useHistory();
+    const location = useLocation();
 
-  useEffect(()=>{
-    if (Cookies.get('user_token')) {
-      
-    }
-  },[]) 
+    useEffect(() => {
+        if(location.pathname ==="/"){
+            if(Cookies.get('access')){
+                history.push("/user/hydramap")
+            }else{
+                history.push("/guest/login")
+            }
+        }else{
+            let urlElements = location.pathname.split('/')
+            if(urlElements[1]==='guest'){
+                if(Cookies.get('access')){
+                    history.push("/user/hydramap") //已登入的使用者不能到guest
+                }
+            }else if(urlElements[1]==='user'){
+                if(!Cookies.get('access')){
+                    history.push("/guest/login") //沒登入的使用者不能到user
+                }
+            }
+        }
+    }, [])
 
-  return (
-    <>
-      <UserProvider initialUser={initialUser}>
-        <Switch>
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path="/guest">
-            <Guest />
-          </Route>
-          <Route path="/">
-            <Guest />
-          </Route>
-        </Switch>
-      </UserProvider>
-    </>
-  )
+    return (
+        <>
+            <UserProvider initialUser={initialUser}>
+                <Switch>
+                    <Route path="/user">
+                        <User/>
+                    </Route>
+                    <Route path="/guest">
+                        <Guest/>
+                    </Route>
+                    <Route path="/">
+                        <Guest/>
+                    </Route>
+                </Switch>
+            </UserProvider>
+        </>
+    )
 }

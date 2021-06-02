@@ -4,6 +4,11 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package*.json /app/
+
+RUN apk add --update --no-cache python2
+RUN apk add --update --no-cache python3
+
+RUN npm install node-sass
 RUN npm install
 RUN npm rebuild node-sass
 

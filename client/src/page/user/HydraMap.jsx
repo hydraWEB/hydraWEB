@@ -11,14 +11,14 @@ import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown, ToggleButton
 
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-import jsonData from '../utils/108台北地區水準測量檢測成果表.json';
-import jsonData2 from '../utils/108彰化地區地層下陷加密水準檢測成果表.json';
-import jsonData3 from '../utils/108屏東地區水準測量檢測成果表.json';
-import jsonData4 from '../utils/108彰化地區地層下陷水準檢測成果表.json';
-import jsonData5 from '../utils/108嘉義地區水準測量檢測成果表.json';
-import jsonData6 from '../utils/108臺南地區水準測量檢測成果表.json';
-import jsonData7 from '../utils/108雲林地區地層下陷加密水準檢測成果表.json';
-import jsonData8 from '../utils/108雲林地區地層下陷水準檢測成果表.json';
+import jsonData from '../../utils/108台北地區水準測量檢測成果表.json';
+import jsonData2 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
+import jsonData3 from '../../utils/108屏東地區水準測量檢測成果表.json';
+import jsonData4 from '../../utils/108彰化地區地層下陷水準檢測成果表.json';
+import jsonData5 from '../../utils/108嘉義地區水準測量檢測成果表.json';
+import jsonData6 from '../../utils/108臺南地區水準測量檢測成果表.json';
+import jsonData7 from '../../utils/108雲林地區地層下陷加密水準檢測成果表.json';
+import jsonData8 from '../../utils/108雲林地區地層下陷水準檢測成果表.json';
 
 import './HydraMap.scss';
 

@@ -34,10 +34,11 @@ class UserManager(BaseUserManager):
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
-    userid = models.CharField(max_length=40, primary_key=True)
+    userid = models.AutoField(primary_key=True)
     username = models.CharField(db_index=True, max_length=255)
     email = models.EmailField(db_index=True, unique=True, blank=True, null=True)
     avatar = models.CharField(max_length=255, blank=True, null=True)
+    phone = models.CharField(max_length=255, blank=True, null=True)
 
     # When a user no longer wishes to use our platform, they may try to delete
     # there account. That's a problem for us because the data we collect is
@@ -56,7 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     # The `USERNAME_FIELD` property tells us which field we will use to log in.
     # In this case, we want that to be the email field.
-    USERNAME_FIELD = 'userid' 
+    USERNAME_FIELD = 'email' 
     REQUIRED_FIELDS = []
 
     # Tells Django that the UserManager class defined above should manage

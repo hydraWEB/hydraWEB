@@ -1,6 +1,19 @@
 version: "3.8"
 
 services:
+  mysql:  
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: "hydraweb"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "recast203"
+      MYSQL_ROOT_PASSWORD: "recast203"
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - mysql_db_vol:/var/lib/mysql
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
 
   influxdb:
     image: influxdb
@@ -30,6 +43,8 @@ services:
     volumes:
       - ./frontend:/app/client
       - node-modules:/app/client/node_modules
+    ports:
+      - "3000:3000"
 
   server:
     build: ./server
@@ -56,5 +71,6 @@ services:
       - server
 
 volumes:
+  mysql_db_vol:
   nginx_secrets:
   node-modules:

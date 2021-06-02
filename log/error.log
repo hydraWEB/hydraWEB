@@ -1,0 +1,127 @@
+2021/06/01 13:31:23 [notice] 111#111: using the "epoll" event method
+2021/06/01 13:31:23 [notice] 111#111: nginx/1.21.0
+2021/06/01 13:31:23 [notice] 111#111: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2021/06/01 13:31:23 [notice] 111#111: OS: Linux 5.4.72-microsoft-standard-WSL2
+2021/06/01 13:31:23 [notice] 111#111: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/06/01 13:31:23 [notice] 111#111: start worker processes
+2021/06/01 13:31:23 [notice] 111#111: start worker process 158
+2021/06/01 13:31:23 [notice] 111#111: start worker process 159
+2021/06/01 13:31:23 [notice] 111#111: start worker process 160
+2021/06/01 13:31:23 [notice] 111#111: start worker process 161
+2021/06/01 13:31:23 [notice] 111#111: start worker process 162
+2021/06/01 13:31:23 [notice] 111#111: start worker process 163
+2021/06/01 13:31:23 [notice] 111#111: start worker process 164
+2021/06/01 13:31:23 [notice] 111#111: start worker process 165
+2021/06/01 13:31:29 [notice] 245#245: signal process started
+2021/06/01 13:31:29 [notice] 111#111: signal 1 (SIGHUP) received from 245, reconfiguring
+2021/06/01 13:31:29 [notice] 111#111: reconfiguring
+2021/06/01 13:31:29 [notice] 111#111: using the "epoll" event method
+2021/06/01 13:31:29 [notice] 111#111: start worker processes
+2021/06/01 13:31:29 [notice] 111#111: start worker process 247
+2021/06/01 13:31:29 [notice] 111#111: start worker process 248
+2021/06/01 13:31:29 [notice] 111#111: start worker process 249
+2021/06/01 13:31:29 [notice] 111#111: start worker process 250
+2021/06/01 13:31:29 [notice] 111#111: start worker process 251
+2021/06/01 13:31:29 [notice] 111#111: start worker process 252
+2021/06/01 13:31:29 [notice] 111#111: start worker process 253
+2021/06/01 13:31:29 [notice] 111#111: start worker process 254
+2021/06/01 13:31:29 [notice] 158#158: gracefully shutting down
+2021/06/01 13:31:29 [notice] 159#159: gracefully shutting down
+2021/06/01 13:31:29 [notice] 160#160: gracefully shutting down
+2021/06/01 13:31:29 [notice] 161#161: gracefully shutting down
+2021/06/01 13:31:29 [notice] 162#162: gracefully shutting down
+2021/06/01 13:31:29 [notice] 165#165: gracefully shutting down
+2021/06/01 13:31:29 [notice] 163#163: gracefully shutting down
+2021/06/01 13:31:29 [notice] 164#164: gracefully shutting down
+2021/06/01 13:31:29 [notice] 159#159: exiting
+2021/06/01 13:31:29 [notice] 160#160: exiting
+2021/06/01 13:31:29 [notice] 163#163: exiting
+2021/06/01 13:31:29 [notice] 161#161: exiting
+2021/06/01 13:31:29 [notice] 158#158: exiting
+2021/06/01 13:31:29 [notice] 160#160: exit
+2021/06/01 13:31:29 [notice] 158#158: exit
+2021/06/01 13:31:29 [notice] 164#164: exiting
+2021/06/01 13:31:29 [notice] 159#159: exit
+2021/06/01 13:31:29 [notice] 165#165: exiting
+2021/06/01 13:31:29 [notice] 163#163: exit
+2021/06/01 13:31:29 [notice] 161#161: exit
+2021/06/01 13:31:29 [notice] 162#162: exiting
+2021/06/01 13:31:29 [notice] 164#164: exit
+2021/06/01 13:31:29 [notice] 165#165: exit
+2021/06/01 13:31:29 [notice] 162#162: exit
+2021/06/01 13:31:29 [notice] 111#111: signal 17 (SIGCHLD) received from 158
+2021/06/01 13:31:29 [notice] 111#111: worker process 158 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: signal 29 (SIGIO) received
+2021/06/01 13:31:29 [notice] 111#111: signal 17 (SIGCHLD) received from 162
+2021/06/01 13:31:29 [notice] 111#111: worker process 159 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: worker process 160 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: worker process 161 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: worker process 162 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: worker process 163 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: worker process 164 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: worker process 165 exited with code 0
+2021/06/01 13:31:29 [notice] 111#111: signal 29 (SIGIO) received
+2021/06/01 13:31:29 [notice] 111#111: signal 17 (SIGCHLD) received from 160
+2021/06/02 04:39:15 [notice] 99#99: using the "epoll" event method
+2021/06/02 04:39:15 [notice] 99#99: nginx/1.21.0
+2021/06/02 04:39:15 [notice] 99#99: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2021/06/02 04:39:15 [notice] 99#99: OS: Linux 5.4.72-microsoft-standard-WSL2
+2021/06/02 04:39:15 [notice] 99#99: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/06/02 04:39:15 [notice] 99#99: start worker processes
+2021/06/02 04:39:15 [notice] 99#99: start worker process 146
+2021/06/02 04:39:15 [notice] 99#99: start worker process 147
+2021/06/02 04:39:15 [notice] 99#99: start worker process 148
+2021/06/02 04:39:15 [notice] 99#99: start worker process 149
+2021/06/02 04:39:15 [notice] 99#99: start worker process 150
+2021/06/02 04:39:15 [notice] 99#99: start worker process 151
+2021/06/02 04:39:15 [notice] 99#99: start worker process 152
+2021/06/02 04:39:15 [notice] 99#99: start worker process 153
+2021/06/02 04:39:18 [notice] 233#233: signal process started
+2021/06/02 04:39:18 [notice] 99#99: signal 1 (SIGHUP) received from 233, reconfiguring
+2021/06/02 04:39:18 [notice] 99#99: reconfiguring
+2021/06/02 04:39:18 [notice] 99#99: using the "epoll" event method
+2021/06/02 04:39:18 [notice] 99#99: start worker processes
+2021/06/02 04:39:18 [notice] 99#99: start worker process 235
+2021/06/02 04:39:18 [notice] 99#99: start worker process 236
+2021/06/02 04:39:18 [notice] 99#99: start worker process 237
+2021/06/02 04:39:18 [notice] 99#99: start worker process 238
+2021/06/02 04:39:18 [notice] 99#99: start worker process 239
+2021/06/02 04:39:18 [notice] 99#99: start worker process 240
+2021/06/02 04:39:18 [notice] 99#99: start worker process 241
+2021/06/02 04:39:18 [notice] 99#99: start worker process 242
+2021/06/02 04:39:18 [notice] 146#146: gracefully shutting down
+2021/06/02 04:39:18 [notice] 147#147: gracefully shutting down
+2021/06/02 04:39:18 [notice] 148#148: gracefully shutting down
+2021/06/02 04:39:18 [notice] 149#149: gracefully shutting down
+2021/06/02 04:39:18 [notice] 150#150: gracefully shutting down
+2021/06/02 04:39:18 [notice] 151#151: gracefully shutting down
+2021/06/02 04:39:18 [notice] 152#152: gracefully shutting down
+2021/06/02 04:39:18 [notice] 153#153: gracefully shutting down
+2021/06/02 04:39:18 [notice] 146#146: exiting
+2021/06/02 04:39:18 [notice] 147#147: exiting
+2021/06/02 04:39:18 [notice] 148#148: exiting
+2021/06/02 04:39:18 [notice] 149#149: exiting
+2021/06/02 04:39:18 [notice] 150#150: exiting
+2021/06/02 04:39:18 [notice] 151#151: exiting
+2021/06/02 04:39:18 [notice] 152#152: exiting
+2021/06/02 04:39:18 [notice] 153#153: exiting
+2021/06/02 04:39:18 [notice] 146#146: exit
+2021/06/02 04:39:18 [notice] 147#147: exit
+2021/06/02 04:39:18 [notice] 148#148: exit
+2021/06/02 04:39:18 [notice] 149#149: exit
+2021/06/02 04:39:18 [notice] 150#150: exit
+2021/06/02 04:39:18 [notice] 151#151: exit
+2021/06/02 04:39:18 [notice] 152#152: exit
+2021/06/02 04:39:18 [notice] 153#153: exit
+2021/06/02 04:39:18 [notice] 99#99: signal 17 (SIGCHLD) received from 148
+2021/06/02 04:39:18 [notice] 99#99: worker process 146 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: worker process 147 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: worker process 148 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: worker process 149 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: worker process 151 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: worker process 152 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: worker process 153 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: signal 29 (SIGIO) received
+2021/06/02 04:39:18 [notice] 99#99: signal 17 (SIGCHLD) received from 150
+2021/06/02 04:39:18 [notice] 99#99: worker process 150 exited with code 0
+2021/06/02 04:39:18 [notice] 99#99: signal 29 (SIGIO) received

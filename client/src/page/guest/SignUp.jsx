@@ -3,9 +3,24 @@ import React, {useContext, useState} from "react";
 import {userContext} from "../../provider/UserProvider";
 import styled from "@emotion/styled";
 import userLogin, {userSignUp} from "../../lib/api";
-import {Alert, Button, Form} from "react-bootstrap";
-import './SignUp.scss';
+import {Alert, Breadcrumb, Button, Form} from "react-bootstrap";
+import './SignUp.module.scss';
 import {useToasts} from "react-toast-notifications";
+
+const Title = styled.h2(
+    props => ({
+            marginRight: "10px",
+        }
+    ))
+
+const FormLogin = styled.div(
+    props => ({
+        padding:"50px",
+        maxWidth:"700px",
+        margin:"0 auto",
+
+    })
+)
 
 export default function SignUp() {
 
@@ -43,11 +58,7 @@ export default function SignUp() {
     const [isLoading, setLoading] = useState(false)
     const { addToast } = useToasts();
 
-    const Title = styled.h2(
-        props => ({
-                marginRight: "10px",
-            }
-        ))
+
 
     const handleSignUp = (e) => {
         e.preventDefault()
@@ -61,7 +72,7 @@ export default function SignUp() {
                 username: userName,
                 phone: phone,
             }).then((res) => {
-                addToast('註冊成功.', { appearance: 'error',autoDismiss:true });
+                addToast('註冊成功.', { appearance: 'success',autoDismiss:true });
                 history.push("/guest/login")
             }).catch((err) => {
                 addToast('註冊失敗.', { appearance: 'error',autoDismiss:true });
@@ -97,8 +108,14 @@ export default function SignUp() {
     }
 
     return (
-        <div className="form2">
+        <FormLogin>
             <Form onSubmit={handleSignUp}>
+                <Breadcrumb>
+                    <Breadcrumb.Item href="/guest/login">
+                        首頁
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item active>註冊</Breadcrumb.Item>
+                </Breadcrumb>
                 <Title>註冊</Title>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>電子信箱</Form.Label>
@@ -181,7 +198,7 @@ export default function SignUp() {
                     {isLoading ? '...' : '註冊'}
                 </Button>
             </Form>
-        </div>
+        </FormLogin>
     )
 
 }

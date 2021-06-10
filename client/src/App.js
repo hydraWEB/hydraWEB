@@ -39,19 +39,21 @@ export default function App(props) {
 
     return (
         <>
-            <UserProvider initialUser={initialUser}>
-                <Switch>
-                    <Route path="/user">
-                        <User/>
-                    </Route>
-                    <Route path="/guest">
-                        <Guest/>
-                    </Route>
-                    <Route path="/">
-                        <Guest/>
-                    </Route>
-                </Switch>
-            </UserProvider>
+            <div className={'root-container'}>
+                <UserProvider initialUser={initialUser}>
+                    <Switch>
+                        <Route path="/user">
+                            <User/>
+                        </Route>
+                        <Route path="/guest">
+                            <Guest/>
+                        </Route>
+                        <Route path="/">
+                            <Guest/>
+                        </Route>
+                    </Switch>
+                </UserProvider>
+            </div>
         </>
     )
 }

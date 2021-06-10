@@ -19,6 +19,8 @@ import Profile from "../user/Profile";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import {ToastProvider, useToasts} from 'react-toast-notifications'
+import ForgotPasswd from "./ForgotPasswd";
+import ResetPasswd from "./ResetPasswd";
 
 export default function Guest() {
     let history = useHistory();
@@ -50,7 +52,6 @@ export default function Guest() {
 
     return (
         <>
-            <div className="">
                 <ToastProvider>
                     <Switch>
                         <Route path="/guest/signup">
@@ -59,9 +60,14 @@ export default function Guest() {
                         <Route path="/guest/login">
                             <Login/>
                         </Route>
+                        <Route path="/guest/forgot-password">
+                            <ForgotPasswd/>
+                        </Route>
+                        <Route path="/guest/reset-password">
+                            <ResetPasswd/>
+                        </Route>
                     </Switch>
                 </ToastProvider>
-            </div>
         </>
     )
 

@@ -20,7 +20,7 @@ import jsonData6 from '../../utils/108臺南地區水準測量檢測成果表.js
 import jsonData7 from '../../utils/108雲林地區地層下陷加密水準檢測成果表.json';
 import jsonData8 from '../../utils/108雲林地區地層下陷水準檢測成果表.json';
 
-import './HydraMap.scss';
+import styles from './HydraMap.module.scss';
 
 mapboxgl.accessToken = 
     'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
@@ -33,7 +33,7 @@ export default function HydraMap(props) {
     const [lat, setLat] = useState(24)
     const [zoom, setZoon] = useState(7)
     const [currentFunction, setCurrentFunction] = useState(0)
-    const [openSheet, setOpenSheet] = useState(false)
+    const [openSheet, setOpenSheet] = useState(true)
     const [checked1, setChecked1] = useState(true);
     const [checked2, setChecked2] = useState(true);
     const [checked3, setChecked3] = useState(true);
@@ -365,10 +365,10 @@ export default function HydraMap(props) {
 
     return (
         <>
-            <div className="top-level-nav">
-                <nav className='top-level-nav-wrapper'>
+            <div className={styles.top_level_nav}>
+                <nav className={styles.top_level_nav_wrapper}>
                     <ul>
-                        <li>
+                        <li className={styles.menu_btn_wrapper}>
                             <OverlayTrigger
                                 key='right'
                                 placement='right'
@@ -377,10 +377,10 @@ export default function HydraMap(props) {
                                         搜尋
                                     </Tooltip>
                                 }>
-                                <FontAwesomeIcon className="menu-btn" onClick={searchSheetToggle} icon={faSearch} size="lg" color="white" id='app-icon' />
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={searchSheetToggle} icon={faSearch} size="lg" color="white" id='app-icon' />
                             </OverlayTrigger>
                         </li>
-                        <li>
+                        <li className={styles.menu_btn_wrapper}>
                             <OverlayTrigger
                                 key='right'
                                 placement='right'
@@ -389,10 +389,10 @@ export default function HydraMap(props) {
                                         圖層套疊
                                             </Tooltip>
                                 }>
-                                <FontAwesomeIcon className="menu-btn" onClick={layerToggle} icon={faClone} size="lg" color="white" />
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={layerToggle} icon={faClone} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
-                        <li>
+                        <li className={styles.menu_btn_wrapper}>
                             <OverlayTrigger
                                 key='right'
                                 placement='right'
@@ -401,10 +401,10 @@ export default function HydraMap(props) {
                                         3D轉換
                                             </Tooltip>
                                 }>
-                                <FontAwesomeIcon className="menu-btn" onClick={threeDToggle} icon={faExchangeAlt} size="lg" color="white" />
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={threeDToggle} icon={faExchangeAlt} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
-                        <li>
+                        <li className={styles.menu_btn_wrapper}>
                             <OverlayTrigger
                                 key='right'
                                 placement='right'
@@ -413,10 +413,10 @@ export default function HydraMap(props) {
                                         環域分析
                                             </Tooltip>
                                 }>
-                                <FontAwesomeIcon className="menu-btn" onClick={areaToggle} icon={faStreetView} size="lg" color="white" />
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={areaToggle} icon={faStreetView} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
-                        <li>
+                        <li className={styles.menu_btn_wrapper}>
                             <OverlayTrigger
                                 key='right'
                                 placement='right'
@@ -425,10 +425,10 @@ export default function HydraMap(props) {
                                         列印
                         </Tooltip>
                                 }>
-                                <FontAwesomeIcon className="menu-btn" onClick={printToggle} icon={faPrint} size="lg" color="white" />
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={printToggle} icon={faPrint} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
-                        <li>
+                        <li className={styles.menu_btn_wrapper}>
                             <OverlayTrigger
                                 key='right'
                                 placement='right'
@@ -437,23 +437,23 @@ export default function HydraMap(props) {
                                         定位
                         </Tooltip>
                                 }>
-                                <FontAwesomeIcon className="menu-btn" onClick={positioningToggle} icon={faMapMarker} size="lg" color="white" />
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={positioningToggle} icon={faMapMarker} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
                     </ul>
                 </nav>
             </div>
             { openSheet ?
-                <div className="menu-desk" >
+                <div className={styles.menu_desk} >
                     {
                         currentFunction == 0 && <div>
-                            <h4 className="func-title">搜尋</h4>
+                            <h4 className={styles.func_title}>搜尋</h4>
 
                         </div>
                     }
                     {
                         currentFunction == 1 && <div>
-                            <h4 className="func-title">圖層套疊</h4>
+                            <h4 className={styles.func_title}>圖層套疊</h4>
                             <br></br>
                             <div className= "checkbox">
                                 <label>
@@ -520,24 +520,24 @@ export default function HydraMap(props) {
                     }
                     {
                         currentFunction == 2 && <div>
-                            <h4 className="func-title">3D轉換</h4>
+                            <h4 className={styles.func_title}>3D轉換</h4>
                         </div>
                     }
                     {
                         currentFunction == 3 && <div>
-                            <h4 className="func-title">環域分析</h4>
+                            <h4 className={styles.func_title}>環域分析</h4>
 
                         </div>
                     }
                     {
                         currentFunction == 4 && <div>
-                            <h4 className="func-title">列印</h4>
+                            <h4 className={styles.func_title}>列印</h4>
 
                         </div>
                     }
                     {
                         currentFunction == 5 && <div>
-                            <h4 className="func-title">定位</h4>
+                            <h4 className={styles.func_title}>定位</h4>
                             
                         </div>
                     }
@@ -545,9 +545,9 @@ export default function HydraMap(props) {
                 <div></div>
             }
 
-            <div className="fragment">
+            <div className={styles.fragment}>
                 <div className="map" id = "map">
-                    <div className="map-container" ref={mapContainer} />
+                    <div className={styles.map_container} ref={mapContainer} />
                 </div>
             </div>
         </>

@@ -18,4 +18,6 @@ export const userForgotPasswd = (data) => guestRequest_client.post("/api/v1/auth
 export const userForgotPasswdCheckToken = (data) => guestRequest_client.post("/api/v1/auth/password_reset/validate_token/",data);
 export const userForgotPasswdConfirm = (data) => guestRequest_client.post("/api/v1/auth/password_reset/confirm/",data);
 
+export const userProfile = () => userRequest_client.get("/api/v1/auth/user/profile");
+
 export default userLogin

@@ -1,8 +1,7 @@
-import Link from 'next/link'
+import {Link} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {useEffect, useState} from 'react'
-import {css, jsx} from '@emotion/react'
-import styled from '@emotion/styled'
+import styled from '@emotion/styled/macro'
+import { jsx, css, Global, keyframes } from '@emotion/react/macro'
 
 export default function LinkButton({
                                        children,
@@ -34,10 +33,10 @@ export default function LinkButton({
                                        backgroundLightActiveColor,
                                    }) {
 
-    const ButtonText = styled.p(
+    const ButtonText = styled.span(
         props => (
             {
-
+                fontSize:"18px"
             }
         ))
 
@@ -66,25 +65,27 @@ export default function LinkButton({
     const ButtonWrapper = styled.div(
         props => (
             {
-                display: 'inline-block'
+                display: 'inline-block',
+                width:"100%"
             }
         )
     )
 
 
-    const Button = styled.button(
+
+    const Btn = styled.div(
         buttonStyle,
         props => (
             !isLightOn && {
                 backgroundColor: backgroundColor ? backgroundColor : "transparent",
                 [ButtonText]: {
-                    color: textColor ? textColor : "#AAAAAA"
+                    color: textColor ? textColor : "#A0A0A0"
                 },
                 [IconWrapper]: {
                     color: iconColor ? iconColor : "white"
                 },
                 '&:hover': {
-                    backgroundColor: backgroundHoverColor ? backgroundHoverColor : "#92a4e454",
+                    backgroundColor: backgroundHoverColor ? backgroundHoverColor : "transparent",
                     outline: 'none',
                     [ButtonText]: {
                         color: textHoverColor ? textHoverColor : "#92a4e4",
@@ -94,7 +95,7 @@ export default function LinkButton({
                     }
                 },
                 '&:active': {
-                    backgroundColor: backgroundActiveColor ? backgroundActiveColor : "#92a4e454",
+                    backgroundColor: backgroundActiveColor ? backgroundActiveColor : "transparent",
                     outline: 'none',
                     [ButtonText]: {
                         color: textActiveColor ? textActiveColor : "#92a4e4",
@@ -106,25 +107,25 @@ export default function LinkButton({
             }
 
             || isLightOn && {
-                backgroundColor: backgroundLightColor ? backgroundLightColor : "#92a4e454",
+                backgroundColor: backgroundLightColor ? backgroundLightColor : "#ffa200",
                 [ButtonText]: {
-                    color: textLightColor ? textLightColor : "#92a4e4"
+                    color: textLightColor ? textLightColor : "#FAFAFA"
                 },
                 [IconWrapper]: {
                     color: iconLightColor ? iconLightColor : "#92a4e4"
                 },
                 '&:hover': {
-                    backgroundColor: backgroundLightHoverColor ? backgroundLightHoverColor : "#92a4e454",
+                    backgroundColor: backgroundLightHoverColor ? backgroundLightHoverColor : "#fa200",
                     outline: 'none',
                     [ButtonText]: {
-                        color: textLightHoverColor ? textLightHoverColor : "#92a4e4",
+                        color: textLightHoverColor ? textLightHoverColor : "#FAFAFA",
                     },
                     [IconWrapper]: {
                         color: iconLightHoverColor ? iconLightHoverColor : "#92a4e4",
                     }
                 },
                 '&:active': {
-                    backgroundColor: backgroundLightActiveColor ? backgroundLightActiveColor : "#92a4e454",
+                    backgroundColor: backgroundLightActiveColor ? backgroundLightActiveColor : "transparent",
                     outline: 'none',
                     [ButtonText]: {
                         color: textLightActiveColor ? textLightActiveColor : "#92a4e4",
@@ -143,21 +144,12 @@ export default function LinkButton({
             <div className={className}>
                 <ButtonWrapper>
                     {link != null &&
-                    <Link href={link}>
-                        <a>
-                            <Button onClick={onClick}>
-                                {icon &&
-                                <IconWrapper>
-                                    <FontAwesomeIcon
-                                        icon={icon}
-                                    />
-                                </IconWrapper>
-                                }
+                    <Link to={link}>
+                            <Btn onClick={onClick}>
                                 { text &&
                                 <ButtonText>{text}</ButtonText>
                                 }
-                            </Button>
-                        </a>
+                            </Btn>
                     </Link>
                     }
                 </ButtonWrapper>

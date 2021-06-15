@@ -9,12 +9,17 @@ import HydraMap from './page/user/HydraMap';
 import User from './page/user/User';
 
 import Cookies from 'js-cookie'
+import {userProfile, userRequest_client} from "./lib/api";
 
 export default function App(props) {
 
     const initialUser = useRef()
     let history = useHistory();
     const location = useLocation();
+
+    if(Cookies.get('access')){
+        userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
+    }
 
     useEffect(() => {
         if(location.pathname ==="/"){

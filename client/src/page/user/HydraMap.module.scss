@@ -1,4 +1,4 @@
-.map-container {
+.map_container {
     position: absolute;
     top: 0;
     right: 0;
@@ -28,44 +28,52 @@ ul {
     padding-inline-start: 0em;
 }
 
-.top-level-nav {
+.top_level_nav {
     position: fixed;
-    padding: 10px;
+    padding-left: 13px;
     width: 68px;
     left: 0;
     bottom: 0;
     z-index: 8;
-    background: #0f131a;
+    background: #001845;
     left: 0;
     top: 0;
 }
 
-.top-level-nav-wrapper {
-    padding-top: 80px;
+.top_level_nav_wrapper {
+    padding-top: 30px;
 }
   
 
-.menu-desk {
-    padding-left: 68px;
+.menu_desk {
+    padding-left: 65px;
     padding-top: 60px;
     position: fixed;
     width: 430px;
     left: 0;
     bottom: 0;
     z-index: 7;
-    background: #21313b;
+    background: #023e7d;
     left: 0;
     top: 0;
 }
 
-.menu-btn{
+.menu_btn_wrapper{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+}
+
+.menu_btn{
     width: 24px;
     height: 24px;
     background-color: transparent;
     cursor: pointer;
 }
 
-.func-title{
+
+
+.func_title{
     margin-top:10px;
     margin-left:20px;
     color:white;

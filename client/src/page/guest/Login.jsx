@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import {login} from '../../utils/api'
 import {
     BrowserRouter as Router,
@@ -16,7 +16,8 @@ import Cookies from 'js-cookie'
 
 import './Login.module.scss';
 import styled from "@emotion/styled";
-
+import {useToasts} from "react-toast-notifications";
+import {userRequest_client} from '../../lib/api'
 
 const Title = styled.h2(
     props => ({
@@ -59,7 +60,8 @@ export default function Login() {
     const [isLoading, setLoading] = useState(false)
     const [text, setText] = useState("")
     const [showWarning, setShowWarning] = useState(false)
-
+    const { addToast } = useToasts();
+    const initialUser = useRef()
     const handleLogin = (e) => {
         e.preventDefault()
         if (!isLoading) {
@@ -69,8 +71,11 @@ export default function Login() {
                 password: password
             }).then((res) => {
                 if (res.status === 200) {
+                    addToast('登入成功.', { appearance: 'success',autoDismiss:true });
                     Cookies.set('access', res.data['access'])
-                    setUser(res.data)
+                    userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${res.data['access']}`
+                    initialUser.current = res.data
+                    setUser(initialUser)
                     history.push("/user/hydramap")
                 }
             }).catch((err) => {

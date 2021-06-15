@@ -15,6 +15,7 @@ from rest_framework import serializers
 
 from django_rest_passwordreset.models import get_password_reset_token_expiry_time
 from django_rest_passwordreset import models
+from django.contrib.auth import get_user_model
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -30,6 +31,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super(MyTokenObtainPairSerializer, self).validate(attrs)
         data.update({'username': self.user.username})
         data.update({'email': self.user.email})
+        data.update({'is_staff': self.user.is_staff})
         return data
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -94,3 +96,11 @@ class ResetPasswordSerializer(serializers.Serializer):
             reset_password_token.delete()
             raise Http404(_("The token has expired"))
         return attrs
+
+
+class UserSerializer(serializers.ModelSerializer):
+    userid = serializers.CharField(max_length=255)
+    class Meta:
+        model = get_user_model()
+        fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']
+        read_only_fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']

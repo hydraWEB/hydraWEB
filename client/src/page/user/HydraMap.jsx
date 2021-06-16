@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown , FormControl , 
     NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form, ButtonGroup } from 'react-bootstrap';
     
@@ -50,22 +50,70 @@ export default function HydraMap(props) {
     const [openSheet, setOpenSheet] = useState(false)
     const [openYL, setOpenYL] = useState(true)
     //雲林
-    const [ylchecked1, ylsetChecked1] = useState(true);
-    const [ylchecked2, ylsetChecked2] = useState(true);
-    const [ylchecked3, ylsetChecked3] = useState(true);
-    const [ylchecked4, ylsetChecked4] = useState(true);
-    const [ylchecked5, ylsetChecked5] = useState(true);
-    const [ylchecked6, ylsetChecked6] = useState(true);
-    const [ylchecked7, ylsetChecked7] = useState(true);
-    //彰化
-    const [zhchecked1, zhsetChecked1] = useState(true);
-    const [zhchecked2, zhsetChecked2] = useState(true);
-    const [zhchecked3, zhsetChecked3] = useState(true);
-    const [zhchecked4, zhsetChecked4] = useState(true);
-    const [zhchecked5, zhsetChecked5] = useState(true);
-    const [zhchecked6, zhsetChecked6] = useState(true);
-    const [zhchecked7, zhsetChecked7] = useState(true);
 
+    const [ylchecked, setylChecked] = useState([
+        {
+            id:1,
+            value: true
+        },
+        {
+            id:2,
+            value: true
+        },
+        {
+            id:3,
+            value: true
+        },
+        {
+            id:4,
+            value: true
+        },
+        {
+            id:5,
+            value: true
+        },
+        {
+            id:6,
+            value: true
+        },
+        {
+            id:7,
+            value: true
+        }
+    ])
+    
+    //彰化
+    const [zhchecked, setzhChecked] = useState([
+        {
+            id:1,
+            value: true
+        },
+        {
+            id:2,
+            value: true
+        },
+        {
+            id:3,
+            value: true
+        },
+        {
+            id:4,
+            value: true
+        },
+        {
+            id:5,
+            value: true
+        },
+        {
+            id:6,
+            value: true
+        },
+        {
+            id:7,
+            value: true
+        }
+    ])
+    
     const [xCoordinate, setxCoordinate] = useState()
     const [yCoordinate, setyCoordinate] = useState()
 
@@ -85,132 +133,192 @@ export default function HydraMap(props) {
     }))
 
     const ylhandleToggle1 = ((e)=>{
-        if (ylchecked1){
+        if (ylchecked[0]){
             map.current.setLayoutProperty('yldata1','visibility','none')
-            ylsetChecked1(false)
+            let newArr = [...ylchecked]
+            newArr[0] = false
+            setylChecked(newArr)
+            
         }else{
             map.current.setLayoutProperty('yldata1','visibility','visible')
-            ylsetChecked1(true)
+            let newArr = [...ylchecked]
+            newArr[0] = true
+            setylChecked(newArr)
         }
     })
     const ylhandleToggle2 = ((e)=>{
-        if (ylchecked2){
+        if (ylchecked[1]){
             map.current.setLayoutProperty('yldata2','visibility','none')
-            ylsetChecked2(false)
+            let newArr = [...ylchecked]
+            newArr[1] = false
+            setylChecked(newArr)
         }else{
             map.current.setLayoutProperty('yldata2','visibility','visible')
-            ylsetChecked2(true)
+            let newArr = [...ylchecked]
+            newArr[1] = true
+            setylChecked(newArr)
         }
     })
     const ylhandleToggle3 = ((e)=>{
-        if (ylchecked3){
+        if (ylchecked[2]){
             map.current.setLayoutProperty('yldata3','visibility','none')
-            ylsetChecked3(false)
+            let newArr = [...ylchecked]
+            newArr[2] = false
+            setylChecked(newArr)
         }else{
             map.current.setLayoutProperty('yldata3','visibility','visible')
-            ylsetChecked3(true)
+            let newArr = [...ylchecked]
+            newArr[2] = true
+            setylChecked(newArr)
         }
     })
     const ylhandleToggle4 = ((e)=>{
-        if (ylchecked4){
+        if (ylchecked[3]){
             map.current.setLayoutProperty('yldata4','visibility','none')
-            ylsetChecked4(false)
+            let newArr = [...ylchecked]
+            newArr[3] = false
+            setylChecked(newArr)
         }else{
             map.current.setLayoutProperty('yldata4','visibility','visible')
-            ylsetChecked4(true)
+            let newArr = [...ylchecked]
+            newArr[3] = true
+            setylChecked(newArr)
         }
     })
     const ylhandleToggle5 = ((e)=>{
-        if (ylchecked5){
+        if (ylchecked[4]){
             map.current.setLayoutProperty('yldata5','visibility','none')
-            ylsetChecked5(false)
+            let newArr = [...ylchecked]
+            newArr[4] = false
+            setylChecked(newArr)
         }else{
             map.current.setLayoutProperty('yldata5','visibility','visible')
-            ylsetChecked5(true)
+            let newArr = [...ylchecked]
+            newArr[4] = true
+            setylChecked(newArr)
         }
     })
     const ylhandleToggle6 = ((e)=>{
-        if (ylchecked6){
+        if (ylchecked[5]){
             map.current.setLayoutProperty('yldata6','visibility','none')
-            ylsetChecked6(false)
+            let newArr = [...ylchecked]
+            newArr[5] = false
+            setylChecked(newArr)
         }else{
             map.current.setLayoutProperty('yldata6','visibility','visible')
-            ylsetChecked6(true)
+            let newArr = [...ylchecked]
+            newArr[6] = true
+            setylChecked(newArr)
         }
     })
     const ylhandleToggle7 = ((e)=>{
-        if (ylchecked7){
+        if (ylchecked[6]){
             map.current.setLayoutProperty('yldata7','visibility','none')
-            ylsetChecked7(false)
+            let newArr = [...ylchecked]
+            newArr[6] = false
+            setylChecked(newArr)
         }else{
             map.current.setLayoutProperty('yldata7','visibility','visible')
-            ylsetChecked7(true)
+            let newArr = [...ylchecked]
+            newArr[6] = true
+            setylChecked(newArr)
         }
     })
 
     const zhhandleToggle1 = ((e)=>{
-        if (zhchecked1){
+        if (zhchecked[0]){
             map.current.setLayoutProperty('zhdata1','visibility','none')
-            zhsetChecked1(false)
+            let newArr = [...zhchecked]
+            newArr[0] = false
+            setzhChecked(newArr)
+            
         }else{
             map.current.setLayoutProperty('zhdata1','visibility','visible')
-            zhsetChecked1(true)
+            let newArr = [...zhchecked]
+            newArr[0] = true
+            setzhChecked(newArr)
         }
     })
     const zhhandleToggle2 = ((e)=>{
-        if (zhchecked2){
+        if (zhchecked[1]){
             map.current.setLayoutProperty('zhdata2','visibility','none')
-            zhsetChecked2(false)
+            let newArr = [...zhchecked]
+            newArr[1] = false
+            setzhChecked(newArr)
         }else{
             map.current.setLayoutProperty('zhdata2','visibility','visible')
-            zhsetChecked2(true)
+            let newArr = [...zhchecked]
+            newArr[1] = true
+            setzhChecked(newArr)
         }
     })
     const zhhandleToggle3 = ((e)=>{
-        if (zhchecked3){
+        if (zhchecked[2]){
             map.current.setLayoutProperty('zhdata3','visibility','none')
-            zhsetChecked3(false)
+            let newArr = [...zhchecked]
+            newArr[2] = false
+            setzhChecked(newArr)
         }else{
             map.current.setLayoutProperty('zhdata3','visibility','visible')
-            zhsetChecked3(true)
+            let newArr = [...zhchecked]
+            newArr[2] = true
+            setzhChecked(newArr)
         }
     })
     const zhhandleToggle4 = ((e)=>{
-        if (zhchecked4){
+        if (zhchecked[3]){
             map.current.setLayoutProperty('zhdata4','visibility','none')
-            zhsetChecked4(false)
+            let newArr = [...zhchecked]
+            newArr[3] = false
+            setzhChecked(newArr)
         }else{
             map.current.setLayoutProperty('zhdata4','visibility','visible')
-            zhsetChecked4(true)
+            let newArr = [...zhchecked]
+            newArr[3] = true
+            setzhChecked(newArr)
         }
     })
     const zhhandleToggle5 = ((e)=>{
-        if (zhchecked5){
+        if (zhchecked[4]){
             map.current.setLayoutProperty('zhdata5','visibility','none')
-            zhsetChecked5(false)
+            let newArr = [...zhchecked]
+            newArr[4] = false
+            setzhChecked(newArr)
         }else{
             map.current.setLayoutProperty('zhdata5','visibility','visible')
-            zhsetChecked5(true)
+            let newArr = [...zhchecked]
+            newArr[4] = true
+            setzhChecked(newArr)
         }
     })
     const zhhandleToggle6 = ((e)=>{
-        if (zhchecked6){
+        if (zhchecked[5]){
             map.current.setLayoutProperty('zhdata6','visibility','none')
-            zhsetChecked6(false)
+            let newArr = [...zhchecked]
+            newArr[5] = false
+            setzhChecked(newArr)
         }else{
             map.current.setLayoutProperty('zhdata6','visibility','visible')
-            zhsetChecked6(true)
+            let newArr = [...zhchecked]
+            newArr[6] = true
+            setzhChecked(newArr)
         }
     })
     const zhhandleToggle7 = ((e)=>{
-        if (zhchecked7){
+        if (zhchecked[6]){
             map.current.setLayoutProperty('zhdata7','visibility','none')
-            zhsetChecked7(false)
+            let newArr = [...zhchecked]
+            newArr[6] = false
+            setzhChecked(newArr)
         }else{
             map.current.setLayoutProperty('zhdata7','visibility','visible')
-            zhsetChecked7(true)
+            let newArr = [...zhchecked]
+            newArr[6] = true
+            setzhChecked(newArr)
         }
     })
+
+
     useEffect(() => {
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
@@ -506,7 +614,7 @@ export default function HydraMap(props) {
                 'filter': ['==', '$type', 'Point']
             });
         });
-        return () => map.current.remove();
+        
     },[]);
     
 
@@ -562,6 +670,15 @@ export default function HydraMap(props) {
             setOpenSheet(true)
         }
         setCurrentFunction(5)
+    })
+
+    const xyToggle = ((e) =>{
+        if (openSheet && currentFunction == 6) {
+            setOpenSheet(false)
+        } else {
+            setOpenSheet(true)
+        }
+        setCurrentFunction(6)
     })
     
     const changeRegion = ((e) =>{
@@ -650,6 +767,18 @@ export default function HydraMap(props) {
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={positioningToggle} icon={faMapMarker} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
+                        <li className={styles.menu_btn_wrapper}>
+                            <OverlayTrigger
+                                key='right'
+                                placement='right'
+                                overlay={
+                                    <Tooltip id='tooltip-right' className={styles.tooltip}>
+                                        XY坐標
+                        </Tooltip>
+                                }>
+                                <FontAwesomeIcon className={styles.menu_btn} onClick={xyToggle} icon={faGlobe} size="lg" color="white" />
+                            </OverlayTrigger>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -669,27 +798,6 @@ export default function HydraMap(props) {
                                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <br></br>
-                            <Form.Group className={styles.getXYCoordinate}>
-                                <Form.Control
-                                    placeholder="X-Coordinates"
-                                    value = {xCoordinate}
-                                    onChange={event => setxCoordinate(event.target.value)}
-                                    type="text"
-                                />
-                                <Form.Control
-                                    placeholder="Y-Coordinates"
-                                    value = {yCoordinate}
-                                    onChange={event => setyCoordinate(event.target.value)}
-                                    type="text"
-                                />
-                                <Button className={styles.btnFormSend} variant="outline-success" onClick={onFormSubmit}>
-                                Find Location
-                                </Button>
-                                <Button className={styles.btnFormDelete} variant="outline-success" onClick={onFormDelete}>
-                                Delete Location
-                                </Button>
-                            </Form.Group>
                         </div>
                     }
                     {
@@ -716,49 +824,55 @@ export default function HydraMap(props) {
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked1} 
+                                            checked={ylchecked[0].value} 
                                             onClick={ylhandleToggle1}
                                         />108雲林地區地層下陷加密水準檢測成果表
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked2} 
+                                            checked={ylchecked[1].value} 
                                             onClick={ylhandleToggle2}
                                         />108雲林地區地層下陷水準檢測成果表
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked3} 
+                                            checked={ylchecked[2].value} 
                                             onClick={ylhandleToggle3}
                                         />GPS站_雲林縣
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked4} 
+                                            checked={ylchecked[3].value} 
                                             onClick={ylhandleToggle4}
                                         />台灣自來水公司第五區_雲林抽水井位置圖
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked5} 
+                                            checked={ylchecked[4].value} 
                                             onClick={ylhandleToggle5}
                                         />地層下陷監測點_雲林縣
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked6} 
+                                            checked={ylchecked[5].value} 
                                             onClick={ylhandleToggle6}
                                         />水準樁_雲林縣
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={ylchecked7} 
+                                            checked={ylchecked[6].value} 
                                             onClick={ylhandleToggle7}
                                         />雲林水利會抽水井位置圖
                                     </label>
@@ -768,49 +882,55 @@ export default function HydraMap(props) {
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked1} 
+                                            checked={zhchecked[0].value} 
                                             onClick={zhhandleToggle1}
                                         />108彰化地區地層下陷加密水準檢測成果表
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked2} 
+                                            checked={zhchecked[1].value} 
                                             onClick={zhhandleToggle2}
                                         />108彰化地區地層下陷水準檢測成果表
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked3} 
+                                            checked={zhchecked[2].value} 
                                             onClick={zhhandleToggle3}
                                         />GPS站_彰化縣
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked4} 
+                                            checked={zhchecked[3].value} 
                                             onClick={zhhandleToggle4}
                                         />台灣自來水公司第十一區_彰化抽水井位置圖
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked5} 
+                                            checked={zhchecked[4].value} 
                                             onClick={zhhandleToggle5}
                                         />地層下陷監測點_彰化縣
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked6} 
+                                            checked={zhchecked[5].value} 
                                             onClick={zhhandleToggle6}
                                         />彰化水利會抽水井位置圖
                                     </label>
+                                    <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked7} 
+                                            checked={zhchecked[6].value} 
                                             onClick={zhhandleToggle7}
                                         />水準樁_彰化縣
                                     </label>
@@ -839,6 +959,32 @@ export default function HydraMap(props) {
                     {
                         currentFunction == 5 && <div>
                             <h4 className={styles.func_title}>定位</h4>
+                            <label></label>
+                        </div>
+                    }
+                                        {
+                        currentFunction == 6 && <div>
+                            <h4 className={styles.func_title}>XY坐標</h4>
+                            <Form.Group className={styles.getXYCoordinate}>
+                                <Form.Control
+                                    placeholder="X-Coordinates"
+                                    value = {xCoordinate}
+                                    onChange={event => setxCoordinate(event.target.value)}
+                                    type="text"
+                                />
+                                <Form.Control
+                                    placeholder="Y-Coordinates"
+                                    value = {yCoordinate}
+                                    onChange={event => setyCoordinate(event.target.value)}
+                                    type="text"
+                                />
+                                <Button className={styles.btnFormSend} variant="outline-success" onClick={onFormSubmit}>
+                                Find Location
+                                </Button>
+                                <Button className={styles.btnFormDelete} variant="outline-success" onClick={onFormDelete}>
+                                Delete Location
+                                </Button>
+                            </Form.Group>
                             <label></label>
                         </div>
                     }

@@ -7,18 +7,28 @@ import {
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView } from '@fortawesome/free-solid-svg-icons'
-import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown , FormControl , 
+    NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form, ButtonGroup } from 'react-bootstrap';
 
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-import jsonData from '../../utils/108台北地區水準測量檢測成果表.json';
-import jsonData2 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
-import jsonData3 from '../../utils/108屏東地區水準測量檢測成果表.json';
-import jsonData4 from '../../utils/108彰化地區地層下陷水準檢測成果表.json';
-import jsonData5 from '../../utils/108嘉義地區水準測量檢測成果表.json';
-import jsonData6 from '../../utils/108臺南地區水準測量檢測成果表.json';
-import jsonData7 from '../../utils/108雲林地區地層下陷加密水準檢測成果表.json';
-import jsonData8 from '../../utils/108雲林地區地層下陷水準檢測成果表.json';
+import zhjsonData1 from '../utils/108彰化地區地層下陷加密水準檢測成果表.json';
+import zhjsonData2 from '../utils/108彰化地區地層下陷水準檢測成果表';
+import zhjsonData3 from '../utils/GPS站_彰化縣';
+import zhjsonData4 from '../utils/台灣自來水公司第十一區_彰化抽水井位置圖';
+import zhjsonData5 from '../utils/地層下陷監測點_彰化縣';
+import zhjsonData6 from '../utils/彰化水利會抽水井位置圖';
+import zhjsonData7 from '../utils/水準樁_彰化縣';
+
+import yljsonData1 from '../utils/108雲林地區地層下陷加密水準檢測成果表';
+import yljsonData2 from '../utils/108雲林地區地層下陷水準檢測成果表';
+import yljsonData3 from '../utils/GPS站_雲林縣';
+import yljsonData4 from '../utils/台灣自來水公司第五區_雲林抽水井位置圖';
+import yljsonData5 from '../utils/地層下陷監測點_雲林縣';
+import yljsonData6 from '../utils/水準樁_雲林縣';
+import yljsonData7 from '../utils/雲林水利會抽水井位置圖';
+
+
 
 import './HydraMap.scss';
 
@@ -33,93 +43,173 @@ export default function HydraMap(props) {
     const [lat, setLat] = useState(24)
     const [zoom, setZoon] = useState(7)
     const [currentFunction, setCurrentFunction] = useState(0)
+    const radios = [
+        {name: '雲林',value:'1'},
+        {name: '彰化', value:'2'}
+    ];
+    const [radioValue, setRadioValue] = useState('1');
     const [openSheet, setOpenSheet] = useState(false)
-    const [checked1, setChecked1] = useState(true);
-    const [checked2, setChecked2] = useState(true);
-    const [checked3, setChecked3] = useState(true);
-    const [checked4, setChecked4] = useState(true);
-    const [checked5, setChecked5] = useState(true);
-    const [checked6, setChecked6] = useState(true);
-    const [checked7, setChecked7] = useState(true);
-    const [checked8, setChecked8] = useState(true);
-    const showLayerToggle = ((e) =>{
-        map.current.setLayoutProperty('data','visibility','visible')
+    const [openYL, setOpenYL] = useState(true)
+    //雲林
+    const [ylchecked1, ylsetChecked1] = useState(true);
+    const [ylchecked2, ylsetChecked2] = useState(true);
+    const [ylchecked3, ylsetChecked3] = useState(true);
+    const [ylchecked4, ylsetChecked4] = useState(true);
+    const [ylchecked5, ylsetChecked5] = useState(true);
+    const [ylchecked6, ylsetChecked6] = useState(true);
+    const [ylchecked7, ylsetChecked7] = useState(true);
+    //彰化
+    const [zhchecked1, zhsetChecked1] = useState(true);
+    const [zhchecked2, zhsetChecked2] = useState(true);
+    const [zhchecked3, zhsetChecked3] = useState(true);
+    const [zhchecked4, zhsetChecked4] = useState(true);
+    const [zhchecked5, zhsetChecked5] = useState(true);
+    const [zhchecked6, zhsetChecked6] = useState(true);
+    const [zhchecked7, zhsetChecked7] = useState(true);
+
+    const [xCoordinate, setxCoordinate] = useState()
+    const [yCoordinate, setyCoordinate] = useState()
+
+    var tempMarker = useState()
+
+    //function for the button for submit xy coordinates
+    const onFormSubmit = ((e) =>{
+        //map.current.setCenter([xCoordinate,yCoordinate])
+        //map.current.setZoom(10)
+        tempMarker = new mapboxgl.Marker()
+        .setLngLat([xCoordinate, yCoordinate])
+        .addTo(map.current);
     })
 
-    const hideLayerToggle = ((e)=>{
-        map.current.setLayoutProperty('data','visibility','none')
+    const onFormDelete = ((e =>{
+        tempMarker.remove()
+    }))
+
+    const ylhandleToggle1 = ((e)=>{
+        if (ylchecked1){
+            map.current.setLayoutProperty('yldata1','visibility','none')
+            ylsetChecked1(false)
+        }else{
+            map.current.setLayoutProperty('yldata1','visibility','visible')
+            ylsetChecked1(true)
+        }
+    })
+    const ylhandleToggle2 = ((e)=>{
+        if (ylchecked2){
+            map.current.setLayoutProperty('yldata2','visibility','none')
+            ylsetChecked2(false)
+        }else{
+            map.current.setLayoutProperty('yldata2','visibility','visible')
+            ylsetChecked2(true)
+        }
+    })
+    const ylhandleToggle3 = ((e)=>{
+        if (ylchecked3){
+            map.current.setLayoutProperty('yldata3','visibility','none')
+            ylsetChecked3(false)
+        }else{
+            map.current.setLayoutProperty('yldata3','visibility','visible')
+            ylsetChecked3(true)
+        }
+    })
+    const ylhandleToggle4 = ((e)=>{
+        if (ylchecked4){
+            map.current.setLayoutProperty('yldata4','visibility','none')
+            ylsetChecked4(false)
+        }else{
+            map.current.setLayoutProperty('yldata4','visibility','visible')
+            ylsetChecked4(true)
+        }
+    })
+    const ylhandleToggle5 = ((e)=>{
+        if (ylchecked5){
+            map.current.setLayoutProperty('yldata5','visibility','none')
+            ylsetChecked5(false)
+        }else{
+            map.current.setLayoutProperty('yldata5','visibility','visible')
+            ylsetChecked5(true)
+        }
+    })
+    const ylhandleToggle6 = ((e)=>{
+        if (ylchecked6){
+            map.current.setLayoutProperty('yldata6','visibility','none')
+            ylsetChecked6(false)
+        }else{
+            map.current.setLayoutProperty('yldata6','visibility','visible')
+            ylsetChecked6(true)
+        }
+    })
+    const ylhandleToggle7 = ((e)=>{
+        if (ylchecked7){
+            map.current.setLayoutProperty('yldata7','visibility','none')
+            ylsetChecked7(false)
+        }else{
+            map.current.setLayoutProperty('yldata7','visibility','visible')
+            ylsetChecked7(true)
+        }
     })
 
-    const handleToggle1 = ((e)=>{
-        if (checked1){
-            map.current.setLayoutProperty('data','visibility','none')
-            setChecked1(false)
+    const zhhandleToggle1 = ((e)=>{
+        if (zhchecked1){
+            map.current.setLayoutProperty('zhdata1','visibility','none')
+            zhsetChecked1(false)
         }else{
-            map.current.setLayoutProperty('data','visibility','visible')
-            setChecked1(true)
+            map.current.setLayoutProperty('zhdata1','visibility','visible')
+            zhsetChecked1(true)
         }
     })
-    const handleToggle2 = ((e)=>{
-        if (checked2){
-            map.current.setLayoutProperty('data2','visibility','none')
-            setChecked2(false)
+    const zhhandleToggle2 = ((e)=>{
+        if (zhchecked2){
+            map.current.setLayoutProperty('zhdata2','visibility','none')
+            zhsetChecked2(false)
         }else{
-            map.current.setLayoutProperty('data2','visibility','visible')
-            setChecked2(true)
+            map.current.setLayoutProperty('zhdata2','visibility','visible')
+            zhsetChecked2(true)
         }
     })
-    const handleToggle3 = ((e)=>{
-        if (checked3){
-            map.current.setLayoutProperty('data3','visibility','none')
-            setChecked3(false)
+    const zhhandleToggle3 = ((e)=>{
+        if (zhchecked3){
+            map.current.setLayoutProperty('zhdata3','visibility','none')
+            zhsetChecked3(false)
         }else{
-            map.current.setLayoutProperty('data3','visibility','visible')
-            setChecked3(true)
+            map.current.setLayoutProperty('zhdata3','visibility','visible')
+            zhsetChecked3(true)
         }
     })
-    const handleToggle4 = ((e)=>{
-        if (checked4){
-            map.current.setLayoutProperty('data4','visibility','none')
-            setChecked4(false)
+    const zhhandleToggle4 = ((e)=>{
+        if (zhchecked4){
+            map.current.setLayoutProperty('zhdata4','visibility','none')
+            zhsetChecked4(false)
         }else{
-            map.current.setLayoutProperty('data4','visibility','visible')
-            setChecked4(true)
+            map.current.setLayoutProperty('zhdata4','visibility','visible')
+            zhsetChecked4(true)
         }
     })
-    const handleToggle5 = ((e)=>{
-        if (checked5){
-            map.current.setLayoutProperty('data5','visibility','none')
-            setChecked5(false)
+    const zhhandleToggle5 = ((e)=>{
+        if (zhchecked5){
+            map.current.setLayoutProperty('zhdata5','visibility','none')
+            zhsetChecked5(false)
         }else{
-            map.current.setLayoutProperty('data5','visibility','visible')
-            setChecked5(true)
+            map.current.setLayoutProperty('zhdata5','visibility','visible')
+            zhsetChecked5(true)
         }
     })
-    const handleToggle6 = ((e)=>{
-        if (checked6){
-            map.current.setLayoutProperty('data6','visibility','none')
-            setChecked6(false)
+    const zhhandleToggle6 = ((e)=>{
+        if (zhchecked6){
+            map.current.setLayoutProperty('zhdata6','visibility','none')
+            zhsetChecked6(false)
         }else{
-            map.current.setLayoutProperty('data6','visibility','visible')
-            setChecked6(true)
+            map.current.setLayoutProperty('zhdata6','visibility','visible')
+            zhsetChecked6(true)
         }
     })
-    const handleToggle7 = ((e)=>{
-        if (checked7){
-            map.current.setLayoutProperty('data7','visibility','none')
-            setChecked7(false)
+    const zhhandleToggle7 = ((e)=>{
+        if (zhchecked7){
+            map.current.setLayoutProperty('zhdata7','visibility','none')
+            zhsetChecked7(false)
         }else{
-            map.current.setLayoutProperty('data7','visibility','visible')
-            setChecked7(true)
-        }
-    })
-    const handleToggle8 = ((e)=>{
-        if (checked8){
-            map.current.setLayoutProperty('data8','visibility','none')
-            setChecked8(false)
-        }else{
-            map.current.setLayoutProperty('data8','visibility','visible')
-            setChecked8(true)
+            map.current.setLayoutProperty('zhdata7','visibility','visible')
+            zhsetChecked7(true)
         }
     })
     useEffect(() => {
@@ -131,56 +221,28 @@ export default function HydraMap(props) {
         });
         
         var Draw = new MapboxDraw();
-
         
-        map.current.addControl(Draw, 'top-left');
+        map.current.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+        map.current.addControl(
+            new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            }), 'bottom-right'
+        );
 
         map.current.on('load', function () {
             // ALL YOUR APPLICATION CODE
             console.log("load")
 
-            var res = {
+            var zhres1 = {
                 'type': 'geojson',
-                'data': jsonData
-            }
-            var res2 = {
-                'type': 'geojson',
-                'data': jsonData2
-            }
-            var res3 = {
-                'type': 'geojson',
-                'data': jsonData3
-            }
-            var res4 = {
-                'type': 'geojson',
-                'data': jsonData4
-            }
-            var res5 = {
-                'type': 'geojson',
-                'data': jsonData5
-            }
-            var res6 = {
-                'type': 'geojson',
-                'data': jsonData6
-            }
-            var res7 = {
-                'type': 'geojson',
-                'data': jsonData7
-            }
-            var res8 = {
-                'type': 'geojson',
-                'data': jsonData8
+                'data': zhjsonData1
             }
 
-            console.log(res)
-            map.current.addSource("data", res)
-            map.current.addSource("data2", res2)
-            map.current.addSource("data3", res3)
-            map.current.addSource("data4", res4)
-            map.current.addSource("data5", res5)
-            map.current.addSource("data6", res6)
-            map.current.addSource("data7", res7)
-            map.current.addSource("data8", res8)
+            console.log(zhres1)
+            map.current.addSource("zhdata1", zhres1)
             map.current.addLayer({
                 'id': 'park-boundary',
                 'type': 'fill',
@@ -193,87 +255,18 @@ export default function HydraMap(props) {
             });
             
             map.current.addLayer({
-                'id': 'data',
+                'id': 'zhdata1',
                 'type': 'circle',
-                'source': 'data',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#f72585'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.addLayer({
-                'id': 'data2',
-                'type': 'circle',
-                'source': 'data2',
+                'source': 'zhdata1',
                 'paint': {
                     'circle-radius': 5,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
             });
-            map.current.addLayer({
-                'id': 'data3',
-                'type': 'circle',
-                'source': 'data3',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.addLayer({
-                'id': 'data4',
-                'type': 'circle',
-                'source': 'data4',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.addLayer({
-                'id': 'data5',
-                'type': 'circle',
-                'source': 'data5',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.addLayer({
-                'id': 'data6',
-                'type': 'circle',
-                'source': 'data6',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.addLayer({
-                'id': 'data7',
-                'type': 'circle',
-                'source': 'data7',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.addLayer({
-                'id': 'data8',
-                'type': 'circle',
-                'source': 'data8',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
+            map.current.setLayoutProperty('zhdata1','visibility','none')
             
-            map.current.on('click','data', function (e){
+            map.current.on('click','zhdata1', function (e){
                 var coordinates = e.features[0].geometry.coordinates.slice();
                 var otherCoordinates = e.features[0].properties.TWD97_Y;
                 const front = "<h1 style='color:red'>"
@@ -302,9 +295,220 @@ export default function HydraMap(props) {
         return () => map.current.remove();
     },[]);
 
-    useEffect(() =>{
+    useEffect(() => {
 
-    })
+        map.current.on('load', function () {
+            // ALL YOUR APPLICATION CODE
+            console.log("load")
+
+            var ylres1 = {
+                'type': 'geojson',
+                'data': yljsonData1
+            }
+            var ylres2 = {
+                'type': 'geojson',
+                'data': yljsonData2
+            }
+            var ylres3 = {
+                'type': 'geojson',
+                'data': yljsonData3
+            }
+            var ylres4 = {
+                'type': 'geojson',
+                'data': yljsonData4
+            }
+            var ylres5 = {
+                'type': 'geojson',
+                'data': yljsonData5
+            }
+            var ylres6 = {
+                'type': 'geojson',
+                'data': yljsonData6
+            }
+            var ylres7 = {
+                'type': 'geojson',
+                'data': yljsonData7
+            }
+
+            var zhres1 = {
+                'type': 'geojson',
+                'data': zhjsonData1
+            }
+            var zhres2 = {
+                'type': 'geojson',
+                'data': zhjsonData2
+            }
+            var zhres3 = {
+                'type': 'geojson',
+                'data': zhjsonData3
+            }
+            var zhres4 = {
+                'type': 'geojson',
+                'data': zhjsonData4
+            }
+            var zhres5 = {
+                'type': 'geojson',
+                'data': zhjsonData5
+            }
+            var zhres6 = {
+                'type': 'geojson',
+                'data': zhjsonData6
+            }
+            var zhres7 = {
+                'type': 'geojson',
+                'data': zhjsonData7
+            }
+
+            map.current.addSource("yldata1", ylres1)
+            map.current.addSource("yldata2", ylres2)
+            map.current.addSource("yldata3", ylres3)
+            map.current.addSource("yldata4", ylres4)
+            map.current.addSource("yldata5", ylres5)
+            map.current.addSource("yldata6", ylres6)
+            map.current.addSource("yldata7", ylres7)
+
+            map.current.addSource("zhdata2", zhres2)
+            map.current.addSource("zhdata3", zhres3)
+            map.current.addSource("zhdata4", zhres4)
+            map.current.addSource("zhdata5", zhres5)
+            map.current.addSource("zhdata6", zhres6)
+            map.current.addSource("zhdata7", zhres7)
+
+            
+            
+            map.current.addLayer({
+                'id': 'yldata1',
+                'type': 'circle',
+                'source': 'yldata1',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'yldata2',
+                'type': 'circle',
+                'source': 'yldata2',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'yldata3',
+                'type': 'circle',
+                'source': 'yldata3',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'yldata4',
+                'type': 'circle',
+                'source': 'yldata4',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'yldata5',
+                'type': 'circle',
+                'source': 'yldata5',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'yldata6',
+                'type': 'circle',
+                'source': 'yldata6',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'yldata7',
+                'type': 'circle',
+                'source': 'yldata7',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f72585'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'zhdata2',
+                'type': 'circle',
+                'source': 'zhdata2',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'zhdata3',
+                'type': 'circle',
+                'source': 'zhdata3',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'zhdata4',
+                'type': 'circle',
+                'source': 'zhdata4',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'zhdata5',
+                'type': 'circle',
+                'source': 'zhdata5',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'zhdata6',
+                'type': 'circle',
+                'source': 'zhdata6',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
+                'id': 'zhdata7',
+                'type': 'circle',
+                'source': 'zhdata7',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+        });
+        return () => map.current.remove();
+    },[]);
     
 
     const searchSheetToggle = ((e) => {
@@ -360,8 +564,15 @@ export default function HydraMap(props) {
         }
         setCurrentFunction(5)
     })
-
     
+    const changeRegion = ((e) =>{
+        setRadioValue(e.currentTarget.value)
+        if (radioValue == "1") {
+            setOpenYL(false)
+        } else{
+            setOpenYL(true)
+        }
+    })
 
     return (
         <>
@@ -448,74 +659,165 @@ export default function HydraMap(props) {
                     {
                         currentFunction == 0 && <div>
                             <h4 className="func-title">搜尋</h4>
+                            <Dropdown classname = "droplist">
+                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                    Dropdown Button
+                                </Dropdown.Toggle>
 
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            <br></br>
+                            <Form.Group className="getXYCoordinate">
+                                <Form.Control
+                                    placeholder="X-Coordinates"
+                                    value = {xCoordinate}
+                                    onChange={event => setxCoordinate(event.target.value)}
+                                    type="text"
+                                />
+                                <Form.Control
+                                    placeholder="Y-Coordinates"
+                                    value = {yCoordinate}
+                                    onChange={event => setyCoordinate(event.target.value)}
+                                    type="text"
+                                />
+                                <Button className="btnFormSend" variant="outline-success" onClick={onFormSubmit}>
+                                Find Location
+                                </Button>
+                                <Button className="btnFormDelete" variant="outline-success" onClick={onFormDelete}>
+                                Delete Location
+                                </Button>
+                            </Form.Group>
                         </div>
                     }
                     {
                         currentFunction == 1 && <div>
                             <h4 className="func-title">圖層套疊</h4>
-                            <br></br>
-                            <div className= "checkbox">
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked1} 
-                                        onClick={handleToggle1}
-                                    />108台北地區水準測量檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked2} 
-                                        onClick={handleToggle2}
-                                    />108彰化地區地層下陷加密水準檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked3} 
-                                        onClick={handleToggle3}
-                                    />108屏東地區水準測量檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked4} 
-                                        onClick={handleToggle4}
-                                    />108彰化地區地層下陷水準檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked5} 
-                                        onClick={handleToggle5}
-                                    />108嘉義地區水準測量檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked6} 
-                                        onClick={handleToggle6}
-                                    />108臺南地區水準測量檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked7} 
-                                        onClick={handleToggle7}
-                                    />108雲林地區地層下陷加密水準檢測成果表
-                                </label>
-                                <label>
-                                    <input 
-                                        type="checkbox"
-                                        checked={checked8} 
-                                        onClick={handleToggle8}
-                                    />108雲林地區地層下陷水準檢測成果表
-                                </label>
-                                <br></br>
-                                <Button onClick={showLayerToggle}>Show</Button>
-                                <Button onClick={hideLayerToggle}>Hide</Button>
-                            </div>
+                            <br></br>       
+                            <ButtonGroup toggle>
+                                {radios.map((radio, idx) => (
+                                <ToggleButton
+                                    key={idx}
+                                    type="radio"
+                                    variant="secondary"
+                                    name="radio"
+                                    value={radio.value}
+                                    checked={radioValue === radio.value}
+                                    onChange={changeRegion}
+                                >
+                                    {radio.name}
+                                </ToggleButton>
+                                ))}
+                            </ButtonGroup>
+                            { openYL ?
+                                <div className= "ylcheckbox">
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked1} 
+                                            onClick={ylhandleToggle1}
+                                        />108雲林地區地層下陷加密水準檢測成果表
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked2} 
+                                            onClick={ylhandleToggle2}
+                                        />108雲林地區地層下陷水準檢測成果表
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked3} 
+                                            onClick={ylhandleToggle3}
+                                        />GPS站_雲林縣
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked4} 
+                                            onClick={ylhandleToggle4}
+                                        />台灣自來水公司第五區_雲林抽水井位置圖
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked5} 
+                                            onClick={ylhandleToggle5}
+                                        />地層下陷監測點_雲林縣
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked6} 
+                                            onClick={ylhandleToggle6}
+                                        />水準樁_雲林縣
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={ylchecked7} 
+                                            onClick={ylhandleToggle7}
+                                        />雲林水利會抽水井位置圖
+                                    </label>
+                                </div>
+                                :
+                                <div className= "zhcheckbox">
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked1} 
+                                            onClick={zhhandleToggle1}
+                                        />108彰化地區地層下陷加密水準檢測成果表
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked2} 
+                                            onClick={zhhandleToggle2}
+                                        />108彰化地區地層下陷水準檢測成果表
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked3} 
+                                            onClick={zhhandleToggle3}
+                                        />GPS站_彰化縣
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked4} 
+                                            onClick={zhhandleToggle4}
+                                        />台灣自來水公司第十一區_彰化抽水井位置圖
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked5} 
+                                            onClick={zhhandleToggle5}
+                                        />地層下陷監測點_彰化縣
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked6} 
+                                            onClick={zhhandleToggle6}
+                                        />彰化水利會抽水井位置圖
+                                    </label>
+                                    <label>
+                                        <input 
+                                            type="checkbox"
+                                            checked={zhchecked7} 
+                                            onClick={zhhandleToggle7}
+                                        />水準樁_彰化縣
+                                    </label>
+                                </div>
+                            }
+                            
                         </div>
                     }
                     {
@@ -538,7 +840,7 @@ export default function HydraMap(props) {
                     {
                         currentFunction == 5 && <div>
                             <h4 className="func-title">定位</h4>
-                            
+                            <label></label>
                         </div>
                     }
                 </div> :

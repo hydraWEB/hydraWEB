@@ -1,0 +1,35 @@
+.wrapper{
+  display: flex;
+}
+
+.menu_desk {
+  position: relative;
+  position: -webkit-sticky;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  position: sticky;
+  background: #001845;
+  width:400px;
+  left: 0;
+  bottom: 0;
+  z-index: 7;
+  top: 0;
+}
+
+.profile_container{
+  height: calc(100vh - 4rem);
+  padding: 1em;
+}
+
+
+.menu_desk_container{
+  height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  padding-left: 15px;
+  padding-bottom: 10px;
+}

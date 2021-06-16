@@ -1,9 +1,21 @@
 @import "~bootstrap/scss/bootstrap";
 
-
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 html{
     background-color: #282c34;
+    color:white;
+}
+
+span{
+    font-size: 20px;
     color:white;
 }
 
@@ -13,4 +25,11 @@ label{
 
 h2{
     color:white;
+}
+
+p{
+    color:white;
+}
+.root-container{
+    background-color: #282c34;
 }

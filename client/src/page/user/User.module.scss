@@ -1,9 +1,15 @@
-.container {
+.user_container
+{
   display: flex;
   align-items: center;
-  font-size: calc(10px + 2vmin);
 }
 
 .navbar {
+  background: #001233;
   z-index: 10;
+}
+
+.link{
+  color: white;
+
 }

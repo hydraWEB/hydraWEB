@@ -12,7 +12,12 @@ export let userRequest_client = axios.create({
 });
 
 
-export const userLogin = (data) => guestRequest_client.post("api/v1/auth/login/",data);
-export const userSignUp = (data) => guestRequest_client.post("api/v1/auth/register/",data);
+export const userLogin = (data) => guestRequest_client.post("/api/v1/auth/login/",data);
+export const userSignUp = (data) => guestRequest_client.post("/api/v1/auth/register/",data);
+export const userForgotPasswd = (data) => guestRequest_client.post("/api/v1/auth/password_reset/",data);
+export const userForgotPasswdCheckToken = (data) => guestRequest_client.post("/api/v1/auth/password_reset/validate_token/",data);
+export const userForgotPasswdConfirm = (data) => guestRequest_client.post("/api/v1/auth/password_reset/confirm/",data);
+
+export const userProfile = () => userRequest_client.get("/api/v1/auth/user/profile");
 
 export default userLogin

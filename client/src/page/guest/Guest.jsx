@@ -14,43 +14,20 @@ import userLogin from '../../lib/api'
 import {useHistory} from "react-router-dom";
 
 import styled from "@emotion/styled";
-import News from "../user/News";
-import Profile from "../user/Profile";
+import News from "../user/news/News";
+import Profile from "../user/profile/Profile";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import {ToastProvider, useToasts} from 'react-toast-notifications'
+import ForgotPasswd from "./ForgotPasswd";
+import ResetPasswd from "./ResetPasswd";
 
 export default function Guest() {
     let history = useHistory();
     const {user, setUser} = useContext(userContext)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const Title = styled.h2(
-        props => ({
-                marginRight: "10px",
-            }
-        ))
-
-    const handleLogin = () => {
-        userLogin({
-            data: {
-                email: email,
-                password: password
-            }
-        }).then((res) => {
-            setUser(res.data.data)
-        }).catch((err) => {
-
-        }).finally(() => {
-
-        })
-        history.push("/user/hydramap");
-    }
 
     return (
         <>
-            <div className="">
                 <ToastProvider>
                     <Switch>
                         <Route path="/guest/signup">
@@ -59,9 +36,14 @@ export default function Guest() {
                         <Route path="/guest/login">
                             <Login/>
                         </Route>
+                        <Route path="/guest/forgot-password">
+                            <ForgotPasswd/>
+                        </Route>
+                        <Route path="/guest/reset-password">
+                            <ResetPasswd/>
+                        </Route>
                     </Switch>
                 </ToastProvider>
-            </div>
         </>
     )
 

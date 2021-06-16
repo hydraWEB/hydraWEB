@@ -12,25 +12,25 @@ import { OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown , FormControl ,
 
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-import zhjsonData1 from '../utils/108彰化地區地層下陷加密水準檢測成果表.json';
-import zhjsonData2 from '../utils/108彰化地區地層下陷水準檢測成果表';
-import zhjsonData3 from '../utils/GPS站_彰化縣';
-import zhjsonData4 from '../utils/台灣自來水公司第十一區_彰化抽水井位置圖';
-import zhjsonData5 from '../utils/地層下陷監測點_彰化縣';
-import zhjsonData6 from '../utils/彰化水利會抽水井位置圖';
-import zhjsonData7 from '../utils/水準樁_彰化縣';
+import zhjsonData1 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
+import zhjsonData2 from '../../utils/108彰化地區地層下陷水準檢測成果表';
+import zhjsonData3 from '../../utils/GPS站_彰化縣';
+import zhjsonData4 from '../../utils/台灣自來水公司第十一區_彰化抽水井位置圖';
+import zhjsonData5 from '../../utils/地層下陷監測點_彰化縣';
+import zhjsonData6 from '../../utils/彰化水利會抽水井位置圖';
+import zhjsonData7 from '../../utils/水準樁_彰化縣';
 
-import yljsonData1 from '../utils/108雲林地區地層下陷加密水準檢測成果表';
-import yljsonData2 from '../utils/108雲林地區地層下陷水準檢測成果表';
-import yljsonData3 from '../utils/GPS站_雲林縣';
-import yljsonData4 from '../utils/台灣自來水公司第五區_雲林抽水井位置圖';
-import yljsonData5 from '../utils/地層下陷監測點_雲林縣';
-import yljsonData6 from '../utils/水準樁_雲林縣';
-import yljsonData7 from '../utils/雲林水利會抽水井位置圖';
+import yljsonData1 from '../../utils/108雲林地區地層下陷加密水準檢測成果表';
+import yljsonData2 from '../../utils/108雲林地區地層下陷水準檢測成果表';
+import yljsonData3 from '../../utils/GPS站_雲林縣';
+import yljsonData4 from '../../utils/台灣自來水公司第五區_雲林抽水井位置圖';
+import yljsonData5 from '../../utils/地層下陷監測點_雲林縣';
+import yljsonData6 from '../../utils/水準樁_雲林縣';
+import yljsonData7 from '../../utils/雲林水利會抽水井位置圖';
 
 
 
-import './HydraMap.scss';
+import './HydraMap.module.scss';
 
 mapboxgl.accessToken = 
     'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';

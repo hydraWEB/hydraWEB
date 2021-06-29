@@ -45,15 +45,43 @@ ul {
 }
   
 
-.menu_desk {
+.menu_desk_outer_layer {
     padding-left: 65px;
     padding-top: 60px;
     position: fixed;
-    width: 430px;
+    width: 500px;
     left: 0;
     bottom: 0;
     z-index: 7;
     background: #023e7d;
+    left: 0;
+    top: 0;
+}
+
+.menu_desk_second_layer {
+    margin-left : 130px;
+    margin-top : 132px;
+    padding-top: 0px;
+    position: fixed;
+    width: 370px;
+    left: 0;
+    bottom: 0;
+    z-index: 6;
+    background: #023e7d;
+    left: 0;
+    top: 0;
+}
+
+.menu_desk_third_layer{
+    margin-left : 260px;
+    margin-top : 132px;
+    padding-top: 0px;
+    position: fixed;
+    width: 240px;
+    left: 0;
+    bottom: 0;
+    z-index: 6;
+    background: #7d025e;
     left: 0;
     top: 0;
 }
@@ -92,5 +120,14 @@ ul {
 }
 
 .zhcheckbox label{
+    font-size: 20px;
+}
+
+
+.satellitecheckbox{
+    color:white;
+}
+
+.satellitecheckbox label{
     font-size: 20px;
 }

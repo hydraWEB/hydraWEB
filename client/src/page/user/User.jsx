@@ -42,7 +42,7 @@ export default function User(props) {
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="" variant="dark" className={styles.navbar}>
-                <Navbar.Brand><Link to="/user/hydramap" className={styles.link}>水文與下陷監測巨量資料運算平台</Link></Navbar.Brand>
+                <Navbar.Brand><Link to="/user/hydramap" className={styles.link}>水文與地層下陷監測資料運算平台</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="mr-auto">

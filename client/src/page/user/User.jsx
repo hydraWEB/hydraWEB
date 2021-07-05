@@ -1,4 +1,4 @@
-import React, {Suspense, useContext, useEffect, useRef} from 'react';
+import React, { Suspense, useContext, useEffect, useRef } from 'react';
 import {
     Router,
     Switch,
@@ -13,22 +13,29 @@ import styles from './User.module.scss';
 import Home from './Home';
 import Profile from './profile/Profile';
 import News from './news/News';
-import {userContext} from "../../provider/UserProvider";
+import { userContext } from "../../provider/UserProvider";
 import Staff from "./staff/Staff";
 import Cookies from "js-cookie";
-import {userProfile} from "../../lib/api";
+import { userProfile } from "../../lib/api";
+import { useTranslation, Trans } from "react-i18next";
+
 const HydraMap = React.lazy(() => import('./HydraMap'));
 
 export default function User(props) {
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
     const initialUser = useRef()
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = lng => {
+        i18n.changeLanguage(lng);
+      };
 
     useEffect(() => {
         console.log(user)
-    },[user])
+    }, [user])
 
     useEffect(() => {
-        if(Cookies.get('access')){
+        if (Cookies.get('access')) {
             userProfile().then((res) => {
                 initialUser.current = res.data.data.user
                 setUser(initialUser)
@@ -49,16 +56,20 @@ export default function User(props) {
 
                     </Nav>
                     <Nav>
-                        <Nav.Link><Link to="/user/news" className={styles.link}>公告</Link></Nav.Link>
-                        { typeof user.current != 'undefined' &&
+                        <NavDropdown title={t("language")} id="nav-dropdown">
+                            <NavDropdown.Item eventKey="4.1" onClick={(e)=> changeLanguage("en")}>English</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="4.2" onClick={(e)=> changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link><Link to="/user/news" className={styles.link}>{t("announcement")}</Link></Nav.Link>
+                        {typeof user.current != 'undefined' &&
                             <>
-                                { user.current.is_staff &&
-                                <Nav.Link><Link to="/user/staff/login-analytics" className={styles.link}>管理員</Link></Nav.Link>
+                                {user.current.is_staff &&
+                                    <Nav.Link><Link to="/user/staff/login-analytics" className={styles.link}>{t("admin")}</Link></Nav.Link>
                                 }
                             </>
                         }
 
-                        <Nav.Link><Link to="/user/profile/userdata"  className={styles.link}>個人帳號</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>{t("account")}</Link></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

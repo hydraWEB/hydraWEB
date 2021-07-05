@@ -13,6 +13,7 @@ import { OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown , FormControl ,
 
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
+
 import zhjsonData1 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
 import zhjsonData2 from '../../utils/108彰化地區地層下陷水準檢測成果表';
 import zhjsonData3 from '../../utils/GPS站_彰化縣';
@@ -53,9 +54,10 @@ export default function HydraMap(props) {
     const [radioValue, setRadioValue] = useState('1');
     const [openSheet, setOpenSheet] = useState(false)
     const [openSheet2, setOpenSheet2] = useState(false)
-    const [openYL, setOpenYL] = useState(false)
+    const [openYL, setOpenYL] = useState(true)
     const [openZH, setOpenZH] = useState(false)
     const [openSatellite, setOpenSatellite] = useState(false)
+    const [loading, setLoading] = useState(false)
     //雲林
 
     const [ylchecked, setylChecked] = useState([
@@ -475,6 +477,7 @@ export default function HydraMap(props) {
                 }
             ]
 
+
             map.current.addSource("yldata1", ylres[0])
             map.current.addSource("yldata2", ylres[1])
             map.current.addSource("yldata3", ylres[2])
@@ -494,12 +497,13 @@ export default function HydraMap(props) {
             map.current.addSource("gpsdata", satellite[0])
             map.current.addSource("GNSS", satellite[1])
 
+
             map.current.addLayer({
                 'id': 'gpsdata',
                 'type': 'circle',
                 'source': 'gpsdata',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f77777'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -510,7 +514,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'GNSS',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f77777'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -521,7 +525,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata1',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -531,7 +535,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata2',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -541,7 +545,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata3',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -551,7 +555,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata4',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -561,7 +565,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata5',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -571,7 +575,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata6',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -581,7 +585,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'yldata7',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#f72585'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -591,7 +595,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata1',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -601,7 +605,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata2',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -611,7 +615,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata3',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -621,7 +625,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata4',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -631,7 +635,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata5',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -641,7 +645,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata6',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -651,7 +655,7 @@ export default function HydraMap(props) {
                 'type': 'circle',
                 'source': 'zhdata7',
                 'paint': {
-                    'circle-radius': 5,
+                    'circle-radius': 3,
                     'circle-color': '#888888'
                 },
                 'filter': ['==', '$type', 'Point']
@@ -699,6 +703,23 @@ export default function HydraMap(props) {
         
     },[]);
     
+    useEffect(() =>{
+        if (radioValue == "1") {
+            setOpenYL(true)
+            setOpenZH(false)
+            setOpenSatellite(false)
+        } else if(radioValue == '2'){
+            setOpenYL(false)
+            setOpenZH(true)
+            setOpenSatellite(false)
+        }
+        else{
+            setOpenYL(false)
+            setOpenZH(false)
+            setOpenSatellite(true)
+        }
+        setLoading(false)
+    },[openYL, openZH, openSatellite, radioValue])
 
     const searchSheetToggle = ((e) => {
         if (openSheet && currentFunction == 0) {
@@ -754,6 +775,7 @@ export default function HydraMap(props) {
         setCurrentFunction(5)
     })
     
+
     const changeRegion = ((e) =>{
         setRadioValue(e.currentTarget.value)
         if (radioValue == "1") {
@@ -770,6 +792,7 @@ export default function HydraMap(props) {
             setOpenZH(false)
             setOpenSatellite(true)
         }
+        setLoading(true);
     })
 
     const showMiniMenu = ((e) =>{
@@ -898,7 +921,7 @@ export default function HydraMap(props) {
                             </ButtonGroup>
                             {openSheet2 ?
                             <div className={styles.menu_desk_third_layer}>
-                                { openYL ?
+                                { openYL &&
                                 <div className= {styles.ylcheckbox}>
                                     <label>
                                         <input 
@@ -956,74 +979,70 @@ export default function HydraMap(props) {
                                         />雲林水利會抽水井位置圖
                                     </label>
                                 </div>
-                                :
-                                <div></div>
                                 }
-                                {openZH ?
+                                {openZH &&
+                                <div className= {styles.zhcheckbox}>
                                     <div className= {styles.zhcheckbox}>
-                                        <div className= {styles.zhcheckbox}>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[0].value} 
-                                                    onClick={zhhandleToggle1}
-                                                />108彰化地區地層下陷加密水準檢測成果表
-                                            </label>
-                                            <br></br>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[1].value} 
-                                                    onClick={zhhandleToggle2}
-                                                />108彰化地區地層下陷水準檢測成果表
-                                            </label>
-                                            <br></br>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[2].value} 
-                                                    onClick={zhhandleToggle3}
-                                                />GPS站_彰化縣
-                                            </label>
-                                            <br></br>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[3].value} 
-                                                    onClick={zhhandleToggle4}
-                                                />台灣自來水公司第十一區_彰化抽水井位置圖
-                                            </label>
-                                            <br></br>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[4].value} 
-                                                    onClick={zhhandleToggle5}
-                                                />地陷監測井_彰化縣
-                                            </label>
-                                            <br></br>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[5].value} 
-                                                    onClick={zhhandleToggle6}
-                                                />彰化水利會抽水井位置圖
-                                            </label>
-                                            <br></br>
-                                            <label>
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={zhchecked[6].value} 
-                                                    onClick={zhhandleToggle7}
-                                                />水準樁_彰化縣
-                                            </label>
-                                        </div>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[0].value} 
+                                                onClick={zhhandleToggle1}
+                                            />108彰化地區地層下陷加密水準檢測成果表
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[1].value} 
+                                                onClick={zhhandleToggle2}
+                                            />108彰化地區地層下陷水準檢測成果表
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[2].value} 
+                                                onClick={zhhandleToggle3}
+                                            />GPS站_彰化縣
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[3].value} 
+                                                onClick={zhhandleToggle4}
+                                            />台灣自來水公司第十一區_彰化抽水井位置圖
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[4].value} 
+                                                onClick={zhhandleToggle5}
+                                            />地陷監測井_彰化縣
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[5].value} 
+                                                onClick={zhhandleToggle6}
+                                            />彰化水利會抽水井位置圖
+                                        </label>
+                                        <br></br>
+                                        <label>
+                                            <input 
+                                                type="checkbox"
+                                                checked={zhchecked[6].value} 
+                                                onClick={zhhandleToggle7}
+                                            />水準樁_彰化縣
+                                        </label>
                                     </div>
-                                    :
-                                    <div></div>
+                                </div>
                                 }
-                                {openSatellite ?
-                                    <div className={styles.satellitecheckbox}>
+                                {openSatellite &&
+                                <div className={styles.satellitecheckbox}>
                                     <label>
                                         <input 
                                             type="checkbox"
@@ -1040,13 +1059,12 @@ export default function HydraMap(props) {
                                         />GNSS_WGS84
                                     </label>
                                 </div>
-                                    :
-                                    <div></div>
                                 }
-                            </div>:
+                            </div>
+                            :
                             <div></div>
                             }
-                            
+                        
                             
                         </div>
                     }

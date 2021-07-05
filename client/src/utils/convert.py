@@ -6,7 +6,7 @@ import random
 li = []
 lat = 0
 log = 0
-for i in range(0,1000):
+for i in range(0,1350000):
   d = OrderedDict() 
   d['type'] = 'Feature' 
   d['geometry'] = {
@@ -21,5 +21,5 @@ for i in range(0,1000):
 d = OrderedDict()
 d['type'] = 'FeatureCollection'
 d['features'] = li
-with open('GeoObs1000.json', 'w') as f:
+with open('GeoObs1350000.json', 'w') as f:
     f.write(json.dumps(d, sort_keys=False, indent=4))

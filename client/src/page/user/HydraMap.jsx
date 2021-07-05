@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView, faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView, faGlobe, faBatteryThreeQuarters } from '@fortawesome/free-solid-svg-icons'
 import { OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown , FormControl , 
     NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form, ButtonGroup } from 'react-bootstrap';
     
@@ -29,6 +29,9 @@ import yljsonData5 from '../../utils/地層下陷監測點_雲林縣';
 import yljsonData6 from '../../utils/水準樁_雲林縣';
 import yljsonData7 from '../../utils/雲林水利會抽水井位置圖';
 
+import gpsdata from '../../utils/gpsdata';
+import GNSS from '../../utils/GNSS_WGS84';
+
 import styles from './HydraMap.module.scss';
 
 mapboxgl.accessToken = 
@@ -44,11 +47,15 @@ export default function HydraMap(props) {
     const [currentFunction, setCurrentFunction] = useState(0)
     const radios = [
         {name: '雲林',value:'1'},
-        {name: '彰化', value:'2'}
+        {name: '彰化', value:'2'},
+        {name: '衛星影像', value:'3'}
     ];
     const [radioValue, setRadioValue] = useState('1');
     const [openSheet, setOpenSheet] = useState(false)
-    const [openYL, setOpenYL] = useState(true)
+    const [openSheet2, setOpenSheet2] = useState(false)
+    const [openYL, setOpenYL] = useState(false)
+    const [openZH, setOpenZH] = useState(false)
+    const [openSatellite, setOpenSatellite] = useState(false)
     //雲林
 
     const [ylchecked, setylChecked] = useState([
@@ -113,24 +120,28 @@ export default function HydraMap(props) {
             value: true
         }
     ])
+
+    const [satellitechecked, setsatelliteChecked] = useState([
+        {
+            id:1,
+            value: true
+        },
+        {
+            id:2,
+            value: true
+        },
+    ])
     
     const [xCoordinate, setxCoordinate] = useState()
     const [yCoordinate, setyCoordinate] = useState()
 
-    var tempMarker = useState()
 
     //function for the button for submit xy coordinates
     const onFormSubmit = ((e) =>{
         //map.current.setCenter([xCoordinate,yCoordinate])
         //map.current.setZoom(10)
-        tempMarker = new mapboxgl.Marker()
-        .setLngLat([xCoordinate, yCoordinate])
-        .addTo(map.current);
     })
 
-    const onFormDelete = ((e =>{
-        tempMarker.remove()
-    }))
 
     const ylhandleToggle1 = ((e)=>{
         if (ylchecked[0]){
@@ -318,6 +329,32 @@ export default function HydraMap(props) {
         }
     })
 
+    const satellitehandleToggle1 = ((e)=>{
+        if (satellitechecked[0]){
+            map.current.setLayoutProperty('gpsdata','visibility','none')
+            let newArr = [...satellitechecked]
+            newArr[0] = false
+            setsatelliteChecked(newArr)
+        }else{
+            map.current.setLayoutProperty('gpsdata','visibility','visible')
+            let newArr = [...satellitechecked]
+            newArr[0] = true
+            setsatelliteChecked(newArr)
+        }
+    })
+    const satellitehandleToggle2 = ((e)=>{
+        if (satellitechecked[1]){
+            map.current.setLayoutProperty('GNSS','visibility','none')
+            let newArr = [...satellitechecked]
+            newArr[1] = false
+            setsatelliteChecked(newArr)
+        }else{
+            map.current.setLayoutProperty('GNSS','visibility','visible')
+            let newArr = [...satellitechecked]
+            newArr[1] = true
+            setsatelliteChecked(newArr)
+        }
+    })
 
     useEffect(() => {
         map.current = new mapboxgl.Map({
@@ -343,13 +380,6 @@ export default function HydraMap(props) {
             // ALL YOUR APPLICATION CODE
             console.log("load")
 
-            var zhres1 = {
-                'type': 'geojson',
-                'data': zhjsonData1
-            }
-
-            console.log(zhres1)
-            map.current.addSource("zhdata1", zhres1)
             map.current.addLayer({
                 'id': 'park-boundary',
                 'type': 'fill',
@@ -361,42 +391,8 @@ export default function HydraMap(props) {
                 'filter': ['==', '$type', 'Polygon']
             });
             
-            map.current.addLayer({
-                'id': 'zhdata1',
-                'type': 'circle',
-                'source': 'zhdata1',
-                'paint': {
-                    'circle-radius': 5,
-                    'circle-color': '#888888'
-                },
-                'filter': ['==', '$type', 'Point']
-            });
-            map.current.setLayoutProperty('zhdata1','visibility','none')
             
-            map.current.on('click','zhdata1', function (e){
-                var coordinates = e.features[0].geometry.coordinates.slice();
-                var otherCoordinates = e.features[0].properties.TWD97_Y;
-                const front = "<h1 style='color:red'>"
-                const back = "</h1>"
-                var otherCoordinates2 = front + otherCoordinates + back
-                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                }
 
-                new mapboxgl.Popup()
-                    .setLngLat(coordinates)
-                    .setHTML(otherCoordinates2)
-                    .addTo(map.current);
-            })
-            // Change the cursor to a pointer when the mouse is over the places layer.
-            map.current.on('mouseenter', 'data', function () {
-                map.current.getCanvas().style.cursor = 'pointer';
-            });
-                 
-            // Change it back to a pointer when it leaves.
-            map.current.on('mouseleave', 'data', function () {
-                map.current.getCanvas().style.cursor = '';
-            });
         });
         
         return () => map.current.remove();
@@ -408,80 +404,117 @@ export default function HydraMap(props) {
             // ALL YOUR APPLICATION CODE
             console.log("load")
 
-            var ylres1 = {
-                'type': 'geojson',
-                'data': yljsonData1
-            }
-            var ylres2 = {
-                'type': 'geojson',
-                'data': yljsonData2
-            }
-            var ylres3 = {
-                'type': 'geojson',
-                'data': yljsonData3
-            }
-            var ylres4 = {
-                'type': 'geojson',
-                'data': yljsonData4
-            }
-            var ylres5 = {
-                'type': 'geojson',
-                'data': yljsonData5
-            }
-            var ylres6 = {
-                'type': 'geojson',
-                'data': yljsonData6
-            }
-            var ylres7 = {
-                'type': 'geojson',
-                'data': yljsonData7
-            }
+            var ylres = [
+                {
+                    'type': 'geojson',
+                    'data': yljsonData1
+                },
+                {
+                    'type': 'geojson',
+                    'data': yljsonData2
+                },
+                {
+                    'type': 'geojson',
+                    'data': yljsonData3
+                },
+                {
+                    'type': 'geojson',
+                    'data': yljsonData4
+                },
+                {
+                    'type': 'geojson',
+                    'data': yljsonData5
+                },
+                {
+                    'type': 'geojson',
+                    'data': yljsonData6
+                },
+                {
+                    'type': 'geojson',
+                    'data': yljsonData7
+                }
+            ]
+            var zhres = [
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData1
+                },
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData2
+                },
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData3
+                },
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData4
+                },
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData5
+                },
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData6
+                },
+                {
+                    'type': 'geojson',
+                    'data': zhjsonData7
+                }
+            ]
+            var satellite = [
+                {
+                    'type': 'geojson',
+                    'data': gpsdata
+                },
+                {
+                    'type': 'geojson',
+                    'data': GNSS
+                }
+            ]
 
-            var zhres1 = {
-                'type': 'geojson',
-                'data': zhjsonData1
-            }
-            var zhres2 = {
-                'type': 'geojson',
-                'data': zhjsonData2
-            }
-            var zhres3 = {
-                'type': 'geojson',
-                'data': zhjsonData3
-            }
-            var zhres4 = {
-                'type': 'geojson',
-                'data': zhjsonData4
-            }
-            var zhres5 = {
-                'type': 'geojson',
-                'data': zhjsonData5
-            }
-            var zhres6 = {
-                'type': 'geojson',
-                'data': zhjsonData6
-            }
-            var zhres7 = {
-                'type': 'geojson',
-                'data': zhjsonData7
-            }
+            map.current.addSource("yldata1", ylres[0])
+            map.current.addSource("yldata2", ylres[1])
+            map.current.addSource("yldata3", ylres[2])
+            map.current.addSource("yldata4", ylres[3])
+            map.current.addSource("yldata5", ylres[4])
+            map.current.addSource("yldata6", ylres[5])
+            map.current.addSource("yldata7", ylres[6])
 
-            map.current.addSource("yldata1", ylres1)
-            map.current.addSource("yldata2", ylres2)
-            map.current.addSource("yldata3", ylres3)
-            map.current.addSource("yldata4", ylres4)
-            map.current.addSource("yldata5", ylres5)
-            map.current.addSource("yldata6", ylres6)
-            map.current.addSource("yldata7", ylres7)
+            map.current.addSource("zhdata1", zhres[0])
+            map.current.addSource("zhdata2", zhres[1])
+            map.current.addSource("zhdata3", zhres[2])
+            map.current.addSource("zhdata4", zhres[3])
+            map.current.addSource("zhdata5", zhres[4])
+            map.current.addSource("zhdata6", zhres[5])
+            map.current.addSource("zhdata7", zhres[6])
 
-            map.current.addSource("zhdata2", zhres2)
-            map.current.addSource("zhdata3", zhres3)
-            map.current.addSource("zhdata4", zhres4)
-            map.current.addSource("zhdata5", zhres5)
-            map.current.addSource("zhdata6", zhres6)
-            map.current.addSource("zhdata7", zhres7)
+            map.current.addSource("gpsdata", satellite[0])
+            map.current.addSource("GNSS", satellite[1])
 
-            
+            map.current.addLayer({
+                'id': 'gpsdata',
+                'type': 'circle',
+                'source': 'gpsdata',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f77777'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+
+            map.current.addLayer({
+                'id': 'GNSS',
+                'type': 'circle',
+                'source': 'GNSS',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#f77777'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
             
             map.current.addLayer({
                 'id': 'yldata1',
@@ -554,6 +587,16 @@ export default function HydraMap(props) {
                 'filter': ['==', '$type', 'Point']
             });
             map.current.addLayer({
+                'id': 'zhdata1',
+                'type': 'circle',
+                'source': 'zhdata1',
+                'paint': {
+                    'circle-radius': 5,
+                    'circle-color': '#888888'
+                },
+                'filter': ['==', '$type', 'Point']
+            });
+            map.current.addLayer({
                 'id': 'zhdata2',
                 'type': 'circle',
                 'source': 'zhdata2',
@@ -613,6 +656,45 @@ export default function HydraMap(props) {
                 },
                 'filter': ['==', '$type', 'Point']
             });
+            map.current.on('click','zhdata1', function (e){
+                var coordinates = e.features[0].geometry.coordinates.slice();
+                var coordinateName = e.features[0].properties.點名;
+                const front = "<h6 style='color:red'>"
+                const back = "</h6>"
+                var otherCoordinates2 = front + "點名:" +coordinateName + back
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(otherCoordinates2)
+                    .addTo(map.current);
+            })
+            map.current.on('click','GNSS', function (e){
+                var coordinates = e.features[0].geometry.coordinates.slice();
+                var coordinateName = e.features[0].properties.測站名;
+                const front = "<h6 style='color:red'>"
+                const back = "</h6>"
+                var otherCoordinates2 = front + "測站名:" + coordinateName + back
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(otherCoordinates2)
+                    .addTo(map.current);
+            })
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.current.on('mouseenter', 'zhdata1', function () {
+                map.current.getCanvas().style.cursor = 'pointer';
+            });
+                 
+            // Change it back to a pointer when it leaves.
+            map.current.on('mouseleave', 'data', function () {
+                map.current.getCanvas().style.cursor = '';
+            });
         });
         
     },[]);
@@ -671,24 +753,30 @@ export default function HydraMap(props) {
         }
         setCurrentFunction(5)
     })
-
-    const xyToggle = ((e) =>{
-        if (openSheet && currentFunction == 6) {
-            setOpenSheet(false)
-        } else {
-            setOpenSheet(true)
-        }
-        setCurrentFunction(6)
-    })
     
     const changeRegion = ((e) =>{
         setRadioValue(e.currentTarget.value)
         if (radioValue == "1") {
-            setOpenYL(false)
-        } else{
             setOpenYL(true)
+            setOpenZH(false)
+            setOpenSatellite(false)
+        } else if(radioValue == '2'){
+            setOpenYL(false)
+            setOpenZH(true)
+            setOpenSatellite(false)
+        }
+        else{
+            setOpenYL(false)
+            setOpenZH(false)
+            setOpenSatellite(true)
         }
     })
+
+    const showMiniMenu = ((e) =>{
+        setOpenSheet2(true)
+    })
+
+    
 
     return (
         <>
@@ -767,23 +855,11 @@ export default function HydraMap(props) {
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={positioningToggle} icon={faMapMarker} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
-                        <li className={styles.menu_btn_wrapper}>
-                            <OverlayTrigger
-                                key='right'
-                                placement='right'
-                                overlay={
-                                    <Tooltip id='tooltip-right' className={styles.tooltip}>
-                                        XY坐標
-                        </Tooltip>
-                                }>
-                                <FontAwesomeIcon className={styles.menu_btn} onClick={xyToggle} icon={faGlobe} size="lg" color="white" />
-                            </OverlayTrigger>
-                        </li>
                     </ul>
                 </nav>
             </div>
             { openSheet ?
-                <div className={styles.menu_desk} >
+                <div className={styles.menu_desk_outer_layer} >
                     {
                         currentFunction == 0 && <div>
                             <h4 className={styles.func_title}>搜尋</h4>
@@ -804,7 +880,7 @@ export default function HydraMap(props) {
                         currentFunction == 1 && <div>
                             <h4 className={styles.func_title}>圖層套疊</h4>
                             <br></br>       
-                            <ButtonGroup toggle>
+                            <ButtonGroup toggle vertical>
                                 {radios.map((radio, idx) => (
                                 <ToggleButton
                                     key={idx}
@@ -814,12 +890,15 @@ export default function HydraMap(props) {
                                     value={radio.value}
                                     checked={radioValue === radio.value}
                                     onChange={changeRegion}
+                                    onClick={showMiniMenu}
                                 >
                                     {radio.name}
                                 </ToggleButton>
                                 ))}
                             </ButtonGroup>
-                            { openYL ?
+                            {openSheet2 ?
+                            <div className={styles.menu_desk_third_layer}>
+                                { openYL ?
                                 <div className= {styles.ylcheckbox}>
                                     <label>
                                         <input 
@@ -858,7 +937,7 @@ export default function HydraMap(props) {
                                             type="checkbox"
                                             checked={ylchecked[4].value} 
                                             onClick={ylhandleToggle5}
-                                        />地層下陷監測點_雲林縣
+                                        />地陷監測井_雲林縣
                                     </label>
                                     <br></br>
                                     <label>
@@ -878,64 +957,96 @@ export default function HydraMap(props) {
                                     </label>
                                 </div>
                                 :
-                                <div className= {styles.zhcheckbox}>
+                                <div></div>
+                                }
+                                {openZH ?
+                                    <div className= {styles.zhcheckbox}>
+                                        <div className= {styles.zhcheckbox}>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[0].value} 
+                                                    onClick={zhhandleToggle1}
+                                                />108彰化地區地層下陷加密水準檢測成果表
+                                            </label>
+                                            <br></br>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[1].value} 
+                                                    onClick={zhhandleToggle2}
+                                                />108彰化地區地層下陷水準檢測成果表
+                                            </label>
+                                            <br></br>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[2].value} 
+                                                    onClick={zhhandleToggle3}
+                                                />GPS站_彰化縣
+                                            </label>
+                                            <br></br>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[3].value} 
+                                                    onClick={zhhandleToggle4}
+                                                />台灣自來水公司第十一區_彰化抽水井位置圖
+                                            </label>
+                                            <br></br>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[4].value} 
+                                                    onClick={zhhandleToggle5}
+                                                />地陷監測井_彰化縣
+                                            </label>
+                                            <br></br>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[5].value} 
+                                                    onClick={zhhandleToggle6}
+                                                />彰化水利會抽水井位置圖
+                                            </label>
+                                            <br></br>
+                                            <label>
+                                                <input 
+                                                    type="checkbox"
+                                                    checked={zhchecked[6].value} 
+                                                    onClick={zhhandleToggle7}
+                                                />水準樁_彰化縣
+                                            </label>
+                                        </div>
+                                    </div>
+                                    :
+                                    <div></div>
+                                }
+                                {openSatellite ?
+                                    <div className={styles.satellitecheckbox}>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked[0].value} 
-                                            onClick={zhhandleToggle1}
-                                        />108彰化地區地層下陷加密水準檢測成果表
+                                            checked={satellitechecked[0].value} 
+                                            onClick={satellitehandleToggle1}
+                                        />GPSData
                                     </label>
                                     <br></br>
                                     <label>
                                         <input 
                                             type="checkbox"
-                                            checked={zhchecked[1].value} 
-                                            onClick={zhhandleToggle2}
-                                        />108彰化地區地層下陷水準檢測成果表
-                                    </label>
-                                    <br></br>
-                                    <label>
-                                        <input 
-                                            type="checkbox"
-                                            checked={zhchecked[2].value} 
-                                            onClick={zhhandleToggle3}
-                                        />GPS站_彰化縣
-                                    </label>
-                                    <br></br>
-                                    <label>
-                                        <input 
-                                            type="checkbox"
-                                            checked={zhchecked[3].value} 
-                                            onClick={zhhandleToggle4}
-                                        />台灣自來水公司第十一區_彰化抽水井位置圖
-                                    </label>
-                                    <br></br>
-                                    <label>
-                                        <input 
-                                            type="checkbox"
-                                            checked={zhchecked[4].value} 
-                                            onClick={zhhandleToggle5}
-                                        />地層下陷監測點_彰化縣
-                                    </label>
-                                    <br></br>
-                                    <label>
-                                        <input 
-                                            type="checkbox"
-                                            checked={zhchecked[5].value} 
-                                            onClick={zhhandleToggle6}
-                                        />彰化水利會抽水井位置圖
-                                    </label>
-                                    <br></br>
-                                    <label>
-                                        <input 
-                                            type="checkbox"
-                                            checked={zhchecked[6].value} 
-                                            onClick={zhhandleToggle7}
-                                        />水準樁_彰化縣
+                                            checked={satellitechecked[1].value} 
+                                            onClick={satellitehandleToggle2}
+                                        />GNSS_WGS84
                                     </label>
                                 </div>
+                                    :
+                                    <div></div>
+                                }
+                            </div>:
+                            <div></div>
                             }
+                            
                             
                         </div>
                     }
@@ -962,36 +1073,10 @@ export default function HydraMap(props) {
                             <label></label>
                         </div>
                     }
-                                        {
-                        currentFunction == 6 && <div>
-                            <h4 className={styles.func_title}>XY坐標</h4>
-                            <Form.Group className={styles.getXYCoordinate}>
-                                <Form.Control
-                                    placeholder="X-Coordinates"
-                                    value = {xCoordinate}
-                                    onChange={event => setxCoordinate(event.target.value)}
-                                    type="text"
-                                />
-                                <Form.Control
-                                    placeholder="Y-Coordinates"
-                                    value = {yCoordinate}
-                                    onChange={event => setyCoordinate(event.target.value)}
-                                    type="text"
-                                />
-                                <Button className={styles.btnFormSend} variant="outline-success" onClick={onFormSubmit}>
-                                Find Location
-                                </Button>
-                                <Button className={styles.btnFormDelete} variant="outline-success" onClick={onFormDelete}>
-                                Delete Location
-                                </Button>
-                            </Form.Group>
-                            <label></label>
-                        </div>
-                    }
                 </div> :
                 <div></div>
             }
-
+            
             <div className={styles.fragment}>
                 <div className={styles.map} id = "map">
                     <div className={styles.map_container} ref={mapContainer} />

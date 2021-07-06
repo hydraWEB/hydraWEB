@@ -22,6 +22,14 @@ i18n
                     "circle_analysis":"Circle Analysis",
                     'print':"Print",
                     'locate':"Locate",
+                    "setting":"Setting",
+                    "user_data":"User Data",
+                    "login_summary":"Login Summary",
+                    "system_function_usage":"System Function Usage",
+                    "system_setting":"System Setting",
+                    "announcement_setting":"Announcement Setting",
+                    "account_setting":"Account Setting",
+                    "ip_setting":"IP Setting",
                 }
             },
             zh_tw: {
@@ -37,6 +45,14 @@ i18n
                     "circle_analysis":"搜尋",
                     'print':"列印",
                     'locate':"定位",
+                    "setting":"設定",
+                    "user_data":"個人資料",
+                    "login_summary":"登入統計",
+                    "system_function_usage":"系統功能使用記錄",
+                    "system_setting":"系統設定",
+                    "announcement_setting":"公告管理",
+                    "account_setting":"帳號管理",
+                    "ip_setting":"IP管理",
                 }
             }
         },

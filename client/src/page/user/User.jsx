@@ -12,7 +12,7 @@ import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown } from 'react
 import styles from './User.module.scss';
 import Home from './Home';
 import Profile from './profile/Profile';
-import News from './news/News';
+import Announcement from './news/Announcement';
 import { userContext } from "../../provider/UserProvider";
 import Staff from "./staff/Staff";
 import Cookies from "js-cookie";
@@ -77,7 +77,7 @@ export default function User(props) {
             <div className={styles.user_container}>
                 <Switch>
                     <Route path="/user/news">
-                        <News />
+                        <Announcement />
                     </Route>
                     <Route path="/user/profile">
                         <Profile />

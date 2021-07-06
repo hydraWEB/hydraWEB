@@ -88,7 +88,8 @@ const FlexContainer = styled.div(
 const FlexWrapper = styled.div(
     props => (
         {
-            width:props.flex
+            width:props.flex,
+            marginRight:props.marginRight,
         }
     )
 )
@@ -476,15 +477,14 @@ function Layer({map,mapIsLoad}) {
     ])
 
     let BtnList = mapData.map((data, index) =>
-        <NormalButton  isLightOn={currentData===data.id} text={data.name} onClick={(e)=>setCurrentData(data.id)}/>
+        <NormalButton className={styles.btn_list} isLightOn={currentData===data.id} text={data.name} onClick={(e)=>setCurrentData(data.id)}/>
     );
-
 
     return (
         <div>
             <h4 className={styles.func_title}>{t('layer')}</h4>
             <FlexContainer>
-                <FlexWrapper flex={"30%"}>
+                <FlexWrapper flex={"30%"} marginRight={"20px"}>
                     {BtnList}
                 </FlexWrapper>
                 <FlexWrapper flex={"70%"}>

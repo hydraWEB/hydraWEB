@@ -143,11 +143,11 @@ export default function NormalButton({
 
     return (
         <>
-            <div className={className}>
-                <ButtonWrapper>
+            <div>
+                <ButtonWrapper >
                     {link != null &&
                     <Link to={link}>
-                            <Btn onClick={onClick}>
+                            <Btn onClick={onClick}  className={className}>
                                 { text &&
                                 <ButtonText>{text}</ButtonText>
                                 }
@@ -155,7 +155,7 @@ export default function NormalButton({
                     </Link>
                     }
                     {link == null &&
-                    <Btn onClick={onClick}>
+                    <Btn onClick={onClick}  className={className}>
                         { text &&
                         <ButtonText>{text}</ButtonText>
                         }

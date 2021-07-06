@@ -14,7 +14,7 @@ import userLogin from '../../lib/api'
 import {useHistory} from "react-router-dom";
 
 import styled from "@emotion/styled";
-import News from "../user/news/News";
+import Announcement from "../user/news/Announcement";
 import Profile from "../user/profile/Profile";
 import SignUp from "./SignUp";
 import Login from "./Login";

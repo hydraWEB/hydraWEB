@@ -6,7 +6,7 @@ import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styles from "./Profile.module.scss";
 import styled from "@emotion/styled";
-import LinkButton from "../../../component/LinkButton";
+import NormalButton from "../../../component/NormalButton";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 import News from "../news/News";
 import UserData from "./UserData";
@@ -22,8 +22,8 @@ export default function Profile() {
             <div className={styles.menu_desk} >
                 <div className={styles.menu_desk_container} >
                     <span className={styles.title}>個人帳號</span>
-                    <LinkButton link={"/user/profile/userdata"} isLightOn={location.pathname === "/user/profile/userdata"} text="個人資料" icon={faUser} />
-                    <LinkButton link={"/user/profile/setting"} isLightOn={location.pathname === "/user/profile/setting"} text="設定" icon={faUser} />
+                    <NormalButton link={"/user/profile/userdata"} isLightOn={location.pathname === "/user/profile/userdata"} text="個人資料" icon={faUser} />
+                    <NormalButton link={"/user/profile/setting"} isLightOn={location.pathname === "/user/profile/setting"} text="設定" icon={faUser} />
                 </div>
             </div>
             <div className={styles.profile_container} >

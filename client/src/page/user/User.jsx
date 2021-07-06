@@ -28,7 +28,8 @@ export default function User(props) {
     const { t, i18n } = useTranslation();
     const changeLanguage = lng => {
         i18n.changeLanguage(lng);
-      };
+        Cookies.set('locale', lng)
+    };
 
     useEffect(() => {
         console.log(user)
@@ -43,23 +44,18 @@ export default function User(props) {
             }).finally(() => {
             })
         }
-
     }, [])
 
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="" variant="dark" className={styles.navbar}>
-                <Navbar.Brand><Link to="/user/hydramap" className={styles.link}>水文與地層下陷監測資料運算平台</Link></Navbar.Brand>
+                <Navbar.Brand><Link to="/user/hydramap" className={styles.link}>{t('platform_name')}</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="mr-auto">
 
                     </Nav>
                     <Nav>
-                        <NavDropdown title={t("language")} id="nav-dropdown">
-                            <NavDropdown.Item eventKey="4.1" onClick={(e)=> changeLanguage("en")}>English</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="4.2" onClick={(e)=> changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
-                        </NavDropdown>
                         <Nav.Link><Link to="/user/news" className={styles.link}>{t("announcement")}</Link></Nav.Link>
                         {typeof user.current != 'undefined' &&
                             <>
@@ -70,6 +66,10 @@ export default function User(props) {
                         }
 
                         <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>{t("account")}</Link></Nav.Link>
+                        <NavDropdown title={t("language")} id="nav-dropdown">
+                            <NavDropdown.Item eventKey="4.1" onClick={(e)=> changeLanguage("en")}>English</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="4.2" onClick={(e)=> changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

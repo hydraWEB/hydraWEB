@@ -6,7 +6,7 @@ import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styles from "./News.module.scss";
 import styled from "@emotion/styled";
-import LinkButton from "../../../component/LinkButton";
+import NormalButton from "../../../component/NormalButton";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 
 export default function News() {
@@ -19,7 +19,7 @@ export default function News() {
             <div className={styles.menu_desk} >
                 <div className={styles.menu_desk_container} >
                     <span className={styles.title}>公告</span>
-                    <LinkButton link={""} isLightOn={false} text="測試公告" icon={faUser} />
+                    <NormalButton link={""} isLightOn={false} text="測試公告" icon={faUser} />
                 </div>
             </div>
             <div className={styles.profile_container} >

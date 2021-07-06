@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styled from '@emotion/styled/macro'
 import { jsx, css, Global, keyframes } from '@emotion/react/macro'
 
-export default function LinkButton({
+export default function NormalButton({
                                        children,
                                        isLightOn,
                                        className,
@@ -73,10 +73,11 @@ export default function LinkButton({
 
 
 
-    const Btn = styled.div(
+    const Btn = styled.button(
         buttonStyle,
         props => (
             !isLightOn && {
+                border:'none',
                 backgroundColor: backgroundColor ? backgroundColor : "transparent",
                 [ButtonText]: {
                     color: textColor ? textColor : "#A0A0A0"
@@ -107,6 +108,7 @@ export default function LinkButton({
             }
 
             || isLightOn && {
+                border:'none',
                 backgroundColor: backgroundLightColor ? backgroundLightColor : "#ffa200",
                 [ButtonText]: {
                     color: textLightColor ? textLightColor : "#FAFAFA"
@@ -151,6 +153,13 @@ export default function LinkButton({
                                 }
                             </Btn>
                     </Link>
+                    }
+                    {link == null &&
+                    <Btn onClick={onClick}>
+                        { text &&
+                        <ButtonText>{text}</ButtonText>
+                        }
+                    </Btn>
                     }
                 </ButtonWrapper>
             </div>

@@ -10,18 +10,25 @@ import User from './page/user/User';
 
 import Cookies from 'js-cookie'
 import {userProfile, userRequest_client} from "./lib/api";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function App(props) {
 
     const initialUser = useRef()
     let history = useHistory();
     const location = useLocation();
+    const { t, i18n } = useTranslation();
 
     if(Cookies.get('access')){
         userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
     }
 
+
     useEffect(() => {
+
+        if(Cookies.get('locale')){
+            i18n.changeLanguage(Cookies.get('locale'));
+        }
         if(location.pathname ==="/"){
             if(Cookies.get('access')){
                 history.push("/user/hydramap")

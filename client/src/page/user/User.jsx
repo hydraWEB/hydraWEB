@@ -41,6 +41,7 @@ export default function User(props) {
                 initialUser.current = res.data.data.user
                 setUser(initialUser)
             }).catch((err) => {
+
             }).finally(() => {
             })
         }

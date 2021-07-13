@@ -1,6 +1,8 @@
   
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
+
+from staff.models import SystemLog, SystemOperationEnum
 from authentication.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
@@ -32,6 +34,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data.update({'username': self.user.username})
         data.update({'email': self.user.email})
         data.update({'is_staff': self.user.is_staff})
+        SystemLog.objects.create_log(user=self.user,operation=SystemOperationEnum.USER_LOGIN)
         return data
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -57,13 +60,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = User.objects.create(
+        user = User.objects.create_user(
             username=validated_data['username'],
-            email=validated_data['email']
+            email=validated_data['email'],
+            password=validated_data['password']
         )
-
-        user.set_password(validated_data['password'])
-        user.save()
 
         return user
 

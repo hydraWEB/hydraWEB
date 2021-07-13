@@ -9,24 +9,25 @@ from django.contrib.auth.models import (
 
 from django.db import models
 
+from staff.models import SystemOperationEnum, SystemLog
 from core.models import TimestampedModel
 
 from django.core import exceptions
 
 
 class UserManager(BaseUserManager):
-    def create_user(self,username=None,email=None,avatar=None,password=None):
+    def create_user(self,username=None,email=None,password=None):
         if User.objects.filter(email=email).exists():
             user = self.get(email=email)
             return user
         
         user = self.model(
             username=username,
-            email=email,
-            avatar=avatar,)
+            email=email)
         
         user.set_password(password)
         user.save()
+        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.USER_REGISTRATION)
 
         return user
 

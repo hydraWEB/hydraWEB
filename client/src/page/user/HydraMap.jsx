@@ -148,7 +148,6 @@ export function CheckItem({data, onChange}) {
     )
 }
 
-
 function Layer({map,mapIsLoad}) {
 
     const {t, i18n} = useTranslation();

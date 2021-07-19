@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
     Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faPen,
     faCog,
@@ -32,7 +32,7 @@ import {
     OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown, FormControl,
     NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form, ButtonGroup
 } from 'react-bootstrap';
-import {useTranslation, Trans} from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 
 import mapboxgl from 'mapbox-gl';
@@ -69,7 +69,7 @@ const ShowWrapper = styled.div(
     props => (
         {
             display: props.isShow ? 'inline-block' : 'none',
-            width : "100%"
+            width: "100%"
         }
     )
 )
@@ -78,9 +78,9 @@ const FlexContainer = styled.div(
     props => (
         {
             display: 'flex',
-            marginTop:'20px',
-            marginLeft:'20px',
-            marginRight:'20px'
+            marginTop: '20px',
+            marginLeft: '20px',
+            marginRight: '20px'
         }
     )
 )
@@ -88,8 +88,8 @@ const FlexContainer = styled.div(
 const FlexWrapper = styled.div(
     props => (
         {
-            width:props.flex,
-            marginRight:props.marginRight,
+            width: props.flex,
+            marginRight: props.marginRight,
         }
     )
 )
@@ -97,16 +97,16 @@ const FlexWrapper = styled.div(
 const InputWrapper = styled.div(
     props => (
         {
-            borderRadius:"5px",
-            display:'flex',
-            backgroundColor:"#6465688e",
-            alignItems:'flex-start',
-            flexFlow:'1',
-            paddingTop:'5px',
-            paddingBottom:'5px',
-            paddingLeft:"5px",
-            paddingRight:"5px",
-            marginTop:"5px",
+            borderRadius: "5px",
+            display: 'flex',
+            backgroundColor: "#6465688e",
+            alignItems: 'flex-start',
+            flexFlow: '1',
+            paddingTop: '5px',
+            paddingBottom: '5px',
+            paddingLeft: "5px",
+            paddingRight: "5px",
+            marginTop: "5px",
 
         }
     )
@@ -116,12 +116,12 @@ const InputWrapper = styled.div(
 const StyledInput = styled.input(
     props => (
         {
-            alignSelf:"center",
-            padding:"50px",
-            width:'20px',
-            height:'20px',
-            flexShrink:'0',
-            marginRight:"5px"
+            alignSelf: "center",
+            padding: "50px",
+            width: '20px',
+            height: '20px',
+            flexShrink: '0',
+            marginRight: "5px"
         }
     )
 )
@@ -133,7 +133,7 @@ const StyledLabel = styled.label(
     )
 )
 
-export function CheckItem({data, onChange}) {
+export function CheckItem({ data, onChange }) {
     return (
         <InputWrapper>
             <StyledInput
@@ -148,9 +148,9 @@ export function CheckItem({data, onChange}) {
     )
 }
 
-function Layer({map,mapIsLoad}) {
+function Layer({ map, mapIsLoad }) {
 
-    const {t, i18n} = useTranslation();
+    const { t, i18n } = useTranslation();
     const [currentData, setCurrentData] = useState(0)
 
     //雲林
@@ -228,7 +228,7 @@ function Layer({map,mapIsLoad}) {
         setylChecked(newArr)
     }
     let YunlinListItems = ylchecked.map((data, index) =>
-        <CheckItem data={data} onChange={(e) => OnYunlinListItemsChange(e, data, index)}/>
+        <CheckItem data={data} onChange={(e) => OnYunlinListItemsChange(e, data, index)} />
     );
 
     //彰化
@@ -304,7 +304,7 @@ function Layer({map,mapIsLoad}) {
         setzhChecked(newArr)
     }
     let ChanghuaListItems = zhchecked.map((data, index) =>
-        <CheckItem data={data} onChange={(e) => OnChanghuaListItemsChange(e, data, index)}/>
+        <CheckItem data={data} onChange={(e) => OnChanghuaListItemsChange(e, data, index)} />
     );
 
     //衛星
@@ -324,7 +324,7 @@ function Layer({map,mapIsLoad}) {
             data: GNSS,
             type: "geojson",
             isLoaded: false
-        },
+        }
     ])
     const OnSatelliteListItemsChange = (e, data, index) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
@@ -340,34 +340,34 @@ function Layer({map,mapIsLoad}) {
         setsatelliteChecked(newArr)
     }
     let SatelliteListItems = satellitechecked.map((data, index) =>
-        <CheckItem data={data} onChange={(e) => OnSatelliteListItemsChange(e, data, index)}/>
+        <CheckItem data={data} onChange={(e) => OnSatelliteListItemsChange(e, data, index)} />
     );
 
     useEffect(() => {
         if (mapIsLoad) {
             let newArr = ylchecked
-            ylchecked.forEach((d ,index)=> {
-                    if (!d.isLoaded) {
-                        newArr[index].isLoaded = true
-                        map.current.addSource(d.name, {
-                            'type': 'geojson',
-                            'data': d.data
-                        })
-                        map.current.addLayer({
-                            'id': d.name,
-                            'type': 'circle',
-                            'source': d.name,
-                            'paint': {
-                                'circle-radius': 3,
-                                'circle-color': '#f72585'
-                            },
-                            'filter': ['==', '$type', 'Point']
-                        });
-                        map.current.on('mouseenter', d.name, function () {
-                            map.current.getCanvas().style.cursor = 'pointer';
-                        });
-                    }
+            ylchecked.forEach((d, index) => {
+                if (!d.isLoaded) {
+                    newArr[index].isLoaded = true
+                    map.current.addSource(d.name, {
+                        'type': 'geojson',
+                        'data': d.data
+                    })
+                    map.current.addLayer({
+                        'id': d.name,
+                        'type': 'circle',
+                        'source': d.name,
+                        'paint': {
+                            'circle-radius': 3,
+                            'circle-color': '#f72585'
+                        },
+                        'filter': ['==', '$type', 'Point']
+                    });
+                    map.current.on('mouseenter', d.name, function () {
+                        map.current.getCanvas().style.cursor = 'pointer';
+                    });
                 }
+            }
             )
             setylChecked(newArr)
         }
@@ -376,41 +376,41 @@ function Layer({map,mapIsLoad}) {
     useEffect(() => {
         if (mapIsLoad) {
             let newArr = zhchecked
-            zhchecked.forEach((d,index) => {
-                    if (!d.isLoaded) {
-                        newArr[index].isLoaded = true
-                        map.current.addSource(d.name, {
-                            'type': 'geojson',
-                            'data': d.data
-                        })
-                        map.current.addLayer({
-                            'id': d.name,
-                            'type': 'circle',
-                            'source': d.name,
-                            'paint': {
-                                'circle-radius': 3,
-                                'circle-color': '#888888'
-                            },
-                            'filter': ['==', '$type', 'Point']
-                        });
-                        map.current.on('click', d.name, function (e) {
-                            var coordinates = e.features[0].geometry.coordinates.slice();
-                            var coordinateName = e.features[0].properties.點名;
-                            const front = "<h6 style='color:red'>"
-                            const back = "</h6>"
-                            var otherCoordinates2 = front + "點名:" + coordinateName + back
-                            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                            }
+            zhchecked.forEach((d, index) => {
+                if (!d.isLoaded) {
+                    newArr[index].isLoaded = true
+                    map.current.addSource(d.name, {
+                        'type': 'geojson',
+                        'data': d.data
+                    })
+                    map.current.addLayer({
+                        'id': d.name,
+                        'type': 'circle',
+                        'source': d.name,
+                        'paint': {
+                            'circle-radius': 3,
+                            'circle-color': '#888888'
+                        },
+                        'filter': ['==', '$type', 'Point']
+                    });
+                    map.current.on('click', d.name, function (e) {
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var coordinateName = e.features[0].properties.點名;
+                        const front = "<h6 style='color:red'>"
+                        const back = "</h6>"
+                        var otherCoordinates2 = front + "點名:" + coordinateName + back
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
 
-                            new mapboxgl.Popup()
-                                .setLngLat(coordinates)
-                                .setHTML(otherCoordinates2)
-                                .addTo(map.current);
-                        })
-                    }
-
+                        new mapboxgl.Popup()
+                            .setLngLat(coordinates)
+                            .setHTML(otherCoordinates2)
+                            .addTo(map.current);
+                    })
                 }
+
+            }
             )
             setzhChecked(newArr)
         }
@@ -420,40 +420,40 @@ function Layer({map,mapIsLoad}) {
     useEffect(() => {
         if (mapIsLoad) {
             let newArr = satellitechecked
-            satellitechecked.forEach((d,index) => {
-                    if (!d.isLoaded) {
-                        newArr[index].isLoaded = true
-                        map.current.addSource(d.name, {
-                            'type': 'geojson',
-                            'data': d.data
-                        })
-                        map.current.addLayer({
-                            'id': d.name,
-                            'type': 'circle',
-                            'source': d.name,
-                            'paint': {
-                                'circle-radius': 3,
-                                'circle-color': '#f77777'
-                            },
-                            'filter': ['==', '$type', 'Point']
-                        });
-                        map.current.on('click', d.name, function (e) {
-                            var coordinates = e.features[0].geometry.coordinates.slice();
-                            var coordinateName = e.features[0].properties.測站名;
-                            const front = "<h6 style='color:red'>"
-                            const back = "</h6>"
-                            var otherCoordinates2 = front + "測站名:" + coordinateName + back
-                            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                            }
+            satellitechecked.forEach((d, index) => {
+                if (!d.isLoaded) {
+                    newArr[index].isLoaded = true
+                    map.current.addSource(d.name, {
+                        'type': 'geojson',
+                        'data': d.data
+                    })
+                    map.current.addLayer({
+                        'id': d.name,
+                        'type': 'circle',
+                        'source': d.name,
+                        'paint': {
+                            'circle-radius': 3,
+                            'circle-color': '#f77777'
+                        },
+                        'filter': ['==', '$type', 'Point']
+                    });
+                    map.current.on('click', d.name, function (e) {
+                        var coordinates = e.features[0].geometry.coordinates.slice();
+                        var coordinateName = e.features[0].properties.測站名;
+                        const front = "<h6 style='color:red'>"
+                        const back = "</h6>"
+                        var otherCoordinates2 = front + "測站名:" + coordinateName + back
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
 
-                            new mapboxgl.Popup()
-                                .setLngLat(coordinates)
-                                .setHTML(otherCoordinates2)
-                                .addTo(map.current);
-                        })
-                    }
+                        new mapboxgl.Popup()
+                            .setLngLat(coordinates)
+                            .setHTML(otherCoordinates2)
+                            .addTo(map.current);
+                    })
                 }
+            }
             )
             setsatelliteChecked(newArr)
         }
@@ -473,10 +473,10 @@ function Layer({map,mapIsLoad}) {
             "id": 2,
             "name": "衛星影像",
         }
-    ])
+    ], [])
 
     let BtnList = mapData.map((data, index) =>
-        <NormalButton className={styles.btn_list} isLightOn={currentData===data.id} text={data.name} onClick={(e)=>setCurrentData(data.id)}/>
+        <NormalButton className={styles.btn_list} isLightOn={currentData === data.id} text={data.name} onClick={(e) => setCurrentData(data.id)} />
     );
 
     return (
@@ -487,9 +487,9 @@ function Layer({map,mapIsLoad}) {
                     {BtnList}
                 </FlexWrapper>
                 <FlexWrapper flex={"70%"}>
-                        { currentData == 0 && YunlinListItems}
-                        { currentData == 1 && ChanghuaListItems}
-                        { currentData == 2 && SatelliteListItems}
+                    {currentData == 0 && YunlinListItems}
+                    {currentData == 1 && ChanghuaListItems}
+                    {currentData == 2 && SatelliteListItems}
                 </FlexWrapper>
             </FlexContainer>
         </div>
@@ -500,7 +500,7 @@ function Layer({map,mapIsLoad}) {
 
 export default function HydraMap() {
 
-    const {t, i18n} = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const mapContainer = useRef();
     const map = useRef(null);
@@ -586,8 +586,8 @@ export default function HydraMap() {
                                     </Tooltip>
                                 }>
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(0)}
-                                                 icon={faSearch}
-                                                 size="lg" color="white" id='app-icon'/>
+                                    icon={faSearch}
+                                    size="lg" color="white" id='app-icon' />
                             </OverlayTrigger>
                         </li>
                         <li className={styles.menu_btn_wrapper}>
@@ -600,8 +600,8 @@ export default function HydraMap() {
                                     </Tooltip>
                                 }>
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(1)}
-                                                 icon={faClone}
-                                                 size="lg" color="white"/>
+                                    icon={faClone}
+                                    size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
                         <li className={styles.menu_btn_wrapper}>
@@ -614,8 +614,8 @@ export default function HydraMap() {
                                     </Tooltip>
                                 }>
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(2)}
-                                                 icon={faExchangeAlt}
-                                                 size="lg" color="white"/>
+                                    icon={faExchangeAlt}
+                                    size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
                         <li className={styles.menu_btn_wrapper}>
@@ -628,8 +628,8 @@ export default function HydraMap() {
                                     </Tooltip>
                                 }>
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(3)}
-                                                 icon={faStreetView}
-                                                 size="lg" color="white"/>
+                                    icon={faStreetView}
+                                    size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
                         <li className={styles.menu_btn_wrapper}>
@@ -642,8 +642,8 @@ export default function HydraMap() {
                                     </Tooltip>
                                 }>
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(4)}
-                                                 icon={faPrint}
-                                                 size="lg" color="white"/>
+                                    icon={faPrint}
+                                    size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
                         <li className={styles.menu_btn_wrapper}>
@@ -656,7 +656,7 @@ export default function HydraMap() {
                                     </Tooltip>
                                 }>
                                 <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(5)}
-                                                 icon={faMapMarker} size="lg" color="white"/>
+                                    icon={faMapMarker} size="lg" color="white" />
                             </OverlayTrigger>
                         </li>
                     </ul>
@@ -682,7 +682,7 @@ export default function HydraMap() {
                         </div>
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 1}>
-                        <Layer map={map} mapIsLoad={mapIsLoad}/>
+                        <Layer map={map} mapIsLoad={mapIsLoad} />
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 2}>
                         <h4 className={styles.func_title}>{t('3D_switch')}</h4>
@@ -701,7 +701,7 @@ export default function HydraMap() {
 
             <div className={styles.fragment}>
                 <div className={styles.map} id="map">
-                    <div className={styles.map_container} ref={mapContainer}/>
+                    <div className={styles.map_container} ref={mapContainer} />
                 </div>
             </div>
         </>

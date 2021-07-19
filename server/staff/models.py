@@ -4,6 +4,11 @@ from django.db import models
 from core.models import TimestampedModel
 from enum import IntEnum
 
+class AnnouncementManager(models.Manager):
+    def create_announcement(self,title,content,user):
+        a = Announcement(title=title, content=content,user=user)
+        a.save(force_insert=True)
+        return a
 
 # Create your models here.
 class Announcement(TimestampedModel):
@@ -11,6 +16,15 @@ class Announcement(TimestampedModel):
     title = models.TextField(blank=True, null=True)
     content = models.TextField(blank=True, null=True)
     user = models.ForeignKey('authentication.User', on_delete=models.CASCADE)
+    objects = AnnouncementManager()
+
+    def edit_announcement(self,title,content,user):
+        self.title = title
+        self.content = content
+        self.save()
+
+    def delete_announcement(self,user):
+        self.delete()
 
 
 class SystemOperationEnum(IntEnum):

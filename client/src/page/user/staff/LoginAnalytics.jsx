@@ -10,40 +10,9 @@ import styles from './LoginAnalytics.module.scss'
 import Pagination from '@material-ui/lab/Pagination';
 
 import { css, jsx } from '@emotion/react/macro'
+import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
+import useQuery from "../../../lib/hook";
 
-const Title = styled.h1(
-    props => ({
-        fontSize: "20px",
-        margin: "10px 10px 30px 0px",
-
-    })
-)
-
-
-const FlexColumnContainer = styled.div(
-    props => ({
-        display: "flex",
-    })
-)
-
-const StyledTh = styled.th(
-    props => ({
-        color:"white"
-    })
-)
-
-const StyledTd = styled.td(
-    props => ({
-        color:"white"
-    })
-)
-
-const StyledTable = styled.div(
-    props => ({
-        marginTop:"20px",
-        marginBottom:"20px"
-    })
-)
 
 function TableData({data}) {
 
@@ -75,6 +44,7 @@ function TableData({data}) {
 }
 
 export default function LoginAnalytics() {
+
     let history = useHistory()
     const location = useLocation()
     const {user, setUser} = useContext(userContext)
@@ -117,7 +87,7 @@ export default function LoginAnalytics() {
             }
         ).then((res) => {
             setData(res.data.results)
-            setTotalPage(res.data.count)
+            setTotalPage(res.data.total_pages)
         }).catch((err) => {
 
         }).finally(() => {

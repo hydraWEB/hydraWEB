@@ -1,28 +1,49 @@
 from rest_framework import serializers
 from .models import Announcement, SystemLog
 
-
-class AnnouncementSerializer(serializers.ModelSerializer):
-    title = serializers.CharField(allow_null=False)
-    content = serializers.CharField(allow_null=False)
-
-    def save(self,user):
-      pass
-
-    class Meta:
-        model = Announcement
-        fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']
-        read_only_fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']
-
-class UerSerializer(serializers.Serializer):
+class UserSerializer(serializers.Serializer):
     userid = serializers.IntegerField()
     username = serializers.CharField(max_length=255)
     email = serializers.CharField(max_length=255)
     avatar = serializers.CharField(max_length=255)
     phone = serializers.CharField(max_length=255)
 
+class AuthUserSerializer(serializers.Serializer):
+    userid = serializers.IntegerField()
+    username = serializers.CharField(max_length=255)
+
+class StaffAnnouncementSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(allow_null=False, max_length=150)
+    content = serializers.CharField(allow_null=False, max_length=5000)
+    user = AuthUserSerializer(read_only=True)
+
+    def create(self,user):
+        Announcement.objects.create_announcement(title=self.validated_data['title'],content=self.validated_data['content'],user=user)
+
+    def edit(self,instance, user):
+        instance.edit_announcement(title=self.validated_data['title'],content=self.validated_data['content'],user=user)
+
+    def delete(self,instance, user):
+        instance.delete_announcement()
+
+    class Meta:
+        model = Announcement
+        fields = ['id', 'title', 'content','user','created_at','updated_at']
+
+class UserAnnouncementSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(allow_null=False, max_length=150)
+    content = serializers.CharField(allow_null=False, max_length=5000)
+    user = AuthUserSerializer(read_only=True)
+
+    def save(self,user):
+      pass
+
+    class Meta:
+        model = Announcement
+        fields = ['id', 'title', 'content','user','created_at','updated_at']
+
 class SystemLogSerialzer(serializers.ModelSerializer):
-    user = UerSerializer()
+    user = UserSerializer()
 
     class Meta:
         model = SystemLog

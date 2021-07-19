@@ -11,10 +11,45 @@ import {faUser} from "@fortawesome/free-solid-svg-icons";
 import LoginAnalytics from "./LoginAnalytics";
 import SystemUsedAnalytics from "./SystemUsedAnalystic";
 import SystemSetting from "./SystemSetting";
-import NewsManage from "./NewsManage";
+import Announcement from "./Announcement";
 import AccountManage from "./AccountManage";
 import IPManage from "./IPManage";
 import {useTranslation} from "react-i18next";
+import AnnouncementNew from "./AnnouncementNew";
+
+
+export const Title = styled.h1(
+    props => ({
+        fontSize: "20px",
+        margin: "10px 10px 30px 0px",
+
+    })
+)
+
+export const FlexColumnContainer = styled.div(
+    props => ({
+        display: "flex",
+    })
+)
+
+export const StyledTh = styled.th(
+    props => ({
+        color:"white"
+    })
+)
+
+export const StyledTd = styled.td(
+    props => ({
+        color:"white"
+    })
+)
+
+export const StyledTable = styled.div(
+    props => ({
+        marginTop:"20px",
+        marginBottom:"20px"
+    })
+)
 
 export default function Staff() {
     let history = useHistory()
@@ -33,8 +68,8 @@ export default function Staff() {
                                   isLightOn={location.pathname === "/user/staff/system-used-analytics"} text={t('system_function_usage')}/>
                     <NormalButton link={"/user/staff/system-setting"}
                                   isLightOn={location.pathname === "/user/staff/system-setting"} text={t('system_setting')}/>
-                    <NormalButton link={"/user/staff/news-manage"}
-                                  isLightOn={location.pathname === "/user/staff/news-manage"} text={t('announcement_setting')}/>
+                    <NormalButton link={"/user/staff/announcement-manage"}
+                                  isLightOn={location.pathname === "/user/staff/announcement-manage" || location.pathname === "/user/staff/announcement-manage/new"} text={t('announcement_setting')}/>
                     <NormalButton link={"/user/staff/account-manage"}
                                   isLightOn={location.pathname === "/user/staff/account-manage"} text={t('account_setting')}/>
                     <NormalButton link={"/user/staff/ip-manage"} isLightOn={location.pathname === "/user/staff/ip-manage"}
@@ -52,8 +87,11 @@ export default function Staff() {
                     <Route path="/user/staff/system-setting">
                         <SystemSetting/>
                     </Route>
-                    <Route path="/user/staff/news-manage">
-                        <NewsManage/>
+                    <Route path="/user/staff/announcement-manage/new">
+                        <AnnouncementNew/>
+                    </Route>
+                    <Route path="/user/staff/announcement-manage">
+                        <Announcement/>
                     </Route>
                     <Route path="/user/staff/account-manage">
                         <AccountManage/>

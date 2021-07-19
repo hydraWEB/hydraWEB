@@ -8,7 +8,7 @@ import styles from "./Profile.module.scss";
 import styled from "@emotion/styled";
 import NormalButton from "../../../component/NormalButton";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
-import Announcement from "../news/Announcement";
+import Announcement from "../announcement/Announcement";
 import UserData from "./UserData";
 import Setting from "./Setting";
 import {useTranslation} from "react-i18next";

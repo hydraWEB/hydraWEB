@@ -23,5 +23,9 @@ export const userProfile = () => userRequest_client.get("api/v1/auth/user/profil
 
 export const loginLog = (data) => userRequest_client.get("api/v1/staff/system-log",data)
 export const systemLogGetAllYear = () => userRequest_client.get("api/v1/staff/system-log/get-all-years")
+export const AnnouncementList = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
+export const AnnouncementSendNew = (data) => userRequest_client.post("api/v1/staff/announcement/",data)
+export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
+export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}`,data)
 
 export default userLogin

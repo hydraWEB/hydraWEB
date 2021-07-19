@@ -77,8 +77,8 @@ INSTALLED_APPS = [
     'django_rest_passwordreset',
     'authentication',
     'core',
-    'staff'
-    #'influxdb_metrics'
+    'staff',
+    'influxdb_metrics'
 ]
 
 MIDDLEWARE = [
@@ -183,9 +183,10 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 INFLUXDB_HOST = 'influxdb'
 INFLUXDB_PORT = '8086'
 INFLUXDB_USER = 'root'
-INFLUXDB_PASSWORD = '12345678'
-INFLUXDB_DATABASE = 'hydraweb'
+INFLUXDB_PASSWORD = 'zxcv1234xxx'
+INFLUXDB_DATABASE = 'flexolk'
 
 INFLUXDB_TAGS_HOST = 'influxdb'
 INFLUXDB_TIMEOUT = 5
 INFLUXDB_USE_THREADING = False
+INFLUXDB_USE_CELERY = True

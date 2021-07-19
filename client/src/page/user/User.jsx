@@ -12,7 +12,7 @@ import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown } from 'react
 import styles from './User.module.scss';
 import Home from './Home';
 import Profile from './profile/Profile';
-import Announcement from './news/Announcement';
+import Announcement from './announcement/Announcement';
 import { userContext } from "../../provider/UserProvider";
 import Staff from "./staff/Staff";
 import Cookies from "js-cookie";
@@ -57,7 +57,7 @@ export default function User(props) {
 
                     </Nav>
                     <Nav>
-                        <Nav.Link><Link to="/user/news" className={styles.link}>{t("announcement")}</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/announcement" className={styles.link}>{t("announcement")}</Link></Nav.Link>
                         {typeof user.current != 'undefined' &&
                             <>
                                 {user.current.is_staff &&
@@ -77,7 +77,7 @@ export default function User(props) {
 
             <div className={styles.user_container}>
                 <Switch>
-                    <Route path="/user/news">
+                    <Route path="/user/announcement">
                         <Announcement />
                     </Route>
                     <Route path="/user/profile">

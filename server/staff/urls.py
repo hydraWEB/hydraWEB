@@ -2,7 +2,7 @@ from django.urls import path,include
 from rest_framework_simplejwt.views import TokenRefreshView
 from staff.views import SystemLogViewSet, get_all_years
 from rest_framework.routers import DefaultRouter
-from staff.views import StaffAnnouncementViewSet,UserAnnouncementViewSet
+from staff.views import StaffAnnouncementViewSet,UserAnnouncementViewSet,AccountViewSet
 
 routerUser = DefaultRouter()
 routerUser.register('announcement', UserAnnouncementViewSet, basename='bots')
@@ -10,6 +10,7 @@ routerUser.register('announcement', UserAnnouncementViewSet, basename='bots')
 routerStaff = DefaultRouter()
 routerStaff.register('system-log', SystemLogViewSet, basename='system_log')
 routerStaff.register('announcement', StaffAnnouncementViewSet, basename='bots')
+routerStaff.register('account', AccountViewSet, basename='account')
 
 urlpatterns = [
     path('staff/system-log/get-all-years', get_all_years),

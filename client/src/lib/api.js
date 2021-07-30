@@ -20,7 +20,7 @@ export const userForgotPasswdConfirm = (data) => guestRequest_client.post("api/v
 
 export const userProfile = () => userRequest_client.get("api/v1/auth/user/profile");
 
-
+export const accountList = (data) => userRequest_client.get("api/v1/staff/account",data)
 export const loginLog = (data) => userRequest_client.get("api/v1/staff/system-log",data)
 export const systemLogGetAllYear = () => userRequest_client.get("api/v1/staff/system-log/get-all-years")
 export const AnnouncementList = (data) => userRequest_client.get("api/v1/staff/announcement/",data)

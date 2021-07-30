@@ -12,6 +12,7 @@ django-cors-headers = "*"
 python-dotenv = "*"
 django-rest-passwordreset = "*"
 celery = "*"
+influxdb-client = "*"
 
 [dev-packages]
 

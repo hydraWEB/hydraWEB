@@ -33,6 +33,7 @@ import {
     NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form, ButtonGroup
 } from 'react-bootstrap';
 import { useTranslation, Trans } from "react-i18next";
+import { saveAs } from 'file-saver';
 
 
 import mapboxgl from 'mapbox-gl';
@@ -61,6 +62,10 @@ import styles from './HydraMap.module.scss';
 import NormalButton from "../../component/NormalButton";
 import styled from "@emotion/styled/macro";
 
+import DeckGL from '@deck.gl/react';
+import { LineLayer } from '@deck.gl/layers';
+import { StaticMap } from 'react-map-gl';
+
 mapboxgl.accessToken =
     'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
 
@@ -79,7 +84,7 @@ const FlexContainer = styled.div(
         {
             display: 'flex',
             marginTop: '20px',
-            marginLeft: '20px',
+            marginLeft: '0px',
             marginRight: '20px'
         }
     )
@@ -112,7 +117,6 @@ const InputWrapper = styled.div(
     )
 )
 
-
 const StyledInput = styled.input(
     props => (
         {
@@ -129,6 +133,37 @@ const StyledInput = styled.input(
 const StyledLabel = styled.label(
     props => (
         {
+        }
+    )
+)
+
+
+export const LogLatContainer = styled.div(
+    props => (
+        {
+            position: "fixed",
+            top: '3.5rem',
+            right: 0,
+            maxWidth: '500px',
+            padding: "20px 20px 20px 20px",
+            zIndex: 2,
+            margin: "0 auto"
+        }
+    )
+)
+
+export const LogLatBar = styled.div(
+    props => (
+        {
+            display: 'flex',
+            padding: "15px",
+            overflow: "hidden",
+            borderRadius: "0px",
+            backgroundColor: "#001233AA",
+            alignSelf: "center",
+            fontSize: "1rem",
+            display: "flex",
+            flexDirection: "column"
         }
     )
 )
@@ -158,7 +193,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 1,
             name: "108雲林地區地層下陷加密水準檢測成果表",
-            value: true,
+            value: false,
             data: yljsonData1,
             type: "geojson",
             isLoaded: false
@@ -167,7 +202,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 2,
             name: "108雲林地區地層下陷水準檢測成果表",
-            value: true,
+            value: false,
             data: yljsonData2,
             type: "geojson",
             isLoaded: false
@@ -176,7 +211,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 3,
             name: "GPS站_雲林縣",
-            value: true,
+            value: false,
             data: yljsonData3,
             type: "geojson",
             isLoaded: false
@@ -184,7 +219,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 4,
             name: "台灣自來水公司第五區_雲林抽水井位置圖",
-            value: true,
+            value: false,
             data: yljsonData4,
             type: "geojson",
             isLoaded: false
@@ -192,7 +227,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 5,
             name: "地層下陷監測點_雲林縣",
-            value: true,
+            value: false,
             data: yljsonData5,
             type: "geojson",
             isLoaded: false
@@ -200,7 +235,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 6,
             name: "水準樁_雲林縣",
-            value: true,
+            value: false,
             data: yljsonData6,
             type: "geojson",
             isLoaded: false
@@ -208,7 +243,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 7,
             name: "雲林水利會抽水井位置圖",
-            value: true,
+            value: false,
             data: yljsonData7,
             type: "geojson",
             isLoaded: false
@@ -236,7 +271,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 1,
             name: "108彰化地區地層下陷加密水準檢測成果表",
-            value: true,
+            value: false,
             data: zhjsonData1,
             type: "geojson",
             isLoaded: false
@@ -244,7 +279,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 2,
             name: "108彰化地區地層下陷水準檢測成果表",
-            value: true,
+            value: false,
             data: zhjsonData2,
             type: "geojson",
             isLoaded: false
@@ -252,7 +287,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 3,
             name: "GPS站_彰化縣",
-            value: true,
+            value: false,
             data: zhjsonData3,
             type: "geojson",
             isLoaded: false
@@ -260,7 +295,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 4,
             name: "台灣自來水公司第十一區_彰化抽水井位置圖",
-            value: true,
+            value: false,
             data: zhjsonData4,
             type: "geojson",
             isLoaded: false
@@ -268,7 +303,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 5,
             name: "地層下陷監測點_彰化縣",
-            value: true,
+            value: false,
             data: zhjsonData5,
             type: "geojson",
             isLoaded: false
@@ -276,7 +311,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 6,
             name: "彰化水利會抽水井位置圖",
-            value: true,
+            value: false,
             data: zhjsonData6,
             type: "geojson",
             isLoaded: false
@@ -284,7 +319,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 7,
             name: "水準樁_彰化縣",
-            value: true,
+            value: false,
             data: zhjsonData7,
             type: "geojson",
             isLoaded: false
@@ -312,7 +347,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 1,
             name: "gpsdata",
-            value: true,
+            value: false,
             data: gpsdata,
             type: "geojson",
             isLoaded: false
@@ -320,7 +355,7 @@ function Layer({ map, mapIsLoad }) {
         {
             id: 2,
             name: "GNSS",
-            value: true,
+            value: false,
             data: GNSS,
             type: "geojson",
             isLoaded: false
@@ -366,6 +401,11 @@ function Layer({ map, mapIsLoad }) {
                     map.current.on('mouseenter', d.name, function () {
                         map.current.getCanvas().style.cursor = 'pointer';
                     });
+                    if (d.value) {
+                        map.current.setLayoutProperty(d.name, 'visibility', 'visible')
+                    } else {
+                        map.current.setLayoutProperty(d.name, 'visibility', 'none')
+                    }
                 }
             }
             )
@@ -408,6 +448,11 @@ function Layer({ map, mapIsLoad }) {
                             .setHTML(otherCoordinates2)
                             .addTo(map.current);
                     })
+                    if (d.value) {
+                        map.current.setLayoutProperty(d.name, 'visibility', 'visible')
+                    } else {
+                        map.current.setLayoutProperty(d.name, 'visibility', 'none')
+                    }
                 }
 
             }
@@ -452,6 +497,11 @@ function Layer({ map, mapIsLoad }) {
                             .setHTML(otherCoordinates2)
                             .addTo(map.current);
                     })
+                    if (d.value) {
+                        map.current.setLayoutProperty(d.name, 'visibility', 'visible')
+                    } else {
+                        map.current.setLayoutProperty(d.name, 'visibility', 'none')
+                    }
                 }
             }
             )
@@ -498,6 +548,107 @@ function Layer({ map, mapIsLoad }) {
 
 }
 
+
+
+const FormItem = styled.div(
+    props => ({
+        padding: "10px 10px 10px 0px",
+    })
+)
+
+const FormItemContainer = styled.div(
+    props => ({
+        display: "flex",
+        flexDirection: "row"
+    })
+)
+
+
+function Print({ map, mapIsLoad }) {
+    const { t, i18n } = useTranslation();
+    const [unit, setUnit] = useState("inch")
+    const [format, setForamt] = useState("PNG")
+
+
+    const onChangeUnit = (e) => {
+        setUnit(e.target.value);
+    }
+
+    const onChangeFormat = (e) => {
+        setForamt(e.target.value);
+    }
+
+
+    const createPrintMap = () => {
+        map.current.once('idle', function () {
+            map.current.getCanvas().toBlob(function (blob) {
+                saveAs(blob, 'map.png');
+            });
+        })
+    }
+
+    const onBtnClick = () => {
+        createPrintMap()
+    }
+
+
+    return (
+        <div>
+            <h4 className={styles.func_title}>{t('print')}</h4>
+            <Form>
+                <FormItem>
+                    <h5>單位</h5>
+                    <FormItemContainer>
+                        <Form.Check
+                            type={'radio'}
+                            label={'英吋'}
+                            id={`inch`}
+                            value={"inch"}
+                            checked={unit === "inch"}
+                            onChange={onChangeUnit}
+                        />
+                        <Form.Check
+                            className="ml-3"
+                            type={'radio'}
+                            label={'公尺'}
+                            id={`millimeter`}
+                            value={"millimeter"}
+                            checked={unit === "millimeter"}
+                            onChange={onChangeUnit}
+                        />
+                    </FormItemContainer>
+                </FormItem>
+
+                <FormItem>
+                    <h5>輸出格式</h5>
+                    <FormItemContainer>
+                        <Form.Check
+                            type={'radio'}
+                            label={'PNG'}
+                            id={`PNG`}
+                            value={"PNG"}
+                            checked={format === "PNG"}
+                            onChange={onChangeFormat}
+                        />
+                        <Form.Check
+                            className="ml-3"
+                            type={'radio'}
+                            label={'PDF'}
+                            id={`PDF`}
+                            value={"PDF"}
+                            checked={format === "PDF"}
+                            onChange={onChangeFormat}
+                        />
+                    </FormItemContainer>
+                </FormItem>
+
+
+                <Button onClick={onBtnClick}>輸出</Button>
+            </Form>
+        </div>
+    )
+}
+
 export default function HydraMap() {
 
     const { t, i18n } = useTranslation();
@@ -509,7 +660,7 @@ export default function HydraMap() {
 
     const [lng, setLng] = useState(121)
     const [lat, setLat] = useState(24)
-    const [zoom, setZoon] = useState(7)
+    const [zoom, setZoom] = useState(7)
     const [currentFunction, setCurrentFunction] = useState(0)
 
     const [openSheet, setOpenSheet] = useState(false)
@@ -560,6 +711,15 @@ export default function HydraMap() {
 
         return () => map.current.remove();
     }, []);
+
+    useEffect(() => {
+        if (!map.current) return; // wait for map to initialize
+        map.current.on('move', () => {
+            setLng(map.current.getCenter().lng.toFixed(4));
+            setLat(map.current.getCenter().lat.toFixed(4));
+            setZoom(map.current.getZoom().toFixed(2));
+        });
+    });
 
 
     const functionChangeToggle = ((funcID) => {
@@ -691,7 +851,7 @@ export default function HydraMap() {
                         <h4 className={styles.func_title}>{t('circle_analysis')}</h4>
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 4}>
-                        <h4 className={styles.func_title}>{t('print')}</h4>
+                        <Print map={map} mapIsLoad={mapIsLoad} />
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 5}>
                         <h4 className={styles.func_title}>{t('locate')}</h4>
@@ -700,6 +860,15 @@ export default function HydraMap() {
             </ShowWrapper>
 
             <div className={styles.fragment}>
+                <div>
+                    <LogLatContainer>
+                        <LogLatBar>
+                            <p>經度：{lng}</p>
+                            <p>緯度：{lat}</p>
+                            <p>縮放：{zoom}</p>
+                        </LogLatBar>
+                    </LogLatContainer>
+                </div>
                 <div className={styles.map} id="map">
                     <div className={styles.map_container} ref={mapContainer} />
                 </div>

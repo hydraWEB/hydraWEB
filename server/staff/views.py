@@ -1,11 +1,13 @@
+from django.db.models import query
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
 
+from authentication.models import User
 from .models import Announcement, SystemLog, SystemOperationEnum
 from core.utils import StandardResultsSetPagination
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from .serializers import SystemLogSerialzer,StaffAnnouncementSerializer,UserAnnouncementSerializer
+from .serializers import SystemLogSerialzer,StaffAnnouncementSerializer,UserAnnouncementSerializer,UserSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
@@ -97,4 +99,33 @@ class SystemLogViewSet(viewsets.ModelViewSet):
     def list(self, request, **kwargs):
         queryset = self.paginate_queryset(self.get_queryset().order_by('-created_at'))
         serializer = SystemLogSerialzer(queryset, many=True)
+        return self.get_paginated_response(serializer.data)
+
+
+
+class AccountViewSet(viewsets.ModelViewSet):
+    queryset = User.objects
+    pagination_class = StandardResultsSetPagination
+    permission_classes = (IsAdminUser,)
+
+    def get_queryset(self):
+        queryset = self.queryset
+        userid = self.request.query_params.get('userid', None)
+        username = self.request.query_params.get('username', None)
+        email = self.request.query_params.get('email', None)
+
+        if userid is not None:
+            queryset = queryset.filter(userid=userid)
+
+        if username is not None:
+            queryset = queryset.filter(username=username)
+
+        if email is not None:
+            queryset = queryset.filter(email=email)
+
+        return queryset
+
+    def list(self, request, **kwargs):
+        queryset = self.paginate_queryset(self.get_queryset().order_by('-created_at'))
+        serializer = UserSerializer(queryset, many=True)
         return self.get_paginated_response(serializer.data)

@@ -181,20 +181,21 @@ function Layer({ layers, setLayers }) {
 
   const { t, i18n } = useTranslation();
   const [currentData, setCurrentData] = useState(0)
+  const [hoverInfo, setHoverInfo] = useState({});
 
   //雲林
   const [ylchecked, setylChecked] = useState([
     {
       id: 1,
       name: "108雲林地區地層下陷加密水準檢測成果表",
-      value: true,
+      value: false,
       data: yljsonData1,
       type: "geojson"
     },
     {
       id: 2,
       name: "108雲林地區地層下陷水準檢測成果表",
-      value: true,
+      value: false,
       data: yljsonData2,
       type: "geojson"
     },
@@ -236,15 +237,15 @@ function Layer({ layers, setLayers }) {
   ])
   const OnYunlinListItemsChange = (e, data, index) => { //data是從ylchecked裡取出
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
-    let newLayer = layers //複製一個layer
+    let newLayer = [...layers] //複製一個layer
     if (value) { //CheckBox的值
       newLayer.forEach((element, i) => {
         if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
-          newLayer[i] =  new GeoJsonLayer({
+          newLayer[i] = new GeoJsonLayer({
             id: data.id,
-            name:data.name,
+            name: data.name,
             data: data.data,
-            visible:true,
+            visible: true,
             // Styles
             filled: true,
             pointRadiusMinPixels: 2,
@@ -253,22 +254,19 @@ function Layer({ layers, setLayers }) {
             getFillColor: [200, 0, 80, 180],
             // Interactive props
             pickable: true,
-            autoHighlight: true,
-            updateTriggers: {
-              visible: data.id
-            }
+            autoHighlight: true
+
           })
         }
       });
-      newLayer.updateState()
     } else {
       newLayer.forEach((element, i) => {
-        if (element.name == data.name) {
-          newLayer[i] =  new GeoJsonLayer({
+        if (element.props.name == data.name) {
+          newLayer[i] = new GeoJsonLayer({
             id: data.id,
-            name:data.name,
+            name: data.name,
             data: data.data,
-            visible:false,
+            visible: false,
             // Styles
             filled: true,
             pointRadiusMinPixels: 2,
@@ -277,27 +275,17 @@ function Layer({ layers, setLayers }) {
             getFillColor: [200, 0, 80, 180],
             // Interactive props
             pickable: true,
-            autoHighlight: true,
-            updateTriggers: {
-              visible: data.id
-            }
+            autoHighlight: true
+
           })
         }
       });
     }
-    
     data.value = value
     let newArr = [...ylchecked]
     newArr[index] = data
     setylChecked(newArr) //修改ylchecked
-
     setLayers(newLayer) //修改本來地圖的layer
-    /* layers.setProps({
-      visible,
-      updateTriggers:{
-        visible: 
-      }
-    }) */
   }
   let YunlinListItems = ylchecked.map((data, index) =>
     <CheckItem data={data} onChange={(e) => OnYunlinListItemsChange(e, data, index)} />
@@ -311,21 +299,20 @@ function Layer({ layers, setLayers }) {
       newLayer.push(
         new GeoJsonLayer({
           id: d.id,
-          name:d.name,
+          name: d.name,
           data: d.data,
-          visible:d.value,
+          visible: d.value,
           // Styles
           filled: true,
           pointRadiusMinPixels: 2,
           pointRadiusScale: 5,
           getPointRadius: f => 5,
+          onHover: setHoverInfo,
           getFillColor: [200, 0, 80, 180],
           // Interactive props
           pickable: true,
-          autoHighlight: true,
-          updateTriggers: {
-            visible: d.id
-          }
+          autoHighlight: true
+
         })
       )
     }
@@ -370,8 +357,6 @@ function Layer({ layers, setLayers }) {
 
 }
 
-
-
 const FormItem = styled.div(
   props => ({
     padding: "10px 10px 10px 0px",
@@ -386,7 +371,7 @@ const FormItemContainer = styled.div(
 )
 
 
-function Print({ map }) {
+function Print({ map, deck }) {
   const { t, i18n } = useTranslation();
   const [unit, setUnit] = useState("inch")
   const [format, setForamt] = useState("PNG")
@@ -400,16 +385,67 @@ function Print({ map }) {
     setForamt(e.target.value);
   }
 
+  const downloadImage = () => {
+    const fileName = "Map.png";
+
+    const mapboxCanvas = map.current.getMap().getCanvas(document.getElementById("map-canvas"));
+    deck.current.deck.redraw(true);
+    const deckglCanvas = document.getElementById("deck-gl-canvas");
+
+    let merge = document.createElement("canvas");
+    merge.width = mapboxCanvas.width;
+    merge.height = mapboxCanvas.height;
+
+    var context = merge.getContext("2d");
+
+    context.globalAlpha = 1.0;
+    context.drawImage(mapboxCanvas, 0, 0);
+    context.globalAlpha = 1.0;
+    context.drawImage(deckglCanvas, 0, 0);
+
+    merge.toBlob(blob => {
+      saveAs(blob, fileName);
+    });
+  };
 
   const createPrintMap = () => {
-    map.getCanvas().toBlob(function (blob) {
-      saveAs(blob, 'map.png');
+    const html2canvas = require("html2canvas")
+    const mapRef = map.current.getMap()
+    /*     mapRef.getCanvas().toBlob(function (blob) {
+          saveAs(blob, 'map.png');
+        });  */
+    let deckgl = document.getElementById("deck-gl-canvas")
+    deck.current.deck.redraw(true)
+    let div = document.getElementById("deck-gl-canvas-wrapper");
+    div.current.redraw(true)
+    // use html2canvas tool to capture the content of the canvas inside the div and download it as an png file
+    html2canvas(div).then(canvas => {
+      document.body.appendChild(canvas);
+      let a = document.createElement('a');
+      // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+      a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      a.download = 'screenshot.png';
+      a.click();
     });
+
+
+
   }
 
   const onBtnClick = () => {
     createPrintMap()
+    //downloadImage()
   }
+
+  /*    const screenshot = () => {
+        let canvas = $scope.scatterLayer.canvas;
+          document.body.appendChild(canvas);
+          let a = document.createElement('a');
+          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+          a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+          a.download = 'screenshot.png';
+          a.click();
+     } */
 
 
   return (
@@ -479,7 +515,8 @@ export default function HydraMap() {
     bearing: 0
   };
 
-  const deck = useRef()
+  const mapRef = useRef()
+  const deckRef = useRef()
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
   const { t, i18n } = useTranslation();
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
@@ -489,10 +526,10 @@ export default function HydraMap() {
   // Data to be used by the LineLayer
 
   const data = [
-      {sourcePosition: [121, 24], targetPosition: [122, 25]}
+    { sourcePosition: [121, 24], targetPosition: [122, 25] }
   ];
 
-  const [layers,setLayers] = useState([])
+  const [layers, setLayers] = useState([])
 
   const setLayersFunc = (layer) => {
     setLayers(layer)
@@ -631,7 +668,7 @@ export default function HydraMap() {
             <h4 className={styles.func_title}>{t('circle_analysis')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
-            <Print map={deck.current} />
+            <Print map={mapRef} deck={deckRef} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 5}>
             <h4 className={styles.func_title}>{t('locate')}</h4>
@@ -651,16 +688,15 @@ export default function HydraMap() {
         </div>
         <div className={styles.map} id="map">
           <DeckGL
+            id="deck-gl-canvas"
             {...viewState}
             initialViewState={INITIAL_VIEW_STATE}
             onViewStateChange={onViewStateChange}
             controller={true}
             layers={layers}
-            ref={ref => {
-              deck.current = ref;
-            }}
+            ref={deckRef}
           >
-            <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+            <StaticMap id="map-canvas" ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
           </DeckGL>
         </div>
       </div>

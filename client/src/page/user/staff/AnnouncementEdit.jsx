@@ -1,6 +1,6 @@
 import {Breadcrumb, Button, Form, Table} from "react-bootstrap";
 import React, {Suspense, useContext, useEffect, useState} from "react";
-import {AnnouncementList, AnnouncementSendNew, loginLog, systemLogGetAllYear, userSignUp} from "../../../lib/api";
+import {AnnouncementInfoUser} from "../../../lib/api";
 import Cookies from 'js-cookie'
 import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
@@ -30,6 +30,22 @@ export default function AnnouncementNew() {
 
         })
     }
+
+    useEffect(() => {
+        if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
+            AnnouncementInfoUser({},id)
+            .then((res) => {
+                setTitle(res.data.title)
+                setContent(res.data.content)
+            }).catch((err) => {
+    
+            }).finally(() => {
+    
+            })
+        } else {
+            
+        }
+    }, [query])
 
     return (
         <div>

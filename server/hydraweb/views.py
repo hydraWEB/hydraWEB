@@ -20,7 +20,7 @@ class LayerAPIView(views.APIView):
             for js in json_list:
                 f = open(f'{dir_path}\\data\\{dir}\\{js}',"r",encoding="utf-8")
                 json_data = json.load(f)
-                res_json.append({"name":f"{js}","data":json_data})
+                res_json.append({"name":f"{js}","data":json_data,"is_time_serie":False})
             result.append({"name":f"{dir}","file":res_json})
 
 

@@ -10,6 +10,12 @@ import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 
 function TableData({data}) {
+    let history = useHistory();
+
+    function onEditClick(d) {
+        history.push(`/user/staff/announcement-manage/edit?id=${d.id}`);
+      }
+
     const idItems = data.map((d, index) =>
         <tr>
             <StyledTd>{d.id}</StyledTd>
@@ -19,7 +25,7 @@ function TableData({data}) {
             <StyledTd>{d.updated_at}</StyledTd>
             <StyledTd>
                 <Button variant="info">查看</Button>
-                <Button variant="warning">修改</Button>
+                <Button variant="warning" onClick={(e)=>onEditClick(d)}>修改</Button>
                 <Button variant="danger">刪除</Button>
             </StyledTd>
         </tr>

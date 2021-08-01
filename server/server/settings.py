@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'core',
     'staff',
     'hydraweb',
+    'influx',
     'influxdb_metrics'
 ]
 

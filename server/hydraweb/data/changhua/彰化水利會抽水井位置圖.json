@@ -1,0 +1,719 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.502831,
+                    24.056782
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.474093,
+                    24.05823
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.472384,
+                    24.048165
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.545361,
+                    24.058828
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.475706,
+                    23.983094
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.50405,
+                    23.956903
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.503526,
+                    23.949985
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.494021,
+                    23.951146
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.574555,
+                    24.005025
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.529427,
+                    23.892215
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.516006,
+                    23.893889
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.568748,
+                    23.865557
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.480331,
+                    23.932545
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.526704,
+                    23.955042
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.599343,
+                    23.938536
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.483238,
+                    24.038487
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.513089,
+                    23.954359
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.423296,
+                    23.998779
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.502296,
+                    23.922351
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.464951,
+                    24.076654
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.455472,
+                    24.07402
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.468046,
+                    24.072629
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.4626,
+                    24.064989
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.494358,
+                    24.065883
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.476157,
+                    24.036792
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.425914,
+                    24.002328
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.446786,
+                    24.053863
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.451063,
+                    24.000614
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.456998,
+                    23.991606
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.467826,
+                    23.987581
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.607776,
+                    23.908083
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.464169,
+                    24.051902
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.496463,
+                    24.038098
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.95349,
+                    24.028769
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.460846,
+                    24.058771
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.417086,
+                    24.020326
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.4797,
+                    24.047892
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.536296,
+                    24.011785
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.963263,
+                    24.023498
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.535124,
+                    24.061678
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.532018,
+                    24.058743
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.529851,
+                    24.062231
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.52896,
+                    24.061181
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.52733,
+                    24.06058
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.527976,
+                    24.06143
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.524942,
+                    24.06013
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.524281,
+                    24.063559
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.706342,
+                    23.892862
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.702376,
+                    23.892132
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.683987,
+                    23.914552
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.502547,
+                    24.041097
+                ]
+            },
+            "properties": {
+                "name": "彰化水利會抽水井位置圖",
+                "test": 0.0
+            }
+        }
+    ]
+}

@@ -28,4 +28,7 @@ export const AnnouncementSendNew = (data) => userRequest_client.post("api/v1/sta
 export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
 export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}`,data)
 
+export const LayerList = () => userRequest_client.get(`api/v1/user/layer`)
+
+
 export default userLogin

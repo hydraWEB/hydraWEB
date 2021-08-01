@@ -35,22 +35,6 @@ import {
 import { useTranslation, Trans } from "react-i18next";
 import { saveAs } from 'file-saver';
 
-import zhjsonData1 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
-import zhjsonData2 from '../../utils/108彰化地區地層下陷水準檢測成果表';
-import zhjsonData3 from '../../utils/GPS站_彰化縣';
-import zhjsonData4 from '../../utils/台灣自來水公司第十一區_彰化抽水井位置圖';
-import zhjsonData5 from '../../utils/地層下陷監測點_彰化縣';
-import zhjsonData6 from '../../utils/彰化水利會抽水井位置圖';
-import zhjsonData7 from '../../utils/水準樁_彰化縣';
-
-import yljsonData1 from '../../utils/108雲林地區地層下陷加密水準檢測成果表';
-import yljsonData2 from '../../utils/108雲林地區地層下陷水準檢測成果表';
-import yljsonData3 from '../../utils/GPS站_雲林縣';
-import yljsonData4 from '../../utils/台灣自來水公司第五區_雲林抽水井位置圖';
-import yljsonData5 from '../../utils/地層下陷監測點_雲林縣';
-import yljsonData6 from '../../utils/水準樁_雲林縣';
-import yljsonData7 from '../../utils/雲林水利會抽水井位置圖';
-
 import gpsdata from '../../utils/gpsdata';
 import GNSS from '../../utils/GNSS_WGS84';
 
@@ -62,7 +46,7 @@ import { DeckGL } from '@deck.gl/react';
 import { LineLayer } from '@deck.gl/layers';
 import { StaticMap } from 'react-map-gl';
 import { GeoJsonLayer } from '@deck.gl/layers';
-
+import { LayerList } from '../../lib/api'
 
 const ShowWrapper = styled.div(
   props => (
@@ -177,180 +161,119 @@ export function CheckItem({ data, onChange }) {
   )
 }
 
-function Layer({ layers, setLayers }) {
+function Layer({ layers, setLayers ,setHoverInfo }) {
 
   const { t, i18n } = useTranslation();
-  const [currentData, setCurrentData] = useState(0)
+  const [AllData, setAllData] = useState([])
+  const [currentDataIdx, setCurrentDataIdx] = useState(0)
+  const [currentSelectedData, setCurrentSelectedData] = useState([])
 
-  //雲林
-  const [ylchecked, setylChecked] = useState([
-    {
-      id: 1,
-      name: "108雲林地區地層下陷加密水準檢測成果表",
-      value: true,
-      data: yljsonData1,
-      type: "geojson"
-    },
-    {
-      id: 2,
-      name: "108雲林地區地層下陷水準檢測成果表",
-      value: true,
-      data: yljsonData2,
-      type: "geojson"
-    },
-    {
-      id: 3,
-      name: "GPS站_雲林縣",
-      value: false,
-      data: yljsonData3,
-      type: "geojson"
-    },
-    {
-      id: 4,
-      name: "台灣自來水公司第五區_雲林抽水井位置圖",
-      value: false,
-      data: yljsonData4,
-      type: "geojson"
-    },
-    {
-      id: 5,
-      name: "地層下陷監測點_雲林縣",
-      value: false,
-      data: yljsonData5,
-      type: "geojson"
-    },
-    {
-      id: 6,
-      name: "水準樁_雲林縣",
-      value: false,
-      data: yljsonData6,
-      type: "geojson"
-    },
-    {
-      id: 7,
-      name: "雲林水利會抽水井位置圖",
-      value: false,
-      data: yljsonData7,
-      type: "geojson"
-    }
-  ])
-  const OnYunlinListItemsChange = (e, data, index) => { //data是從ylchecked裡取出
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
-    let newLayer = layers //複製一個layer
-    if (value) { //CheckBox的值
-      newLayer.forEach((element, i) => {
-        if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
-          newLayer[i] =  new GeoJsonLayer({
-            id: data.id,
-            name:data.name,
-            data: data.data,
-            visible:true,
-            // Styles
-            filled: true,
-            pointRadiusMinPixels: 2,
-            pointRadiusScale: 5,
-            getPointRadius: f => 5,
-            getFillColor: [200, 0, 80, 180],
-            // Interactive props
-            pickable: true,
-            autoHighlight: true,
-            updateTriggers: {
-              visible: data.id
-            }
-          })
-        }
-      });
-      newLayer.updateState()
-    } else {
-      newLayer.forEach((element, i) => {
-        if (element.name == data.name) {
-          newLayer[i] =  new GeoJsonLayer({
-            id: data.id,
-            name:data.name,
-            data: data.data,
-            visible:false,
-            // Styles
-            filled: true,
-            pointRadiusMinPixels: 2,
-            pointRadiusScale: 5,
-            getPointRadius: f => 5,
-            getFillColor: [200, 0, 80, 180],
-            // Interactive props
-            pickable: true,
-            autoHighlight: true,
-            updateTriggers: {
-              visible: data.id
-            }
-          })
-        }
-      });
-    }
-    
-    data.value = value
-    let newArr = [...ylchecked]
-    newArr[index] = data
-    setylChecked(newArr) //修改ylchecked
-
-    setLayers(newLayer) //修改本來地圖的layer
-    /* layers.setProps({
-      visible,
-      updateTriggers:{
-        visible: 
-      }
-    }) */
+  const onChangeCurrentData = (idx) => {
+    setCurrentDataIdx(idx)
+    setCurrentSelectedData(AllData[idx].files)
   }
-  let YunlinListItems = ylchecked.map((data, index) =>
-    <CheckItem data={data} onChange={(e) => OnYunlinListItemsChange(e, data, index)} />
-  );
 
+  const onHover = (data) => {
+    setHoverInfo(data)
+  }
 
-  useEffect(() => {
-    let newArr = ylchecked
-    let newLayer = []
-    ylchecked.forEach((d, index) => {
-      newLayer.push(
-        new GeoJsonLayer({
-          id: d.id,
-          name:d.name,
-          data: d.data,
-          visible:d.value,
+  const  hashCode = (str)  =>  { // java String#hashCode
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+} 
+
+  const getDotColor = d => {
+    let a = hashCode(d.name)
+    return [a & 255, (a >> 1) & 255 , (a >>2) & 255]
+  };
+
+  const OnListItemsChange = (e, data, index) => { //data是從ylchecked裡取出
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
+    let newMapData = [...AllData]
+    newMapData[currentDataIdx].files[index].value = value
+    setAllData(newMapData)
+    let newLayer = [...layers] //複製一個layer
+    newLayer.forEach((element, i) => {
+      if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
+        newLayer[i] = new GeoJsonLayer({
+          id: data.name,
+          name: data.name,
+          data: data.data,
+          visible: value,
           // Styles
           filled: true,
           pointRadiusMinPixels: 2,
           pointRadiusScale: 5,
           getPointRadius: f => 5,
-          getFillColor: [200, 0, 80, 180],
+          getFillColor: getDotColor(data),
           // Interactive props
           pickable: true,
           autoHighlight: true,
-          updateTriggers: {
-            visible: d.id
-          }
+          onHover : onHover
         })
-      )
-    }
-    )
-    /*   const data = [
-        {sourcePosition: [121, 24], targetPosition: [122, 25]}
-      ];
-      
-      newLayer.push(
-        new LineLayer({id: 'line-layer',data} )
-      ) */
-    setLayers(newLayer)
-    setylChecked(newArr)
+      }
+    });
+    setLayers(newLayer) //修改本來地圖的layer */ 
+  }
+
+  let CurrentListItems = currentSelectedData.map((data, index) =>
+    <CheckItem data={AllData[currentDataIdx].files[index]} onChange={(e) => OnListItemsChange(e, data, index)} />
+  );
+
+  useEffect(() => {
+    LayerList().then((res) => {
+      let list = []
+      res.data.data.forEach((element, idx) => {
+        console.log(element.name)
+        let files = element.file
+        files.forEach((element2, idx) => {
+          files[idx].value = false
+        })
+        list.push({
+          "id": idx,
+          "name": element.name,
+          "files": files,
+        })
+      })
+      setAllData(list)
+      setCurrentSelectedData(list[currentDataIdx].files)
+
+      let newLayer = []
+      list.forEach((l, index) => {
+        l.files.forEach((d, idx) => {
+          newLayer.push(
+            new GeoJsonLayer({
+              id: d.name,
+              name: d.name,
+              data: d.data,
+              visible: d.value,
+              // Styles
+              filled: true,
+              pointRadiusMinPixels: 2,
+              pointRadiusScale: 5,
+              getPointRadius: f => 5,
+              getFillColor: getDotColor(d),
+              // Interactive props
+              pickable: true,
+              autoHighlight: true,
+              onHover : onHover
+            }))
+        })
+      })
+      setLayers(newLayer)
+
+    }).catch((err) => {
+
+    }).finally(() => {
+
+    })
   }, [])
 
-
-  const [mapData, setMapData] = useState([
-    {
-      "id": 0,
-      "name": "雲林",
-    }
-  ], [])
-
-  let BtnList = mapData.map((data, index) =>
-    <NormalButton className={styles.btn_list} isLightOn={currentData === data.id} text={data.name} onClick={(e) => setCurrentData(data.id)} />
+  let BtnList = AllData.map((data, index) =>
+    <NormalButton className={styles.btn_list} isLightOn={currentDataIdx === data.id} text={data.name} onClick={(e) => onChangeCurrentData(index)} />
   );
 
   return (
@@ -361,7 +284,7 @@ function Layer({ layers, setLayers }) {
           {BtnList}
         </FlexWrapper>
         <FlexWrapper flex={"70%"}>
-          {currentData == 0 && YunlinListItems}
+          {CurrentListItems}
         </FlexWrapper>
       </FlexContainer>
     </div>
@@ -369,8 +292,6 @@ function Layer({ layers, setLayers }) {
 
 
 }
-
-
 
 const FormItem = styled.div(
   props => ({
@@ -386,11 +307,10 @@ const FormItemContainer = styled.div(
 )
 
 
-function Print({ map }) {
+function Print({ map, deck }) {
   const { t, i18n } = useTranslation();
   const [unit, setUnit] = useState("inch")
   const [format, setForamt] = useState("PNG")
-
 
   const onChangeUnit = (e) => {
     setUnit(e.target.value);
@@ -400,16 +320,70 @@ function Print({ map }) {
     setForamt(e.target.value);
   }
 
+  const downloadImage = () => {
+    const fileName = "Map.png";
+
+    const mapboxCanvas = map.current.getMap().getCanvas(document.getElementById("map-canvas"));
+    deck.current.deck.redraw(true);
+    const deckglCanvas = document.getElementById("deck-gl-canvas");
+
+    let merge = document.createElement("canvas");
+    merge.width = mapboxCanvas.width;
+    merge.height = mapboxCanvas.height;
+
+    var context = merge.getContext("2d");
+
+    context.globalAlpha = 1.0;
+    context.drawImage(mapboxCanvas, 0, 0);
+    context.globalAlpha = 1.0;
+    context.drawImage(deckglCanvas, 0, 0);
+
+    merge.toBlob(blob => {
+      saveAs(blob, fileName);
+    });
+  };
 
   const createPrintMap = () => {
-    map.getCanvas().toBlob(function (blob) {
-      saveAs(blob, 'map.png');
+    const html2canvas = require("html2canvas")
+    /* const mapRef = map.current.getMap()
+    mapRef.getCanvas().toBlob(function (blob) {
+          saveAs(blob, 'map.png');
+        });    */
+    let div = document.getElementById("deck-gl-canvas");
+    deck.current.deck.redraw(true)
+    html2canvas(div).then(canvas => {
+      document.body.appendChild(canvas);
+      deck.current.deck.redraw(true)
+      let a = document.createElement('a');
+      // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+      a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      a.download = 'screenshot.png';
+      a.click();
     });
+
+    /*     let div = document.getElementsByClassName("mapboxgl-canvas")[0]
+        deck.current.deck.redraw(true)
+        div.toBlob(blob => {
+          saveAs(blob, "map.png");
+        }); */
+
+
   }
 
   const onBtnClick = () => {
     createPrintMap()
+    //downloadImage()
   }
+
+  /*    const screenshot = () => {
+        let canvas = $scope.scatterLayer.canvas;
+          document.body.appendChild(canvas);
+          let a = document.createElement('a');
+          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+          a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+          a.download = 'screenshot.png';
+          a.click();
+     } */
 
 
   return (
@@ -469,6 +443,33 @@ function Print({ map }) {
   )
 }
 
+function renderTooltip({hoverInfo}) {
+  const {object, x, y} = hoverInfo;
+
+  if (!object) {
+    return null;
+  }
+
+  const props = object.properties;
+
+  const list = Object.entries(props).map(([key,value])=>{
+    return (
+        <div>{key} : {value.toString()}</div>
+    );
+  })
+
+  return (
+    <div className={styles.tooltip} style={{left: x, top: y , zIndex:10}}>
+      <p  className={styles.tooltip_title}>
+        {hoverInfo.layer.id}
+      </p>
+      <p className={styles.tooltip_content}>
+        {list}
+      </p>
+    </div>
+  );
+}
+
 export default function HydraMap() {
 
   const INITIAL_VIEW_STATE = {
@@ -479,20 +480,22 @@ export default function HydraMap() {
     bearing: 0
   };
 
-  const deck = useRef()
+  const mapRef = useRef()
+  const deckRef = useRef()
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
   const { t, i18n } = useTranslation();
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const [currentFunction, setCurrentFunction] = useState(0)
   const [openSheet, setOpenSheet] = useState(false)
+  const [hoverInfo, setHoverInfo] = useState({});
 
   // Data to be used by the LineLayer
 
   const data = [
-      {sourcePosition: [121, 24], targetPosition: [122, 25]}
+    { sourcePosition: [121, 24], targetPosition: [122, 25] }
   ];
 
-  const [layers,setLayers] = useState([])
+  const [layers, setLayers] = useState([])
 
   const setLayersFunc = (layer) => {
     setLayers(layer)
@@ -509,6 +512,10 @@ export default function HydraMap() {
 
   const onViewStateChange = (nextViewState) => {
     setViewState(nextViewState['viewState'])
+  }
+
+  const setHoverInfoFunc = (data) => {
+    setHoverInfo(data)
   }
 
   return (
@@ -622,7 +629,7 @@ export default function HydraMap() {
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
-            <Layer layers={layers} setLayers={setLayersFunc} />
+            <Layer layers={layers} setLayers={setLayersFunc}  setHoverInfo={setHoverInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 2}>
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
@@ -631,7 +638,7 @@ export default function HydraMap() {
             <h4 className={styles.func_title}>{t('circle_analysis')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
-            <Print map={deck.current} />
+            <Print map={mapRef} deck={deckRef} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 5}>
             <h4 className={styles.func_title}>{t('locate')}</h4>
@@ -651,16 +658,17 @@ export default function HydraMap() {
         </div>
         <div className={styles.map} id="map">
           <DeckGL
+            tooltip={true}
+            id="deck-gl-canvas"
             {...viewState}
             initialViewState={INITIAL_VIEW_STATE}
             onViewStateChange={onViewStateChange}
             controller={true}
             layers={layers}
-            ref={ref => {
-              deck.current = ref;
-            }}
+            ref={deckRef}
           >
-            <StaticMap mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+            <StaticMap id="map-canvas" ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+            {renderTooltip({hoverInfo})}
           </DeckGL>
         </div>
       </div>

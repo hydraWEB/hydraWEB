@@ -1,0 +1,6991 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.377975,
+                    23.674148
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.321515,
+                    23.643662
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.435658,
+                    23.734289
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.419981,
+                    23.779126
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.408877,
+                    23.750397
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.329349,
+                    23.645051
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.353221,
+                    23.624158
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.429921,
+                    23.733989
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424087,
+                    23.804831
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.3385,
+                    23.65169
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.320492,
+                    23.65201
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.314743,
+                    23.628481
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.33898,
+                    23.657661
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.405401,
+                    23.779143
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.432228,
+                    23.787768
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.326044,
+                    23.628187
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.418698,
+                    23.77634
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.406436,
+                    23.797621
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.405738,
+                    23.758873
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.417062,
+                    23.786809
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.410656,
+                    23.701491
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.403081,
+                    23.691773
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.399244,
+                    23.688219
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.439708,
+                    23.796166
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.52484,
+                    23.722553
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.488198,
+                    23.702543
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.552846,
+                    23.715394
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.505736,
+                    23.696099
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.562556,
+                    23.694356
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.483337,
+                    23.696875
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.534787,
+                    23.688694
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.512398,
+                    23.695226
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.550945,
+                    23.697709
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.533304,
+                    23.719915
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521032,
+                    23.707209
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.560537,
+                    23.688426
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.557869,
+                    23.703183
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.504007,
+                    23.707299
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.542549,
+                    23.712421
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.579954,
+                    23.67527
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.492287,
+                    23.715226
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.531779,
+                    23.726727
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.224134,
+                    23.53598
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.245708,
+                    23.573785
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.533575,
+                    23.707138
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.390419,
+                    23.686162
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.408171,
+                    23.717608
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.493632,
+                    23.709966
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.527879,
+                    23.717433
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.52124,
+                    23.693032
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.497772,
+                    23.701789
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.500178,
+                    23.693201
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.502744,
+                    23.691186
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.453227,
+                    23.691417
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.463379,
+                    23.678576
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.438582,
+                    23.67903
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.481457,
+                    23.68624
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.514213,
+                    23.649722
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.44631,
+                    23.669161
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.507695,
+                    23.646956
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.507362,
+                    23.636427
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.519057,
+                    23.630549
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.426439,
+                    23.662289
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.51276,
+                    23.631893
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.475689,
+                    23.657452
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.461983,
+                    23.660358
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.510632,
+                    23.645376
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.497412,
+                    23.641975
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.520648,
+                    23.645796
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.508166,
+                    23.633657
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.489841,
+                    23.665834
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.466795,
+                    23.670307
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.48595,
+                    23.668187
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.511464,
+                    23.637794
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.508659,
+                    23.6329
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.522236,
+                    23.629493
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.461532,
+                    23.676944
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.501959,
+                    23.675969
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.516791,
+                    23.631138
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.520649,
+                    23.637281
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.471085,
+                    23.649238
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.486385,
+                    23.63951
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.49438,
+                    23.663321
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.454813,
+                    23.677769
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.240541,
+                    23.620487
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.271255,
+                    23.559911
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.177169,
+                    23.646801
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.225789,
+                    23.71274
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.514204,
+                    23.644187
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.438342,
+                    23.666315
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.513847,
+                    23.637242
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.44161,
+                    23.68621
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.412064,
+                    23.643309
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.405039,
+                    23.644727
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.42273,
+                    23.642744
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.443267,
+                    23.6376
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.459304,
+                    23.649143
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.451837,
+                    23.64843
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.44544,
+                    23.659243
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.441989,
+                    23.654743
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.460408,
+                    23.633137
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.417353,
+                    23.637478
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.39765,
+                    23.635859
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.433511,
+                    23.640725
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.442002,
+                    23.649398
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.416885,
+                    23.674507
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.434646,
+                    23.650283
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.510208,
+                    23.62765
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515553,
+                    23.626628
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.426627,
+                    23.625882
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424924,
+                    23.665625
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.439475,
+                    23.648901
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.456249,
+                    23.636482
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.279094,
+                    23.604192
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.426394,
+                    23.672556
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.224197,
+                    23.650204
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303699,
+                    23.630039
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.195719,
+                    23.5785
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.188193,
+                    23.567626
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.226622,
+                    23.570982
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.420905,
+                    23.627595
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.423592,
+                    23.633935
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.458171,
+                    23.659821
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.410612,
+                    23.665472
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.560237,
+                    23.663738
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.548452,
+                    23.667054
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.539101,
+                    23.630041
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.551394,
+                    23.660905
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.53755,
+                    23.622523
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.546393,
+                    23.618775
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.562616,
+                    23.658697
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.569681,
+                    23.671684
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.579455,
+                    23.66874
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.549007,
+                    23.673864
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.559667,
+                    23.669931
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.543008,
+                    23.667698
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.561005,
+                    23.648065
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.55362,
+                    23.643456
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.549871,
+                    23.627472
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.533646,
+                    23.64561
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.516195,
+                    23.675824
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.532275,
+                    23.661796
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.505727,
+                    23.677687
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.526071,
+                    23.653145
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515324,
+                    23.680815
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521754,
+                    23.654405
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.512302,
+                    23.670864
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.516915,
+                    23.669244
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.504926,
+                    23.682001
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.232021,
+                    23.653177
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.386619,
+                    23.712558
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.316043,
+                    23.595185
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.530346,
+                    23.685782
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.507216,
+                    23.675552
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.574757,
+                    23.751124
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.568012,
+                    23.705216
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.56118,
+                    23.759899
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.597069,
+                    23.768602
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.605224,
+                    23.709649
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.571795,
+                    23.759982
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.569411,
+                    23.750883
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.580705,
+                    23.759294
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.555026,
+                    23.757795
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.549027,
+                    23.750653
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.561483,
+                    23.745533
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.539587,
+                    23.748702
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.557186,
+                    23.748582
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.560669,
+                    23.745504
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.550878,
+                    23.734342
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.545145,
+                    23.738696
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.532096,
+                    23.736625
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.620608,
+                    23.781781
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565513,
+                    23.754845
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.254503,
+                    23.707463
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.205135,
+                    23.722568
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.26227,
+                    23.677703
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.209911,
+                    23.662321
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.421037,
+                    23.802083
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.552394,
+                    23.741371
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.514254,
+                    23.74206
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.485369,
+                    23.743881
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.454322,
+                    23.739359
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.50103,
+                    23.732121
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.470228,
+                    23.720768
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.305071,
+                    23.696809
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.518953,
+                    23.749949
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.480381,
+                    23.730311
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.455471,
+                    23.715281
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.50231,
+                    23.748866
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.48256,
+                    23.749714
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.478248,
+                    23.719007
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.459905,
+                    23.738927
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.442214,
+                    23.740119
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.470201,
+                    23.742177
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.397654,
+                    23.71215
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.449483,
+                    23.737617
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.466045,
+                    23.73177
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.472399,
+                    23.720053
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.427664,
+                    23.734152
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.478186,
+                    23.734674
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.453374,
+                    23.719671
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.421058,
+                    23.7154
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.439319,
+                    23.715241
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.407829,
+                    23.686988
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.417582,
+                    23.698727
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.401751,
+                    23.678142
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.415862,
+                    23.701791
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424232,
+                    23.731891
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.45264,
+                    23.705085
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.439037,
+                    23.806177
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.368035,
+                    23.702325
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.362448,
+                    23.742258
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.375947,
+                    23.73983
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.362296,
+                    23.727106
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.367844,
+                    23.742054
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.374901,
+                    23.732891
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.370471,
+                    23.732277
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.34211,
+                    23.690253
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.362956,
+                    23.71035
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.380653,
+                    23.709221
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.347934,
+                    23.702242
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.329767,
+                    23.709153
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.358237,
+                    23.700705
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.339119,
+                    23.719523
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.332522,
+                    23.695855
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.323863,
+                    23.697804
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.291412,
+                    23.69495
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.571624,
+                    23.677143
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.305071,
+                    23.696809
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.282956,
+                    23.704663
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.315994,
+                    23.715648
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.302037,
+                    23.712426
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.286603,
+                    23.710324
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.323752,
+                    23.740369
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.287651,
+                    23.706978
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.283338,
+                    23.686895
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.225017,
+                    23.659093
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.238367,
+                    23.657497
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.182121,
+                    23.677978
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.174464,
+                    23.687418
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.273759,
+                    23.683175
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.261695,
+                    23.692825
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.252147,
+                    23.685474
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.233752,
+                    23.670576
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.262955,
+                    23.686736
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.234132,
+                    23.711427
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.225125,
+                    23.690533
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.215243,
+                    23.713364
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.212564,
+                    23.710416
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.20354,
+                    23.702695
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.202236,
+                    23.715555
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.229728,
+                    23.709825
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.206628,
+                    23.718963
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.20701,
+                    23.696392
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.450341,
+                    23.661699
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.183884,
+                    23.709816
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.194179,
+                    23.710096
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.246321,
+                    23.723451
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.233371,
+                    23.715712
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.19682,
+                    23.719139
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.222394,
+                    23.747712
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.258812,
+                    23.718951
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.228818,
+                    23.739617
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.261338,
+                    23.712688
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.21145,
+                    23.732532
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.202294,
+                    23.746255
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.445097,
+                    23.798108
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.460785,
+                    23.791798
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515082,
+                    23.780773
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.434474,
+                    23.79705
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.458112,
+                    23.790371
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.467237,
+                    23.790773
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.446147,
+                    23.781967
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.488177,
+                    23.775729
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.471618,
+                    23.787176
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.474381,
+                    23.788116
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.45131,
+                    23.793173
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.393417,
+                    23.705704
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.592293,
+                    23.771334
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.558447,
+                    23.776009
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.523004,
+                    23.779524
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.513544,
+                    23.769526
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.577409,
+                    23.771384
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.571596,
+                    23.778755
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.54532,
+                    23.772946
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.557106,
+                    23.766379
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.541678,
+                    23.765124
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.420808,
+                    23.816223
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.397451,
+                    23.756168
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.418698,
+                    23.77634
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.426633,
+                    23.756957
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.39652,
+                    23.749618
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.456158,
+                    23.748404
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.309443,
+                    23.771493
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.456848,
+                    23.759395
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.445486,
+                    23.757423
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.445349,
+                    23.764276
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.307564,
+                    23.757688
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.425183,
+                    23.751904
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.410564,
+                    23.761167
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.396413,
+                    23.757961
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.408328,
+                    23.77194
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.45397,
+                    23.762528
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.407837,
+                    23.763423
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.463482,
+                    23.741964
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.474236,
+                    23.75597
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.445164,
+                    23.775598
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.462861,
+                    23.754838
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.434401,
+                    23.773121
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.463452,
+                    23.749314
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.502448,
+                    23.756515
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.513504,
+                    23.761679
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.472562,
+                    23.776805
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.467942,
+                    23.769285
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.480746,
+                    23.766764
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.494362,
+                    23.757112
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.438661,
+                    23.765814
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.445349,
+                    23.764276
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.409822,
+                    23.817021
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.411804,
+                    23.797489
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.382733,
+                    23.81296
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.402063,
+                    23.815925
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.406628,
+                    23.815781
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.413103,
+                    23.803119
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.390233,
+                    23.799987
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.39758,
+                    23.800702
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.387931,
+                    23.815716
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.439037,
+                    23.806177
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.403836,
+                    23.808113
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.398302,
+                    23.805726
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.383989,
+                    23.808856
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.399412,
+                    23.797134
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.442005,
+                    23.807632
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.386234,
+                    23.807195
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.401988,
+                    23.783049
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.370604,
+                    23.779989
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.363095,
+                    23.810884
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.388289,
+                    23.768674
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.3938,
+                    23.769319
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.372262,
+                    23.808701
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.366801,
+                    23.797419
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.379545,
+                    23.796089
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.398331,
+                    23.778123
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.390833,
+                    23.7891
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.353153,
+                    23.802997
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.385336,
+                    23.791643
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.370132,
+                    23.800539
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.381149,
+                    23.80136
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.372132,
+                    23.780519
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.379393,
+                    23.78668
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.389631,
+                    23.775389
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.366098,
+                    23.798707
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.357406,
+                    23.774274
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.344092,
+                    23.780123
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.390346,
+                    23.790525
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.402478,
+                    23.780974
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.384864,
+                    23.787686
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.394983,
+                    23.778732
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.379282,
+                    23.760611
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.337476,
+                    23.78256
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.327887,
+                    23.787033
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.310191,
+                    23.793501
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.310795,
+                    23.792438
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.297719,
+                    23.79349
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.296424,
+                    23.798857
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.276264,
+                    23.806664
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.264536,
+                    23.798031
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.273901,
+                    23.7904
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.317992,
+                    23.802791
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.541632,
+                    23.629335
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.172304,
+                    23.570838
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.270017,
+                    23.786617
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.311841,
+                    23.789346
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.310744,
+                    23.798325
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.354484,
+                    23.765927
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.354773,
+                    23.757125
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.340568,
+                    23.753227
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.378089,
+                    23.753609
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.369713,
+                    23.76125
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.361896,
+                    23.754897
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.349321,
+                    23.768389
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.34999,
+                    23.781936
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.359112,
+                    23.772493
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.336926,
+                    23.745988
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.483429,
+                    23.65104
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.351128,
+                    23.750337
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.350283,
+                    23.778289
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.341509,
+                    23.776753
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.401563,
+                    23.781666
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.333664,
+                    23.770047
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.335924,
+                    23.767609
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.323007,
+                    23.772402
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.33303,
+                    23.767452
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.347109,
+                    23.769282
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.268276,
+                    23.743421
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.286099,
+                    23.757726
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.194021,
+                    23.695874
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.254021,
+                    23.748996
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.298642,
+                    23.751237
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.298708,
+                    23.748131
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.276352,
+                    23.746403
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.256936,
+                    23.753976
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.260172,
+                    23.745414
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.318203,
+                    23.762385
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.304824,
+                    23.649006
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.288952,
+                    23.774443
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.261965,
+                    23.775445
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.306198,
+                    23.760075
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.228696,
+                    23.635102
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.283381,
+                    23.761551
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.281377,
+                    23.769216
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.308577,
+                    23.773855
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.263026,
+                    23.761229
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.250427,
+                    23.691416
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.540567,
+                    23.771478
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.616411,
+                    23.780742
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.351908,
+                    23.641986
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.337775,
+                    23.62635
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.355705,
+                    23.61717
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.385888,
+                    23.655028
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.339577,
+                    23.608976
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.371288,
+                    23.655872
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.350741,
+                    23.634234
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.364476,
+                    23.609071
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.325364,
+                    23.609818
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.32927,
+                    23.626034
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.361799,
+                    23.674082
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.342492,
+                    23.66294
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.332551,
+                    23.634102
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.366322,
+                    23.669243
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.332282,
+                    23.617541
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.342534,
+                    23.648592
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.294408,
+                    23.626385
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.310724,
+                    23.64542
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.309517,
+                    23.642029
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.316489,
+                    23.620615
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.297598,
+                    23.625496
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.332955,
+                    23.672335
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.330709,
+                    23.657201
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.310048,
+                    23.632243
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.320345,
+                    23.617706
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.315387,
+                    23.61586
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.401108,
+                    23.709437
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.323335,
+                    23.651923
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.307197,
+                    23.617124
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.305387,
+                    23.635238
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.304131,
+                    23.687378
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.311745,
+                    23.684478
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.31131,
+                    23.673866
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.310149,
+                    23.661671
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.314174,
+                    23.688777
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.305924,
+                    23.667187
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303525,
+                    23.635104
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303646,
+                    23.662256
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.30631,
+                    23.675731
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.17902,
+                    23.546358
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.448325,
+                    23.679643
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.151956,
+                    23.604679
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.163346,
+                    23.585553
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.157563,
+                    23.570623
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.162455,
+                    23.610153
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.148471,
+                    23.65116
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.153808,
+                    23.659542
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.162742,
+                    23.641983
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.20649,
+                    23.660723
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.416623,
+                    23.667409
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.168625,
+                    23.629292
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.214414,
+                    23.646994
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.195553,
+                    23.645769
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.172822,
+                    23.63662
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.196578,
+                    23.63855
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.307402,
+                    23.578135
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.273976,
+                    23.599428
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.271255,
+                    23.559911
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.252725,
+                    23.545601
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.298948,
+                    23.602026
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.279159,
+                    23.608454
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.311787,
+                    23.608864
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.279087,
+                    23.650243
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.283629,
+                    23.671257
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.275291,
+                    23.672122
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.275374,
+                    23.656998
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.280976,
+                    23.663344
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.493648,
+                    23.677802
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.508495,
+                    23.637378
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.288528,
+                    23.642819
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.226478,
+                    23.595587
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.238498,
+                    23.592486
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.252027,
+                    23.625509
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.227603,
+                    23.612523
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.271056,
+                    23.684517
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.223327,
+                    23.589928
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.261841,
+                    23.623073
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.217601,
+                    23.605475
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.255254,
+                    23.661417
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.227541,
+                    23.623132
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.216535,
+                    23.619916
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.262891,
+                    23.645534
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.175834,
+                    23.546793
+                ]
+            },
+            "properties": {
+                "name": "雲林水利會抽水井位置圖",
+                "test": 1.0
+            }
+        }
+    ]
+}

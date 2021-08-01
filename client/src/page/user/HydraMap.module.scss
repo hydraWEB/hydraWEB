@@ -135,3 +135,17 @@ ul {
 .btn_list{
     width: 100%;
 }
+
+.tooltip{
+    background-color: #001845;
+    position: fixed;
+    padding: 10px;
+}
+
+.tooltip_title{
+    font-size: 18px;
+}
+
+.tooltip_content{
+    font-size: 15px;
+}

@@ -1,0 +1,512 @@
+[
+    {
+        "measurement": "Changhua0",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.502831,
+            "lat": 24.056782
+        }
+    },
+    {
+        "measurement": "Changhua1",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.474093,
+            "lat": 24.05823
+        }
+    },
+    {
+        "measurement": "Changhua2",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.472384,
+            "lat": 24.048165
+        }
+    },
+    {
+        "measurement": "Changhua3",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.545361,
+            "lat": 24.058828
+        }
+    },
+    {
+        "measurement": "Changhua4",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.475706,
+            "lat": 23.983094
+        }
+    },
+    {
+        "measurement": "Changhua5",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.50405,
+            "lat": 23.956903
+        }
+    },
+    {
+        "measurement": "Changhua6",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.503526,
+            "lat": 23.949985
+        }
+    },
+    {
+        "measurement": "Changhua7",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.494021,
+            "lat": 23.951146
+        }
+    },
+    {
+        "measurement": "Changhua8",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.574555,
+            "lat": 24.005025
+        }
+    },
+    {
+        "measurement": "Changhua9",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.529427,
+            "lat": 23.892215
+        }
+    },
+    {
+        "measurement": "Changhua10",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.516006,
+            "lat": 23.893889
+        }
+    },
+    {
+        "measurement": "Changhua11",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.568748,
+            "lat": 23.865557
+        }
+    },
+    {
+        "measurement": "Changhua12",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.480331,
+            "lat": 23.932545
+        }
+    },
+    {
+        "measurement": "Changhua13",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.526704,
+            "lat": 23.955042
+        }
+    },
+    {
+        "measurement": "Changhua14",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.599343,
+            "lat": 23.938536
+        }
+    },
+    {
+        "measurement": "Changhua15",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.483238,
+            "lat": 24.038487
+        }
+    },
+    {
+        "measurement": "Changhua16",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.513089,
+            "lat": 23.954359
+        }
+    },
+    {
+        "measurement": "Changhua17",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.423296,
+            "lat": 23.998779
+        }
+    },
+    {
+        "measurement": "Changhua18",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.502296,
+            "lat": 23.922351
+        }
+    },
+    {
+        "measurement": "Changhua19",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.464951,
+            "lat": 24.076654
+        }
+    },
+    {
+        "measurement": "Changhua20",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.455472,
+            "lat": 24.07402
+        }
+    },
+    {
+        "measurement": "Changhua21",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.468046,
+            "lat": 24.072629
+        }
+    },
+    {
+        "measurement": "Changhua22",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.4626,
+            "lat": 24.064989
+        }
+    },
+    {
+        "measurement": "Changhua23",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.494358,
+            "lat": 24.065883
+        }
+    },
+    {
+        "measurement": "Changhua24",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.476157,
+            "lat": 24.036792
+        }
+    },
+    {
+        "measurement": "Changhua25",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.425914,
+            "lat": 24.002328
+        }
+    },
+    {
+        "measurement": "Changhua26",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.446786,
+            "lat": 24.053863
+        }
+    },
+    {
+        "measurement": "Changhua27",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.451063,
+            "lat": 24.000614
+        }
+    },
+    {
+        "measurement": "Changhua28",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.456998,
+            "lat": 23.991606
+        }
+    },
+    {
+        "measurement": "Changhua29",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.467826,
+            "lat": 23.987581
+        }
+    },
+    {
+        "measurement": "Changhua30",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.607776,
+            "lat": 23.908083
+        }
+    },
+    {
+        "measurement": "Changhua31",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.464169,
+            "lat": 24.051902
+        }
+    },
+    {
+        "measurement": "Changhua32",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.496463,
+            "lat": 24.038098
+        }
+    },
+    {
+        "measurement": "Changhua33",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.95349,
+            "lat": 24.028769
+        }
+    },
+    {
+        "measurement": "Changhua34",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.460846,
+            "lat": 24.058771
+        }
+    },
+    {
+        "measurement": "Changhua35",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.417086,
+            "lat": 24.020326
+        }
+    },
+    {
+        "measurement": "Changhua36",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.4797,
+            "lat": 24.047892
+        }
+    },
+    {
+        "measurement": "Changhua37",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.536296,
+            "lat": 24.011785
+        }
+    },
+    {
+        "measurement": "Changhua38",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.963263,
+            "lat": 24.023498
+        }
+    },
+    {
+        "measurement": "Changhua39",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.535124,
+            "lat": 24.061678
+        }
+    },
+    {
+        "measurement": "Changhua40",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.532018,
+            "lat": 24.058743
+        }
+    },
+    {
+        "measurement": "Changhua41",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.529851,
+            "lat": 24.062231
+        }
+    },
+    {
+        "measurement": "Changhua42",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.52896,
+            "lat": 24.061181
+        }
+    },
+    {
+        "measurement": "Changhua43",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.52733,
+            "lat": 24.06058
+        }
+    },
+    {
+        "measurement": "Changhua44",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.527976,
+            "lat": 24.06143
+        }
+    },
+    {
+        "measurement": "Changhua45",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.524942,
+            "lat": 24.06013
+        }
+    },
+    {
+        "measurement": "Changhua46",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.524281,
+            "lat": 24.063559
+        }
+    },
+    {
+        "measurement": "Changhua47",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.706342,
+            "lat": 23.892862
+        }
+    },
+    {
+        "measurement": "Changhua48",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.702376,
+            "lat": 23.892132
+        }
+    },
+    {
+        "measurement": "Changhua49",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.683987,
+            "lat": 23.914552
+        }
+    },
+    {
+        "measurement": "Changhua50",
+        "tags": {
+            "name": "彰化水利會抽水井位置圖"
+        },
+        "fields": {
+            "lon": 120.502547,
+            "lat": 24.041097
+        }
+    }
+]

@@ -79,8 +79,7 @@ INSTALLED_APPS = [
     'core',
     'staff',
     'hydraweb',
-    'influx',
-    'influxdb_metrics'
+    'influx'
 ]
 
 MIDDLEWARE = [
@@ -181,14 +180,3 @@ EMAIT_PORT = 25
 EMAIL_USE_TLS = False
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
-INFLUXDB_HOST = 'influxdb'
-INFLUXDB_PORT = '8086'
-INFLUXDB_USER = 'root'
-INFLUXDB_PASSWORD = 'zxcv1234xxx'
-INFLUXDB_DATABASE = 'flexolk'
-
-INFLUXDB_TAGS_HOST = 'influxdb'
-INFLUXDB_TIMEOUT = 5
-INFLUXDB_USE_THREADING = False
-INFLUXDB_USE_CELERY = True

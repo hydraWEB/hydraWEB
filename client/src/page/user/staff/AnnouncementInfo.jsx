@@ -9,38 +9,21 @@ import {StyledTable, StyledTd, StyledTh, Title} from "./Staff";
 import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
-import {useToasts} from "react-toast-notifications";
 
-export default function AnnouncementEdit() {
+export default function AnnouncementInfo() {
     let query = useQuery();
     let history = useHistory()
-    const { addToast } = useToasts();
 
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
 
-    const submitForm = (e) => {
-        let id =  query.get("id")
-        AnnouncementSendEdit({
-                title:title,
-                content:content
-            },id
-        ).then((res) => {
-            addToast('修改成功.', { appearance: 'success',autoDismiss:true });
-        }).catch((err) => {
-
-        }).finally(() => {
-
-        })
-    }
-
     useEffect(() => {
         if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
-            let id =  query.get("id")
+            let id =  query.get("id") 
             AnnouncementInfoUser({},id)
             .then((res) => {
                 setTitle(res.data.title)
-               setContent(res.data.content)
+                setContent(res.data.content)
             }).catch((err) => {
     
             }).finally(() => {
@@ -49,15 +32,15 @@ export default function AnnouncementEdit() {
         } else {
             
         }
-    }, [])
+    }, [query])
 
     return (
         <div>
             <Breadcrumb>
                 <Breadcrumb.Item ><Link to="/user/staff/announcement-manage">公告管理</Link></Breadcrumb.Item>
-                <Breadcrumb.Item active>修改公告</Breadcrumb.Item>
+                <Breadcrumb.Item active>查看公告</Breadcrumb.Item>
             </Breadcrumb>
-            <Title>修改公告</Title>
+            <Title>查看公告</Title>
             <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>標題</Form.Label>
@@ -65,11 +48,9 @@ export default function AnnouncementEdit() {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>內容</Form.Label>
-                    <Form.Control as="textarea" rows={3}  value={content} onChange={e=>setContent(e.target.value)}  />
+                    <Form.Control as="textarea" rows={3}  value={content} onChange={(e)=>setContent(e.target.value)}  />
                 </Form.Group>
             </Form>
-            <Button variant="primary" onClick={(e)=>submitForm(e)}>送出</Button>
-
         </div>
     )
 }

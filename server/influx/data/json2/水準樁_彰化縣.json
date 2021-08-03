@@ -1,0 +1,4658 @@
+[
+    {
+        "measurement": "Changhua_0",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1108",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.504833,
+            "lat": 23.859704
+        }
+    },
+    {
+        "measurement": "Changhua_1",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1109",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.485508,
+            "lat": 23.850421
+        }
+    },
+    {
+        "measurement": "Changhua_2",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰121",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 142.00644,
+            "lat": 1.687294
+        }
+    },
+    {
+        "measurement": "Changhua_3",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰122",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 141.999334,
+            "lat": 1.721113
+        }
+    },
+    {
+        "measurement": "Changhua_4",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰128",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 142.011188,
+            "lat": 1.700044
+        }
+    },
+    {
+        "measurement": "Changhua_5",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM11",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459503,
+            "lat": 24.045999
+        }
+    },
+    {
+        "measurement": "Changhua_6",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM12",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.45725,
+            "lat": 24.072022
+        }
+    },
+    {
+        "measurement": "Changhua_7",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM15",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.426498,
+            "lat": 23.894701
+        }
+    },
+    {
+        "measurement": "Changhua_8",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM16",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.302703,
+            "lat": 23.839571
+        }
+    },
+    {
+        "measurement": "Changhua_9",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM17",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.32058,
+            "lat": 23.85241
+        }
+    },
+    {
+        "measurement": "Changhua_10",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM19",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.311953,
+            "lat": 23.902105
+        }
+    },
+    {
+        "measurement": "Changhua_11",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.342709,
+            "lat": 23.87544
+        }
+    },
+    {
+        "measurement": "Changhua_12",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.385234,
+            "lat": 24.006369
+        }
+    },
+    {
+        "measurement": "Changhua_13",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM23",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.433986,
+            "lat": 24.051206
+        }
+    },
+    {
+        "measurement": "Changhua_14",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM6",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.341529,
+            "lat": 23.920554
+        }
+    },
+    {
+        "measurement": "Changhua_15",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BM7",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.368274,
+            "lat": 23.945046
+        }
+    },
+    {
+        "measurement": "Changhua_16",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BMNo02",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.529534,
+            "lat": 23.892468
+        }
+    },
+    {
+        "measurement": "Changhua_17",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BMNo03",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.548282,
+            "lat": 23.920651
+        }
+    },
+    {
+        "measurement": "Changhua_18",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BMNo03",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.548282,
+            "lat": 23.920651
+        }
+    },
+    {
+        "measurement": "Changhua_19",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BMNo04",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.588147,
+            "lat": 23.894397
+        }
+    },
+    {
+        "measurement": "Changhua_20",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "BMNo05",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.538772,
+            "lat": 24.025861
+        }
+    },
+    {
+        "measurement": "Changhua_21",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CH1+200",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407454,
+            "lat": 24.062763
+        }
+    },
+    {
+        "measurement": "Changhua_22",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CH1+300",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407321,
+            "lat": 24.061877
+        }
+    },
+    {
+        "measurement": "Changhua_23",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CH1+750",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407133,
+            "lat": 24.057877
+        }
+    },
+    {
+        "measurement": "Changhua_24",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "EH0+000",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427643,
+            "lat": 24.084663
+        }
+    },
+    {
+        "measurement": "Changhua_25",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "EH0+850",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.420112,
+            "lat": 24.08198
+        }
+    },
+    {
+        "measurement": "Changhua_26",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "EH1+150",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.418016,
+            "lat": 24.080094
+        }
+    },
+    {
+        "measurement": "Changhua_27",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "FBH2+100",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.38375,
+            "lat": 24.04555
+        }
+    },
+    {
+        "measurement": "Changhua_28",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "GT072501",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.428281,
+            "lat": 23.860062
+        }
+    },
+    {
+        "measurement": "Changhua_29",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW0+300",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.311375,
+            "lat": 23.920296
+        }
+    },
+    {
+        "measurement": "Changhua_30",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW0+400",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.310908,
+            "lat": 23.919499
+        }
+    },
+    {
+        "measurement": "Changhua_31",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW0+500",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.310441,
+            "lat": 23.918694
+        }
+    },
+    {
+        "measurement": "Changhua_32",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW0+600",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309974,
+            "lat": 23.917906
+        }
+    },
+    {
+        "measurement": "Changhua_33",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW0+800",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309039,
+            "lat": 23.916322
+        }
+    },
+    {
+        "measurement": "Changhua_34",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW0+900",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308641,
+            "lat": 23.915498
+        }
+    },
+    {
+        "measurement": "Changhua_35",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NEW1+100",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.307952,
+            "lat": 23.913816
+        }
+    },
+    {
+        "measurement": "Changhua_36",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NO01",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.583536,
+            "lat": 23.904976
+        }
+    },
+    {
+        "measurement": "Changhua_37",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NO12",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.418746,
+            "lat": 23.954825
+        }
+    },
+    {
+        "measurement": "Changhua_38",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NO019",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.571223,
+            "lat": 23.963688
+        }
+    },
+    {
+        "measurement": "Changhua_39",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NO78",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.571204,
+            "lat": 23.963372
+        }
+    },
+    {
+        "measurement": "Changhua_40",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "NX82",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.434246,
+            "lat": 23.942368
+        }
+    },
+    {
+        "measurement": "Changhua_41",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SG072302",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.355458,
+            "lat": 24.013064
+        }
+    },
+    {
+        "measurement": "Changhua_42",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "THSRCH12",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.483789,
+            "lat": 23.840952
+        }
+    },
+    {
+        "measurement": "Changhua_43",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "TW1+400",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.403946,
+            "lat": 24.045296
+        }
+    },
+    {
+        "measurement": "Changhua_44",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA01",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.449612,
+            "lat": 23.837538
+        }
+    },
+    {
+        "measurement": "Changhua_45",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA02",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.449555,
+            "lat": 23.830152
+        }
+    },
+    {
+        "measurement": "Changhua_46",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA03",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.356057,
+            "lat": 23.850874
+        }
+    },
+    {
+        "measurement": "Changhua_47",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA07",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.538792,
+            "lat": 24.025861
+        }
+    },
+    {
+        "measurement": "Changhua_48",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA08",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.508055,
+            "lat": 24.105015
+        }
+    },
+    {
+        "measurement": "Changhua_49",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA10",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.481013,
+            "lat": 24.026976
+        }
+    },
+    {
+        "measurement": "Changhua_50",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRA12",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.375209,
+            "lat": 23.906456
+        }
+    },
+    {
+        "measurement": "Changhua_51",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB02-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459066,
+            "lat": 23.846728
+        }
+    },
+    {
+        "measurement": "Changhua_52",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB03-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358277,
+            "lat": 23.888391
+        }
+    },
+    {
+        "measurement": "Changhua_53",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB03-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358277,
+            "lat": 23.888391
+        }
+    },
+    {
+        "measurement": "Changhua_54",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB05",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.370853,
+            "lat": 24.004604
+        }
+    },
+    {
+        "measurement": "Changhua_55",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB06",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.416387,
+            "lat": 24.059682
+        }
+    },
+    {
+        "measurement": "Changhua_56",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB08",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.467446,
+            "lat": 23.98916
+        }
+    },
+    {
+        "measurement": "Changhua_57",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRBBM171S",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.468449,
+            "lat": 24.16061
+        }
+    },
+    {
+        "measurement": "Changhua_58",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRBCS45S",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.494367,
+            "lat": 23.884817
+        }
+    },
+    {
+        "measurement": "Changhua_59",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRBNO44S",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.381611,
+            "lat": 24.044584
+        }
+    },
+    {
+        "measurement": "Changhua_60",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部031",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.288964,
+            "lat": 23.86042
+        }
+    },
+    {
+        "measurement": "Changhua_61",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部032",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.303394,
+            "lat": 23.857254
+        }
+    },
+    {
+        "measurement": "Changhua_62",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1093",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.551755,
+            "lat": 24.097664
+        }
+    },
+    {
+        "measurement": "Changhua_63",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1094",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.532036,
+            "lat": 24.083366
+        }
+    },
+    {
+        "measurement": "Changhua_64",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1096",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.533532,
+            "lat": 24.058567
+        }
+    },
+    {
+        "measurement": "Changhua_65",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1097",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.533819,
+            "lat": 24.044609
+        }
+    },
+    {
+        "measurement": "Changhua_66",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1098",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.538384,
+            "lat": 24.029977
+        }
+    },
+    {
+        "measurement": "Changhua_67",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1099",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.551576,
+            "lat": 24.016129
+        }
+    },
+    {
+        "measurement": "Changhua_68",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1100",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.557896,
+            "lat": 23.999181
+        }
+    },
+    {
+        "measurement": "Changhua_69",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1101",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.565185,
+            "lat": 23.988412
+        }
+    },
+    {
+        "measurement": "Changhua_70",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1102",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.571476,
+            "lat": 23.967418
+        }
+    },
+    {
+        "measurement": "Changhua_71",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1104",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.548321,
+            "lat": 23.920651
+        }
+    },
+    {
+        "measurement": "Changhua_72",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1104",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.548321,
+            "lat": 23.920651
+        }
+    },
+    {
+        "measurement": "Changhua_73",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1105",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.536519,
+            "lat": 23.899966
+        }
+    },
+    {
+        "measurement": "Changhua_74",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1106",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.528516,
+            "lat": 23.891526
+        }
+    },
+    {
+        "measurement": "Changhua_75",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部1107",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.517261,
+            "lat": 23.873269
+        }
+    },
+    {
+        "measurement": "Changhua_76",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部C071",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.458863,
+            "lat": 24.046267
+        }
+    },
+    {
+        "measurement": "Changhua_77",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部C073",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.435302,
+            "lat": 24.062697
+        }
+    },
+    {
+        "measurement": "Changhua_78",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部C076",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.416107,
+            "lat": 23.956097
+        }
+    },
+    {
+        "measurement": "Changhua_79",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部C078",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.467802,
+            "lat": 23.959933
+        }
+    },
+    {
+        "measurement": "Changhua_80",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.499727,
+            "lat": 24.177312
+        }
+    },
+    {
+        "measurement": "Changhua_81",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.48641,
+            "lat": 24.160419
+        }
+    },
+    {
+        "measurement": "Changhua_82",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.470529,
+            "lat": 24.147877
+        }
+    },
+    {
+        "measurement": "Changhua_83",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.466287,
+            "lat": 24.138608
+        }
+    },
+    {
+        "measurement": "Changhua_84",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G013",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.460877,
+            "lat": 24.129009
+        }
+    },
+    {
+        "measurement": "Changhua_85",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G014",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.456327,
+            "lat": 24.11144
+        }
+    },
+    {
+        "measurement": "Changhua_86",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G015",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.448571,
+            "lat": 24.094139
+        }
+    },
+    {
+        "measurement": "Changhua_87",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G016",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.444285,
+            "lat": 24.084327
+        }
+    },
+    {
+        "measurement": "Changhua_88",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G017",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.418447,
+            "lat": 24.07596
+        }
+    },
+    {
+        "measurement": "Changhua_89",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G018",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.418662,
+            "lat": 24.056657
+        }
+    },
+    {
+        "measurement": "Changhua_90",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G019",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.421568,
+            "lat": 24.037932
+        }
+    },
+    {
+        "measurement": "Changhua_91",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G020",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.415364,
+            "lat": 24.031579
+        }
+    },
+    {
+        "measurement": "Changhua_92",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G021",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.398598,
+            "lat": 24.019731
+        }
+    },
+    {
+        "measurement": "Changhua_93",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G022",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.380772,
+            "lat": 24.010468
+        }
+    },
+    {
+        "measurement": "Changhua_94",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G023",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.365515,
+            "lat": 23.998867
+        }
+    },
+    {
+        "measurement": "Changhua_95",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G024",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354818,
+            "lat": 23.983834
+        }
+    },
+    {
+        "measurement": "Changhua_96",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G026",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.32282,
+            "lat": 23.933186
+        }
+    },
+    {
+        "measurement": "Changhua_97",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G027",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.311159,
+            "lat": 23.9129
+        }
+    },
+    {
+        "measurement": "Changhua_98",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G029",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.293846,
+            "lat": 23.872668
+        }
+    },
+    {
+        "measurement": "Changhua_99",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G030",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.295969,
+            "lat": 23.857681
+        }
+    },
+    {
+        "measurement": "Changhua_100",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部G031",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.291848,
+            "lat": 23.839161
+        }
+    },
+    {
+        "measurement": "Changhua_101",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部I008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.480151,
+            "lat": 23.965185
+        }
+    },
+    {
+        "measurement": "Changhua_102",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部I009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.480402,
+            "lat": 23.949168
+        }
+    },
+    {
+        "measurement": "Changhua_103",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部I010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.477289,
+            "lat": 23.926747
+        }
+    },
+    {
+        "measurement": "Changhua_104",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部I011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.467537,
+            "lat": 23.907074
+        }
+    },
+    {
+        "measurement": "Changhua_105",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部I012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.474046,
+            "lat": 23.888378
+        }
+    },
+    {
+        "measurement": "Changhua_106",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部I014",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.44772,
+            "lat": 23.873938
+        }
+    },
+    {
+        "measurement": "Changhua_107",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部X108",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.437702,
+            "lat": 24.069333
+        }
+    },
+    {
+        "measurement": "Changhua_108",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部X110",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568646,
+            "lat": 24.093929
+        }
+    },
+    {
+        "measurement": "Changhua_109",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "內部X111",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.346769,
+            "lat": 23.964351
+        }
+    },
+    {
+        "measurement": "Changhua_110",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水海BM20",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.342186,
+            "lat": 23.96713
+        }
+    },
+    {
+        "measurement": "Changhua_111",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰02-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.551832,
+            "lat": 24.083967
+        }
+    },
+    {
+        "measurement": "Changhua_112",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰03",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.53627,
+            "lat": 24.062964
+        }
+    },
+    {
+        "measurement": "Changhua_113",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰04-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.582054,
+            "lat": 23.913758
+        }
+    },
+    {
+        "measurement": "Changhua_114",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰05",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.581054,
+            "lat": 23.861411
+        }
+    },
+    {
+        "measurement": "Changhua_115",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰06",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358089,
+            "lat": 23.850819
+        }
+    },
+    {
+        "measurement": "Changhua_116",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰07",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.294916,
+            "lat": 23.865378
+        }
+    },
+    {
+        "measurement": "Changhua_117",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰08",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.330717,
+            "lat": 23.946729
+        }
+    },
+    {
+        "measurement": "Changhua_118",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰09A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.344445,
+            "lat": 23.969271
+        }
+    },
+    {
+        "measurement": "Changhua_119",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰10",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.382056,
+            "lat": 23.957716
+        }
+    },
+    {
+        "measurement": "Changhua_120",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰12-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.456762,
+            "lat": 24.110891
+        }
+    },
+    {
+        "measurement": "Changhua_121",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰13",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.37606,
+            "lat": 23.874405
+        }
+    },
+    {
+        "measurement": "Changhua_122",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水資彰14",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402808,
+            "lat": 23.863378
+        }
+    },
+    {
+        "measurement": "Changhua_123",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰15",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.533845,
+            "lat": 24.091805
+        }
+    },
+    {
+        "measurement": "Changhua_124",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰16",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.586669,
+            "lat": 23.880316
+        }
+    },
+    {
+        "measurement": "Changhua_125",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰17",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.560784,
+            "lat": 23.868912
+        }
+    },
+    {
+        "measurement": "Changhua_126",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰18",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.543687,
+            "lat": 23.992728
+        }
+    },
+    {
+        "measurement": "Changhua_127",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰19",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.520109,
+            "lat": 23.976765
+        }
+    },
+    {
+        "measurement": "Changhua_128",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰20",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.502,
+            "lat": 23.968698
+        }
+    },
+    {
+        "measurement": "Changhua_129",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479432,
+            "lat": 24.121778
+        }
+    },
+    {
+        "measurement": "Changhua_130",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰22",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.48129,
+            "lat": 24.012006
+        }
+    },
+    {
+        "measurement": "Changhua_131",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰23",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.434828,
+            "lat": 24.031697
+        }
+    },
+    {
+        "measurement": "Changhua_132",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰24-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.444531,
+            "lat": 24.020275
+        }
+    },
+    {
+        "measurement": "Changhua_133",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰25",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.472874,
+            "lat": 23.971427
+        }
+    },
+    {
+        "measurement": "Changhua_134",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰26",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.452479,
+            "lat": 23.958769
+        }
+    },
+    {
+        "measurement": "Changhua_135",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰27",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.405213,
+            "lat": 23.957861
+        }
+    },
+    {
+        "measurement": "Changhua_136",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰28",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.481374,
+            "lat": 23.934417
+        }
+    },
+    {
+        "measurement": "Changhua_137",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰29",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.473322,
+            "lat": 23.919248
+        }
+    },
+    {
+        "measurement": "Changhua_138",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰30",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.440453,
+            "lat": 23.894851
+        }
+    },
+    {
+        "measurement": "Changhua_139",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰31",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.404603,
+            "lat": 23.898166
+        }
+    },
+    {
+        "measurement": "Changhua_140",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰32",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.381223,
+            "lat": 23.899455
+        }
+    },
+    {
+        "measurement": "Changhua_141",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰33",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.37057,
+            "lat": 23.963818
+        }
+    },
+    {
+        "measurement": "Changhua_142",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰34",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.403372,
+            "lat": 23.849466
+        }
+    },
+    {
+        "measurement": "Changhua_143",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.329435,
+            "lat": 23.863871
+        }
+    },
+    {
+        "measurement": "Changhua_144",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰36",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.380998,
+            "lat": 23.922055
+        }
+    },
+    {
+        "measurement": "Changhua_145",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰37",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352449,
+            "lat": 23.930723
+        }
+    },
+    {
+        "measurement": "Changhua_146",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰38",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.334114,
+            "lat": 23.968215
+        }
+    },
+    {
+        "measurement": "Changhua_147",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰38-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.333809,
+            "lat": 23.968223
+        }
+    },
+    {
+        "measurement": "Changhua_148",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰39",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.314664,
+            "lat": 23.928076
+        }
+    },
+    {
+        "measurement": "Changhua_149",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰40",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.307554,
+            "lat": 23.903737
+        }
+    },
+    {
+        "measurement": "Changhua_150",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427364,
+            "lat": 23.84525
+        }
+    },
+    {
+        "measurement": "Changhua_151",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427364,
+            "lat": 23.84525
+        }
+    },
+    {
+        "measurement": "Changhua_152",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.520034,
+            "lat": 23.837647
+        }
+    },
+    {
+        "measurement": "Changhua_153",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰44",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.410298,
+            "lat": 24.025754
+        }
+    },
+    {
+        "measurement": "Changhua_154",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰45",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.371961,
+            "lat": 23.899707
+        }
+    },
+    {
+        "measurement": "Changhua_155",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰46",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.336662,
+            "lat": 23.89248
+        }
+    },
+    {
+        "measurement": "Changhua_156",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰47",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.593814,
+            "lat": 23.846799
+        }
+    },
+    {
+        "measurement": "Changhua_157",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰48",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.604714,
+            "lat": 23.829526
+        }
+    },
+    {
+        "measurement": "Changhua_158",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰49",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.613312,
+            "lat": 23.813241
+        }
+    },
+    {
+        "measurement": "Changhua_159",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰50",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.626376,
+            "lat": 23.802618
+        }
+    },
+    {
+        "measurement": "Changhua_160",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰51",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.636804,
+            "lat": 23.789929
+        }
+    },
+    {
+        "measurement": "Changhua_161",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰52-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.570707,
+            "lat": 23.849147
+        }
+    },
+    {
+        "measurement": "Changhua_162",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰53",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.557667,
+            "lat": 23.835566
+        }
+    },
+    {
+        "measurement": "Changhua_163",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰54",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.546772,
+            "lat": 23.823832
+        }
+    },
+    {
+        "measurement": "Changhua_164",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰56",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.495309,
+            "lat": 23.82676
+        }
+    },
+    {
+        "measurement": "Changhua_165",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰57",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.474022,
+            "lat": 23.826057
+        }
+    },
+    {
+        "measurement": "Changhua_166",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.460435,
+            "lat": 23.833947
+        }
+    },
+    {
+        "measurement": "Changhua_167",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰59",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.485557,
+            "lat": 23.850421
+        }
+    },
+    {
+        "measurement": "Changhua_168",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰59A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.484931,
+            "lat": 23.847593
+        }
+    },
+    {
+        "measurement": "Changhua_169",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.342641,
+            "lat": 23.87544
+        }
+    },
+    {
+        "measurement": "Changhua_170",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.494997,
+            "lat": 24.108602
+        }
+    },
+    {
+        "measurement": "Changhua_171",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰62",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.506303,
+            "lat": 23.834444
+        }
+    },
+    {
+        "measurement": "Changhua_172",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰64",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.301628,
+            "lat": 23.889923
+        }
+    },
+    {
+        "measurement": "Changhua_173",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰64",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.301628,
+            "lat": 23.889923
+        }
+    },
+    {
+        "measurement": "Changhua_174",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰65",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.47959,
+            "lat": 24.048551
+        }
+    },
+    {
+        "measurement": "Changhua_175",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰66",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.362015,
+            "lat": 23.971169
+        }
+    },
+    {
+        "measurement": "Changhua_176",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰67",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.441969,
+            "lat": 23.953367
+        }
+    },
+    {
+        "measurement": "Changhua_177",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰67",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.441969,
+            "lat": 23.953367
+        }
+    },
+    {
+        "measurement": "Changhua_178",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰68",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.563661,
+            "lat": 23.92447
+        }
+    },
+    {
+        "measurement": "Changhua_179",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰69",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.381458,
+            "lat": 23.848034
+        }
+    },
+    {
+        "measurement": "Changhua_180",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰70",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.51428,
+            "lat": 23.81687
+        }
+    },
+    {
+        "measurement": "Changhua_181",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰71",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.471537,
+            "lat": 24.096478
+        }
+    },
+    {
+        "measurement": "Changhua_182",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰72",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407746,
+            "lat": 24.011902
+        }
+    },
+    {
+        "measurement": "Changhua_183",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰73",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.328133,
+            "lat": 23.98278
+        }
+    },
+    {
+        "measurement": "Changhua_184",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰74",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.323356,
+            "lat": 23.941496
+        }
+    },
+    {
+        "measurement": "Changhua_185",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰75",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.382766,
+            "lat": 23.9405
+        }
+    },
+    {
+        "measurement": "Changhua_186",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰76",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.288217,
+            "lat": 23.878539
+        }
+    },
+    {
+        "measurement": "Changhua_187",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰77",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.278865,
+            "lat": 23.868734
+        }
+    },
+    {
+        "measurement": "Changhua_188",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰78",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.335552,
+            "lat": 23.852321
+        }
+    },
+    {
+        "measurement": "Changhua_189",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰79",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.348563,
+            "lat": 23.835772
+        }
+    },
+    {
+        "measurement": "Changhua_190",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰80",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.552439,
+            "lat": 24.084682
+        }
+    },
+    {
+        "measurement": "Changhua_191",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰81",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.562265,
+            "lat": 24.087482
+        }
+    },
+    {
+        "measurement": "Changhua_192",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰82",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.537389,
+            "lat": 23.978461
+        }
+    },
+    {
+        "measurement": "Changhua_193",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰83",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.484931,
+            "lat": 23.847602
+        }
+    },
+    {
+        "measurement": "Changhua_194",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰84",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.537159,
+            "lat": 23.830648
+        }
+    },
+    {
+        "measurement": "Changhua_195",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰85",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.423658,
+            "lat": 23.928442
+        }
+    },
+    {
+        "measurement": "Changhua_196",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰86",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.412034,
+            "lat": 23.929192
+        }
+    },
+    {
+        "measurement": "Changhua_197",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "田尾BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.526522,
+            "lat": 23.891619
+        }
+    },
+    {
+        "measurement": "Changhua_198",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "合興BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.458055,
+            "lat": 23.894048
+        }
+    },
+    {
+        "measurement": "Changhua_199",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "好修BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.458903,
+            "lat": 24.00625
+        }
+    },
+    {
+        "measurement": "Changhua_200",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "芳苑BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.320394,
+            "lat": 23.923776
+        }
+    },
+    {
+        "measurement": "Changhua_201",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "花壇BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.543046,
+            "lat": 24.026695
+        }
+    },
+    {
+        "measurement": "Changhua_202",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "柑園BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.534605,
+            "lat": 23.822866
+        }
+    },
+    {
+        "measurement": "Changhua_203",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "洛津BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.430364,
+            "lat": 24.054227
+        }
+    },
+    {
+        "measurement": "Changhua_204",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "員林BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.574015,
+            "lat": 23.951091
+        }
+    },
+    {
+        "measurement": "Changhua_205",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "國聖BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.569811,
+            "lat": 24.092723
+        }
+    },
+    {
+        "measurement": "Changhua_206",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢1651",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.58198,
+            "lat": 23.918597
+        }
+    },
+    {
+        "measurement": "Changhua_207",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8615",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.499688,
+            "lat": 24.177303
+        }
+    },
+    {
+        "measurement": "Changhua_208",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8617",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.470685,
+            "lat": 24.148122
+        }
+    },
+    {
+        "measurement": "Changhua_209",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8618",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.460886,
+            "lat": 24.129009
+        }
+    },
+    {
+        "measurement": "Changhua_210",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8620",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.4486,
+            "lat": 24.09414
+        }
+    },
+    {
+        "measurement": "Changhua_211",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8621",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.444112,
+            "lat": 24.08355
+        }
+    },
+    {
+        "measurement": "Changhua_212",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8622",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.437702,
+            "lat": 24.069342
+        }
+    },
+    {
+        "measurement": "Changhua_213",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8624",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.41871,
+            "lat": 24.054851
+        }
+    },
+    {
+        "measurement": "Changhua_214",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8625",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.421568,
+            "lat": 24.037959
+        }
+    },
+    {
+        "measurement": "Changhua_215",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8627",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.380861,
+            "lat": 24.010306
+        }
+    },
+    {
+        "measurement": "Changhua_216",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8628",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.365563,
+            "lat": 23.998948
+        }
+    },
+    {
+        "measurement": "Changhua_217",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8629",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354828,
+            "lat": 23.983834
+        }
+    },
+    {
+        "measurement": "Changhua_218",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8630",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.345229,
+            "lat": 23.962042
+        }
+    },
+    {
+        "measurement": "Changhua_219",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8632",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.322095,
+            "lat": 23.928957
+        }
+    },
+    {
+        "measurement": "Changhua_220",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8635",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.297803,
+            "lat": 23.881725
+        }
+    },
+    {
+        "measurement": "Changhua_221",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8637",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.295623,
+            "lat": 23.852731
+        }
+    },
+    {
+        "measurement": "Changhua_222",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢8638",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.291848,
+            "lat": 23.839188
+        }
+    },
+    {
+        "measurement": "Changhua_223",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陸檢9767",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.578289,
+            "lat": 23.929919
+        }
+    },
+    {
+        "measurement": "Changhua_224",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陷檢21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308606,
+            "lat": 23.912762
+        }
+    },
+    {
+        "measurement": "Changhua_225",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陷檢21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308606,
+            "lat": 23.912762
+        }
+    },
+    {
+        "measurement": "Changhua_226",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陷檢28",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.33654,
+            "lat": 23.960677
+        }
+    },
+    {
+        "measurement": "Changhua_227",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陷檢41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36127,
+            "lat": 24.010605
+        }
+    },
+    {
+        "measurement": "Changhua_228",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "陷檢55",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.434414,
+            "lat": 24.108273
+        }
+    },
+    {
+        "measurement": "Changhua_229",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "新水井20BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.283189,
+            "lat": 23.860818
+        }
+    },
+    {
+        "measurement": "Changhua_230",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "溪湖BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479127,
+            "lat": 23.948559
+        }
+    },
+    {
+        "measurement": "Changhua_231",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "彰陷41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.562022,
+            "lat": 23.991012
+        }
+    },
+    {
+        "measurement": "Changhua_232",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "彰陷44",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.534168,
+            "lat": 23.871028
+        }
+    },
+    {
+        "measurement": "Changhua_233",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "線西BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.467652,
+            "lat": 24.132048
+        }
+    },
+    {
+        "measurement": "Changhua_234",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "FLBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.467064,
+            "lat": 23.907488
+        }
+    },
+    {
+        "measurement": "Changhua_235",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CSBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.511345,
+            "lat": 24.171011
+        }
+    },
+    {
+        "measurement": "Changhua_236",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "KLBM-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.465489,
+            "lat": 24.148338
+        }
+    },
+    {
+        "measurement": "Changhua_237",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "TCBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.504307,
+            "lat": 24.120298
+        }
+    },
+    {
+        "measurement": "Changhua_238",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "YCBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.434543,
+            "lat": 24.07435
+        }
+    },
+    {
+        "measurement": "Changhua_239",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CGBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.461086,
+            "lat": 24.107168
+        }
+    },
+    {
+        "measurement": "Changhua_240",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "DFBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.484034,
+            "lat": 24.085388
+        }
+    },
+    {
+        "measurement": "Changhua_241",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA13",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.516161,
+            "lat": 24.062757
+        }
+    },
+    {
+        "measurement": "Changhua_242",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WCBM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.419775,
+            "lat": 24.00803
+        }
+    },
+    {
+        "measurement": "Changhua_243",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "溪州國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.498085,
+            "lat": 23.852855
+        }
+    },
+    {
+        "measurement": "Changhua_244",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "溪州國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.497433,
+            "lat": 23.853738
+        }
+    },
+    {
+        "measurement": "Changhua_245",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "溪州工作站-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.501316,
+            "lat": 23.855159
+        }
+    },
+    {
+        "measurement": "Changhua_246",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "饒明國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.575411,
+            "lat": 23.938977
+        }
+    },
+    {
+        "measurement": "Changhua_247",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "興華國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.394751,
+            "lat": 23.892087
+        }
+    },
+    {
+        "measurement": "Changhua_248",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "興華國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.39481,
+            "lat": 23.892033
+        }
+    },
+    {
+        "measurement": "Changhua_249",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "湖南國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479167,
+            "lat": 23.948396
+        }
+    },
+    {
+        "measurement": "Changhua_250",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "湖南國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.480136,
+            "lat": 23.949267
+        }
+    },
+    {
+        "measurement": "Changhua_251",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "新街國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.312187,
+            "lat": 23.902449
+        }
+    },
+    {
+        "measurement": "Changhua_252",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "西港國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289495,
+            "lat": 23.860314
+        }
+    },
+    {
+        "measurement": "Changhua_253",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "竹塘工作站監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.42834,
+            "lat": 23.86008
+        }
+    },
+    {
+        "measurement": "Changhua_254",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "新生國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.394321,
+            "lat": 23.937927
+        }
+    },
+    {
+        "measurement": "Changhua_255",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "新生國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.38627,
+            "lat": 23.939177
+        }
+    },
+    {
+        "measurement": "Changhua_256",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "東芳水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.516132,
+            "lat": 24.062784
+        }
+    },
+    {
+        "measurement": "Changhua_257",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "趙甲水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.395374,
+            "lat": 23.937715
+        }
+    },
+    {
+        "measurement": "Changhua_258",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "西港水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289534,
+            "lat": 23.860387
+        }
+    },
+    {
+        "measurement": "Changhua_259",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "潭墘水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347393,
+            "lat": 23.836209
+        }
+    },
+    {
+        "measurement": "Changhua_260",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "香田水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.37719,
+            "lat": 23.874049
+        }
+    },
+    {
+        "measurement": "Changhua_261",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "員林水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.574711,
+            "lat": 23.951562
+        }
+    },
+    {
+        "measurement": "Changhua_262",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "田中水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.586839,
+            "lat": 23.8546
+        }
+    },
+    {
+        "measurement": "Changhua_263",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "二水水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.618037,
+            "lat": 23.81188
+        }
+    },
+    {
+        "measurement": "Changhua_264",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "茄荖國小水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.642987,
+            "lat": 24.015195
+        }
+    },
+    {
+        "measurement": "Changhua_265",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰87",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.370873,
+            "lat": 24.004622
+        }
+    },
+    {
+        "measurement": "Changhua_266",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰88",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.342186,
+            "lat": 23.967103
+        }
+    },
+    {
+        "measurement": "Changhua_267",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰89",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.337021,
+            "lat": 23.960787
+        }
+    },
+    {
+        "measurement": "Changhua_268",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰90",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.303226,
+            "lat": 23.857334
+        }
+    },
+    {
+        "measurement": "Changhua_269",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰91",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.584131,
+            "lat": 24.083625
+        }
+    },
+    {
+        "measurement": "Changhua_270",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰92",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.604726,
+            "lat": 24.080339
+        }
+    },
+    {
+        "measurement": "Changhua_271",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰93",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.615065,
+            "lat": 24.066261
+        }
+    },
+    {
+        "measurement": "Changhua_272",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰94",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.621407,
+            "lat": 24.049726
+        }
+    },
+    {
+        "measurement": "Changhua_273",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰95",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.623616,
+            "lat": 24.03058
+        }
+    },
+    {
+        "measurement": "Changhua_274",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰96",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.632217,
+            "lat": 24.013761
+        }
+    },
+    {
+        "measurement": "Changhua_275",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰09A-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352178,
+            "lat": 23.975145
+        }
+    },
+    {
+        "measurement": "Changhua_276",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568925,
+            "lat": 23.865459
+        }
+    },
+    {
+        "measurement": "Changhua_277",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568925,
+            "lat": 23.865459
+        }
+    },
+    {
+        "measurement": "Changhua_278",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568925,
+            "lat": 23.865459
+        }
+    },
+    {
+        "measurement": "Changhua_279",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568925,
+            "lat": 23.865459
+        }
+    },
+    {
+        "measurement": "Changhua_280",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰137",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542415,
+            "lat": 23.910159
+        }
+    },
+    {
+        "measurement": "Changhua_281",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰137",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542415,
+            "lat": 23.910159
+        }
+    },
+    {
+        "measurement": "Changhua_282",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰137",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542415,
+            "lat": 23.910159
+        }
+    },
+    {
+        "measurement": "Changhua_283",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰137",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542415,
+            "lat": 23.910159
+        }
+    },
+    {
+        "measurement": "Changhua_284",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.329961,
+            "lat": 23.864631
+        }
+    },
+    {
+        "measurement": "Changhua_285",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.329961,
+            "lat": 23.864631
+        }
+    },
+    {
+        "measurement": "Changhua_286",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.329961,
+            "lat": 23.864631
+        }
+    },
+    {
+        "measurement": "Changhua_287",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.329961,
+            "lat": 23.864631
+        }
+    },
+    {
+        "measurement": "Changhua_288",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.331203,
+            "lat": 23.865675
+        }
+    },
+    {
+        "measurement": "Changhua_289",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.331203,
+            "lat": 23.865675
+        }
+    },
+    {
+        "measurement": "Changhua_290",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.331203,
+            "lat": 23.865675
+        }
+    },
+    {
+        "measurement": "Changhua_291",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰35-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.331203,
+            "lat": 23.865675
+        }
+    },
+    {
+        "measurement": "Changhua_292",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰64-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.302354,
+            "lat": 23.891768
+        }
+    },
+    {
+        "measurement": "Changhua_293",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰64-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.302354,
+            "lat": 23.891768
+        }
+    },
+    {
+        "measurement": "Changhua_294",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰64-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.302354,
+            "lat": 23.891768
+        }
+    },
+    {
+        "measurement": "Changhua_295",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰64-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.302354,
+            "lat": 23.891768
+        }
+    },
+    {
+        "measurement": "Changhua_296",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA31",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542425,
+            "lat": 23.91025
+        }
+    },
+    {
+        "measurement": "Changhua_297",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA31",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542425,
+            "lat": 23.91025
+        }
+    },
+    {
+        "measurement": "Changhua_298",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA31",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542425,
+            "lat": 23.91025
+        }
+    },
+    {
+        "measurement": "Changhua_299",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA31",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.542425,
+            "lat": 23.91025
+        }
+    },
+    {
+        "measurement": "Changhua_300",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA56",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308743,
+            "lat": 23.91288
+        }
+    },
+    {
+        "measurement": "Changhua_301",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA56",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308743,
+            "lat": 23.91288
+        }
+    },
+    {
+        "measurement": "Changhua_302",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA56",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308743,
+            "lat": 23.91288
+        }
+    },
+    {
+        "measurement": "Changhua_303",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA56",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308743,
+            "lat": 23.91288
+        }
+    },
+    {
+        "measurement": "Changhua_304",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA57",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.286885,
+            "lat": 23.874361
+        }
+    },
+    {
+        "measurement": "Changhua_305",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA57",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.286885,
+            "lat": 23.874361
+        }
+    },
+    {
+        "measurement": "Changhua_306",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA57",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.286885,
+            "lat": 23.874361
+        }
+    },
+    {
+        "measurement": "Changhua_307",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA57",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.286885,
+            "lat": 23.874361
+        }
+    },
+    {
+        "measurement": "Changhua_308",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358051,
+            "lat": 23.888426
+        }
+    },
+    {
+        "measurement": "Changhua_309",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358051,
+            "lat": 23.888426
+        }
+    },
+    {
+        "measurement": "Changhua_310",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358051,
+            "lat": 23.888426
+        }
+    },
+    {
+        "measurement": "Changhua_311",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358051,
+            "lat": 23.888426
+        }
+    },
+    {
+        "measurement": "Changhua_312",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA59",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.403218,
+            "lat": 23.898107
+        }
+    },
+    {
+        "measurement": "Changhua_313",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA59",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.403218,
+            "lat": 23.898107
+        }
+    },
+    {
+        "measurement": "Changhua_314",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA59",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.403218,
+            "lat": 23.898107
+        }
+    },
+    {
+        "measurement": "Changhua_315",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA59",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.403218,
+            "lat": 23.898107
+        }
+    },
+    {
+        "measurement": "Changhua_316",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427265,
+            "lat": 23.845376
+        }
+    },
+    {
+        "measurement": "Changhua_317",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427265,
+            "lat": 23.845376
+        }
+    },
+    {
+        "measurement": "Changhua_318",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427265,
+            "lat": 23.845376
+        }
+    },
+    {
+        "measurement": "Changhua_319",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427265,
+            "lat": 23.845376
+        }
+    },
+    {
+        "measurement": "Changhua_320",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.457716,
+            "lat": 23.845712
+        }
+    },
+    {
+        "measurement": "Changhua_321",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.457716,
+            "lat": 23.845712
+        }
+    },
+    {
+        "measurement": "Changhua_322",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.457716,
+            "lat": 23.845712
+        }
+    },
+    {
+        "measurement": "Changhua_323",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.457716,
+            "lat": 23.845712
+        }
+    },
+    {
+        "measurement": "Changhua_324",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA62",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.493559,
+            "lat": 23.837761
+        }
+    },
+    {
+        "measurement": "Changhua_325",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA62",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.493559,
+            "lat": 23.837761
+        }
+    },
+    {
+        "measurement": "Changhua_326",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA62",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.493559,
+            "lat": 23.837761
+        }
+    },
+    {
+        "measurement": "Changhua_327",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "CHWRA62",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.493559,
+            "lat": 23.837761
+        }
+    },
+    {
+        "measurement": "Changhua_328",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰104-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.287266,
+            "lat": 23.874625
+        }
+    },
+    {
+        "measurement": "Changhua_329",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰104-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.287266,
+            "lat": 23.874625
+        }
+    },
+    {
+        "measurement": "Changhua_330",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰104-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.287266,
+            "lat": 23.874625
+        }
+    },
+    {
+        "measurement": "Changhua_331",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰104-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.287266,
+            "lat": 23.874625
+        }
+    },
+    {
+        "measurement": "Changhua_332",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568975,
+            "lat": 23.865251
+        }
+    },
+    {
+        "measurement": "Changhua_333",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568975,
+            "lat": 23.865251
+        }
+    },
+    {
+        "measurement": "Changhua_334",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568975,
+            "lat": 23.865251
+        }
+    },
+    {
+        "measurement": "Changhua_335",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "水利彰134-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.568975,
+            "lat": 23.865251
+        }
+    },
+    {
+        "measurement": "Changhua_336",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB02-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459066,
+            "lat": 23.846728
+        }
+    },
+    {
+        "measurement": "Changhua_337",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB02-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459066,
+            "lat": 23.846728
+        }
+    },
+    {
+        "measurement": "Changhua_338",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB02-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459066,
+            "lat": 23.846728
+        }
+    },
+    {
+        "measurement": "Changhua_339",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "WRB02-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459066,
+            "lat": 23.846728
+        }
+    },
+    {
+        "measurement": "Changhua_340",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.472066,
+            "lat": 23.846231
+        }
+    },
+    {
+        "measurement": "Changhua_341",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.472066,
+            "lat": 23.846231
+        }
+    },
+    {
+        "measurement": "Changhua_342",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.472066,
+            "lat": 23.846231
+        }
+    },
+    {
+        "measurement": "Changhua_343",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.472066,
+            "lat": 23.846231
+        }
+    },
+    {
+        "measurement": "Changhua_344",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.475711,
+            "lat": 23.847851
+        }
+    },
+    {
+        "measurement": "Changhua_345",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.475711,
+            "lat": 23.847851
+        }
+    },
+    {
+        "measurement": "Changhua_346",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.475711,
+            "lat": 23.847851
+        }
+    },
+    {
+        "measurement": "Changhua_347",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.475711,
+            "lat": 23.847851
+        }
+    },
+    {
+        "measurement": "Changhua_348",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479981,
+            "lat": 23.847992
+        }
+    },
+    {
+        "measurement": "Changhua_349",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479981,
+            "lat": 23.847992
+        }
+    },
+    {
+        "measurement": "Changhua_350",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479981,
+            "lat": 23.847992
+        }
+    },
+    {
+        "measurement": "Changhua_351",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479981,
+            "lat": 23.847992
+        }
+    },
+    {
+        "measurement": "Changhua_352",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482329,
+            "lat": 23.849986
+        }
+    },
+    {
+        "measurement": "Changhua_353",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482329,
+            "lat": 23.849986
+        }
+    },
+    {
+        "measurement": "Changhua_354",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482329,
+            "lat": 23.849986
+        }
+    },
+    {
+        "measurement": "Changhua_355",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482329,
+            "lat": 23.849986
+        }
+    },
+    {
+        "measurement": "Changhua_356",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.488948,
+            "lat": 23.852085
+        }
+    },
+    {
+        "measurement": "Changhua_357",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.488948,
+            "lat": 23.852085
+        }
+    },
+    {
+        "measurement": "Changhua_358",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.488948,
+            "lat": 23.852085
+        }
+    },
+    {
+        "measurement": "Changhua_359",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.488948,
+            "lat": 23.852085
+        }
+    },
+    {
+        "measurement": "Changhua_360",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.492826,
+            "lat": 23.854391
+        }
+    },
+    {
+        "measurement": "Changhua_361",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.492826,
+            "lat": 23.854391
+        }
+    },
+    {
+        "measurement": "Changhua_362",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.492826,
+            "lat": 23.854391
+        }
+    },
+    {
+        "measurement": "Changhua_363",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.492826,
+            "lat": 23.854391
+        }
+    },
+    {
+        "measurement": "Changhua_364",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.497443,
+            "lat": 23.856402
+        }
+    },
+    {
+        "measurement": "Changhua_365",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.497443,
+            "lat": 23.856402
+        }
+    },
+    {
+        "measurement": "Changhua_366",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.497443,
+            "lat": 23.856402
+        }
+    },
+    {
+        "measurement": "Changhua_367",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.497443,
+            "lat": 23.856402
+        }
+    },
+    {
+        "measurement": "Changhua_368",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482615,
+            "lat": 23.842285
+        }
+    },
+    {
+        "measurement": "Changhua_369",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482615,
+            "lat": 23.842285
+        }
+    },
+    {
+        "measurement": "Changhua_370",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482615,
+            "lat": 23.842285
+        }
+    },
+    {
+        "measurement": "Changhua_371",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.482615,
+            "lat": 23.842285
+        }
+    },
+    {
+        "measurement": "Changhua_372",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.490085,
+            "lat": 23.847565
+        }
+    },
+    {
+        "measurement": "Changhua_373",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.490085,
+            "lat": 23.847565
+        }
+    },
+    {
+        "measurement": "Changhua_374",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.490085,
+            "lat": 23.847565
+        }
+    },
+    {
+        "measurement": "Changhua_375",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.490085,
+            "lat": 23.847565
+        }
+    },
+    {
+        "measurement": "Changhua_376",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.49508,
+            "lat": 23.847961
+        }
+    },
+    {
+        "measurement": "Changhua_377",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.49508,
+            "lat": 23.847961
+        }
+    },
+    {
+        "measurement": "Changhua_378",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.49508,
+            "lat": 23.847961
+        }
+    },
+    {
+        "measurement": "Changhua_379",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.49508,
+            "lat": 23.847961
+        }
+    },
+    {
+        "measurement": "Changhua_380",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.495335,
+            "lat": 23.842887
+        }
+    },
+    {
+        "measurement": "Changhua_381",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.495335,
+            "lat": 23.842887
+        }
+    },
+    {
+        "measurement": "Changhua_382",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.495335,
+            "lat": 23.842887
+        }
+    },
+    {
+        "measurement": "Changhua_383",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.495335,
+            "lat": 23.842887
+        }
+    },
+    {
+        "measurement": "Changhua_384",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.489798,
+            "lat": 23.837957
+        }
+    },
+    {
+        "measurement": "Changhua_385",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.489798,
+            "lat": 23.837957
+        }
+    },
+    {
+        "measurement": "Changhua_386",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.489798,
+            "lat": 23.837957
+        }
+    },
+    {
+        "measurement": "Changhua_387",
+        "tags": {
+            "name": "水準樁_彰化縣",
+            "location": "SJ012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.489798,
+            "lat": 23.837957
+        }
+    }
+]

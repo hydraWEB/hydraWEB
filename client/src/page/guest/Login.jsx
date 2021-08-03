@@ -63,7 +63,7 @@ export default function Login() {
     const { addToast } = useToasts();
     const initialUser = useRef()
     const handleLogin = (e) => {
-        history.push("/user/hydramap")
+        //history.push("/user/hydramap")
         e.preventDefault()
         if (!isLoading) {
             setShowWarning(false)

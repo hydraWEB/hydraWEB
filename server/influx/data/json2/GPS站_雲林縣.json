@@ -1,0 +1,311 @@
+[
+    {
+        "measurement": "Yunlin_0",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "新興國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.222334,
+            "lat": 23.739171
+        }
+    },
+    {
+        "measurement": "Yunlin_1",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "土庫國中",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.389824,
+            "lat": 23.687999
+        }
+    },
+    {
+        "measurement": "Yunlin_2",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "客厝國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.334288,
+            "lat": 23.626621
+        }
+    },
+    {
+        "measurement": "Yunlin_3",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "光復國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.402484,
+            "lat": 23.741415
+        }
+    },
+    {
+        "measurement": "Yunlin_4",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "宏崙國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.347768,
+            "lat": 23.686583
+        }
+    },
+    {
+        "measurement": "Yunlin_5",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "中科虎尾",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.427642,
+            "lat": 23.73307
+        }
+    },
+    {
+        "measurement": "Yunlin_6",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "明德國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.199907,
+            "lat": 23.652639
+        }
+    },
+    {
+        "measurement": "Yunlin_7",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "斗南",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.447899,
+            "lat": 23.6738
+        }
+    },
+    {
+        "measurement": "Yunlin_8",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "二崙",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.419502,
+            "lat": 23.797501
+        }
+    },
+    {
+        "measurement": "Yunlin_9",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "古坑",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.588699,
+            "lat": 23.6458
+        }
+    },
+    {
+        "measurement": "Yunlin_10",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "虎尾",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.286598,
+            "lat": 23.729401
+        }
+    },
+    {
+        "measurement": "Yunlin_11",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "台西",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.189,
+            "lat": 23.7203
+        }
+    },
+    {
+        "measurement": "Yunlin_12",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "北港",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.305,
+            "lat": 23.5799
+        }
+    },
+    {
+        "measurement": "Yunlin_13",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "豐榮國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.312233,
+            "lat": 23.791166
+        }
+    },
+    {
+        "measurement": "Yunlin_14",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "水燦林國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.247162,
+            "lat": 23.57318
+        }
+    },
+    {
+        "measurement": "Yunlin_15",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "宜梧國中",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.193996,
+            "lat": 23.546254
+        }
+    },
+    {
+        "measurement": "Yunlin_16",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "林內國中",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.592155,
+            "lat": 23.757451
+        }
+    },
+    {
+        "measurement": "Yunlin_17",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "秀潭國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.349786,
+            "lat": 23.658718
+        }
+    },
+    {
+        "measurement": "Yunlin_18",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "元長國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.308878,
+            "lat": 23.653347
+        }
+    },
+    {
+        "measurement": "Yunlin_19",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "安南國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.24906,
+            "lat": 23.7039
+        }
+    },
+    {
+        "measurement": "Yunlin_20",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "南光國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.21842,
+            "lat": 23.61198
+        }
+    },
+    {
+        "measurement": "Yunlin_21",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "龍巖國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.30666,
+            "lat": 23.72275
+        }
+    },
+    {
+        "measurement": "Yunlin_22",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "拯民國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.407225,
+            "lat": 23.709355
+        }
+    },
+    {
+        "measurement": "Yunlin_23",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "山內國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.31148,
+            "lat": 23.678139
+        }
+    },
+    {
+        "measurement": "Yunlin_24",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "舊庄國小",
+            "monitor": "GPS"
+        },
+        "fields": {
+            "lon": 120.400012,
+            "lat": 23.633943
+        }
+    },
+    {
+        "measurement": "Yunlin_25",
+        "tags": {
+            "name": "GPS站_雲林縣",
+            "location": "忠孝國小",
+            "monitor": "GPS"
+        },
+        "fields": {}
+    }
+]

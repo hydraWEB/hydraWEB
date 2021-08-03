@@ -25,8 +25,10 @@ export const loginLog = (data) => userRequest_client.get("api/v1/staff/system-lo
 export const systemLogGetAllYear = () => userRequest_client.get("api/v1/staff/system-log/get-all-years")
 export const AnnouncementList = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
 export const AnnouncementSendNew = (data) => userRequest_client.post("api/v1/staff/announcement/",data)
+export const AnnouncementSendEdit = (data,id) => userRequest_client.put(`api/v1/staff/announcement/${id}/`,data)
+export const AnnouncementSendDelete = (id) => userRequest_client.delete(`api/v1/staff/announcement/${id}/`)
 export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
-export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}`,data)
+export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}/`,data)
 
 export const LayerList = () => guestRequest_client.get(`api/v1/user/layer`)
 

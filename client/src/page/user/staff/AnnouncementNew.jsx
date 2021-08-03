@@ -9,10 +9,12 @@ import {StyledTable, StyledTd, StyledTh, Title} from "./Staff";
 import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
+import {useToasts} from "react-toast-notifications";
 
 export default function AnnouncementNew() {
     let query = useQuery();
     let history = useHistory()
+    const { addToast } = useToasts();
 
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
@@ -23,6 +25,7 @@ export default function AnnouncementNew() {
                 content:content
             }
         ).then((res) => {
+            addToast('新增成功.', { appearance: 'success',autoDismiss:true });
             history.push(`/user/staff/announcement-manage`)
         }).catch((err) => {
 

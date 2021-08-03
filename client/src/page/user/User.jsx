@@ -68,8 +68,8 @@ export default function User(props) {
 
                         <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>{t("account")}</Link></Nav.Link>
                         <NavDropdown title={t("language")} id="nav-dropdown">
-                            <NavDropdown.Item eventKey="4.1" onClick={(e)=> changeLanguage("en")}>English</NavDropdown.Item>
-                            <NavDropdown.Item eventKey="4.2" onClick={(e)=> changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="4.1" onClick={(e) => changeLanguage("en")}>English</NavDropdown.Item>
+                            <NavDropdown.Item eventKey="4.2" onClick={(e) => changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

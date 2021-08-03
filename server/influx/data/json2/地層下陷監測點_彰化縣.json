@@ -1,0 +1,98 @@
+[
+    {
+        "measurement": "Changhua_0",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "新街國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.312187,
+            "lat": 23.902458
+        }
+    },
+    {
+        "measurement": "Changhua_1",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "西港國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.289495,
+            "lat": 23.860296
+        }
+    },
+    {
+        "measurement": "Changhua_2",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "興華國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.394692,
+            "lat": 23.89206
+        }
+    },
+    {
+        "measurement": "Changhua_3",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "新生國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.394263,
+            "lat": 23.937909
+        }
+    },
+    {
+        "measurement": "Changhua_4",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "湖南國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.479128,
+            "lat": 23.948378
+        }
+    },
+    {
+        "measurement": "Changhua_5",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "溪州國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.498057,
+            "lat": 23.85244
+        }
+    },
+    {
+        "measurement": "Changhua_6",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "僑義國小",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.479301,
+            "lat": 23.843737
+        }
+    },
+    {
+        "measurement": "Changhua_7",
+        "tags": {
+            "name": "地層下陷監測點_彰化縣",
+            "location": "竹塘工作站",
+            "monitor": "MW"
+        },
+        "fields": {
+            "lon": 120.42832,
+            "lat": 23.860116
+        }
+    }
+]

@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
+import {useToasts} from "react-toast-notifications";
 
 export default function UserData() {
 
@@ -24,6 +25,7 @@ export default function UserData() {
     const [isError, setIsError] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [data, setData] = useState(defaultData)
+    const { addToast } = useToasts();
 
     useEffect(() => {
         userProfile().then((res) => {
@@ -38,6 +40,7 @@ export default function UserData() {
     }, [])
 
     const handleLogout = (e) => {
+        addToast('登出成功.', { appearance: 'success',autoDismiss:true });
         Cookies.remove('access')
         setUser(null)
         history.push('/guest/login')

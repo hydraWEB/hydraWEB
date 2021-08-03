@@ -16,6 +16,7 @@ function TableData({data}) {
         <tr>
             <StyledTd>{d.id}</StyledTd>
             <StyledTd>{d.user.username}</StyledTd>
+            <StyledTd>{d.operation}</StyledTd>
             <StyledTd>{d.created_at}</StyledTd>
         </tr>
     );

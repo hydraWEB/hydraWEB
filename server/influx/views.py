@@ -75,8 +75,6 @@ class MapAPIView(views.APIView):
         return geojson
 
     def get(self,request):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        all_dir = os.listdir(f"{dir_path}\\data")
         result = []
         yljsondt = self.query_city("Yunlin")
         zhjsondt = self.query_city("Changhua")

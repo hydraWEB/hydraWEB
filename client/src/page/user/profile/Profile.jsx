@@ -12,12 +12,14 @@ import Announcement from "../announcement/Announcement";
 import UserData from "./UserData";
 import Setting from "./Setting";
 import {useTranslation} from "react-i18next";
+import {useToasts} from "react-toast-notifications";
 
 export default function Profile() {
     let history = useHistory()
     const location = useLocation()
     const {user, setUser} = useContext(userContext)
     const {t, i18n} = useTranslation();
+    const { addToast } = useToasts();
 
     return (
         <div className={styles.wrapper} >

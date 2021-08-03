@@ -47,6 +47,7 @@ import { LineLayer } from '@deck.gl/layers';
 import { StaticMap } from 'react-map-gl';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import { LayerList } from '../../lib/api'
+import { HexagonLayer } from '@deck.gl/aggregation-layers';
 
 const ShowWrapper = styled.div(
   props => (
@@ -161,7 +162,7 @@ export function CheckItem({ data, onChange }) {
   )
 }
 
-function Layer({ layers, setLayers ,setHoverInfo }) {
+function Layer({ layers, setLayers, setHoverInfo }) {
 
   const { t, i18n } = useTranslation();
   const [AllData, setAllData] = useState([])
@@ -177,17 +178,17 @@ function Layer({ layers, setLayers ,setHoverInfo }) {
     setHoverInfo(data)
   }
 
-  const  hashCode = (str)  =>  { // java String#hashCode
+  const hashCode = (str) => { // java String#hashCode
     var hash = 0;
     for (var i = 0; i < str.length; i++) {
-       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
     return hash;
-} 
+  }
 
   const getDotColor = d => {
     let a = hashCode(d.name)
-    return [a & 255, (a >> 1) & 255 , (a >>2) & 255]
+    return [a & 255, (a >> 1) & 255, (a >> 2) & 255]
   };
 
   const OnListItemsChange = (e, data, index) => { //data是從ylchecked裡取出
@@ -197,6 +198,21 @@ function Layer({ layers, setLayers ,setHoverInfo }) {
     setAllData(newMapData)
     let newLayer = [...layers] //複製一個layer
     newLayer.forEach((element, i) => {
+      if (element.props.name == "ps_mean_v.xy.json") { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
+        newLayer[i] = new HexagonLayer({
+          id: data.name ,
+          name: data.name,
+          data: element.props.data,
+          extruded: true,
+          pickable: true,
+          visible:data.value,
+          radius: 1000,
+          transitions: {
+            elevationScale: 3000
+          }
+        })
+        return;
+      }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
         newLayer[i] = new GeoJsonLayer({
           id: data.name,
@@ -212,7 +228,7 @@ function Layer({ layers, setLayers ,setHoverInfo }) {
           // Interactive props
           pickable: true,
           autoHighlight: true,
-          onHover : onHover
+          onHover: onHover
         })
       }
     });
@@ -243,24 +259,49 @@ function Layer({ layers, setLayers ,setHoverInfo }) {
 
       let newLayer = []
       list.forEach((l, index) => {
-        l.files.forEach((d, idx) => {
+        l.files.forEach((data, idx) => {
+          if (data.name == "ps_mean_v.xy.json") {
+            let hexdata = []
+            data.data.features.forEach((dl) => {
+              try {
+                hexdata.push({ "COORDINATES": [dl.geometry.coordinates[0], dl.geometry.coordinates[1]] })
+              } catch (error) {
+
+              }
+            })
+            newLayer.push(
+              new HexagonLayer({
+                id: data.name,
+                name: data.name,
+                visible:false,
+                data: hexdata,
+                elevationScale: 4,
+                visible: data.value,
+                extruded: true,
+                getPosition: d => d.COORDINATES,
+                radius: 200,
+              })
+            )
+            return
+          }
           newLayer.push(
             new GeoJsonLayer({
-              id: d.name,
-              name: d.name,
-              data: d.data,
-              visible: d.value,
+              id: data.name,
+              name: data.name,
+              data: data.data,
+              visible: data.value,
               // Styles
               filled: true,
               pointRadiusMinPixels: 2,
               pointRadiusScale: 5,
               getPointRadius: f => 5,
-              getFillColor: getDotColor(d),
+              getFillColor: getDotColor(data),
               // Interactive props
               pickable: true,
               autoHighlight: true,
-              onHover : onHover
+              onHover: onHover
             }))
+
         })
       })
       setLayers(newLayer)
@@ -271,6 +312,10 @@ function Layer({ layers, setLayers ,setHoverInfo }) {
 
     })
   }, [])
+
+  useEffect(() => {
+
+  })
 
   let BtnList = AllData.map((data, index) =>
     <NormalButton className={styles.btn_list} isLightOn={currentDataIdx === data.id} text={data.name} onClick={(e) => onChangeCurrentData(index)} />
@@ -443,8 +488,8 @@ function Print({ map, deck }) {
   )
 }
 
-function renderTooltip({hoverInfo}) {
-  const {object, x, y} = hoverInfo;
+function renderTooltip({ hoverInfo }) {
+  const { object, x, y } = hoverInfo;
 
   if (!object) {
     return null;
@@ -452,15 +497,15 @@ function renderTooltip({hoverInfo}) {
 
   const props = object.properties;
 
-  const list = Object.entries(props).map(([key,value])=>{
+  const list = Object.entries(props).map(([key, value]) => {
     return (
-        <div>{key} : {value.toString()}</div>
+      <div>{key} : {value.toString()}</div>
     );
   })
 
   return (
-    <div className={styles.tooltip} style={{left: x, top: y , zIndex:10}}>
-      <p  className={styles.tooltip_title}>
+    <div className={styles.tooltip} style={{ left: x, top: y, zIndex: 10 }}>
+      <p className={styles.tooltip_title}>
         {hoverInfo.layer.id}
       </p>
       <p className={styles.tooltip_content}>
@@ -629,7 +674,7 @@ export default function HydraMap() {
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
-            <Layer layers={layers} setLayers={setLayersFunc}  setHoverInfo={setHoverInfoFunc} />
+            <Layer layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 2}>
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
@@ -668,7 +713,7 @@ export default function HydraMap() {
             ref={deckRef}
           >
             <StaticMap id="map-canvas" ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
-            {renderTooltip({hoverInfo})}
+            {renderTooltip({ hoverInfo })}
           </DeckGL>
         </div>
       </div>

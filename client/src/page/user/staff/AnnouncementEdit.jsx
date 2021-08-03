@@ -1,6 +1,6 @@
 import {Breadcrumb, Button, Form, Table} from "react-bootstrap";
 import React, {Suspense, useContext, useEffect, useState} from "react";
-import {AnnouncementInfoUser} from "../../../lib/api";
+import {AnnouncementInfoUser,AnnouncementSendEdit} from "../../../lib/api";
 import Cookies from 'js-cookie'
 import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
@@ -9,21 +9,24 @@ import {StyledTable, StyledTd, StyledTh, Title} from "./Staff";
 import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
+import {useToasts} from "react-toast-notifications";
 
-export default function AnnouncementNew() {
+export default function AnnouncementEdit() {
     let query = useQuery();
     let history = useHistory()
+    const { addToast } = useToasts();
 
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
 
     const submitForm = (e) => {
-        AnnouncementSendNew({
+        let id =  query.get("id")
+        AnnouncementSendEdit({
                 title:title,
                 content:content
-            }
+            },id
         ).then((res) => {
-            history.push(`/user/staff/announcement-manage`)
+            addToast('修改成功.', { appearance: 'success',autoDismiss:true });
         }).catch((err) => {
 
         }).finally(() => {
@@ -33,10 +36,11 @@ export default function AnnouncementNew() {
 
     useEffect(() => {
         if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
+            let id =  query.get("id")
             AnnouncementInfoUser({},id)
             .then((res) => {
                 setTitle(res.data.title)
-                setContent(res.data.content)
+               setContent(res.data.content)
             }).catch((err) => {
     
             }).finally(() => {
@@ -45,7 +49,7 @@ export default function AnnouncementNew() {
         } else {
             
         }
-    }, [query])
+    }, [])
 
     return (
         <div>
@@ -61,7 +65,7 @@ export default function AnnouncementNew() {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>內容</Form.Label>
-                    <Form.Control as="textarea" rows={3}  value={content} onChange={(e)=>setContent(e.target.value)}  />
+                    <Form.Control as="textarea" rows={3}  value={content} onChange={e=>setContent(e.target.value)}  />
                 </Form.Group>
             </Form>
             <Button variant="primary" onClick={(e)=>submitForm(e)}>送出</Button>

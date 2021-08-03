@@ -16,8 +16,8 @@ import AccountManage from "./AccountManage";
 import IPManage from "./IPManage";
 import {useTranslation} from "react-i18next";
 import AnnouncementNew from "./AnnouncementNew";
-
-
+import AnnouncementEdit from "./AnnouncementEdit"
+import AnnouncementInfo from "./AnnouncementInfo"
 export const Title = styled.h1(
     props => ({
         fontSize: "20px",
@@ -69,7 +69,7 @@ export default function Staff() {
                     <NormalButton link={"/user/staff/system-setting"}
                                   isLightOn={location.pathname === "/user/staff/system-setting"} text={t('system_setting')}/>
                     <NormalButton link={"/user/staff/announcement-manage"}
-                                  isLightOn={location.pathname === "/user/staff/announcement-manage" || location.pathname === "/user/staff/announcement-manage/new"} text={t('announcement_setting')}/>
+                                  isLightOn={location.pathname === "/user/staff/announcement-manage" || location.pathname === "/user/staff/announcement-manage/new" || location.pathname === "/user/staff/announcement-manage/edit" || location.pathname === "/user/staff/announcement-manage/info" } text={t('announcement_setting')}/>
                     <NormalButton link={"/user/staff/account-manage"}
                                   isLightOn={location.pathname === "/user/staff/account-manage"} text={t('account_setting')}/>
                     <NormalButton link={"/user/staff/ip-manage"} isLightOn={location.pathname === "/user/staff/ip-manage"}
@@ -89,6 +89,12 @@ export default function Staff() {
                     </Route>
                     <Route path="/user/staff/announcement-manage/new">
                         <AnnouncementNew/>
+                    </Route>
+                    <Route path="/user/staff/announcement-manage/edit">
+                        <AnnouncementEdit/>
+                    </Route>
+                    <Route path="/user/staff/announcement-manage/info">
+                        <AnnouncementInfo/>
                     </Route>
                     <Route path="/user/staff/announcement-manage">
                         <Announcement/>

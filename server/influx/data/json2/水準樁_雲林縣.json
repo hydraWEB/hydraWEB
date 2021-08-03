@@ -1,0 +1,7244 @@
+[
+    {
+        "measurement": "Yunlin_0",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "豐榮國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.311516,
+            "lat": 23.791421
+        }
+    },
+    {
+        "measurement": "Yunlin_1",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "二崙國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.415412,
+            "lat": 23.771849
+        }
+    },
+    {
+        "measurement": "Yunlin_2",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "二崙國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.415117,
+            "lat": 23.772101
+        }
+    },
+    {
+        "measurement": "Yunlin_3",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "鎮南國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.538626,
+            "lat": 23.698449
+        }
+    },
+    {
+        "measurement": "Yunlin_4",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "嘉興國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459651,
+            "lat": 23.64816
+        }
+    },
+    {
+        "measurement": "Yunlin_5",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "嘉興國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459378,
+            "lat": 23.647771
+        }
+    },
+    {
+        "measurement": "Yunlin_6",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "龍岩國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.306111,
+            "lat": 23.72271
+        }
+    },
+    {
+        "measurement": "Yunlin_7",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "燦林國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.246505,
+            "lat": 23.574926
+        }
+    },
+    {
+        "measurement": "Yunlin_8",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "燦林國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.247205,
+            "lat": 23.574189
+        }
+    },
+    {
+        "measurement": "Yunlin_9",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內寮派駐站監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354635,
+            "lat": 23.607631
+        }
+    },
+    {
+        "measurement": "Yunlin_10",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內寮派駐站GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.35487,
+            "lat": 23.607677
+        }
+    },
+    {
+        "measurement": "Yunlin_11",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "林內國中GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.592188,
+            "lat": 23.757554
+        }
+    },
+    {
+        "measurement": "Yunlin_12",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "林內國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.618444,
+            "lat": 23.75987
+        }
+    },
+    {
+        "measurement": "Yunlin_13",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "宜梧國中GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.194465,
+            "lat": 23.546394
+        }
+    },
+    {
+        "measurement": "Yunlin_14",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "東光國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.27276,
+            "lat": 23.651215
+        }
+    },
+    {
+        "measurement": "Yunlin_15",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "拯民國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.408475,
+            "lat": 23.70895
+        }
+    },
+    {
+        "measurement": "Yunlin_16",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "秀潭國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34958,
+            "lat": 23.65888
+        }
+    },
+    {
+        "measurement": "Yunlin_17",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "B05",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.3541,
+            "lat": 23.720471
+        }
+    },
+    {
+        "measurement": "Yunlin_18",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "DHWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.569439,
+            "lat": 23.68577
+        }
+    },
+    {
+        "measurement": "Yunlin_19",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GD16",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.221819,
+            "lat": 23.613099
+        }
+    },
+    {
+        "measurement": "Yunlin_20",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GFWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402433,
+            "lat": 23.74147
+        }
+    },
+    {
+        "measurement": "Yunlin_21",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GKWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.567447,
+            "lat": 23.644516
+        }
+    },
+    {
+        "measurement": "Yunlin_22",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GTWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.496982,
+            "lat": 23.756786
+        }
+    },
+    {
+        "measurement": "Yunlin_23",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "HLWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347825,
+            "lat": 23.686575
+        }
+    },
+    {
+        "measurement": "Yunlin_24",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "JMESWELL",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407179,
+            "lat": 23.709352
+        }
+    },
+    {
+        "measurement": "Yunlin_25",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "JMWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407248,
+            "lat": 23.709334
+        }
+    },
+    {
+        "measurement": "Yunlin_26",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "KJWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.538036,
+            "lat": 23.61242
+        }
+    },
+    {
+        "measurement": "Yunlin_27",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "LDWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354781,
+            "lat": 23.607667
+        }
+    },
+    {
+        "measurement": "Yunlin_28",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "LHWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.562504,
+            "lat": 23.768887
+        }
+    },
+    {
+        "measurement": "Yunlin_29",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3127",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.61746,
+            "lat": 23.764615
+        }
+    },
+    {
+        "measurement": "Yunlin_30",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3128",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.60839,
+            "lat": 23.747506
+        }
+    },
+    {
+        "measurement": "Yunlin_31",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部X119",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.53818,
+            "lat": 23.697057
+        }
+    },
+    {
+        "measurement": "Yunlin_32",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "P201",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.566341,
+            "lat": 23.670781
+        }
+    },
+    {
+        "measurement": "Yunlin_33",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "PDWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.640774,
+            "lat": 23.756032
+        }
+    },
+    {
+        "measurement": "Yunlin_34",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SHWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.210019,
+            "lat": 23.719342
+        }
+    },
+    {
+        "measurement": "Yunlin_35",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SLWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.586056,
+            "lat": 23.72048
+        }
+    },
+    {
+        "measurement": "Yunlin_36",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "STWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.349649,
+            "lat": 23.658808
+        }
+    },
+    {
+        "measurement": "Yunlin_37",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TKWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.643442,
+            "lat": 23.770449
+        }
+    },
+    {
+        "measurement": "Yunlin_38",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WCWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.511987,
+            "lat": 23.657815
+        }
+    },
+    {
+        "measurement": "Yunlin_39",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WTWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.598006,
+            "lat": 23.767232
+        }
+    },
+    {
+        "measurement": "Yunlin_40",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YJWS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308879,
+            "lat": 23.65334
+        }
+    },
+    {
+        "measurement": "Yunlin_41",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204246,
+            "lat": 23.768946
+        }
+    },
+    {
+        "measurement": "Yunlin_42",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲113-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204865,
+            "lat": 23.674891
+        }
+    },
+    {
+        "measurement": "Yunlin_43",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲113-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204865,
+            "lat": 23.674891
+        }
+    },
+    {
+        "measurement": "Yunlin_44",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲121-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.17734,
+            "lat": 23.603804
+        }
+    },
+    {
+        "measurement": "Yunlin_45",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲128",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.493304,
+            "lat": 23.670261
+        }
+    },
+    {
+        "measurement": "Yunlin_46",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲129",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.551392,
+            "lat": 23.629752
+        }
+    },
+    {
+        "measurement": "Yunlin_47",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲71-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358688,
+            "lat": 23.658538
+        }
+    },
+    {
+        "measurement": "Yunlin_48",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "左斷48",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559781,
+            "lat": 23.656513
+        }
+    },
+    {
+        "measurement": "Yunlin_49",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢1658",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.57967,
+            "lat": 23.721113
+        }
+    },
+    {
+        "measurement": "Yunlin_50",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢1658",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.57967,
+            "lat": 23.721113
+        }
+    },
+    {
+        "measurement": "Yunlin_51",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部061",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559547,
+            "lat": 23.714402
+        }
+    },
+    {
+        "measurement": "Yunlin_52",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢1661",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.506218,
+            "lat": 23.69062
+        }
+    },
+    {
+        "measurement": "Yunlin_53",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部044",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.312492,
+            "lat": 23.792554
+        }
+    },
+    {
+        "measurement": "Yunlin_54",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部045",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.292334,
+            "lat": 23.794847
+        }
+    },
+    {
+        "measurement": "Yunlin_55",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部046",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273106,
+            "lat": 23.797403
+        }
+    },
+    {
+        "measurement": "Yunlin_56",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部059",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.212096,
+            "lat": 23.574006
+        }
+    },
+    {
+        "measurement": "Yunlin_57",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部059A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.632152,
+            "lat": 23.769321
+        }
+    },
+    {
+        "measurement": "Yunlin_58",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部063",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_59",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.605896,
+            "lat": 23.743766
+        }
+    },
+    {
+        "measurement": "Yunlin_60",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.183337,
+            "lat": 23.586318
+        }
+    },
+    {
+        "measurement": "Yunlin_61",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.318822,
+            "lat": 23.654495
+        }
+    },
+    {
+        "measurement": "Yunlin_62",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土資42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.152832,
+            "lat": 23.629947
+        }
+    },
+    {
+        "measurement": "Yunlin_63",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土資123",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.147893,
+            "lat": 23.575338
+        }
+    },
+    {
+        "measurement": "Yunlin_64",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土資124",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.140604,
+            "lat": 23.558936
+        }
+    },
+    {
+        "measurement": "Yunlin_65",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土資49",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.158943,
+            "lat": 23.535416
+        }
+    },
+    {
+        "measurement": "Yunlin_66",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢8645",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229558,
+            "lat": 23.733779
+        }
+    },
+    {
+        "measurement": "Yunlin_67",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢8647",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.19995,
+            "lat": 23.717232
+        }
+    },
+    {
+        "measurement": "Yunlin_68",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢8650",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.178192,
+            "lat": 23.668161
+        }
+    },
+    {
+        "measurement": "Yunlin_69",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢8653",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.16469,
+            "lat": 23.617687
+        }
+    },
+    {
+        "measurement": "Yunlin_70",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢8657",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.168392,
+            "lat": 23.559024
+        }
+    },
+    {
+        "measurement": "Yunlin_71",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢8658",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.189159,
+            "lat": 23.546023
+        }
+    },
+    {
+        "measurement": "Yunlin_72",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.194471,
+            "lat": 23.577555
+        }
+    },
+    {
+        "measurement": "Yunlin_73",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM7",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.178077,
+            "lat": 23.642634
+        }
+    },
+    {
+        "measurement": "Yunlin_74",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM8",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.203775,
+            "lat": 23.639554
+        }
+    },
+    {
+        "measurement": "Yunlin_75",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM9",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225529,
+            "lat": 23.633731
+        }
+    },
+    {
+        "measurement": "Yunlin_76",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM12",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.279623,
+            "lat": 23.598831
+        }
+    },
+    {
+        "measurement": "Yunlin_77",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM15",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.268364,
+            "lat": 23.568945
+        }
+    },
+    {
+        "measurement": "Yunlin_78",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM15",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.268364,
+            "lat": 23.568945
+        }
+    },
+    {
+        "measurement": "Yunlin_79",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM16",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.232711,
+            "lat": 23.539562
+        }
+    },
+    {
+        "measurement": "Yunlin_80",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM20",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.251984,
+            "lat": 23.753655
+        }
+    },
+    {
+        "measurement": "Yunlin_81",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.19276,
+            "lat": 23.567315
+        }
+    },
+    {
+        "measurement": "Yunlin_82",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM23",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.260365,
+            "lat": 23.601513
+        }
+    },
+    {
+        "measurement": "Yunlin_83",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM24",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_84",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM25",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273192,
+            "lat": 23.624373
+        }
+    },
+    {
+        "measurement": "Yunlin_85",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM26",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34943,
+            "lat": 23.66948
+        }
+    },
+    {
+        "measurement": "Yunlin_86",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM27",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.210056,
+            "lat": 23.667532
+        }
+    },
+    {
+        "measurement": "Yunlin_87",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM28",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.178192,
+            "lat": 23.668206
+        }
+    },
+    {
+        "measurement": "Yunlin_88",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM29",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.155185,
+            "lat": 23.651278
+        }
+    },
+    {
+        "measurement": "Yunlin_89",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM30",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.252357,
+            "lat": 23.676148
+        }
+    },
+    {
+        "measurement": "Yunlin_90",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM30",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.252357,
+            "lat": 23.676148
+        }
+    },
+    {
+        "measurement": "Yunlin_91",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM33",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309652,
+            "lat": 23.763548
+        }
+    },
+    {
+        "measurement": "Yunlin_92",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "雲BM34",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.314715,
+            "lat": 23.62067
+        }
+    },
+    {
+        "measurement": "Yunlin_93",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "蔦松排水",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.166913,
+            "lat": 23.521644
+        }
+    },
+    {
+        "measurement": "Yunlin_94",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "左斷20",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.182634,
+            "lat": 23.699543
+        }
+    },
+    {
+        "measurement": "Yunlin_95",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "六輕BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.217771,
+            "lat": 23.797494
+        }
+    },
+    {
+        "measurement": "Yunlin_96",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "臺電台西1號",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.181754,
+            "lat": 23.680207
+        }
+    },
+    {
+        "measurement": "Yunlin_97",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "口湖BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.18023,
+            "lat": 23.58958
+        }
+    },
+    {
+        "measurement": "Yunlin_98",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "台西BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.198827,
+            "lat": 23.698914
+        }
+    },
+    {
+        "measurement": "Yunlin_99",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "豐榮114M",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.310932,
+            "lat": 23.792412
+        }
+    },
+    {
+        "measurement": "Yunlin_100",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "西螺井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.469307,
+            "lat": 23.793191
+        }
+    },
+    {
+        "measurement": "Yunlin_101",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "崙背112M",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.346423,
+            "lat": 23.763293
+        }
+    },
+    {
+        "measurement": "Yunlin_102",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "新興108M",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229608,
+            "lat": 23.733689
+        }
+    },
+    {
+        "measurement": "Yunlin_103",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "莿桐井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.502331,
+            "lat": 23.761418
+        }
+    },
+    {
+        "measurement": "Yunlin_104",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "莿桐井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.502331,
+            "lat": 23.761418
+        }
+    },
+    {
+        "measurement": "Yunlin_105",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "北港水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.301521,
+            "lat": 23.578768
+        }
+    },
+    {
+        "measurement": "Yunlin_106",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "安南水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.248963,
+            "lat": 23.703951
+        }
+    },
+    {
+        "measurement": "Yunlin_107",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "虎尾國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.431851,
+            "lat": 23.714203
+        }
+    },
+    {
+        "measurement": "Yunlin_108",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "海園BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.183877,
+            "lat": 23.720425
+        }
+    },
+    {
+        "measurement": "Yunlin_109",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "豐安國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_110",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "建陽國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.151594,
+            "lat": 23.633525
+        }
+    },
+    {
+        "measurement": "Yunlin_111",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "和豐水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.223416,
+            "lat": 23.739049
+        }
+    },
+    {
+        "measurement": "Yunlin_112",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "中山國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.467305,
+            "lat": 23.795767
+        }
+    },
+    {
+        "measurement": "Yunlin_113",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "龍岩農場BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308686,
+            "lat": 23.725404
+        }
+    },
+    {
+        "measurement": "Yunlin_114",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "金湖國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.153304,
+            "lat": 23.573372
+        }
+    },
+    {
+        "measurement": "Yunlin_115",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "油車國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.392123,
+            "lat": 23.7965
+        }
+    },
+    {
+        "measurement": "Yunlin_116",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "海豐國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.226434,
+            "lat": 23.764508
+        }
+    },
+    {
+        "measurement": "Yunlin_117",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "文光國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.189742,
+            "lat": 23.541945
+        }
+    },
+    {
+        "measurement": "Yunlin_118",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "南光國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.219295,
+            "lat": 23.612255
+        }
+    },
+    {
+        "measurement": "Yunlin_119",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.153255,
+            "lat": 23.573372
+        }
+    },
+    {
+        "measurement": "Yunlin_120",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.153255,
+            "lat": 23.573372
+        }
+    },
+    {
+        "measurement": "Yunlin_121",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井4",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.152297,
+            "lat": 23.634026
+        }
+    },
+    {
+        "measurement": "Yunlin_122",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井5",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_123",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井6",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.222366,
+            "lat": 23.739197
+        }
+    },
+    {
+        "measurement": "Yunlin_124",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井7",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.226444,
+            "lat": 23.764436
+        }
+    },
+    {
+        "measurement": "Yunlin_125",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "能資所井8",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.233254,
+            "lat": 23.789283
+        }
+    },
+    {
+        "measurement": "Yunlin_126",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "BM320",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_127",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG036",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_128",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG047",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.338517,
+            "lat": 23.720279
+        }
+    },
+    {
+        "measurement": "Yunlin_129",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG064",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_130",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG065",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.391811,
+            "lat": 23.796165
+        }
+    },
+    {
+        "measurement": "Yunlin_131",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG066",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_132",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG069",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.431223,
+            "lat": 23.714209
+        }
+    },
+    {
+        "measurement": "Yunlin_133",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG071",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.199726,
+            "lat": 23.652743
+        }
+    },
+    {
+        "measurement": "Yunlin_134",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG073",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.301197,
+            "lat": 23.565899
+        }
+    },
+    {
+        "measurement": "Yunlin_135",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG074",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.400903,
+            "lat": 23.634065
+        }
+    },
+    {
+        "measurement": "Yunlin_136",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "CGSG078",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.183794,
+            "lat": 23.586835
+        }
+    },
+    {
+        "measurement": "Yunlin_137",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "M002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.216707,
+            "lat": 23.599339
+        }
+    },
+    {
+        "measurement": "Yunlin_138",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "M003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309336,
+            "lat": 23.79738
+        }
+    },
+    {
+        "measurement": "Yunlin_139",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WR21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.27965,
+            "lat": 23.5994
+        }
+    },
+    {
+        "measurement": "Yunlin_140",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資檢07",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.181534,
+            "lat": 23.679311
+        }
+    },
+    {
+        "measurement": "Yunlin_141",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資檢09",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.151535,
+            "lat": 23.633543
+        }
+    },
+    {
+        "measurement": "Yunlin_142",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資檢10",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.193996,
+            "lat": 23.546256
+        }
+    },
+    {
+        "measurement": "Yunlin_143",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資檢12",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_144",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲07",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.45183,
+            "lat": 23.800173
+        }
+    },
+    {
+        "measurement": "Yunlin_145",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲07",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.45183,
+            "lat": 23.800173
+        }
+    },
+    {
+        "measurement": "Yunlin_146",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲08",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.418974,
+            "lat": 23.796053
+        }
+    },
+    {
+        "measurement": "Yunlin_147",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲09",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.370166,
+            "lat": 23.787491
+        }
+    },
+    {
+        "measurement": "Yunlin_148",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲10",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_149",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲12",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.32662,
+            "lat": 23.718656
+        }
+    },
+    {
+        "measurement": "Yunlin_150",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲13",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289638,
+            "lat": 23.720207
+        }
+    },
+    {
+        "measurement": "Yunlin_151",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲13",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289638,
+            "lat": 23.720207
+        }
+    },
+    {
+        "measurement": "Yunlin_152",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲14",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.267343,
+            "lat": 23.720807
+        }
+    },
+    {
+        "measurement": "Yunlin_153",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲15",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.313288,
+            "lat": 23.695058
+        }
+    },
+    {
+        "measurement": "Yunlin_154",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲16",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.31294,
+            "lat": 23.678966
+        }
+    },
+    {
+        "measurement": "Yunlin_155",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲17",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.228561,
+            "lat": 23.671526
+        }
+    },
+    {
+        "measurement": "Yunlin_156",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲17",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.228561,
+            "lat": 23.671526
+        }
+    },
+    {
+        "measurement": "Yunlin_157",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲18",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.166013,
+            "lat": 23.555626
+        }
+    },
+    {
+        "measurement": "Yunlin_158",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲19",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.302139,
+            "lat": 23.593453
+        }
+    },
+    {
+        "measurement": "Yunlin_159",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲20",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.336514,
+            "lat": 23.658608
+        }
+    },
+    {
+        "measurement": "Yunlin_160",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲24",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.462387,
+            "lat": 23.662175
+        }
+    },
+    {
+        "measurement": "Yunlin_161",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲25",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.449429,
+            "lat": 23.654743
+        }
+    },
+    {
+        "measurement": "Yunlin_162",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲26",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.43156,
+            "lat": 23.645387
+        }
+    },
+    {
+        "measurement": "Yunlin_163",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲26",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.43156,
+            "lat": 23.645387
+        }
+    },
+    {
+        "measurement": "Yunlin_164",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲27",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.409487,
+            "lat": 23.627814
+        }
+    },
+    {
+        "measurement": "Yunlin_165",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲28",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.399828,
+            "lat": 23.609555
+        }
+    },
+    {
+        "measurement": "Yunlin_166",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲30",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364599,
+            "lat": 23.585459
+        }
+    },
+    {
+        "measurement": "Yunlin_167",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲30",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364599,
+            "lat": 23.585459
+        }
+    },
+    {
+        "measurement": "Yunlin_168",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲31",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.336587,
+            "lat": 23.558479
+        }
+    },
+    {
+        "measurement": "Yunlin_169",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲32",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.316572,
+            "lat": 23.561083
+        }
+    },
+    {
+        "measurement": "Yunlin_170",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲33",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.189754,
+            "lat": 23.700881
+        }
+    },
+    {
+        "measurement": "Yunlin_171",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲34",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.238069,
+            "lat": 23.609116
+        }
+    },
+    {
+        "measurement": "Yunlin_172",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲35",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.191115,
+            "lat": 23.576905
+        }
+    },
+    {
+        "measurement": "Yunlin_173",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水資雲36",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.239659,
+            "lat": 23.573006
+        }
+    },
+    {
+        "measurement": "Yunlin_174",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲11-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.30668,
+            "lat": 23.743011
+        }
+    },
+    {
+        "measurement": "Yunlin_175",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲21-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.374317,
+            "lat": 23.663984
+        }
+    },
+    {
+        "measurement": "Yunlin_176",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲23-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.422789,
+            "lat": 23.69639
+        }
+    },
+    {
+        "measurement": "Yunlin_177",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲29-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_178",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲29-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.387749,
+            "lat": 23.596243
+        }
+    },
+    {
+        "measurement": "Yunlin_179",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲37",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.396353,
+            "lat": 23.67925
+        }
+    },
+    {
+        "measurement": "Yunlin_180",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲38",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.26281,
+            "lat": 23.750808
+        }
+    },
+    {
+        "measurement": "Yunlin_181",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲39",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.285928,
+            "lat": 23.567166
+        }
+    },
+    {
+        "measurement": "Yunlin_182",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲40",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.510094,
+            "lat": 23.692338
+        }
+    },
+    {
+        "measurement": "Yunlin_183",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲41-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352093,
+            "lat": 23.576513
+        }
+    },
+    {
+        "measurement": "Yunlin_184",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.462946,
+            "lat": 23.822497
+        }
+    },
+    {
+        "measurement": "Yunlin_185",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲43",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.447384,
+            "lat": 23.788879
+        }
+    },
+    {
+        "measurement": "Yunlin_186",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲44",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.443989,
+            "lat": 23.775016
+        }
+    },
+    {
+        "measurement": "Yunlin_187",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲45",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.43336,
+            "lat": 23.755311
+        }
+    },
+    {
+        "measurement": "Yunlin_188",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲46",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.374156,
+            "lat": 23.755489
+        }
+    },
+    {
+        "measurement": "Yunlin_189",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲47",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.399431,
+            "lat": 23.752257
+        }
+    },
+    {
+        "measurement": "Yunlin_190",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲48",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.410567,
+            "lat": 23.749772
+        }
+    },
+    {
+        "measurement": "Yunlin_191",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲48",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.410567,
+            "lat": 23.749772
+        }
+    },
+    {
+        "measurement": "Yunlin_192",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲49-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.413891,
+            "lat": 23.74992
+        }
+    },
+    {
+        "measurement": "Yunlin_193",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲49-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.413891,
+            "lat": 23.74992
+        }
+    },
+    {
+        "measurement": "Yunlin_194",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲50",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.418244,
+            "lat": 23.748474
+        }
+    },
+    {
+        "measurement": "Yunlin_195",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲51",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.421297,
+            "lat": 23.745605
+        }
+    },
+    {
+        "measurement": "Yunlin_196",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲52",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.42253,
+            "lat": 23.744056
+        }
+    },
+    {
+        "measurement": "Yunlin_197",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲52",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.42253,
+            "lat": 23.744056
+        }
+    },
+    {
+        "measurement": "Yunlin_198",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲53",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.425728,
+            "lat": 23.739662
+        }
+    },
+    {
+        "measurement": "Yunlin_199",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲54",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.439113,
+            "lat": 23.729164
+        }
+    },
+    {
+        "measurement": "Yunlin_200",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲55",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.442314,
+            "lat": 23.718909
+        }
+    },
+    {
+        "measurement": "Yunlin_201",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲56",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.411537,
+            "lat": 23.712754
+        }
+    },
+    {
+        "measurement": "Yunlin_202",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲57",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.406546,
+            "lat": 23.710478
+        }
+    },
+    {
+        "measurement": "Yunlin_203",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.404443,
+            "lat": 23.709278
+        }
+    },
+    {
+        "measurement": "Yunlin_204",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲58",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.404443,
+            "lat": 23.709278
+        }
+    },
+    {
+        "measurement": "Yunlin_205",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲59",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.397312,
+            "lat": 23.707426
+        }
+    },
+    {
+        "measurement": "Yunlin_206",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.392926,
+            "lat": 23.708077
+        }
+    },
+    {
+        "measurement": "Yunlin_207",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲60",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.392926,
+            "lat": 23.708077
+        }
+    },
+    {
+        "measurement": "Yunlin_208",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.377941,
+            "lat": 23.691593
+        }
+    },
+    {
+        "measurement": "Yunlin_209",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.377941,
+            "lat": 23.691593
+        }
+    },
+    {
+        "measurement": "Yunlin_210",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲62",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.382349,
+            "lat": 23.688532
+        }
+    },
+    {
+        "measurement": "Yunlin_211",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲63-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.384956,
+            "lat": 23.686537
+        }
+    },
+    {
+        "measurement": "Yunlin_212",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲64",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.386372,
+            "lat": 23.685766
+        }
+    },
+    {
+        "measurement": "Yunlin_213",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲65",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.388417,
+            "lat": 23.684402
+        }
+    },
+    {
+        "measurement": "Yunlin_214",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲66",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.391524,
+            "lat": 23.680514
+        }
+    },
+    {
+        "measurement": "Yunlin_215",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲67",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.37094,
+            "lat": 23.662977
+        }
+    },
+    {
+        "measurement": "Yunlin_216",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲68",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36947,
+            "lat": 23.662872
+        }
+    },
+    {
+        "measurement": "Yunlin_217",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲69",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36575,
+            "lat": 23.661908
+        }
+    },
+    {
+        "measurement": "Yunlin_218",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲70",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.362873,
+            "lat": 23.66075
+        }
+    },
+    {
+        "measurement": "Yunlin_219",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲71",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.359011,
+            "lat": 23.658693
+        }
+    },
+    {
+        "measurement": "Yunlin_220",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲72",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347663,
+            "lat": 23.646185
+        }
+    },
+    {
+        "measurement": "Yunlin_221",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲73",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.33744,
+            "lat": 23.634494
+        }
+    },
+    {
+        "measurement": "Yunlin_222",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲74",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.33417,
+            "lat": 23.618317
+        }
+    },
+    {
+        "measurement": "Yunlin_223",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲75",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.326141,
+            "lat": 23.597694
+        }
+    },
+    {
+        "measurement": "Yunlin_224",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲76",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354595,
+            "lat": 23.607676
+        }
+    },
+    {
+        "measurement": "Yunlin_225",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲77-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.3569,
+            "lat": 23.625374
+        }
+    },
+    {
+        "measurement": "Yunlin_226",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲78-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.367802,
+            "lat": 23.638756
+        }
+    },
+    {
+        "measurement": "Yunlin_227",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲79-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.378882,
+            "lat": 23.652264
+        }
+    },
+    {
+        "measurement": "Yunlin_228",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲80",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.377107,
+            "lat": 23.795032
+        }
+    },
+    {
+        "measurement": "Yunlin_229",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲81",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.244206,
+            "lat": 23.797562
+        }
+    },
+    {
+        "measurement": "Yunlin_230",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲82",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.399016,
+            "lat": 23.838298
+        }
+    },
+    {
+        "measurement": "Yunlin_231",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲83-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225027,
+            "lat": 23.510566
+        }
+    },
+    {
+        "measurement": "Yunlin_232",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲83-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225027,
+            "lat": 23.510566
+        }
+    },
+    {
+        "measurement": "Yunlin_233",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲84-3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.19394,
+            "lat": 23.516792
+        }
+    },
+    {
+        "measurement": "Yunlin_234",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲85",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.218301,
+            "lat": 23.74491
+        }
+    },
+    {
+        "measurement": "Yunlin_235",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲85",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.218301,
+            "lat": 23.74491
+        }
+    },
+    {
+        "measurement": "Yunlin_236",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲86",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.215859,
+            "lat": 23.723507
+        }
+    },
+    {
+        "measurement": "Yunlin_237",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲87",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.189096,
+            "lat": 23.702638
+        }
+    },
+    {
+        "measurement": "Yunlin_238",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲88",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.611742,
+            "lat": 23.760332
+        }
+    },
+    {
+        "measurement": "Yunlin_239",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲89",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.598206,
+            "lat": 23.768957
+        }
+    },
+    {
+        "measurement": "Yunlin_240",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲90",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.57606,
+            "lat": 23.766776
+        }
+    },
+    {
+        "measurement": "Yunlin_241",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲91",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.555989,
+            "lat": 23.768859
+        }
+    },
+    {
+        "measurement": "Yunlin_242",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲92",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.529519,
+            "lat": 23.774253
+        }
+    },
+    {
+        "measurement": "Yunlin_243",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲93",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.518963,
+            "lat": 23.77925
+        }
+    },
+    {
+        "measurement": "Yunlin_244",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲94",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.504876,
+            "lat": 23.788759
+        }
+    },
+    {
+        "measurement": "Yunlin_245",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲95",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.486987,
+            "lat": 23.79159
+        }
+    },
+    {
+        "measurement": "Yunlin_246",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲96",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.406519,
+            "lat": 23.738036
+        }
+    },
+    {
+        "measurement": "Yunlin_247",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲97",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.410913,
+            "lat": 23.736075
+        }
+    },
+    {
+        "measurement": "Yunlin_248",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲98",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.413851,
+            "lat": 23.734949
+        }
+    },
+    {
+        "measurement": "Yunlin_249",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲99",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.416866,
+            "lat": 23.733985
+        }
+    },
+    {
+        "measurement": "Yunlin_250",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲100",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.419808,
+            "lat": 23.734095
+        }
+    },
+    {
+        "measurement": "Yunlin_251",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲101",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.427835,
+            "lat": 23.73557
+        }
+    },
+    {
+        "measurement": "Yunlin_252",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_253",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204128,
+            "lat": 23.76891
+        }
+    },
+    {
+        "measurement": "Yunlin_254",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲103",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.201502,
+            "lat": 23.758765
+        }
+    },
+    {
+        "measurement": "Yunlin_255",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲106",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.351701,
+            "lat": 23.572529
+        }
+    },
+    {
+        "measurement": "Yunlin_256",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲107",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.409001,
+            "lat": 23.74452
+        }
+    },
+    {
+        "measurement": "Yunlin_257",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲108",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.421261,
+            "lat": 23.722633
+        }
+    },
+    {
+        "measurement": "Yunlin_258",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲109",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.404915,
+            "lat": 23.726228
+        }
+    },
+    {
+        "measurement": "Yunlin_259",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲110",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.401521,
+            "lat": 23.73492
+        }
+    },
+    {
+        "measurement": "Yunlin_260",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲111",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.323447,
+            "lat": 23.767068
+        }
+    },
+    {
+        "measurement": "Yunlin_261",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲112",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.510959,
+            "lat": 23.746953
+        }
+    },
+    {
+        "measurement": "Yunlin_262",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲113",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204182,
+            "lat": 23.675971
+        }
+    },
+    {
+        "measurement": "Yunlin_263",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲114",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.253267,
+            "lat": 23.69366
+        }
+    },
+    {
+        "measurement": "Yunlin_264",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲115",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.295097,
+            "lat": 23.618505
+        }
+    },
+    {
+        "measurement": "Yunlin_265",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲116",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.173084,
+            "lat": 23.538661
+        }
+    },
+    {
+        "measurement": "Yunlin_266",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲117",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.236544,
+            "lat": 23.552575
+        }
+    },
+    {
+        "measurement": "Yunlin_267",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲118",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34057,
+            "lat": 23.711845
+        }
+    },
+    {
+        "measurement": "Yunlin_268",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲118",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34057,
+            "lat": 23.711845
+        }
+    },
+    {
+        "measurement": "Yunlin_269",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲119",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.240874,
+            "lat": 23.761375
+        }
+    },
+    {
+        "measurement": "Yunlin_270",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲120",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.234052,
+            "lat": 23.679797
+        }
+    },
+    {
+        "measurement": "Yunlin_271",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲121",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.17733,
+            "lat": 23.603804
+        }
+    },
+    {
+        "measurement": "Yunlin_272",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲122",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.231119,
+            "lat": 23.523644
+        }
+    },
+    {
+        "measurement": "Yunlin_273",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲123",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.353803,
+            "lat": 23.760769
+        }
+    },
+    {
+        "measurement": "Yunlin_274",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲124",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.359861,
+            "lat": 23.717678
+        }
+    },
+    {
+        "measurement": "Yunlin_275",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲125",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.353396,
+            "lat": 23.68621
+        }
+    },
+    {
+        "measurement": "Yunlin_276",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲126",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.298112,
+            "lat": 23.565849
+        }
+    },
+    {
+        "measurement": "Yunlin_277",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲127",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.525651,
+            "lat": 23.71265
+        }
+    },
+    {
+        "measurement": "Yunlin_278",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GP013",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.419639,
+            "lat": 23.636882
+        }
+    },
+    {
+        "measurement": "Yunlin_279",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢9029",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.617845,
+            "lat": 23.760112
+        }
+    },
+    {
+        "measurement": "Yunlin_280",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢9031",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.594161,
+            "lat": 23.732051
+        }
+    },
+    {
+        "measurement": "Yunlin_281",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢9032",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.526747,
+            "lat": 23.699677
+        }
+    },
+    {
+        "measurement": "Yunlin_282",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "陸檢9033",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.486413,
+            "lat": 23.685083
+        }
+    },
+    {
+        "measurement": "Yunlin_283",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G037",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.26281,
+            "lat": 23.750754
+        }
+    },
+    {
+        "measurement": "Yunlin_284",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G043",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.181111,
+            "lat": 23.679589
+        }
+    },
+    {
+        "measurement": "Yunlin_285",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G044",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.178192,
+            "lat": 23.668215
+        }
+    },
+    {
+        "measurement": "Yunlin_286",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G045",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.172821,
+            "lat": 23.64303
+        }
+    },
+    {
+        "measurement": "Yunlin_287",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G046",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.16469,
+            "lat": 23.617705
+        }
+    },
+    {
+        "measurement": "Yunlin_288",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G047",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.161471,
+            "lat": 23.606112
+        }
+    },
+    {
+        "measurement": "Yunlin_289",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G048",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.153065,
+            "lat": 23.587628
+        }
+    },
+    {
+        "measurement": "Yunlin_290",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G048-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.153197,
+            "lat": 23.588523
+        }
+    },
+    {
+        "measurement": "Yunlin_291",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G049",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.153265,
+            "lat": 23.573354
+        }
+    },
+    {
+        "measurement": "Yunlin_292",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G050",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.16843,
+            "lat": 23.559115
+        }
+    },
+    {
+        "measurement": "Yunlin_293",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G051",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.189198,
+            "lat": 23.546014
+        }
+    },
+    {
+        "measurement": "Yunlin_294",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部1111",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.470298,
+            "lat": 23.790919
+        }
+    },
+    {
+        "measurement": "Yunlin_295",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部1112",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.474669,
+            "lat": 23.782392
+        }
+    },
+    {
+        "measurement": "Yunlin_296",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部1113",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.481079,
+            "lat": 23.771921
+        }
+    },
+    {
+        "measurement": "Yunlin_297",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部1114",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.496389,
+            "lat": 23.76064
+        }
+    },
+    {
+        "measurement": "Yunlin_298",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部1119",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479595,
+            "lat": 23.693449
+        }
+    },
+    {
+        "measurement": "Yunlin_299",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部1120",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.475401,
+            "lat": 23.66817
+        }
+    },
+    {
+        "measurement": "Yunlin_300",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3126",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.632162,
+            "lat": 23.769294
+        }
+    },
+    {
+        "measurement": "Yunlin_301",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3129",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.595003,
+            "lat": 23.732405
+        }
+    },
+    {
+        "measurement": "Yunlin_302",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3130",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.581551,
+            "lat": 23.721552
+        }
+    },
+    {
+        "measurement": "Yunlin_303",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3131",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.571617,
+            "lat": 23.718265
+        }
+    },
+    {
+        "measurement": "Yunlin_304",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部3132",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.55333,
+            "lat": 23.702691
+        }
+    },
+    {
+        "measurement": "Yunlin_305",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F021",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.356716,
+            "lat": 23.701087
+        }
+    },
+    {
+        "measurement": "Yunlin_306",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F022",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.373715,
+            "lat": 23.706141
+        }
+    },
+    {
+        "measurement": "Yunlin_307",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F023",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.386991,
+            "lat": 23.708415
+        }
+    },
+    {
+        "measurement": "Yunlin_308",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F024",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.400492,
+            "lat": 23.707014
+        }
+    },
+    {
+        "measurement": "Yunlin_309",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F025",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.420225,
+            "lat": 23.71741
+        }
+    },
+    {
+        "measurement": "Yunlin_310",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F026",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.43615,
+            "lat": 23.717948
+        }
+    },
+    {
+        "measurement": "Yunlin_311",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F027",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.445236,
+            "lat": 23.709854
+        }
+    },
+    {
+        "measurement": "Yunlin_312",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F028",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.458322,
+            "lat": 23.701837
+        }
+    },
+    {
+        "measurement": "Yunlin_313",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F029",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.470328,
+            "lat": 23.693616
+        }
+    },
+    {
+        "measurement": "Yunlin_314",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F030",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.49379,
+            "lat": 23.684006
+        }
+    },
+    {
+        "measurement": "Yunlin_315",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F031",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.508733,
+            "lat": 23.691765
+        }
+    },
+    {
+        "measurement": "Yunlin_316",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部F032",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.522605,
+            "lat": 23.695276
+        }
+    },
+    {
+        "measurement": "Yunlin_317",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G032",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.28193,
+            "lat": 23.809553
+        }
+    },
+    {
+        "measurement": "Yunlin_318",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G033",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.278942,
+            "lat": 23.797972
+        }
+    },
+    {
+        "measurement": "Yunlin_319",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G040",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229598,
+            "lat": 23.733761
+        }
+    },
+    {
+        "measurement": "Yunlin_320",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G041",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.208716,
+            "lat": 23.720816
+        }
+    },
+    {
+        "measurement": "Yunlin_321",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I017",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.399311,
+            "lat": 23.838172
+        }
+    },
+    {
+        "measurement": "Yunlin_322",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I018",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.396869,
+            "lat": 23.816501
+        }
+    },
+    {
+        "measurement": "Yunlin_323",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I019",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.386575,
+            "lat": 23.801562
+        }
+    },
+    {
+        "measurement": "Yunlin_324",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I020",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.367216,
+            "lat": 23.782766
+        }
+    },
+    {
+        "measurement": "Yunlin_325",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I021",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.361046,
+            "lat": 23.772257
+        }
+    },
+    {
+        "measurement": "Yunlin_326",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I023",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347606,
+            "lat": 23.744471
+        }
+    },
+    {
+        "measurement": "Yunlin_327",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I024",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.340662,
+            "lat": 23.726753
+        }
+    },
+    {
+        "measurement": "Yunlin_328",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I025",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.325456,
+            "lat": 23.716069
+        }
+    },
+    {
+        "measurement": "Yunlin_329",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I027",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.313225,
+            "lat": 23.671346
+        }
+    },
+    {
+        "measurement": "Yunlin_330",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I028",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.318049,
+            "lat": 23.654356
+        }
+    },
+    {
+        "measurement": "Yunlin_331",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I029",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.310278,
+            "lat": 23.63331
+        }
+    },
+    {
+        "measurement": "Yunlin_332",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I030",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.307661,
+            "lat": 23.612738
+        }
+    },
+    {
+        "measurement": "Yunlin_333",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I031",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.30138,
+            "lat": 23.592492
+        }
+    },
+    {
+        "measurement": "Yunlin_334",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部I032",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.300004,
+            "lat": 23.571113
+        }
+    },
+    {
+        "measurement": "Yunlin_335",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部X113",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.479893,
+            "lat": 23.680131
+        }
+    },
+    {
+        "measurement": "Yunlin_336",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "大東堤防0+00",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459795,
+            "lat": 23.698961
+        }
+    },
+    {
+        "measurement": "Yunlin_337",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WR4K",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.517748,
+            "lat": 23.73343
+        }
+    },
+    {
+        "measurement": "Yunlin_338",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "北港NO21",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.299212,
+            "lat": 23.583742
+        }
+    },
+    {
+        "measurement": "Yunlin_339",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "北港NO27",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308361,
+            "lat": 23.589589
+        }
+    },
+    {
+        "measurement": "Yunlin_340",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "中興國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.206972,
+            "lat": 23.518539
+        }
+    },
+    {
+        "measurement": "Yunlin_341",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "大溝BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.210878,
+            "lat": 23.566316
+        }
+    },
+    {
+        "measurement": "Yunlin_342",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "斗南NO05",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.481155,
+            "lat": 23.68586
+        }
+    },
+    {
+        "measurement": "Yunlin_343",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "G5124",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364318,
+            "lat": 23.700603
+        }
+    },
+    {
+        "measurement": "Yunlin_344",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GP036",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.382106,
+            "lat": 23.800298
+        }
+    },
+    {
+        "measurement": "Yunlin_345",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "GP036",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.382106,
+            "lat": 23.800298
+        }
+    },
+    {
+        "measurement": "Yunlin_346",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "舊庄國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.399941,
+            "lat": 23.634233
+        }
+    },
+    {
+        "measurement": "Yunlin_347",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "嘉興國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.459552,
+            "lat": 23.648196
+        }
+    },
+    {
+        "measurement": "Yunlin_348",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "明德國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.199263,
+            "lat": 23.653111
+        }
+    },
+    {
+        "measurement": "Yunlin_349",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "馬光農場BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.373991,
+            "lat": 23.718142
+        }
+    },
+    {
+        "measurement": "Yunlin_350",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "馬光農場BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.373991,
+            "lat": 23.718142
+        }
+    },
+    {
+        "measurement": "Yunlin_351",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "尚義BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.451886,
+            "lat": 23.634272
+        }
+    },
+    {
+        "measurement": "Yunlin_352",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "東光國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273058,
+            "lat": 23.652228
+        }
+    },
+    {
+        "measurement": "Yunlin_353",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "東光國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273058,
+            "lat": 23.652228
+        }
+    },
+    {
+        "measurement": "Yunlin_354",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土庫NO05",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.388639,
+            "lat": 23.672664
+        }
+    },
+    {
+        "measurement": "Yunlin_355",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "吳厝國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.431034,
+            "lat": 23.751095
+        }
+    },
+    {
+        "measurement": "Yunlin_356",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WRA01",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.334265,
+            "lat": 23.62666
+        }
+    },
+    {
+        "measurement": "Yunlin_357",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WRA02",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.277604,
+            "lat": 23.640168
+        }
+    },
+    {
+        "measurement": "Yunlin_358",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "WRA03",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.246084,
+            "lat": 23.573263
+        }
+    },
+    {
+        "measurement": "Yunlin_359",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "左斷61",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.355097,
+            "lat": 23.59314
+        }
+    },
+    {
+        "measurement": "Yunlin_360",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRCH14",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.465072,
+            "lat": 23.835381
+        }
+    },
+    {
+        "measurement": "Yunlin_361",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRCY02",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.329654,
+            "lat": 23.554232
+        }
+    },
+    {
+        "measurement": "Yunlin_362",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRYL03",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.431705,
+            "lat": 23.792913
+        }
+    },
+    {
+        "measurement": "Yunlin_363",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRYL08-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.419251,
+            "lat": 23.744649
+        }
+    },
+    {
+        "measurement": "Yunlin_364",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRYL11",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.411195,
+            "lat": 23.723552
+        }
+    },
+    {
+        "measurement": "Yunlin_365",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRYL15-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.39044,
+            "lat": 23.692221
+        }
+    },
+    {
+        "measurement": "Yunlin_366",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "THSRYL19",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.368721,
+            "lat": 23.663781
+        }
+    },
+    {
+        "measurement": "Yunlin_367",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "PMB003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402906,
+            "lat": 23.708667
+        }
+    },
+    {
+        "measurement": "Yunlin_368",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "虎尾國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.431193,
+            "lat": 23.714408
+        }
+    },
+    {
+        "measurement": "Yunlin_369",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "虎尾國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.431591,
+            "lat": 23.715294
+        }
+    },
+    {
+        "measurement": "Yunlin_370",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "客厝國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.334555,
+            "lat": 23.627438
+        }
+    },
+    {
+        "measurement": "Yunlin_371",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "客厝國小水位井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.333723,
+            "lat": 23.627073
+        }
+    },
+    {
+        "measurement": "Yunlin_372",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "林內國中",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.592159,
+            "lat": 23.757455
+        }
+    },
+    {
+        "measurement": "Yunlin_373",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "龍岩國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.307094,
+            "lat": 23.722272
+        }
+    },
+    {
+        "measurement": "Yunlin_374",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "P067",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.632152,
+            "lat": 23.769285
+        }
+    },
+    {
+        "measurement": "Yunlin_375",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "西螺NO27",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.434866,
+            "lat": 23.79715
+        }
+    },
+    {
+        "measurement": "Yunlin_376",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土庫國中GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.389824,
+            "lat": 23.687604
+        }
+    },
+    {
+        "measurement": "Yunlin_377",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "土庫國中監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.389822,
+            "lat": 23.688056
+        }
+    },
+    {
+        "measurement": "Yunlin_378",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "元長國小BM",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_379",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "元長國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309793,
+            "lat": 23.652793
+        }
+    },
+    {
+        "measurement": "Yunlin_380",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "元長國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308791,
+            "lat": 23.65334
+        }
+    },
+    {
+        "measurement": "Yunlin_381",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YD32",
+            "monitor": "LEVEL"
+        },
+        "fields": {}
+    },
+    {
+        "measurement": "Yunlin_382",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "中科GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.408287,
+            "lat": 23.73984
+        }
+    },
+    {
+        "measurement": "Yunlin_383",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "鎮南國小GPS",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.539809,
+            "lat": 23.699428
+        }
+    },
+    {
+        "measurement": "Yunlin_384",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "光復國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402502,
+            "lat": 23.741325
+        }
+    },
+    {
+        "measurement": "Yunlin_385",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "豐榮國小監測井",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.311,
+            "lat": 23.790751
+        }
+    },
+    {
+        "measurement": "Yunlin_386",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G035A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.265402,
+            "lat": 23.773231
+        }
+    },
+    {
+        "measurement": "Yunlin_387",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G035A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.265402,
+            "lat": 23.773231
+        }
+    },
+    {
+        "measurement": "Yunlin_388",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G035A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.265402,
+            "lat": 23.773231
+        }
+    },
+    {
+        "measurement": "Yunlin_389",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "內部G035A",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.265402,
+            "lat": 23.773231
+        }
+    },
+    {
+        "measurement": "Yunlin_390",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224617,
+            "lat": 23.630467
+        }
+    },
+    {
+        "measurement": "Yunlin_391",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224617,
+            "lat": 23.630467
+        }
+    },
+    {
+        "measurement": "Yunlin_392",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224617,
+            "lat": 23.630467
+        }
+    },
+    {
+        "measurement": "Yunlin_393",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224617,
+            "lat": 23.630467
+        }
+    },
+    {
+        "measurement": "Yunlin_394",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224069,
+            "lat": 23.627015
+        }
+    },
+    {
+        "measurement": "Yunlin_395",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224069,
+            "lat": 23.627015
+        }
+    },
+    {
+        "measurement": "Yunlin_396",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224069,
+            "lat": 23.627015
+        }
+    },
+    {
+        "measurement": "Yunlin_397",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224069,
+            "lat": 23.627015
+        }
+    },
+    {
+        "measurement": "Yunlin_398",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.223266,
+            "lat": 23.621828
+        }
+    },
+    {
+        "measurement": "Yunlin_399",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.223266,
+            "lat": 23.621828
+        }
+    },
+    {
+        "measurement": "Yunlin_400",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.223266,
+            "lat": 23.621828
+        }
+    },
+    {
+        "measurement": "Yunlin_401",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.223266,
+            "lat": 23.621828
+        }
+    },
+    {
+        "measurement": "Yunlin_402",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.222662,
+            "lat": 23.618024
+        }
+    },
+    {
+        "measurement": "Yunlin_403",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.222662,
+            "lat": 23.618024
+        }
+    },
+    {
+        "measurement": "Yunlin_404",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.222662,
+            "lat": 23.618024
+        }
+    },
+    {
+        "measurement": "Yunlin_405",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SH004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.222662,
+            "lat": 23.618024
+        }
+    },
+    {
+        "measurement": "Yunlin_406",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.215839,
+            "lat": 23.572291
+        }
+    },
+    {
+        "measurement": "Yunlin_407",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.215839,
+            "lat": 23.572291
+        }
+    },
+    {
+        "measurement": "Yunlin_408",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.215839,
+            "lat": 23.572291
+        }
+    },
+    {
+        "measurement": "Yunlin_409",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.215839,
+            "lat": 23.572291
+        }
+    },
+    {
+        "measurement": "Yunlin_410",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.221335,
+            "lat": 23.570513
+        }
+    },
+    {
+        "measurement": "Yunlin_411",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.221335,
+            "lat": 23.570513
+        }
+    },
+    {
+        "measurement": "Yunlin_412",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.221335,
+            "lat": 23.570513
+        }
+    },
+    {
+        "measurement": "Yunlin_413",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.221335,
+            "lat": 23.570513
+        }
+    },
+    {
+        "measurement": "Yunlin_414",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225405,
+            "lat": 23.569658
+        }
+    },
+    {
+        "measurement": "Yunlin_415",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225405,
+            "lat": 23.569658
+        }
+    },
+    {
+        "measurement": "Yunlin_416",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225405,
+            "lat": 23.569658
+        }
+    },
+    {
+        "measurement": "Yunlin_417",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.225405,
+            "lat": 23.569658
+        }
+    },
+    {
+        "measurement": "Yunlin_418",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229307,
+            "lat": 23.569081
+        }
+    },
+    {
+        "measurement": "Yunlin_419",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229307,
+            "lat": 23.569081
+        }
+    },
+    {
+        "measurement": "Yunlin_420",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229307,
+            "lat": 23.569081
+        }
+    },
+    {
+        "measurement": "Yunlin_421",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.229307,
+            "lat": 23.569081
+        }
+    },
+    {
+        "measurement": "Yunlin_422",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.243713,
+            "lat": 23.573233
+        }
+    },
+    {
+        "measurement": "Yunlin_423",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.243713,
+            "lat": 23.573233
+        }
+    },
+    {
+        "measurement": "Yunlin_424",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.243713,
+            "lat": 23.573233
+        }
+    },
+    {
+        "measurement": "Yunlin_425",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "SL005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.243713,
+            "lat": 23.573233
+        }
+    },
+    {
+        "measurement": "Yunlin_426",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347686,
+            "lat": 23.661364
+        }
+    },
+    {
+        "measurement": "Yunlin_427",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347686,
+            "lat": 23.661364
+        }
+    },
+    {
+        "measurement": "Yunlin_428",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347686,
+            "lat": 23.661364
+        }
+    },
+    {
+        "measurement": "Yunlin_429",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.347686,
+            "lat": 23.661364
+        }
+    },
+    {
+        "measurement": "Yunlin_430",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34761,
+            "lat": 23.666754
+        }
+    },
+    {
+        "measurement": "Yunlin_431",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34761,
+            "lat": 23.666754
+        }
+    },
+    {
+        "measurement": "Yunlin_432",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34761,
+            "lat": 23.666754
+        }
+    },
+    {
+        "measurement": "Yunlin_433",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.34761,
+            "lat": 23.666754
+        }
+    },
+    {
+        "measurement": "Yunlin_434",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354552,
+            "lat": 23.666485
+        }
+    },
+    {
+        "measurement": "Yunlin_435",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354552,
+            "lat": 23.666485
+        }
+    },
+    {
+        "measurement": "Yunlin_436",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354552,
+            "lat": 23.666485
+        }
+    },
+    {
+        "measurement": "Yunlin_437",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.354552,
+            "lat": 23.666485
+        }
+    },
+    {
+        "measurement": "Yunlin_438",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.359237,
+            "lat": 23.66274
+        }
+    },
+    {
+        "measurement": "Yunlin_439",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.359237,
+            "lat": 23.66274
+        }
+    },
+    {
+        "measurement": "Yunlin_440",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.359237,
+            "lat": 23.66274
+        }
+    },
+    {
+        "measurement": "Yunlin_441",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.359237,
+            "lat": 23.66274
+        }
+    },
+    {
+        "measurement": "Yunlin_442",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36584,
+            "lat": 23.657349
+        }
+    },
+    {
+        "measurement": "Yunlin_443",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36584,
+            "lat": 23.657349
+        }
+    },
+    {
+        "measurement": "Yunlin_444",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36584,
+            "lat": 23.657349
+        }
+    },
+    {
+        "measurement": "Yunlin_445",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.36584,
+            "lat": 23.657349
+        }
+    },
+    {
+        "measurement": "Yunlin_446",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366071,
+            "lat": 23.652167
+        }
+    },
+    {
+        "measurement": "Yunlin_447",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366071,
+            "lat": 23.652167
+        }
+    },
+    {
+        "measurement": "Yunlin_448",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366071,
+            "lat": 23.652167
+        }
+    },
+    {
+        "measurement": "Yunlin_449",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366071,
+            "lat": 23.652167
+        }
+    },
+    {
+        "measurement": "Yunlin_450",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366324,
+            "lat": 23.646588
+        }
+    },
+    {
+        "measurement": "Yunlin_451",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366324,
+            "lat": 23.646588
+        }
+    },
+    {
+        "measurement": "Yunlin_452",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366324,
+            "lat": 23.646588
+        }
+    },
+    {
+        "measurement": "Yunlin_453",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.366324,
+            "lat": 23.646588
+        }
+    },
+    {
+        "measurement": "Yunlin_454",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360876,
+            "lat": 23.646114
+        }
+    },
+    {
+        "measurement": "Yunlin_455",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360876,
+            "lat": 23.646114
+        }
+    },
+    {
+        "measurement": "Yunlin_456",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360876,
+            "lat": 23.646114
+        }
+    },
+    {
+        "measurement": "Yunlin_457",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360876,
+            "lat": 23.646114
+        }
+    },
+    {
+        "measurement": "Yunlin_458",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360539,
+            "lat": 23.642871
+        }
+    },
+    {
+        "measurement": "Yunlin_459",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360539,
+            "lat": 23.642871
+        }
+    },
+    {
+        "measurement": "Yunlin_460",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360539,
+            "lat": 23.642871
+        }
+    },
+    {
+        "measurement": "Yunlin_461",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.360539,
+            "lat": 23.642871
+        }
+    },
+    {
+        "measurement": "Yunlin_462",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358001,
+            "lat": 23.640666
+        }
+    },
+    {
+        "measurement": "Yunlin_463",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358001,
+            "lat": 23.640666
+        }
+    },
+    {
+        "measurement": "Yunlin_464",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358001,
+            "lat": 23.640666
+        }
+    },
+    {
+        "measurement": "Yunlin_465",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK010",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.358001,
+            "lat": 23.640666
+        }
+    },
+    {
+        "measurement": "Yunlin_466",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.353334,
+            "lat": 23.63903
+        }
+    },
+    {
+        "measurement": "Yunlin_467",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.353334,
+            "lat": 23.63903
+        }
+    },
+    {
+        "measurement": "Yunlin_468",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.353334,
+            "lat": 23.63903
+        }
+    },
+    {
+        "measurement": "Yunlin_469",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK011",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.353334,
+            "lat": 23.63903
+        }
+    },
+    {
+        "measurement": "Yunlin_470",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.355465,
+            "lat": 23.656123
+        }
+    },
+    {
+        "measurement": "Yunlin_471",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.355465,
+            "lat": 23.656123
+        }
+    },
+    {
+        "measurement": "Yunlin_472",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.355465,
+            "lat": 23.656123
+        }
+    },
+    {
+        "measurement": "Yunlin_473",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK012",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.355465,
+            "lat": 23.656123
+        }
+    },
+    {
+        "measurement": "Yunlin_474",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK013",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352999,
+            "lat": 23.65326
+        }
+    },
+    {
+        "measurement": "Yunlin_475",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK013",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352999,
+            "lat": 23.65326
+        }
+    },
+    {
+        "measurement": "Yunlin_476",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK013",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352999,
+            "lat": 23.65326
+        }
+    },
+    {
+        "measurement": "Yunlin_477",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK013",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.352999,
+            "lat": 23.65326
+        }
+    },
+    {
+        "measurement": "Yunlin_478",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK014",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.350634,
+            "lat": 23.649963
+        }
+    },
+    {
+        "measurement": "Yunlin_479",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK014",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.350634,
+            "lat": 23.649963
+        }
+    },
+    {
+        "measurement": "Yunlin_480",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK014",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.350634,
+            "lat": 23.649963
+        }
+    },
+    {
+        "measurement": "Yunlin_481",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "TK014",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.350634,
+            "lat": 23.649963
+        }
+    },
+    {
+        "measurement": "Yunlin_482",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.299399,
+            "lat": 23.618534
+        }
+    },
+    {
+        "measurement": "Yunlin_483",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.299399,
+            "lat": 23.618534
+        }
+    },
+    {
+        "measurement": "Yunlin_484",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.299399,
+            "lat": 23.618534
+        }
+    },
+    {
+        "measurement": "Yunlin_485",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC001",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.299399,
+            "lat": 23.618534
+        }
+    },
+    {
+        "measurement": "Yunlin_486",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.305456,
+            "lat": 23.618326
+        }
+    },
+    {
+        "measurement": "Yunlin_487",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.305456,
+            "lat": 23.618326
+        }
+    },
+    {
+        "measurement": "Yunlin_488",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.305456,
+            "lat": 23.618326
+        }
+    },
+    {
+        "measurement": "Yunlin_489",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC002",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.305456,
+            "lat": 23.618326
+        }
+    },
+    {
+        "measurement": "Yunlin_490",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309481,
+            "lat": 23.619003
+        }
+    },
+    {
+        "measurement": "Yunlin_491",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309481,
+            "lat": 23.619003
+        }
+    },
+    {
+        "measurement": "Yunlin_492",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309481,
+            "lat": 23.619003
+        }
+    },
+    {
+        "measurement": "Yunlin_493",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC003",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.309481,
+            "lat": 23.619003
+        }
+    },
+    {
+        "measurement": "Yunlin_494",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.312701,
+            "lat": 23.619623
+        }
+    },
+    {
+        "measurement": "Yunlin_495",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.312701,
+            "lat": 23.619623
+        }
+    },
+    {
+        "measurement": "Yunlin_496",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.312701,
+            "lat": 23.619623
+        }
+    },
+    {
+        "measurement": "Yunlin_497",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC004",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.312701,
+            "lat": 23.619623
+        }
+    },
+    {
+        "measurement": "Yunlin_498",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.316465,
+            "lat": 23.621517
+        }
+    },
+    {
+        "measurement": "Yunlin_499",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.316465,
+            "lat": 23.621517
+        }
+    },
+    {
+        "measurement": "Yunlin_500",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.316465,
+            "lat": 23.621517
+        }
+    },
+    {
+        "measurement": "Yunlin_501",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC005",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.316465,
+            "lat": 23.621517
+        }
+    },
+    {
+        "measurement": "Yunlin_502",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.320308,
+            "lat": 23.623096
+        }
+    },
+    {
+        "measurement": "Yunlin_503",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.320308,
+            "lat": 23.623096
+        }
+    },
+    {
+        "measurement": "Yunlin_504",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.320308,
+            "lat": 23.623096
+        }
+    },
+    {
+        "measurement": "Yunlin_505",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC006",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.320308,
+            "lat": 23.623096
+        }
+    },
+    {
+        "measurement": "Yunlin_506",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.325034,
+            "lat": 23.620661
+        }
+    },
+    {
+        "measurement": "Yunlin_507",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.325034,
+            "lat": 23.620661
+        }
+    },
+    {
+        "measurement": "Yunlin_508",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.325034,
+            "lat": 23.620661
+        }
+    },
+    {
+        "measurement": "Yunlin_509",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC007",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.325034,
+            "lat": 23.620661
+        }
+    },
+    {
+        "measurement": "Yunlin_510",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.328474,
+            "lat": 23.618608
+        }
+    },
+    {
+        "measurement": "Yunlin_511",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.328474,
+            "lat": 23.618608
+        }
+    },
+    {
+        "measurement": "Yunlin_512",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.328474,
+            "lat": 23.618608
+        }
+    },
+    {
+        "measurement": "Yunlin_513",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC008",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.328474,
+            "lat": 23.618608
+        }
+    },
+    {
+        "measurement": "Yunlin_514",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308383,
+            "lat": 23.615296
+        }
+    },
+    {
+        "measurement": "Yunlin_515",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308383,
+            "lat": 23.615296
+        }
+    },
+    {
+        "measurement": "Yunlin_516",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308383,
+            "lat": 23.615296
+        }
+    },
+    {
+        "measurement": "Yunlin_517",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YC009",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.308383,
+            "lat": 23.615296
+        }
+    },
+    {
+        "measurement": "Yunlin_518",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "光復水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402433,
+            "lat": 23.74147
+        }
+    },
+    {
+        "measurement": "Yunlin_519",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "光復水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402433,
+            "lat": 23.74147
+        }
+    },
+    {
+        "measurement": "Yunlin_520",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "光復水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402433,
+            "lat": 23.74147
+        }
+    },
+    {
+        "measurement": "Yunlin_521",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "光復水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402433,
+            "lat": 23.74147
+        }
+    },
+    {
+        "measurement": "Yunlin_522",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "拯民水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407248,
+            "lat": 23.709334
+        }
+    },
+    {
+        "measurement": "Yunlin_523",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "拯民水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407248,
+            "lat": 23.709334
+        }
+    },
+    {
+        "measurement": "Yunlin_524",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "拯民水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407248,
+            "lat": 23.709334
+        }
+    },
+    {
+        "measurement": "Yunlin_525",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "拯民水位站",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.407248,
+            "lat": 23.709334
+        }
+    },
+    {
+        "measurement": "Yunlin_526",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲13-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289817,
+            "lat": 23.719792
+        }
+    },
+    {
+        "measurement": "Yunlin_527",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲13-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289817,
+            "lat": 23.719792
+        }
+    },
+    {
+        "measurement": "Yunlin_528",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲13-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289817,
+            "lat": 23.719792
+        }
+    },
+    {
+        "measurement": "Yunlin_529",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲13-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.289817,
+            "lat": 23.719792
+        }
+    },
+    {
+        "measurement": "Yunlin_530",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲143",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.27294,
+            "lat": 23.797357
+        }
+    },
+    {
+        "measurement": "Yunlin_531",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲143",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.27294,
+            "lat": 23.797357
+        }
+    },
+    {
+        "measurement": "Yunlin_532",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲143",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.27294,
+            "lat": 23.797357
+        }
+    },
+    {
+        "measurement": "Yunlin_533",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲143",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.27294,
+            "lat": 23.797357
+        }
+    },
+    {
+        "measurement": "Yunlin_534",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲166",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.173278,
+            "lat": 23.538833
+        }
+    },
+    {
+        "measurement": "Yunlin_535",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲166",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.173278,
+            "lat": 23.538833
+        }
+    },
+    {
+        "measurement": "Yunlin_536",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲166",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.173278,
+            "lat": 23.538833
+        }
+    },
+    {
+        "measurement": "Yunlin_537",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲166",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.173278,
+            "lat": 23.538833
+        }
+    },
+    {
+        "measurement": "Yunlin_538",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲17-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.228561,
+            "lat": 23.671499
+        }
+    },
+    {
+        "measurement": "Yunlin_539",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲17-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.228561,
+            "lat": 23.671499
+        }
+    },
+    {
+        "measurement": "Yunlin_540",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲17-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.228561,
+            "lat": 23.671499
+        }
+    },
+    {
+        "measurement": "Yunlin_541",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲17-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.228561,
+            "lat": 23.671499
+        }
+    },
+    {
+        "measurement": "Yunlin_542",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲186",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.192988,
+            "lat": 23.642134
+        }
+    },
+    {
+        "measurement": "Yunlin_543",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲186",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.192988,
+            "lat": 23.642134
+        }
+    },
+    {
+        "measurement": "Yunlin_544",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲186",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.192988,
+            "lat": 23.642134
+        }
+    },
+    {
+        "measurement": "Yunlin_545",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲186",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.192988,
+            "lat": 23.642134
+        }
+    },
+    {
+        "measurement": "Yunlin_546",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220759,
+            "lat": 23.71592
+        }
+    },
+    {
+        "measurement": "Yunlin_547",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220759,
+            "lat": 23.71592
+        }
+    },
+    {
+        "measurement": "Yunlin_548",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220759,
+            "lat": 23.71592
+        }
+    },
+    {
+        "measurement": "Yunlin_549",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220759,
+            "lat": 23.71592
+        }
+    },
+    {
+        "measurement": "Yunlin_550",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559638,
+            "lat": 23.713788
+        }
+    },
+    {
+        "measurement": "Yunlin_551",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559638,
+            "lat": 23.713788
+        }
+    },
+    {
+        "measurement": "Yunlin_552",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559638,
+            "lat": 23.713788
+        }
+    },
+    {
+        "measurement": "Yunlin_553",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559638,
+            "lat": 23.713788
+        }
+    },
+    {
+        "measurement": "Yunlin_554",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲198",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281967,
+            "lat": 23.620098
+        }
+    },
+    {
+        "measurement": "Yunlin_555",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲198",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281967,
+            "lat": 23.620098
+        }
+    },
+    {
+        "measurement": "Yunlin_556",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲198",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281967,
+            "lat": 23.620098
+        }
+    },
+    {
+        "measurement": "Yunlin_557",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲198",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281967,
+            "lat": 23.620098
+        }
+    },
+    {
+        "measurement": "Yunlin_558",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲205",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.424715,
+            "lat": 23.729102
+        }
+    },
+    {
+        "measurement": "Yunlin_559",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲52-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.422654,
+            "lat": 23.744815
+        }
+    },
+    {
+        "measurement": "Yunlin_560",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲52-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.422654,
+            "lat": 23.744815
+        }
+    },
+    {
+        "measurement": "Yunlin_561",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲52-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.422654,
+            "lat": 23.744815
+        }
+    },
+    {
+        "measurement": "Yunlin_562",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲52-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.422654,
+            "lat": 23.744815
+        }
+    },
+    {
+        "measurement": "Yunlin_563",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲83-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224743,
+            "lat": 23.51052
+        }
+    },
+    {
+        "measurement": "Yunlin_564",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲83-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224743,
+            "lat": 23.51052
+        }
+    },
+    {
+        "measurement": "Yunlin_565",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲83-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224743,
+            "lat": 23.51052
+        }
+    },
+    {
+        "measurement": "Yunlin_566",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲83-2",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.224743,
+            "lat": 23.51052
+        }
+    },
+    {
+        "measurement": "Yunlin_567",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA36",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273039,
+            "lat": 23.797168
+        }
+    },
+    {
+        "measurement": "Yunlin_568",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA36",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273039,
+            "lat": 23.797168
+        }
+    },
+    {
+        "measurement": "Yunlin_569",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA36",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273039,
+            "lat": 23.797168
+        }
+    },
+    {
+        "measurement": "Yunlin_570",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA36",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.273039,
+            "lat": 23.797168
+        }
+    },
+    {
+        "measurement": "Yunlin_571",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA37",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.20343,
+            "lat": 23.769069
+        }
+    },
+    {
+        "measurement": "Yunlin_572",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA37",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.20343,
+            "lat": 23.769069
+        }
+    },
+    {
+        "measurement": "Yunlin_573",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA37",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.20343,
+            "lat": 23.769069
+        }
+    },
+    {
+        "measurement": "Yunlin_574",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA37",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.20343,
+            "lat": 23.769069
+        }
+    },
+    {
+        "measurement": "Yunlin_575",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA38",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.218379,
+            "lat": 23.744965
+        }
+    },
+    {
+        "measurement": "Yunlin_576",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA38",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.218379,
+            "lat": 23.744965
+        }
+    },
+    {
+        "measurement": "Yunlin_577",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA38",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.218379,
+            "lat": 23.744965
+        }
+    },
+    {
+        "measurement": "Yunlin_578",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA38",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.218379,
+            "lat": 23.744965
+        }
+    },
+    {
+        "measurement": "Yunlin_579",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA39",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402223,
+            "lat": 23.744476
+        }
+    },
+    {
+        "measurement": "Yunlin_580",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA39",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402223,
+            "lat": 23.744476
+        }
+    },
+    {
+        "measurement": "Yunlin_581",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA39",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402223,
+            "lat": 23.744476
+        }
+    },
+    {
+        "measurement": "Yunlin_582",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA39",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.402223,
+            "lat": 23.744476
+        }
+    },
+    {
+        "measurement": "Yunlin_583",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA40",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.340699,
+            "lat": 23.71162
+        }
+    },
+    {
+        "measurement": "Yunlin_584",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA40",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.340699,
+            "lat": 23.71162
+        }
+    },
+    {
+        "measurement": "Yunlin_585",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA40",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.340699,
+            "lat": 23.71162
+        }
+    },
+    {
+        "measurement": "Yunlin_586",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA40",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.340699,
+            "lat": 23.71162
+        }
+    },
+    {
+        "measurement": "Yunlin_587",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281987,
+            "lat": 23.619962
+        }
+    },
+    {
+        "measurement": "Yunlin_588",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281987,
+            "lat": 23.619962
+        }
+    },
+    {
+        "measurement": "Yunlin_589",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281987,
+            "lat": 23.619962
+        }
+    },
+    {
+        "measurement": "Yunlin_590",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA41",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.281987,
+            "lat": 23.619962
+        }
+    },
+    {
+        "measurement": "Yunlin_591",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364331,
+            "lat": 23.586243
+        }
+    },
+    {
+        "measurement": "Yunlin_592",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364331,
+            "lat": 23.586243
+        }
+    },
+    {
+        "measurement": "Yunlin_593",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364331,
+            "lat": 23.586243
+        }
+    },
+    {
+        "measurement": "Yunlin_594",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "YLWRA42",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.364331,
+            "lat": 23.586243
+        }
+    },
+    {
+        "measurement": "Yunlin_595",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204236,
+            "lat": 23.768937
+        }
+    },
+    {
+        "measurement": "Yunlin_596",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204236,
+            "lat": 23.768937
+        }
+    },
+    {
+        "measurement": "Yunlin_597",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204236,
+            "lat": 23.768937
+        }
+    },
+    {
+        "measurement": "Yunlin_598",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲102-3",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.204236,
+            "lat": 23.768937
+        }
+    },
+    {
+        "measurement": "Yunlin_599",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220631,
+            "lat": 23.715892
+        }
+    },
+    {
+        "measurement": "Yunlin_600",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220631,
+            "lat": 23.715892
+        }
+    },
+    {
+        "measurement": "Yunlin_601",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220631,
+            "lat": 23.715892
+        }
+    },
+    {
+        "measurement": "Yunlin_602",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲193-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.220631,
+            "lat": 23.715892
+        }
+    },
+    {
+        "measurement": "Yunlin_603",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559422,
+            "lat": 23.713634
+        }
+    },
+    {
+        "measurement": "Yunlin_604",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559422,
+            "lat": 23.713634
+        }
+    },
+    {
+        "measurement": "Yunlin_605",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559422,
+            "lat": 23.713634
+        }
+    },
+    {
+        "measurement": "Yunlin_606",
+        "tags": {
+            "name": "水準樁_雲林縣",
+            "location": "水利雲194-1",
+            "monitor": "LEVEL"
+        },
+        "fields": {
+            "lon": 120.559422,
+            "lat": 23.713634
+        }
+    }
+]

@@ -48,6 +48,7 @@ import { StaticMap } from 'react-map-gl';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import { LayerList } from '../../lib/api'
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
+import Slider from '@material-ui/core/Slider';
 
 const ShowWrapper = styled.div(
   props => (
@@ -148,6 +149,28 @@ export const LogLatBar = styled.div(
 )
 
 export function CheckItem({ data, onChange }) {
+
+  const [timeList,setTimeList] = useState([])
+
+  
+
+  /* useEffect(()=>{
+    let dayjs = require("dayjs")
+    let newTimeList = []
+    if(data.time_serie){
+      data.data.features.forEach((element)=>{
+        let time = dayjs(element.properties.time)
+        newTimeList.push({
+          value: time.valueOf(),
+          label: time.valueOf(),
+        })
+      })
+      let uniq = []
+      let unique = [...new Set(newTimeList)];
+      setTimeList(uniq)
+    }
+  }) */
+
   return (
     <InputWrapper>
       <StyledInput
@@ -156,7 +179,19 @@ export function CheckItem({ data, onChange }) {
         onChange={onChange}
       />
       <StyledLabel>
-        {data.name}
+        <div>
+          {data.name}
+        </div>
+        {data.time_serie && <>
+          <Slider
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            marks={timeList}
+          />
+        </>
+        }
+
+
       </StyledLabel>
     </InputWrapper>
   )
@@ -200,18 +235,18 @@ function Layer({ layers, setLayers, setHoverInfo }) {
     newLayer.forEach((element, i) => {
       if (element.props.name == "ps_mean_v.xy.json") { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
         newLayer[i] = new HexagonLayer({
-          id: data.name ,
+          id: data.name,
           name: data.name,
           data: element.props.data,
           extruded: true,
           pickable: true,
-          visible:data.value,
+          visible: data.value,
           radius: 1000,
           transitions: {
             elevationScale: 3000
           }
         })
-        return;
+        //return;
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
         newLayer[i] = new GeoJsonLayer({
@@ -246,8 +281,9 @@ function Layer({ layers, setLayers, setHoverInfo }) {
         console.log(element.name)
         let files = element.file
         files.forEach((element2, idx) => {
-          files[idx].value = false
+          files[idx].value = false //不會先顯示圖層
         })
+
         list.push({
           "id": idx,
           "name": element.name,
@@ -271,9 +307,9 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             })
             newLayer.push(
               new HexagonLayer({
-                id: data.name,
+                id: data.value,
                 name: data.name,
-                visible:false,
+                visible: false,
                 data: hexdata,
                 elevationScale: 4,
                 visible: data.value,
@@ -506,7 +542,7 @@ function renderTooltip({ hoverInfo }) {
   return (
     <div className={styles.tooltip} style={{ left: x, top: y, zIndex: 10 }}>
       <p className={styles.tooltip_title}>
-        {hoverInfo.layer.id}
+        {hoverInfo.object.properties.measurement}
       </p>
       <p className={styles.tooltip_content}>
         {list}

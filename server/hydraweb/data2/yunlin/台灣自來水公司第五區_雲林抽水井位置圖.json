@@ -1,0 +1,2609 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565128,
+                    23.705451
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565275,
+                    23.705506
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565922,
+                    23.705472
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565316,
+                    23.704793
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.567407,
+                    23.704158
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.567475,
+                    23.704275
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.567573,
+                    23.704447
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565924,
+                    23.704858
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565047,
+                    23.70611
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.565914,
+                    23.705056
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.564948,
+                    23.706589
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.564261,
+                    23.706749
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.570247,
+                    23.702405
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.570355,
+                    23.702459
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.57012,
+                    23.702278
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.569123,
+                    23.701246
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.568053,
+                    23.701459
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.570861,
+                    23.700528
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.56441,
+                    23.705955
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.570646,
+                    23.700212
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.568194,
+                    23.700485
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.507405,
+                    23.724467
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.50072,
+                    23.715704
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.514638,
+                    23.728499
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.502166,
+                    23.727412
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.552874,
+                    23.652313
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.55263,
+                    23.651969
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.552992,
+                    23.652349
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.555723,
+                    23.656176
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.554496,
+                    23.665456
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.554596,
+                    23.664968
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.555674,
+                    23.662163
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.544367,
+                    23.623618
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.549476,
+                    23.622748
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.549798,
+                    23.623128
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.544269,
+                    23.623491
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.544806,
+                    23.624251
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.529752,
+                    23.621678
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.529487,
+                    23.621732
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.529703,
+                    23.621579
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.522245,
+                    23.605411
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.527907,
+                    23.613988
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521413,
+                    23.605191
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521589,
+                    23.605318
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.529972,
+                    23.612062
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521813,
+                    23.605545
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.469978,
+                    23.680793
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.469828,
+                    23.681406
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.470476,
+                    23.681309
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.518518,
+                    23.641148
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.519777,
+                    23.642823
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.522117,
+                    23.643408
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521716,
+                    23.643054
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.522954,
+                    23.639536
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.523312,
+                    23.641046
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515119,
+                    23.643314
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.514334,
+                    23.643492
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515322,
+                    23.643937
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.519885,
+                    23.64276
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.510186,
+                    23.641447
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.510248,
+                    23.640472
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.51918,
+                    23.642351
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.521885,
+                    23.639867
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424401,
+                    23.646227
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424474,
+                    23.645288
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424423,
+                    23.645749
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.628709,
+                    23.779453
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.628808,
+                    23.779363
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.628846,
+                    23.77949
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.629053,
+                    23.779319
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.628229,
+                    23.779317
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.629387,
+                    23.77932
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.583376,
+                    23.721259
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.588124,
+                    23.721118
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.582735,
+                    23.716372
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.581035,
+                    23.717333
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.588539,
+                    23.717065
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.583597,
+                    23.716681
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.585569,
+                    23.716569
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.42502,
+                    23.71536
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.42406,
+                    23.715131
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.424528,
+                    23.715647
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.42471,
+                    23.714583
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.423551,
+                    23.721603
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.425599,
+                    23.721972
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.429734,
+                    23.72057
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.430106,
+                    23.720797
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.423697,
+                    23.721875
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.42592,
+                    23.722678
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.425893,
+                    23.722127
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.459234,
+                    23.716116
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.444291,
+                    23.71311
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.446905,
+                    23.713986
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.445701,
+                    23.713576
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.444899,
+                    23.71295
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.451823,
+                    23.715277
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.453712,
+                    23.711482
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.341707,
+                    23.698297
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.35149,
+                    23.696911
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.347059,
+                    23.698635
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.350949,
+                    23.697234
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303751,
+                    23.694257
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.30379,
+                    23.694347
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303967,
+                    23.694321
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303614,
+                    23.69432
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.304055,
+                    23.694258
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.30334,
+                    23.69421
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.303536,
+                    23.694202
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.284419,
+                    23.67732
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.283811,
+                    23.677461
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.295896,
+                    23.68716
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.295554,
+                    23.686969
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.224032,
+                    23.626609
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.226224,
+                    23.632164
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.223139,
+                    23.621891
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.224613,
+                    23.629447
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.225724,
+                    23.625443
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.21763,
+                    23.627019
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.159392,
+                    23.652529
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.162136,
+                    23.65258
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.16056,
+                    23.650694
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.16033,
+                    23.652887
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.166555,
+                    23.651331
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.163727,
+                    23.653582
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.221552,
+                    23.729251
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.220357,
+                    23.732333
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.218664,
+                    23.733417
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.242274,
+                    23.751666
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.241964,
+                    23.749317
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.243087,
+                    23.751941
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.248834,
+                    23.750416
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.245227,
+                    23.758443
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.2415,
+                    23.748032
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.241083,
+                    23.749023
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.24119,
+                    23.750893
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.16307,
+                    23.756621
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.242723,
+                    23.757059
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.237504,
+                    23.755525
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.237331,
+                    23.754919
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.466128,
+                    23.797885
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.466884,
+                    23.797951
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.466831,
+                    23.798844
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.458833,
+                    23.803665
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.458656,
+                    23.803728
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.459127,
+                    23.803603
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.458204,
+                    23.803835
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.46657,
+                    23.797904
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.466075,
+                    23.798787
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515291,
+                    23.779879
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.514657,
+                    23.778884
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.51492,
+                    23.779418
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.515557,
+                    23.779582
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.344839,
+                    23.760343
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.344673,
+                    23.760143
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.359181,
+                    23.784502
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.358676,
+                    23.783426
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.359075,
+                    23.784159
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.358892,
+                    23.7834
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.29187,
+                    23.580756
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.292405,
+                    23.585084
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.292414,
+                    23.58521
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.294105,
+                    23.587773
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.287729,
+                    23.592972
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.292379,
+                    23.580903
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.292287,
+                    23.585209
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.292175,
+                    23.589688
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.304537,
+                    23.656932
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.304975,
+                    23.655625
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.306717,
+                    23.663606
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.305419,
+                    23.66444
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.306201,
+                    23.657373
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.306201,
+                    23.657446
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.306992,
+                    23.663634
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.305381,
+                    23.664232
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.306299,
+                    23.657374
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.240662,
+                    23.574004
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.229453,
+                    23.5677
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.229299,
+                    23.56881
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.232556,
+                    23.56628
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.240763,
+                    23.573463
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.240539,
+                    23.573173
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.221187,
+                    23.570702
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.186562,
+                    23.581161
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.18567,
+                    23.57964
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.186939,
+                    23.58361
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    120.187095,
+                    23.583765
+                ]
+            },
+            "properties": {
+                "name": "台灣自來水公司第五區_雲林抽水井位置圖",
+                "test": 2.0
+            }
+        }
+    ]
+}

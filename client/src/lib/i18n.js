@@ -34,7 +34,7 @@ i18n
             },
             zh_tw: {
                 translations: {
-                    "platform_name":"水文與地層下陷監測資料運算平台",
+                    "platform_name":"濁水溪沖積扇水文與地層下陷監測展示平台",
                     "admin": "管理員",
                     "language": "語言切換",
                     "announcement": "公告",

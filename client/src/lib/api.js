@@ -30,7 +30,7 @@ export const AnnouncementSendDelete = (id) => userRequest_client.delete(`api/v1/
 export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
 export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}/`,data)
 
-export const LayerList = () => guestRequest_client.get(`api/v1/user/layer`)
+export const LayerList = (data) => guestRequest_client.get(`api/v1/user/layer`,data)
 
 
 export default userLogin

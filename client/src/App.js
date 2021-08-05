@@ -5,7 +5,6 @@ import { BrowserRouter, Router, Switch, Route, useLocation, useHistory } from 'r
 import UserProvider, { userContext } from './provider/UserProvider'
 
 import Guest from './page/guest/Guest';
-import HydraMap from './page/user/HydraMap';
 import User from './page/user/User';
 
 import Cookies from 'js-cookie'

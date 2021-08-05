@@ -7,13 +7,8 @@ import {
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-    faPen,
-    faCog,
-    faDatabase,
     faPrint,
     faMapMarker,
-    faTint,
-    faSignOutAlt,
     faSearch,
     faCircle,
     faPlusCircle,
@@ -39,7 +34,7 @@ import { saveAs } from 'file-saver';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 
-import zhjsonData1 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
+import zhjsonData1 from '../../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
 import zhjsonData2 from '../../utils/108彰化地區地層下陷水準檢測成果表';
 import zhjsonData3 from '../../utils/GPS站_彰化縣';
 import zhjsonData4 from '../../utils/台灣自來水公司第十一區_彰化抽水井位置圖';
@@ -59,7 +54,7 @@ import gpsdata from '../../utils/gpsdata';
 import GNSS from '../../utils/GNSS_WGS84';
 
 import styles from './HydraMap.module.scss';
-import NormalButton from "../../component/NormalButton";
+import NormalButton from "../../../component/NormalButton";
 import styled from "@emotion/styled/macro";
 
 import DeckGL from '@deck.gl/react';
@@ -649,6 +644,28 @@ function Print({ map, mapIsLoad }) {
     )
 }
 
+
+function Search(){
+    const { t, i18n } = useTranslation();
+    return(
+        <h4 className={styles.func_title}>{t('search')}</h4>
+    )
+}
+
+function CircleAnalysis(){
+    const { t, i18n } = useTranslation();
+    return(
+        <h4 className={styles.func_title}>{t('circle_analysis')}</h4>
+    )
+}
+
+function Locate(){
+    const { t, i18n } = useTranslation();
+    return(
+        <h4 className={styles.func_title}>{t('locate')}</h4>
+    )
+}
+
 export default function HydraMap() {
 
     const { t, i18n } = useTranslation();
@@ -826,20 +843,7 @@ export default function HydraMap() {
             <ShowWrapper isShow={openSheet}>
                 <div className={styles.menu_desk_outer_layer}>
                     <ShowWrapper isShow={currentFunction === 0}>
-                        <div>
-                            <h4 className={styles.func_title}>{t('search')}</h4>
-                            <Dropdown classname={styles.droplist}>
-                                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                    Dropdown Button
-                                </Dropdown.Toggle>
-
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
+                        <Search/>
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 1}>
                         <Layer map={map} mapIsLoad={mapIsLoad} />
@@ -848,13 +852,13 @@ export default function HydraMap() {
                         <h4 className={styles.func_title}>{t('3D_switch')}</h4>
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 3}>
-                        <h4 className={styles.func_title}>{t('circle_analysis')}</h4>
+                        <CircleAnalysis/>
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 4}>
                         <Print map={map} mapIsLoad={mapIsLoad} />
                     </ShowWrapper>
                     <ShowWrapper isShow={currentFunction === 5}>
-                        <h4 className={styles.func_title}>{t('locate')}</h4>
+                        <Locate/>
                     </ShowWrapper>
                 </div>
             </ShowWrapper>

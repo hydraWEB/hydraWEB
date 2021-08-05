@@ -19,7 +19,7 @@ import Cookies from "js-cookie";
 import { userProfile } from "../../lib/api";
 import { useTranslation, Trans } from "react-i18next";
 
-const HydraMap = React.lazy(() => import('./HydraMap2'));
+const HydraMap = React.lazy(() => import('./map/HydraMap2'));
 
 export default function User(props) {
     const { user, setUser } = useContext(userContext)

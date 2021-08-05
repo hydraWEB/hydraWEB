@@ -137,15 +137,41 @@ ul {
 }
 
 .tooltip{
-    background-color: #001845;
     position: fixed;
     padding: 10px;
 }
 
 .tooltip_title{
+    background-color: #282c34AA;
+    padding: 10px 10px 1px 10px;
+}
+
+.tooltip_title_t1{
     font-size: 18px;
+    margin-bottom: 0px;
+}
+
+
+.tooltip_title_t2{
+    font-size: 13px;
+    margin-bottom: 10px;
+
 }
 
 .tooltip_content{
     font-size: 15px;
+    padding: 10px 10px 0 10px;
+}
+
+.loglat{
+    margin-top: 2px;
+    margin-bottom:2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-break: anywhere;
+}
+
+.map_tooltip{
+    position: fixed;
+    background-color: #001845AA;
 }

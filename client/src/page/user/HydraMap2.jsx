@@ -87,11 +87,11 @@ const InputWrapper = styled.div(
     {
       borderRadius: "5px",
       display: 'flex',
-      backgroundColor: "#6465688e",
+      backgroundColor: props.backgroundColor ? "#6465688e" : "#6465688e",
       alignItems: 'flex-start',
       flexFlow: '1',
-      paddingTop: '5px',
-      paddingBottom: '5px',
+      paddingTop: '10px',
+      paddingBottom: '0px',
       paddingLeft: "5px",
       paddingRight: "5px",
       marginTop: "5px",
@@ -116,6 +116,7 @@ const StyledInput = styled.input(
 const StyledLabel = styled.label(
   props => (
     {
+      paddingLeft: "10px"
     }
   )
 )
@@ -127,8 +128,7 @@ export const LogLatContainer = styled.div(
       position: "fixed",
       top: '3.5rem',
       right: 0,
-      maxWidth: '500px',
-      padding: "20px 20px 20px 20px",
+      padding: "0px",
       zIndex: 2,
       margin: "0 auto"
     }
@@ -139,17 +139,18 @@ export const LogLatBar = styled.div(
   props => (
     {
       display: 'flex',
-      padding: "15px",
+      padding: "5px",
       overflow: "hidden",
       borderRadius: "0px",
       backgroundColor: "#001233AA",
       alignSelf: "center",
-      fontSize: "1rem",
+      fontSize: "0.85rem",
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "row"
     }
   )
 )
+
 
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
@@ -172,8 +173,18 @@ const hashCode = (str) => { // java String#hashCode
 
 const getDotColor = d => {
   let a = hashCode(d.name)
-  return [a & 255, (a >> 1) & 255, (a >> 2) & 255]
+  return [(a >> 1) & 255, (a << 3) & 255, (a >> 5) & 255]
 };
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(value) {
+  return "#" + componentToHex(value[0]) + componentToHex(value[1]) + componentToHex(value[2]);
+}
+
 
 
 export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
@@ -214,15 +225,15 @@ export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, origi
     let dayjs = require("dayjs")
     return dayjs(value).format('YYYY/MM/DD')
   }
-  
-  
+
+
   const handleChange = (event, newValue) => {
     setCurrentSliderValue(newValue)
     setCurrentLayer(newValue)
   };
 
   return (
-    <InputWrapper>
+    <InputWrapper backgroundColor={rgbToHex(getDotColor(data))}>
       <StyledInput
         type="checkbox"
         checked={data.value}
@@ -275,7 +286,6 @@ function Layer({ layers, setLayers, setHoverInfo }) {
   const getFilterValue = (d) => {
     const dayjs = require("dayjs")
     let time1 = dayjs(d.properties.time)
-    console.log("aaa")
     return time1.valueOf()
   }
 
@@ -303,7 +313,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
         //return;
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
-        if(data.time_serie){
+        if (data.time_serie) {
           newLayer[i] = new GeoJsonLayer({
             id: data.name,
             name: data.name,
@@ -319,15 +329,15 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             pickable: true,
             autoHighlight: true,
             onHover: onHover,
-            filterEnabled:false,
+            filterEnabled: false,
             getFilterValue: getFilterValue,
             filterTransformSize: true,
-            filterTransformColor: true,          
-            filterRange: [0 , 0],
+            filterTransformColor: true,
+            filterRange: [0, 0],
             // Define extensions
-            extensions: [new DataFilterExtension({filterSize: 1,countItems:true})]
+            extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })]
           })
-        }else{
+        } else {
           newLayer[i] = new GeoJsonLayer({
             id: data.name,
             name: data.name,
@@ -345,7 +355,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             onHover: onHover,
           })
         }
-      
+
       }
     });
     setLayers(newLayer) //修改本來地圖的layer */ 
@@ -400,7 +410,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             )
             return
           }
-          if(data.time_serie){
+          if (data.time_serie) {
             newLayer.push(
               new GeoJsonLayer({
                 id: data.name,
@@ -417,17 +427,17 @@ function Layer({ layers, setLayers, setHoverInfo }) {
                 pickable: true,
                 autoHighlight: true,
                 onHover: onHover,
-                filterEnabled:false,
+                filterEnabled: false,
                 getFilterValue: getFilterValue,
                 filterTransformSize: true,
-                filterTransformColor: true,          
-                filterRange: [0 , 0],
+                filterTransformColor: true,
+                filterRange: [0, 0],
                 // Define extensions
-                extensions: [new DataFilterExtension({filterSize: 1,countItems:true})],
-                
+                extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
+
               })
             )
-          }else{
+          } else {
             newLayer.push(
               new GeoJsonLayer({
                 id: data.name,
@@ -446,7 +456,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
                 onHover: onHover
               }))
           }
-         
+
 
         })
       })
@@ -467,7 +477,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
     })
   }
 
-  function setCurrentLayer(data, time,index) {
+  function setCurrentLayer(data, time, index) {
     //console.log(layers)
     let newLayer = [...layers] //複製一個layer
     let dayjs = require("dayjs")
@@ -476,36 +486,36 @@ function Layer({ layers, setLayers, setHoverInfo }) {
     newMapData[currentDataIdx].files[index].current_time = time
     setAllData(newMapData)
 
-    function onFilteredItemsChange(id,count){
+    function onFilteredItemsChange(id, count) {
       console.log(count)
     }
 
-    newLayer.forEach((element,i) => {
+    newLayer.forEach((element, i) => {
       if (element.props.name === data.name) {
         newLayer[i] = new GeoJsonLayer({
-            id: data.name,
-            name: data.name,
-            data: data.data,
-            visible: data.value,
-            // Styles
-            filled: true,
-            pointRadiusMinPixels: 2,
-            pointRadiusScale: 5,
-            getPointRadius: f => 5,
-            getFillColor: getDotColor(data),
-            // Interactive props
-            pickable: true,
-            autoHighlight: true,
-            onHover: onHover,
-            filterEnabled:true,
-            getFilterValue: getFilterValue,
-            filterTransformSize: true,
-            filterTransformColor: true,          
-            filterRange: [time , time],
-            onFilteredItemsChange:onFilteredItemsChange,
-            // Define extensions
-            extensions: [new DataFilterExtension({filterSize: 1,countItems:true})]
-          })
+          id: data.name,
+          name: data.name,
+          data: data.data,
+          visible: data.value,
+          // Styles
+          filled: true,
+          pointRadiusMinPixels: 2,
+          pointRadiusScale: 5,
+          getPointRadius: f => 5,
+          getFillColor: getDotColor(data),
+          // Interactive props
+          pickable: true,
+          autoHighlight: true,
+          onHover: onHover,
+          filterEnabled: true,
+          getFilterValue: getFilterValue,
+          filterTransformSize: true,
+          filterTransformColor: true,
+          filterRange: [time, time],
+          onFilteredItemsChange: onFilteredItemsChange,
+          // Define extensions
+          extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })]
+        })
       }
     })
     //console.log(time)
@@ -513,7 +523,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
   }
 
   let CurrentListItems = currentSelectedData.map((data, index) =>
-    <CheckItem currentLayer={getLayer(data)} setCurrentLayer={(time) => setCurrentLayer(data, time,index)} originData={originData} data={AllData[currentDataIdx].files[index]} onChange={(e) => OnListItemsChange(e, data, index)} />
+    <CheckItem currentLayer={getLayer(data)} setCurrentLayer={(time) => setCurrentLayer(data, time, index)} originData={originData} data={AllData[currentDataIdx].files[index]} onChange={(e) => OnListItemsChange(e, data, index)} />
   );
 
   let BtnList = AllData.map((data, index) =>
@@ -703,11 +713,13 @@ function renderTooltip({ hoverInfo }) {
   })
 
   return (
-    <div className={styles.tooltip} style={{ left: x, top: y, zIndex: 10 }}>
-      <p className={styles.tooltip_title}>
-        {hoverInfo.object.properties.measurement}
-      </p>
-      <p className={styles.tooltip_content}>
+    <div className={styles.map_tooltip} style={{ left: x, top: y, zIndex: 10 }}>
+      <div className={styles.tooltip_title}>
+        <p className={styles.tooltip_title_t1}>{hoverInfo.object.properties.measurement}</p>
+        <p className={styles.tooltip_title_t2}>{hoverInfo.layer.id}</p>
+      </div>
+
+      <p className={styles.tooltip_content}>     
         {list}
       </p>
     </div>
@@ -857,20 +869,7 @@ export default function HydraMap() {
       <ShowWrapper isShow={openSheet}>
         <div className={styles.menu_desk_outer_layer}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <div>
-              <h4 className={styles.func_title}>{t('search')}</h4>
-              <Dropdown classname={styles.droplist}>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  Dropdown Button
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
+            <h4 className={styles.func_title}>{t('search')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <Layer layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} />
@@ -894,9 +893,11 @@ export default function HydraMap() {
         <div>
           <LogLatContainer>
             <LogLatBar>
-              <p>經度：{viewState['longitude']}</p>
-              <p>緯度：{viewState['latitude']}</p>
-              <p>縮放：{viewState['zoom']}</p>
+              <p className={styles.loglat}>{`EPSG 4326`}</p>
+              <p className={styles.loglat}>{`經度：${viewState['longitude'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{`緯度：${viewState['latitude'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{`縮放：${viewState['zoom'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{`角度：${viewState['pitch'].toFixed(6)}`}</p>
             </LogLatBar>
           </LogLatContainer>
         </div>

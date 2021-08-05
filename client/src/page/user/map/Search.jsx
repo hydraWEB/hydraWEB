@@ -86,7 +86,7 @@ export default function Search(allData, setAllData, layer, setLayer) {
           let feat = file[dt]
           for(let f = 0; f< feat.data.features.length; f++){
             if(text === feat.data.feautures[f].properties.measurement){
-              
+
             }
             allMeasurement.push(feat.data.features[f].properties.measurement)
           }

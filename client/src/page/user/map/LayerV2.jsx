@@ -19,6 +19,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import { makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 const Accordion = withStyles({
   root: {
@@ -126,9 +128,28 @@ function rgbToHex(value) {
   return "#" + componentToHex(value[0]) + componentToHex(value[1]) + componentToHex(value[2]);
 }
 
+const checkBoxStyle = makeStyles({
+  root: (props) => ({
+    color: props.color,
+    "&$checked": {
+      color: props.color
+    }
+  })
+});
 
+function CustomCheckBox({color,checked,onChange}){
+  const classes1 = checkBoxStyle({ color: color});
+  return(
+    <Checkbox
+    className={classes1.root}
+    checked={checked}
+    onChange={onChange}
+    color="default"
+  />
+  )
+}
 
-export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
+function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
 
   const [timeList, setTimeList] = useState([])
   const [min, setmin] = useState(0)
@@ -175,8 +196,8 @@ export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, origi
 
   return (
     <InputWrapper backgroundColor={rgbToHex(getDotColor(data))}>
-      <Checkbox
-        type="checkbox"
+      <CustomCheckBox
+        color={rgbToHex(getDotColor(data))}
         checked={data.value}
         onChange={onChange}
       />
@@ -191,6 +212,7 @@ export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, origi
             max={max}
             aria-labelledby="discrete-slider"
             valueLabelDisplay="auto"
+            color = "secondary"
             step={null}
             defaultValue={min}
             marks={timeList}
@@ -208,17 +230,13 @@ export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, origi
   )
 }
 
-export default function Layer({ layers, setLayers, setHoverInfo }) {
+export default function Layer({ allData , setAllData, layers, setLayers, setHoverInfo }) {
 
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
-  const [AllData, setAllData] = useState([]) //地圖顯示Data
-  const [currentDataIdx, setCurrentDataIdx] = useState(0) //選擇的json檔分類
-  const [currentSelectedData, setCurrentSelectedData] = useState([]) //右邊列表顯示的json檔
   const [dataLoadState, setDataLoadState] = useState(0)
   const [dataLoadStateProgess, setDataLoadProgess] = useState(0)
   const { addToast } = useToasts();
-
 
   const onHover = (data) => {
     setHoverInfo(data)
@@ -233,7 +251,7 @@ export default function Layer({ layers, setLayers, setHoverInfo }) {
 
   const OnListItemsChange = (e, index1, data, index) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
-    let newMapData = [...AllData]
+    let newMapData = [...allData]
     newMapData[index1].files[index].value = value
     setAllData(newMapData)
     let newLayer = [...layers] //複製一個layer
@@ -332,7 +350,7 @@ export default function Layer({ layers, setLayers, setHoverInfo }) {
       setAllData(list)
       setOriginData(list)
 
-      let newLayer = []
+      let newLayer = [...layers]
       list.forEach((l, index) => {
         l.files.forEach((data, idx) => {
           if (data.name == "ps_mean_v.xy.json") {
@@ -413,6 +431,7 @@ export default function Layer({ layers, setLayers, setHoverInfo }) {
 
     }).catch((err) => {
       setDataLoadState(2)
+      addToast('圖層載入失敗.', { appearance: 'error', autoDismiss: true });
     }).finally(() => {
 
     })
@@ -430,7 +449,7 @@ export default function Layer({ layers, setLayers, setHoverInfo }) {
     //console.log(layers)
     let newLayer = [...layers] //複製一個layer
     let dayjs = require("dayjs")
-    let newMapData = [...AllData]
+    let newMapData = [...allData]
     newMapData[index1].files[index].value = true
     newMapData[index1].files[index].current_time = time
     setAllData(newMapData)
@@ -471,7 +490,7 @@ export default function Layer({ layers, setLayers, setHoverInfo }) {
     setLayers(newLayer)
   }
 
-  let BtnList = AllData.map((d, index1) =>
+  let BtnList = allData.map((d, index1) =>
     <div>
       <Accordion square >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" expandIcon={<ExpandMoreIcon />}>

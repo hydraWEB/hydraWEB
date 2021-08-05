@@ -433,10 +433,8 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             autoHighlight: true,
             onHover: onHover,
             filterEnabled:true,
-            getFilterValue: getFilterValue,
-            filterTransformSize: true,
-            filterTransformColor: true,          
-            filterRange: [time-10 , time+10],
+            getFilterValue: time,       
+            filterRange: [0 , 1556640000000],
             // Define extensions
             extensions: [new DataFilterExtension({filterSize: 1})]
           })

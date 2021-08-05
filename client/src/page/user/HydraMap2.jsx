@@ -206,7 +206,7 @@ export function CheckItem({ data, currentLayer, setCurrentLayer, onChange, origi
       })
       setTimeList(uniq)
       findminmax(uniq)
-      setCurrentSliderValue(uniq[0].value)
+      setCurrentSliderValue(data.current_time)
     }
   }, [data])
 
@@ -272,6 +272,14 @@ function Layer({ layers, setLayers, setHoverInfo }) {
     setHoverInfo(data)
   }
 
+  const getFilterValue = (d) => {
+    const dayjs = require("dayjs")
+    let time1 = dayjs(d.properties.time)
+    console.log("aaa")
+    return time1.valueOf()
+  }
+
+
   const OnListItemsChange = (e, data, index) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
     let newMapData = [...AllData]
@@ -295,26 +303,54 @@ function Layer({ layers, setLayers, setHoverInfo }) {
         //return;
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
-        newLayer[i] = new GeoJsonLayer({
-          id: data.name,
-          name: data.name,
-          data: data.data,
-          visible: value,
-          // Styles
-          filled: true,
-          pointRadiusMinPixels: 2,
-          pointRadiusScale: 5,
-          getPointRadius: f => 5,
-          getFillColor: getDotColor(data),
-          // Interactive props
-          pickable: true,
-          autoHighlight: true,
-          onHover: onHover
-        })
+        if(data.time_serie){
+          newLayer[i] = new GeoJsonLayer({
+            id: data.name,
+            name: data.name,
+            data: data.data,
+            visible: data.value,
+            // Styles
+            filled: true,
+            pointRadiusMinPixels: 2,
+            pointRadiusScale: 5,
+            getPointRadius: f => 5,
+            getFillColor: getDotColor(data),
+            // Interactive props
+            pickable: true,
+            autoHighlight: true,
+            onHover: onHover,
+            filterEnabled:false,
+            getFilterValue: getFilterValue,
+            filterTransformSize: true,
+            filterTransformColor: true,          
+            filterRange: [0 , 0],
+            // Define extensions
+            extensions: [new DataFilterExtension({filterSize: 1,countItems:true})]
+          })
+        }else{
+          newLayer[i] = new GeoJsonLayer({
+            id: data.name,
+            name: data.name,
+            data: data.data,
+            visible: value,
+            // Styles
+            filled: true,
+            pointRadiusMinPixels: 2,
+            pointRadiusScale: 5,
+            getPointRadius: f => 5,
+            getFillColor: getDotColor(data),
+            // Interactive props
+            pickable: true,
+            autoHighlight: true,
+            onHover: onHover,
+          })
+        }
+      
       }
     });
     setLayers(newLayer) //修改本來地圖的layer */ 
   }
+
 
   useEffect(() => {
     LayerList().then((res) => {
@@ -324,6 +360,7 @@ function Layer({ layers, setLayers, setHoverInfo }) {
         let files = element.file
         files.forEach((element2, idx) => {
           files[idx].value = false //不會先顯示圖層
+          files[idx].current_time = 0 //不會先顯示圖層
         })
 
         list.push({
@@ -363,23 +400,53 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             )
             return
           }
-          newLayer.push(
-            new GeoJsonLayer({
-              id: data.name,
-              name: data.name,
-              data: data.data,
-              visible: data.value,
-              // Styles
-              filled: true,
-              pointRadiusMinPixels: 2,
-              pointRadiusScale: 5,
-              getPointRadius: f => 5,
-              getFillColor: getDotColor(data),
-              // Interactive props
-              pickable: true,
-              autoHighlight: true,
-              onHover: onHover
-            }))
+          if(data.time_serie){
+            newLayer.push(
+              new GeoJsonLayer({
+                id: data.name,
+                name: data.name,
+                data: data.data,
+                visible: data.value,
+                // Styles
+                filled: true,
+                pointRadiusMinPixels: 2,
+                pointRadiusScale: 5,
+                getPointRadius: f => 5,
+                getFillColor: getDotColor(data),
+                // Interactive props
+                pickable: true,
+                autoHighlight: true,
+                onHover: onHover,
+                filterEnabled:false,
+                getFilterValue: getFilterValue,
+                filterTransformSize: true,
+                filterTransformColor: true,          
+                filterRange: [0 , 0],
+                // Define extensions
+                extensions: [new DataFilterExtension({filterSize: 1,countItems:true})],
+                
+              })
+            )
+          }else{
+            newLayer.push(
+              new GeoJsonLayer({
+                id: data.name,
+                name: data.name,
+                data: data.data,
+                visible: data.value,
+                // Styles
+                filled: true,
+                pointRadiusMinPixels: 2,
+                pointRadiusScale: 5,
+                getPointRadius: f => 5,
+                getFillColor: getDotColor(data),
+                // Interactive props
+                pickable: true,
+                autoHighlight: true,
+                onHover: onHover
+              }))
+          }
+         
 
         })
       })
@@ -400,19 +467,17 @@ function Layer({ layers, setLayers, setHoverInfo }) {
     })
   }
 
-  useEffect(()=>{
-    console.log(layers)
-  },[layers])
-
-  function setCurrentLayer(data, time) {
-    console.log(layers)
+  function setCurrentLayer(data, time,index) {
+    //console.log(layers)
     let newLayer = [...layers] //複製一個layer
     let dayjs = require("dayjs")
+    let newMapData = [...AllData]
+    newMapData[currentDataIdx].files[index].value = true
+    newMapData[currentDataIdx].files[index].current_time = time
+    setAllData(newMapData)
 
-    const getFilterValue = (d) => {
-      const dayjs = require("dayjs")
-      let time = dayjs(d.properties.time).valueOf()
-      return time
+    function onFilteredItemsChange(id,count){
+      console.log(count)
     }
 
     newLayer.forEach((element,i) => {
@@ -436,18 +501,19 @@ function Layer({ layers, setLayers, setHoverInfo }) {
             getFilterValue: getFilterValue,
             filterTransformSize: true,
             filterTransformColor: true,          
-            filterRange: [time-10 , time+10],
+            filterRange: [time , time],
+            onFilteredItemsChange:onFilteredItemsChange,
             // Define extensions
-            extensions: [new DataFilterExtension({filterSize: 1})]
+            extensions: [new DataFilterExtension({filterSize: 1,countItems:true})]
           })
       }
     })
-    console.log(time)
+    //console.log(time)
     setLayers(newLayer)
   }
 
   let CurrentListItems = currentSelectedData.map((data, index) =>
-    <CheckItem currentLayer={getLayer(data)} setCurrentLayer={(time) => setCurrentLayer(data, time)} originData={originData} data={AllData[currentDataIdx].files[index]} onChange={(e) => OnListItemsChange(e, data, index)} />
+    <CheckItem currentLayer={getLayer(data)} setCurrentLayer={(time) => setCurrentLayer(data, time,index)} originData={originData} data={AllData[currentDataIdx].files[index]} onChange={(e) => OnListItemsChange(e, data, index)} />
   );
 
   let BtnList = AllData.map((data, index) =>

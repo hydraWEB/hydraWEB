@@ -5,6 +5,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { green } from '@material-ui/core/TextField';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { DataGrid } from '@material-ui/data-grid';
 import React, { useEffect, useState, useRef } from 'react';
 import {
   alpha,
@@ -54,14 +55,53 @@ function SearchTextField(props) {
 export default function Search(allData, setAllData, layer, setLayer) {
   const { t, i18n } = useTranslation();
 
-  const [text, setText] = useState()
+  const [text, setText] = useState("Changhua_0")
+  const [filteredMeasurement, setFilteredMeasurement] = useState()
+  const [searchResult, setsearchResult] = useState([
+    0,1,2,3
+  ])
 
   const sendText = (t) => {
     setText(t.target.value)
   }
 
   function filter() {
+    
+    let alldt = allData.allData
     let resultMeasurement = []
+    let isValid = false
+    filteredMeasurement.forEach((n,i) => {
+      if(n === text) isValid = true
+    });
+    if(isValid){
+      for (let i = 0; i < alldt.length;i++) {
+        let file = alldt[i].files
+        for(let dt = 0; dt < file.length;dt++){
+          let feat = file[dt]
+          for(let f = 0; f< feat.data.features.length; f++){
+            if(text === feat.data.features[f].properties.measurement){
+              resultMeasurement.push(feat.data.features[f])
+            }
+          }
+        }
+      }
+    }
+    setsearchResult(resultMeasurement)
+  }
+
+  const rows = [
+
+  ]
+
+  let resultlist = searchResult.map((d) =>
+    <div>
+      <h1>hi</h1>
+    </div>
+  );
+
+    
+  
+  useEffect(() => {
     let allMeasurement = []
     let filteredMeasurement = []
     let alldt = allData.allData
@@ -75,38 +115,16 @@ export default function Search(allData, setAllData, layer, setLayer) {
         }
     }
     filteredMeasurement = [...new Set(allMeasurement)]  //unique
-    let isValid = false
-    filteredMeasurement.forEach((n,i) => {
-      if(n === text) isValid = true
-    });
-    if(isValid){
-      for (let i = 0; i < alldt.length;i++) {
-        let file = alldt[i].files
-        for(let dt = 0; dt < file.length;dt++){
-          let feat = file[dt]
-          for(let f = 0; f< feat.data.features.length; f++){
-            if(text === feat.data.feautures[f].properties.measurement){
-
-            }
-            allMeasurement.push(feat.data.features[f].properties.measurement)
-          }
-        }
-      }
-    }
+    setFilteredMeasurement(filteredMeasurement)
     
-    return resultMeasurement
-  }
-  
-  function findLayersWithMeasurement(){
-    
-  }
+  }, [allData])
   return (
     <div>
       <h4 className={styles.func_title}>{t('search')}</h4>
       <div className={styles.search_bar}>
         <SearchTextField
         label="Search"
-        defaultValue="Search"
+        defaultValue="Changhua_0"
         variant="filled"
         id="Search"
         onChange = {sendText}
@@ -117,8 +135,11 @@ export default function Search(allData, setAllData, layer, setLayer) {
       color="primary"
       onClick = {filter}
       >
-        Primary
+        Search
       </Button>
+      <div>
+        {resultlist}
+      </div>
     </div>
   )
 }

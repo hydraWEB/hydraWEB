@@ -12,6 +12,7 @@ import { userProfile, userRequest_client } from "./lib/api";
 import { useTranslation, Trans } from "react-i18next";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ToastProvider, useToasts } from 'react-toast-notifications'
+import Hydramap from "./page/user/map/HydraMap2";
 
 export default function App(props) {
 
@@ -60,7 +61,6 @@ export default function App(props) {
     return (
         <>
             <ToastProvider placement={"bottom-right"}>
-
                 <ThemeProvider theme={darkTheme}>
                     <div className={'root-container'}>
                         <UserProvider initialUser={initialUser}>

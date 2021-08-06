@@ -20,6 +20,7 @@ export default function CircleAnalysis({allData, layers, setLayers,editLayer,mod
   const { t, i18n } = useTranslation();
 
   function setEditLayerMode(mode){
+    console.log(mode)
     setMode(mode)
   }
 
@@ -30,13 +31,13 @@ export default function CircleAnalysis({allData, layers, setLayers,editLayer,mod
       
       <div>
         <Button
-          onClick={(e) => setEditLayerMode(() => ViewMode)}
+          onClick={(e) => setEditLayerMode(ViewMode)}
           variant={mode === ViewMode ? "contained" : "outlined"}
         >
           View
         </Button>
         <Button
-          onClick={() => setEditLayerMode(() => DrawCircleFromCenterMode)}
+          onClick={(e) => setEditLayerMode(DrawCircleFromCenterMode)}
           variant={mode === DrawCircleFromCenterMode ? "contained" : "outlined"}        >
           Draw Circle
         </Button>

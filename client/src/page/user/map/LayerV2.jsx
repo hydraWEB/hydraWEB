@@ -230,7 +230,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
   )
 }
 
-export default function Layer({ allData , setAllData, layers, setLayers, setHoverInfo }) {
+export default function Layer({ allData , setAllData, layers, setLayers, setHoverInfo ,setClickInfo }) {
 
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
@@ -241,6 +241,12 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
   const onHover = (data) => {
     setHoverInfo(data)
   }
+
+  const onClick = (data) => {
+    console.log(data)
+    setClickInfo(data)
+  }
+
 
   const getFilterValue = (d) => {
     const dayjs = require("dayjs")
@@ -294,7 +300,8 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             filterTransformColor: true,
             filterRange: [0, 0],
             // Define extensions
-            extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })]
+            extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
+            onClick:onClick
           })
         } else {
           newLayer[i] = new GeoJsonLayer({
@@ -312,6 +319,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             pickable: true,
             autoHighlight: true,
             onHover: onHover,
+            onClick:onClick
           })
         }
 
@@ -325,8 +333,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     LayerList({
       onDownloadProgress: (progressEvent) => {
         let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        console.log(progressEvent.lengthComputable)
-        console.log(percentCompleted);
+
         setDataLoadProgess(percentCompleted)
       }
     }).then((res) => {
@@ -334,7 +341,6 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
       setDataLoadState(1)
       let list = []
       res.data.data.forEach((element, idx) => {
-        console.log(element.name)
         let files = element.file
         files.forEach((element2, idx) => {
           files[idx].value = false //不會先顯示圖層
@@ -401,7 +407,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 filterRange: [0, 0],
                 // Define extensions
                 extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-
+                onClick:onClick
               })
             )
           } else {
@@ -420,7 +426,8 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 // Interactive props
                 pickable: true,
                 autoHighlight: true,
-                onHover: onHover
+                onHover: onHover,
+                onClick:onClick
               }))
           }
 

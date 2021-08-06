@@ -6,6 +6,7 @@ import { green } from '@material-ui/core/TextField';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { DataGrid } from '@material-ui/data-grid';
+import { GeoJsonLayer } from '@deck.gl/layers';
 import React, { useEffect, useState, useRef } from 'react';
 import {
   alpha,
@@ -17,8 +18,8 @@ import {
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
-    width:"100%",
-    borderRadius: 0, 
+    width: "100%",
+    borderRadius: 0,
   },
 }));
 
@@ -52,34 +53,30 @@ function SearchTextField(props) {
 }
 
 
-export default function Search(allData, setAllData, layer, setLayer) {
+export default function Search(allData, setAllData, layers, setLayer, ZoomIn) {
   const { t, i18n } = useTranslation();
 
   const [text, setText] = useState("Changhua_0")
   const [filteredMeasurement, setFilteredMeasurement] = useState()
-  const [searchResult, setsearchResult] = useState([
-    0,1,2,3
-  ])
+  const [searchResult, setsearchResult] = useState([])
 
   const sendText = (t) => {
     setText(t.target.value)
   }
-
   function filter() {
-    
     let alldt = allData.allData
     let resultMeasurement = []
     let isValid = false
-    filteredMeasurement.forEach((n,i) => {
-      if(n === text) isValid = true
+    filteredMeasurement.forEach((n, i) => {
+      if (n === text) isValid = true
     });
-    if(isValid){
-      for (let i = 0; i < alldt.length;i++) {
+    if (isValid) {
+      for (let i = 0; i < alldt.length; i++) {
         let file = alldt[i].files
-        for(let dt = 0; dt < file.length;dt++){
+        for (let dt = 0; dt < file.length; dt++) {
           let feat = file[dt]
-          for(let f = 0; f< feat.data.features.length; f++){
-            if(text === feat.data.features[f].properties.measurement){
+          for (let f = 0; f < feat.data.features.length; f++) {
+            if (text === feat.data.features[f].properties.measurement) {
               resultMeasurement.push(feat.data.features[f])
             }
           }
@@ -89,56 +86,85 @@ export default function Search(allData, setAllData, layer, setLayer) {
     setsearchResult(resultMeasurement)
   }
 
-  const rows = [
+  function ShowResult({ data, geometry }) {
+    
+    const StyledLabel = styled.label(
+      props => (
+        {
+          padding: "8px 10px 0px 10px",
+          marginBottom:0
+        }
+      )
+    )
 
-  ]
+    function ZoomIn(){
+      return geometry
+    }
+    
+    return (
+      <StyledLabel>
+        <div>
+          {data.measurement}
+          {/* {data.geometry} */}
+          <Button
+          onClick = {ZoomIn}>
+            Click Me
+          </Button>
+        </div>
+      </StyledLabel>
+      
+    );
+  }
+
 
   let resultlist = searchResult.map((d) =>
-    <div>
-      <h1>hi</h1>
-    </div>
+    <ShowResult data={d.properties} geometry={d.geometry.coordinates} />
   );
 
-    
-  
+
+
   useEffect(() => {
     let allMeasurement = []
     let filteredMeasurement = []
     let alldt = allData.allData
-    for (let i = 0; i < alldt.length;i++) {
-        let file = alldt[i].files
-        for(let dt = 0; dt < file.length;dt++){
-          let feat = file[dt]
-          for(let f = 0; f< feat.data.features.length; f++){
-            allMeasurement.push(feat.data.features[f].properties.measurement)
-          }
+    for (let i = 0; i < alldt.length; i++) {
+      let file = alldt[i].files
+      for (let dt = 0; dt < file.length; dt++) {
+        let feat = file[dt]
+        for (let f = 0; f < feat.data.features.length; f++) {
+          allMeasurement.push(feat.data.features[f].properties.measurement)
         }
+      }
     }
     filteredMeasurement = [...new Set(allMeasurement)]  //unique
     setFilteredMeasurement(filteredMeasurement)
-    
+
   }, [allData])
   return (
     <div>
       <h4 className={styles.func_title}>{t('search')}</h4>
       <div className={styles.search_bar}>
         <SearchTextField
-        label="Search"
-        defaultValue="Changhua_0"
-        variant="filled"
-        id="Search"
-        onChange = {sendText}
-      />
+          label="Search"
+          defaultValue="Changhua_0"
+          variant="filled"
+          id="Search"
+          onChange={sendText}
+        />
       </div>
-      <Button 
-      variant="contained" 
-      color="primary"
-      onClick = {filter}
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={filter}
       >
         Search
       </Button>
       <div>
-        {resultlist}
+        {searchResult.length > 0 &&
+          <div>        
+            {resultlist}
+          </div>
+        }
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { DrawCircle, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faPrint,
@@ -27,6 +27,7 @@ import Print from "./Print.jsx"
 import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
 import GeometryEditor from "./TestLayer"
+import {FlyToInterpolator} from 'deck.gl';
 
 import {
   EditableGeoJsonLayer,
@@ -104,7 +105,37 @@ function renderTooltip({ hoverInfo }) {
   );
 }
 
+function renderInfo({ clickInfo }) {
+  if (!clickInfo) {
+    return null;
+  }
+  const { object, x, y } = clickInfo;
 
+  if (!object) {
+    return null;
+  }
+
+  const props = object.properties;
+
+  const list = Object.entries(props).map(([key, value]) => {
+    return (
+      <div>{key} : {value.toString()}</div>
+    );
+  })
+
+  return (
+    <div className={styles.map_tooltip} style={{ bottom: 10, right:10 , zIndex: 10 }}>
+      <div className={styles.tooltip_title}>
+        <p className={styles.tooltip_title_t1}>{clickInfo.object.properties.measurement}</p>
+        <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
+      </div>
+
+      <p className={styles.tooltip_content}>
+        {list}
+      </p>
+    </div>
+  );
+}
 
 export default function HydraMap() {
 
@@ -116,28 +147,10 @@ export default function HydraMap() {
     bearing: 0
   };
 
-
-  const [mode, setMode] = React.useState(() => ViewMode);
   const [selectedFeatureIndexes] = React.useState([]);
+  const [mode,setMode] = useState(()=>ViewMode)
 
-      
-  function onEdit({updatedData}){
-    let newLayer = [...layers]
-    newLayer.forEach((element,i) => {
-      if(element.props.id == "geojson-layer"){
-        newLayer[i]  = new EditableGeoJsonLayer({
-          id: "geojson-layer",
-          data: updatedData,
-          mode:mode,
-          selectedFeatureIndexes,
-          onEdit:onEdit
-        });
-      }
-    })
-    setLayers(newLayer)
-  }
-
-
+    
   const editLayer = new EditableGeoJsonLayer({
     id: "geojson-layer",
     data: {
@@ -150,6 +163,7 @@ export default function HydraMap() {
   });
 
 
+
   const mapRef = useRef()
   const deckRef = useRef()
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
@@ -158,6 +172,7 @@ export default function HydraMap() {
   const [currentFunction, setCurrentFunction] = useState(1)
   const [openSheet, setOpenSheet] = useState(true)
   const [hoverInfo, setHoverInfo] = useState({});
+  const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
 
   // Data to be used by the LineLayer
@@ -167,6 +182,18 @@ export default function HydraMap() {
   ];
 
   const [layers, setLayers] = useState([editLayer])
+
+  const zoomToLocation = (geometry) =>{
+    setViewState({
+      longitude: geometry[0],
+      latitude:  geometry[1],
+      zoom: 15,
+      pitch: 0,
+      bearing: 0,
+      transitionDuration: 200,
+      transitionInterpolator: new FlyToInterpolator()  
+    })
+  }
 
   const setLayersFunc = (layer) => {
     setLayers(layer)
@@ -189,6 +216,21 @@ export default function HydraMap() {
     setHoverInfo(data)
   }
 
+  const setClickInfoFunc = (data) => {
+    setViewState(
+      {
+        longitude: data.object.geometry.coordinates[0],
+        latitude:  data.object.geometry.coordinates[1],
+        zoom: 15,
+        pitch: 0,
+        bearing: 0,
+        transitionDuration: 2,
+        transitionInterpolator: new FlyToInterpolator()  
+      }
+    )
+    setClickInfo(data)
+  }
+
 
   function getCursor(){
     layers.forEach((element,i) => {
@@ -198,8 +240,25 @@ export default function HydraMap() {
     })
   }
 
+        
+  function onEdit({updatedData}){
+    let newLayer = [...layers]
+    newLayer.forEach((element,i) => {
+      if(element.props.id == "geojson-layer"){
+        newLayer[i]  = new EditableGeoJsonLayer({
+          id: "geojson-layer",
+          data: updatedData,
+          mode:mode,
+          selectedFeatureIndexes,
+          onEdit:onEdit
+        });
+      }
+    })
+    setLayers(newLayer)
+  }
+
   const setEditLayerMode = (m) => {
-    setMode(m)
+    setMode(()=>m)
     let newLayer = [...layers]
     newLayer.forEach((element,i) => {
       if(element.props.id == "geojson-layer"){
@@ -207,7 +266,7 @@ export default function HydraMap() {
           id: "geojson-layer",
           data: element.props.data,
           selectedFeatureIndexes,
-          mode:mode,
+          mode:m,
           onEdit:onEdit
         });
       }
@@ -310,10 +369,10 @@ export default function HydraMap() {
       <ShowWrapper isShow={openSheet}>
         <div className={styles.menu_desk_outer_layer}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc}/>
+            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} /* zoomTo = {} *//>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
-            <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} />
+            <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 2}>
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
@@ -346,8 +405,7 @@ export default function HydraMap() {
           <DeckGL
             tooltip={true}
             id="deck-gl-canvas"
-            {...viewState}
-            initialViewState={INITIAL_VIEW_STATE}
+            viewState={viewState} 
             onViewStateChange={onViewStateChange}
             controller={{
               doubleClickZoom: false
@@ -359,8 +417,10 @@ export default function HydraMap() {
           >
             <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
             {renderTooltip({ hoverInfo })}
+            {renderInfo({ clickInfo })}
           </DeckGL>
           
+
         </div>
       </div>
     </>

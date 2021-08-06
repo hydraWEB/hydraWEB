@@ -131,7 +131,7 @@ function rgbToHex(value) {
 const checkBoxStyle = makeStyles({
   root: (props) => ({
     color: props.color,
-    "&$checked": {
+    "&checked": {
       color: props.color
     }
   })

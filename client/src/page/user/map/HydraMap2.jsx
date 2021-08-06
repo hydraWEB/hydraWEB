@@ -30,8 +30,8 @@ import GeometryEditor from "./TestLayer"
 
 import {
   EditableGeoJsonLayer,
-  DrawLineStringMode,
-  DrawPolygonMode
+  ViewMode,
+  DrawCircleFromCenterMode
 } from "nebula.gl";
 
 const ShowWrapper = styled.div(
@@ -116,27 +116,39 @@ export default function HydraMap() {
     bearing: 0
   };
 
-  const [mode, setMode] = React.useState(() => DrawLineStringMode);
-  const [modeConfig, setModeConfig] = React.useState({});
+
+  const [mode, setMode] = React.useState(() => ViewMode);
   const [selectedFeatureIndexes] = React.useState([]);
 
-  const [features, setFeatures] = React.useState({
-    type: "FeatureCollection",
-    features: []
-  });
+      
+  function onEdit({updatedData}){
+    let newLayer = [...layers]
+    newLayer.forEach((element,i) => {
+      if(element.props.id == "geojson-layer"){
+        newLayer[i]  = new EditableGeoJsonLayer({
+          id: "geojson-layer",
+          data: updatedData,
+          mode:mode,
+          selectedFeatureIndexes,
+          onEdit:onEdit
+        });
+      }
+    })
+    setLayers(newLayer)
+  }
 
-  const test = () => DrawLineStringMode
 
   const editLayer = new EditableGeoJsonLayer({
     id: "geojson-layer",
-    data: features,
-    mode: mode,
+    data: {
+      type: "FeatureCollection",
+      features: []
+    },
+    mode:mode,
     selectedFeatureIndexes,
-
-    onEdit: ({ updatedData }) => {
-      setFeatures(updatedData);
-    }
+    onEdit: onEdit
   });
+
 
   const mapRef = useRef()
   const deckRef = useRef()
@@ -179,27 +191,28 @@ export default function HydraMap() {
 
 
   function getCursor(){
-    return editLayer.getCursor.bind(editLayer)
+    layers.forEach((element,i) => {
+      if(element.props.id == "geojson-layer"){
+         element.getCursor.bind(element)
+      }
+    })
   }
 
   const setEditLayerMode = (m) => {
+    setMode(m)
     let newLayer = [...layers]
     newLayer.forEach((element,i) => {
       if(element.props.id == "geojson-layer"){
         newLayer[i]  = new EditableGeoJsonLayer({
           id: "geojson-layer",
-          data: features,
-          mode:m,
+          data: element.props.data,
           selectedFeatureIndexes,
-      
-          onEdit: ({ updatedData }) => {
-            setFeatures(updatedData);
-          }
+          mode:mode,
+          onEdit:onEdit
         });
       }
     })
     setLayers(newLayer)
-    setMode(m)
   }
 
   return (
@@ -336,12 +349,11 @@ export default function HydraMap() {
             {...viewState}
             initialViewState={INITIAL_VIEW_STATE}
             onViewStateChange={onViewStateChange}
-            controller={true}
-            layers={layers}
-            ref={deckRef}
             controller={{
               doubleClickZoom: false
             }}
+            layers={layers}
+            ref={deckRef}
             glOptions={{ preserveDrawingBuffer: true }}
             getCursor={getCursor}
           >

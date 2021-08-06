@@ -4,10 +4,14 @@ import { useTranslation, Trans } from "react-i18next";
 import React, { useEffect, useState, useRef } from 'react';
 import { Toolbox } from "@nebula.gl/editor";
 import DeckGL from "deck.gl";
+import Button from '@material-ui/core/Button';
+
 import {
   EditableGeoJsonLayer,
   DrawLineStringMode,
-  DrawPolygonMode
+  DrawPolygonMode,
+  DrawCircleFromCenterMode,
+  ViewMode
 } from "nebula.gl";
 
 
@@ -25,18 +29,17 @@ export default function CircleAnalysis({allData, layers, setLayers,editLayer,mod
       </h4>
       
       <div>
-        <button
-          onClick={(e) => setEditLayerMode(() => DrawLineStringMode)}
-          style={{ background: mode === DrawLineStringMode ? "#3090e0" : null }}
+        <Button
+          onClick={(e) => setEditLayerMode(() => ViewMode)}
+          variant={mode === ViewMode ? "contained" : "outlined"}
         >
-          Line
-        </button>
-        <button
-          onClick={() => setEditLayerMode(() => DrawPolygonMode)}
-          style={{ background: mode === DrawPolygonMode ? "#3090e0" : null }}
-        >
-          Polygon
-        </button>
+          View
+        </Button>
+        <Button
+          onClick={() => setEditLayerMode(() => DrawCircleFromCenterMode)}
+          variant={mode === DrawCircleFromCenterMode ? "contained" : "outlined"}        >
+          Draw Circle
+        </Button>
       </div>
 
     </div>

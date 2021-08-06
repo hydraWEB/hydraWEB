@@ -24,6 +24,15 @@ import { useToasts } from "react-toast-notifications";
 
 import Layer from "./LayerV2.jsx"
 import Print from "./Print.jsx"
+import Search from "./Search"
+import CircleAnalysis from "./CircleAnalysis"
+import GeometryEditor from "./TestLayer"
+
+import {
+  EditableGeoJsonLayer,
+  DrawLineStringMode,
+  DrawPolygonMode
+} from "nebula.gl";
 
 const ShowWrapper = styled.div(
   props => (
@@ -95,6 +104,8 @@ function renderTooltip({ hoverInfo }) {
   );
 }
 
+
+
 export default function HydraMap() {
 
   const INITIAL_VIEW_STATE = {
@@ -105,6 +116,28 @@ export default function HydraMap() {
     bearing: 0
   };
 
+  const [mode, setMode] = React.useState(() => DrawLineStringMode);
+  const [modeConfig, setModeConfig] = React.useState({});
+  const [selectedFeatureIndexes] = React.useState([]);
+
+  const [features, setFeatures] = React.useState({
+    type: "FeatureCollection",
+    features: []
+  });
+
+  const test = () => DrawLineStringMode
+
+  const editLayer = new EditableGeoJsonLayer({
+    id: "geojson-layer",
+    data: features,
+    mode: mode,
+    selectedFeatureIndexes,
+
+    onEdit: ({ updatedData }) => {
+      setFeatures(updatedData);
+    }
+  });
+
   const mapRef = useRef()
   const deckRef = useRef()
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
@@ -113,6 +146,7 @@ export default function HydraMap() {
   const [currentFunction, setCurrentFunction] = useState(1)
   const [openSheet, setOpenSheet] = useState(true)
   const [hoverInfo, setHoverInfo] = useState({});
+  const [allData, setAllData] = useState([]) //地圖顯示Data
 
   // Data to be used by the LineLayer
 
@@ -120,7 +154,7 @@ export default function HydraMap() {
     { sourcePosition: [121, 24], targetPosition: [122, 25] }
   ];
 
-  const [layers, setLayers] = useState([])
+  const [layers, setLayers] = useState([editLayer])
 
   const setLayersFunc = (layer) => {
     setLayers(layer)
@@ -141,6 +175,31 @@ export default function HydraMap() {
 
   const setHoverInfoFunc = (data) => {
     setHoverInfo(data)
+  }
+
+
+  function getCursor(){
+    return editLayer.getCursor.bind(editLayer)
+  }
+
+  const setEditLayerMode = (m) => {
+    let newLayer = [...layers]
+    newLayer.forEach((element,i) => {
+      if(element.props.id == "geojson-layer"){
+        newLayer[i]  = new EditableGeoJsonLayer({
+          id: "geojson-layer",
+          data: features,
+          mode:m,
+          selectedFeatureIndexes,
+      
+          onEdit: ({ updatedData }) => {
+            setFeatures(updatedData);
+          }
+        });
+      }
+    })
+    setLayers(newLayer)
+    setMode(m)
   }
 
   return (
@@ -238,22 +297,22 @@ export default function HydraMap() {
       <ShowWrapper isShow={openSheet}>
         <div className={styles.menu_desk_outer_layer}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <h4 className={styles.func_title}>{t('search')}</h4>
+            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc}/>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
-            <Layer layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} />
+            <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 2}>
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <h4 className={styles.func_title}>{t('circle_analysis')}</h4>
+            <CircleAnalysis allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={editLayer} mode={mode} setMode={setEditLayerMode}/>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
             <Print map={mapRef} deck={deckRef} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 5}>
-            <h4 className={styles.func_title}>{t('locate')}</h4>
+            <GeometryEditor/>
           </ShowWrapper>
         </div>
       </ShowWrapper>
@@ -280,11 +339,16 @@ export default function HydraMap() {
             controller={true}
             layers={layers}
             ref={deckRef}
+            controller={{
+              doubleClickZoom: false
+            }}
             glOptions={{ preserveDrawingBuffer: true }}
+            getCursor={getCursor}
           >
             <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
             {renderTooltip({ hoverInfo })}
           </DeckGL>
+          
         </div>
       </div>
     </>

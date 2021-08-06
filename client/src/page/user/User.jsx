@@ -87,7 +87,9 @@ export default function User(props) {
                         <Staff />
                     </Route>
                     <Route path="/user/hydramap">
-                        <Suspense fallback={<h1>Loading...</h1>}>
+                        <Suspense fallback={
+                        <h1>Loading...</h1>}
+                        >
                             <HydraMap />
                         </Suspense>
                     </Route>

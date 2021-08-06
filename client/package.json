@@ -26,6 +26,7 @@
     "js-cookie": "^2.2.1",
     "jspdf": "^2.3.1",
     "mapbox-gl": "^2.0.1",
+    "material-ui": "^0.20.2",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",

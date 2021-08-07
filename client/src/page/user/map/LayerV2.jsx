@@ -77,6 +77,7 @@ function ValueLabelComponent(props) {
 const InputWrapper = styled.div(
   props => (
     {
+      width:"100%",
       borderWidth: "2x",
       borderColor: "white",
       borderBottom: "1px",

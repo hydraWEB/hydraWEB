@@ -9,7 +9,7 @@ import {
   faStreetView,
 } from '@fortawesome/free-solid-svg-icons'
 import {
-  OverlayTrigger, Tooltip, 
+  OverlayTrigger, Tooltip,
 } from 'react-bootstrap';
 import { useTranslation, Trans } from "react-i18next";
 
@@ -24,7 +24,7 @@ import Print from "./Print.jsx"
 import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
 import GeometryEditor from "./TestLayer"
-import {FlyToInterpolator} from 'deck.gl';
+import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
 
 import {
@@ -120,7 +120,7 @@ function renderInfo({ clickInfo }) {
   })
 
   return (
-    <div className={styles.map_tooltip} style={{ bottom: 10, right:10 , zIndex: 10 }}>
+    <div className={styles.map_tooltip} style={{ bottom: 10, right: 10, zIndex: 10 }}>
       <div className={styles.tooltip_title}>
         <p className={styles.tooltip_title_t1}>{clickInfo.object.properties.measurement}</p>
         <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
@@ -144,16 +144,22 @@ export default function HydraMap() {
   };
 
   const [selectedFeatureIndexes] = React.useState([]);
-  const [mode,setMode] = useState(()=>ViewMode)
+  const [radius, setRadius] = useState(0)
+  const [mode, _setMode] = useState(() => ViewMode)
+  const modeRef = useRef(mode);
+  const setMode = data => {
+    modeRef.current = data;
+    _setMode(data);
+  };
 
-    
+
   const editLayer = new EditableGeoJsonLayer({
     id: "geojson-layer",
     data: {
       type: "FeatureCollection",
       features: []
     },
-    mode:mode,
+    mode: mode,
     selectedFeatureIndexes,
     onEdit: onEdit
   });
@@ -170,6 +176,7 @@ export default function HydraMap() {
   const [hoverInfo, setHoverInfo] = useState({});
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
+  const [lastClick, setLastClick] = useState([])
 
   // Data to be used by the LineLayer
 
@@ -179,15 +186,15 @@ export default function HydraMap() {
 
   const [layers, setLayers] = useState([editLayer])
 
-  const zoomToLocation = (geometry) =>{
+  const zoomToLocation = (geometry) => {
     setViewState({
       longitude: geometry[0],
-      latitude:  geometry[1],
+      latitude: geometry[1],
       zoom: 15,
       pitch: 0,
       bearing: 0,
       transitionDuration: 3000,
-      transitionInterpolator: new FlyToInterpolator()  
+      transitionInterpolator: new FlyToInterpolator()
     })
   }
 
@@ -204,7 +211,7 @@ export default function HydraMap() {
     setCurrentFunction(funcID)
   })
 
-  const onViewStateChange = React.useCallback(({viewState}) => {
+  const onViewStateChange = React.useCallback(({ viewState }) => {
     setViewState(viewState);
   }, []);
 
@@ -217,61 +224,110 @@ export default function HydraMap() {
     setViewState(
       {
         longitude: data.object.geometry.coordinates[0],
-        latitude:  data.object.geometry.coordinates[1],
+        latitude: data.object.geometry.coordinates[1],
         zoom: 15,
         pitch: 0,
         bearing: 0,
         transitionDuration: 1000,
-        transitionInterpolator: new FlyToInterpolator({speed: 2000})  
+        transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
       }
     )
     setClickInfo(data)
   }
 
-  const setClickMapFunc= (data) => {
-    if(clickInfo != null){
+  const setClickMapFunc = (data) => {
+    if (clickInfo != null) {
       setClickInfo(null)
     }
   }
 
 
-  function getCursor(){
-    layers.forEach((element,i) => {
-      if(element.props.id == "geojson-layer"){
-         element.getCursor.bind(element)
+  function getCursor() {
+    layers.forEach((element, i) => {
+      if (element.props.id == "geojson-layer") {
+        element.getCursor.bind(element)
       }
     })
   }
 
-        
-  function onEdit({updatedData}){
+  function distance(lat1, lon1, lat2, lon2,) {
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+        return 0;
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 0.609344
+        return dist;
+    }
+}
+
+
+  function onEdit({ updatedData,editType,featureIndexes,editContext }) {
+    
     let newLayer = [...layers]
-    newLayer.forEach((element,i) => {
-      if(element.props.id == "geojson-layer"){
-        newLayer[i]  = new EditableGeoJsonLayer({
-          id: "geojson-layer",
-          data: updatedData,
-          mode:mode,
-          selectedFeatureIndexes,
-          onEdit:onEdit
-        });
+    newLayer.forEach((element, i) => {
+      if (element.props.id == "geojson-layer") {
+        if (updatedData.features.length > 0) {
+          setMode(() => ViewMode)
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "geojson-layer",
+            data: updatedData,
+            mode: ViewMode,
+            selectedFeatureIndexes,
+            onEdit: onEdit
+          });
+        } else {
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "geojson-layer",
+            data: updatedData,
+            mode: modeRef.current,
+            selectedFeatureIndexes,
+            onEdit: onEdit
+          });
+        }
+
       }
     })
     setLayers(newLayer)
   }
 
   const setEditLayerMode = (m) => {
-    setMode(()=>m)
     let newLayer = [...layers]
-    newLayer.forEach((element,i) => {
-      if(element.props.id == "geojson-layer"){
-        newLayer[i]  = new EditableGeoJsonLayer({
-          id: "geojson-layer",
-          data: element.props.data,
-          selectedFeatureIndexes,
-          mode:m,
-          onEdit:onEdit
-        });
+    newLayer.forEach((element, i) => {
+      if (element.props.id == "geojson-layer") {
+        if(m === DrawCircleFromCenterMode){
+          setMode(() => m)
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "geojson-layer",
+            data: {
+              type: "FeatureCollection",
+              features: []
+            },
+            selectedFeatureIndexes,
+            mode: m,
+            onEdit: onEdit
+          });
+        }else{
+          setMode(() => ViewMode)
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "geojson-layer",
+            data: element.props.data,
+            selectedFeatureIndexes,
+            mode: ViewMode,
+            onEdit: onEdit
+          });
+        }
+       
       }
     })
     setLayers(newLayer)
@@ -328,7 +384,7 @@ export default function HydraMap() {
               <OverlayTrigger
                 key='right'
                 placement='right'
-                overlay={ 
+                overlay={
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
                     {t('circle_analysis')}
                   </Tooltip>
@@ -372,7 +428,7 @@ export default function HydraMap() {
       <ShowWrapper isShow={openSheet}>
         <div className={styles.menu_desk_outer_layer}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} /* zoomTo = {} *//>
+            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} /* zoomTo = {} */ />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
@@ -381,13 +437,13 @@ export default function HydraMap() {
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <CircleAnalysis allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={editLayer} mode={mode} setMode={setEditLayerMode}/>
+            <CircleAnalysis radius={radius} setRadius={setRadius} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={editLayer} mode={mode} setMode={setEditLayerMode} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
             <Print map={mapRef} deck={deckRef} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 5}>
-            <GeometryEditor/>
+            <GeometryEditor />
           </ShowWrapper>
         </div>
       </ShowWrapper>
@@ -407,7 +463,7 @@ export default function HydraMap() {
         <div className={styles.map}>
           <DeckGL
             tooltip={true}
-            viewState={viewState} 
+            viewState={viewState}
             onViewStateChange={onViewStateChange}
             controller={{
               doubleClickZoom: false
@@ -416,11 +472,11 @@ export default function HydraMap() {
             ref={deckRef}
             getCursor={getCursor}
           >
-            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true}  mapStyle={StyleJson}/>
+            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} />
             {renderTooltip({ hoverInfo })}
             {renderInfo({ clickInfo })}
           </DeckGL>
-          
+
 
         </div>
       </div>

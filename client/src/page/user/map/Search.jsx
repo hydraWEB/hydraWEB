@@ -93,10 +93,6 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     let resultMeasurement = []
     let data = []
     let isValid = false
-    /* const getDotColor = d => {
-      let a = hashCode(d.name)
-      return [(a >> 1) & 255, (a << 3) & 255, (a >> 5) & 255]
-    }; */
 
     filteredMeasurement.forEach((n, i) => {
       if (n === text) isValid = true
@@ -119,16 +115,13 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       
     }
     setData(data)
-    /* setsearchResultName(resultName) */
     setsearchResult(resultMeasurement)
   }
 
-  function ShowResult({measurement, data}) {
+  function ShowResult({measurement, geometry, name}) {
     function btnClicked(){
-      let newLayer = []
-      zoomIn(allData, layers, setLayers, setHoverInfo ,setClickInfo, data)
-      setLayers(layers)
-      console.log("hi")
+      zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,setClickInfo, geometry, data)
+      zoomTo(geometry)
     }
     
     
@@ -137,10 +130,12 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       <StyledLabel>
         <div>
           {measurement}
-          {/* &ensp;
+          &ensp;
+          {name}
+          &ensp;
           {geometry[0]}
           &ensp;
-          {geometry[1]} */}
+          {geometry[1]}
           <Button onClick ={btnClicked}> 
 
             Zoom In
@@ -153,7 +148,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
   let resultlist = searchResult.map((d) =>
-    <ShowResult measurement = {d.measurement} data={d.measurement}/>
+    <ShowResult measurement = {d.properties.measurement} geometry = {d.geometry.coordinates} name = {d.properties.name}/>
   );
 
 

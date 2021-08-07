@@ -232,7 +232,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
   )
 }
 
-export function zoomIn(allData, layers, setLayers, setHoverInfo ,setClickInfo, geometry, data, setDotColor ){
+export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,setClickInfo, geometry, data){
   const onClick = (data) => {
     console.log(data)
     setClickInfo(data)
@@ -240,36 +240,50 @@ export function zoomIn(allData, layers, setLayers, setHoverInfo ,setClickInfo, g
   const onHover = (data) => {
     setHoverInfo(data)
   }
-
+  let newMapData = [...allData]
+  for (let i = 0; i < newMapData.length; i++){
+    for (let j = 0; j < newMapData[i].files.length; j++){
+      for(let k = 0; k < data.length; k++){
+        if (newMapData[i].files[j].name === data[k].name){
+          newMapData[i].files[j].value = true
+        }
+      }
+    }
+    
+  }
+  setAllData(newMapData)
   let newLayer = []
   if(layers.length > 0){
     newLayer = [...layers]
     layers.forEach((element,i) => {
-      if(element.props.id === data.properties.name){
-        newLayer[i] = new GeoJsonLayer({
-          id: data.name,
-          name: data.name,
-          data: data.data,
-          visible: true,
-          // Styles
-          filled: true,
-          pointRadiusMinPixels: 2,
-          pointRadiusScale: 5,
-          getPointRadius: f => 5,
-          getFillColor: getDotColor(data),
-          // Interactive props
-          pickable: true,
-          autoHighlight: true,
-          onHover: onHover,
-          onClick:onClick
-        })
+      for (let k =0;k<data.length;k++){
+        if(element.props.id === data[k].name){
+          newLayer[i] = new GeoJsonLayer({
+            id: data[k].name,
+            name: data[k].name,
+            data: data[k].data,
+            visible: true,
+            // Styles
+            filled: true,
+            pointRadiusMinPixels: 2,
+            pointRadiusScale: 5,
+            getPointRadius: f => 5,
+            getFillColor: getDotColor(data[k]),
+            // Interactive props
+            pickable: true,
+            autoHighlight: true,
+            onHover: onHover,
+            onClick:onClick
+          })
+        }
       }
     
     }) 
   }
 
+  
+  
   setLayers(newLayer)
-
 
 
 

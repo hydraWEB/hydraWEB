@@ -41,6 +41,16 @@ const ShowWrapper = styled.div(
     }
   )
 )
+const MenuBtnWrapper = styled.li(
+  props => (
+    {
+      padding: "25px 10px 10px 22px",
+      alignItems: "center",
+      background: props.isShow ? '#92a4e4' : null,
+      cursor: 'pointer'
+    }
+  )
+)
 
 export const LogLatContainer = styled.div(
   props => (
@@ -66,7 +76,7 @@ export const LogLatBar = styled.div(
       alignSelf: "center",
       fontSize: "0.85rem",
       display: "flex",
-      flexDirection: "row"
+      flexDirection: "row",
     }
   )
 )
@@ -153,6 +163,14 @@ export default function HydraMap() {
   };
 
 
+  const [lastClick, _setLastClick] = useState([])
+  const lastClickRef = useRef(lastClick);
+  const setLastClick = data => {
+    lastClickRef.current = data;
+    _setLastClick(data);
+  };
+
+
   const editLayer = new EditableGeoJsonLayer({
     id: "geojson-layer",
     data: {
@@ -176,13 +194,6 @@ export default function HydraMap() {
   const [hoverInfo, setHoverInfo] = useState({});
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
-  const [lastClick, setLastClick] = useState([])
-
-  // Data to be used by the LineLayer
-
-  const data = [
-    { sourcePosition: [121, 24], targetPosition: [122, 25] }
-  ];
 
   const [layers, setLayers] = useState([editLayer])
 
@@ -193,8 +204,8 @@ export default function HydraMap() {
       zoom: 15,
       pitch: 0,
       bearing: 0,
-      transitionDuration: 3000,
-      transitionInterpolator: new FlyToInterpolator()
+      transitionDuration: 1000,
+      transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
     })
   }
 
@@ -250,35 +261,37 @@ export default function HydraMap() {
     })
   }
 
-  function distance(lat1, lon1, lat2, lon2,) {
+  function distance(lon1, lat1, lon2, lat2) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
-        return 0;
+      return 0;
     }
     else {
-        var radlat1 = Math.PI * lat1/180;
-        var radlat2 = Math.PI * lat2/180;
-        var theta = lon1-lon2;
-        var radtheta = Math.PI * theta/180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        if (dist > 1) {
-            dist = 1;
-        }
-        dist = Math.acos(dist);
-        dist = dist * 180/Math.PI;
-        dist = dist * 60 * 1.1515;
-        dist = dist * 0.609344
-        return dist;
+      var radlat1 = Math.PI * lat1 / 180;
+      var radlat2 = Math.PI * lat2 / 180;
+      var theta = lon1 - lon2;
+      var radtheta = Math.PI * theta / 180;
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = dist * 180 / Math.PI;
+      dist = dist * 60 * 1.1515;
+      dist = dist * 1.609344
+      return dist;
     }
-}
+  }
 
 
-  function onEdit({ updatedData,editType,featureIndexes,editContext }) {
-    
+  function onEdit({ updatedData, editType, featureIndexes, editContext }) {
+
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
       if (element.props.id == "geojson-layer") {
         if (updatedData.features.length > 0) {
           setMode(() => ViewMode)
+          let d = distance(lastClickRef.current[0], lastClickRef.current[1], updatedData.features[0].geometry.coordinates[0][0][0], updatedData.features[0].geometry.coordinates[0][0][1])
+          setRadius(d)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "geojson-layer",
             data: updatedData,
@@ -305,7 +318,7 @@ export default function HydraMap() {
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
       if (element.props.id == "geojson-layer") {
-        if(m === DrawCircleFromCenterMode){
+        if (m === DrawCircleFromCenterMode) {
           setMode(() => m)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "geojson-layer",
@@ -317,7 +330,7 @@ export default function HydraMap() {
             mode: m,
             onEdit: onEdit
           });
-        }else{
+        } else {
           setMode(() => ViewMode)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "geojson-layer",
@@ -327,18 +340,22 @@ export default function HydraMap() {
             onEdit: onEdit
           });
         }
-       
+
       }
     })
     setLayers(newLayer)
   }
+
+  const saveLastClick = React.useCallback(e => {
+    setLastClick([e.coordinate[0], e.coordinate[1]])
+  }, [])
 
   return (
     <>
       <div className={styles.top_level_nav}>
         <nav className={styles.top_level_nav_wrapper}>
           <ul>
-            <li className={styles.menu_btn_wrapper}>
+            <MenuBtnWrapper isShow={currentFunction === 0} onClick={(e) => functionChangeToggle(0)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -347,12 +364,15 @@ export default function HydraMap() {
                     {t('search')}
                   </Tooltip>
                 }>
-                <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(0)}
-                  icon={faSearch}
-                  size="lg" color="white" id='app-icon' />
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    size="lg" color="white" />
+                </div>
+
               </OverlayTrigger>
-            </li>
-            <li className={styles.menu_btn_wrapper}>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 1} onClick={(e) => functionChangeToggle(1)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -361,12 +381,14 @@ export default function HydraMap() {
                     {t('layer')}
                   </Tooltip>
                 }>
-                <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(1)}
-                  icon={faClone}
-                  size="lg" color="white" />
+                <div className={styles.menu_btn}>
+                  <FontAwesomeIcon
+                    icon={faClone}
+                    size="lg" color="white" />
+                </div>
               </OverlayTrigger>
-            </li>
-            <li className={styles.menu_btn_wrapper}>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 2} onClick={(e) => functionChangeToggle(2)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -375,12 +397,14 @@ export default function HydraMap() {
                     {t('3D_switch')}
                   </Tooltip>
                 }>
-                <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(2)}
-                  icon={faExchangeAlt}
-                  size="lg" color="white" />
+                <div className={styles.menu_btn}>
+                  <FontAwesomeIcon
+                    icon={faExchangeAlt}
+                    size="lg" color="white" />
+                </div>
               </OverlayTrigger>
-            </li>
-            <li className={styles.menu_btn_wrapper}>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 3} onClick={(e) => functionChangeToggle(3)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -389,12 +413,14 @@ export default function HydraMap() {
                     {t('circle_analysis')}
                   </Tooltip>
                 }>
-                <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(3)}
-                  icon={faStreetView}
-                  size="lg" color="white" />
+                <div className={styles.menu_btn}>
+                  <FontAwesomeIcon
+                    icon={faStreetView}
+                    size="lg" color="white" />
+                </div>
               </OverlayTrigger>
-            </li>
-            <li className={styles.menu_btn_wrapper}>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 4} onClick={(e) => functionChangeToggle(4)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -403,12 +429,15 @@ export default function HydraMap() {
                     {t('print')}
                   </Tooltip>
                 }>
-                <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(4)}
-                  icon={faPrint}
-                  size="lg" color="white" />
+                <div className={styles.menu_btn} >
+
+                  <FontAwesomeIcon
+                    icon={faPrint}
+                    size="lg" color="white" />
+                </div>
               </OverlayTrigger>
-            </li>
-            <li className={styles.menu_btn_wrapper}>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -417,10 +446,12 @@ export default function HydraMap() {
                     {t('locate')}
                   </Tooltip>
                 }>
-                <FontAwesomeIcon className={styles.menu_btn} onClick={(e) => functionChangeToggle(5)}
-                  icon={faMapMarker} size="lg" color="white" />
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faMapMarker} size="lg" color="white" />
+                </div>
               </OverlayTrigger>
-            </li>
+            </MenuBtnWrapper>
           </ul>
         </nav>
       </div>
@@ -428,7 +459,7 @@ export default function HydraMap() {
       <ShowWrapper isShow={openSheet}>
         <div className={styles.menu_desk_outer_layer}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} /* zoomTo = {} */ />
+            <Search allData={allData} layers={layers} setLayers={setLayersFunc} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
@@ -437,7 +468,7 @@ export default function HydraMap() {
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <CircleAnalysis radius={radius} setRadius={setRadius} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={editLayer} mode={mode} setMode={setEditLayerMode} />
+            <CircleAnalysis radius={radius} setRadius={setRadius} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={editLayer} mode={mode} setMode={setEditLayerMode} lastClick={lastClick} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
             <Print map={mapRef} deck={deckRef} />
@@ -460,7 +491,7 @@ export default function HydraMap() {
             </LogLatBar>
           </LogLatContainer>
         </div>
-        <div className={styles.map}>
+        <div className={styles.map} >
           <DeckGL
             tooltip={true}
             viewState={viewState}
@@ -471,13 +502,12 @@ export default function HydraMap() {
             layers={[layers]}
             ref={deckRef}
             getCursor={getCursor}
+            onClick={saveLastClick}
           >
             <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} />
             {renderTooltip({ hoverInfo })}
             {renderInfo({ clickInfo })}
           </DeckGL>
-
-
         </div>
       </div>
     </>

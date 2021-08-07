@@ -15,7 +15,7 @@ import {
 } from "nebula.gl";
 
 
-export default function CircleAnalysis({allData, layers, setLayers,editLayer,mode,setMode,radius}) {
+export default function CircleAnalysis({allData, layers, setLayers,editLayer,mode,setMode,radius,lastClick}) {
 
   const { t, i18n } = useTranslation();
 
@@ -30,7 +30,11 @@ export default function CircleAnalysis({allData, layers, setLayers,editLayer,mod
       </h4>
       
       <div>
-        <p>半徑：{radius}</p>
+        <p>半徑：{radius}km</p>
+        { lastClick.length > 1 &&
+        <p>中心點：{lastClick[0]}, {lastClick[1]}</p>
+
+        }
         <Button
           onClick={(e) => setEditLayerMode(ViewMode)}
           variant={mode == ViewMode ? "contained" : "outlined"}

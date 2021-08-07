@@ -115,7 +115,7 @@ const hashCode = (str) => { // java String#hashCode
   return hash;
 }
 
-const getDotColor = d => {
+export const getDotColor = d => {
   let a = hashCode(d.name)
   return [(a >> 1) & 255, (a << 3) & 255, (a >> 5) & 255]
 };
@@ -149,6 +149,7 @@ function CustomCheckBox({color,checked,onChange}){
   />
   )
 }
+
 
 function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
 
@@ -229,6 +230,49 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
       </StyledLabel>
     </InputWrapper>
   )
+}
+
+export function zoomIn(allData, layers, setLayers, setHoverInfo ,setClickInfo, geometry, data, setDotColor ){
+  const onClick = (data) => {
+    console.log(data)
+    setClickInfo(data)
+  }
+  const onHover = (data) => {
+    setHoverInfo(data)
+  }
+
+  let newLayer = []
+  if(layers.length > 0){
+    newLayer = [...layers]
+    layers.forEach((element,i) => {
+      if(element.props.id === data.properties.name){
+        newLayer[i] = new GeoJsonLayer({
+          id: data.name,
+          name: data.name,
+          data: data.data,
+          visible: true,
+          // Styles
+          filled: true,
+          pointRadiusMinPixels: 2,
+          pointRadiusScale: 5,
+          getPointRadius: f => 5,
+          getFillColor: getDotColor(data),
+          // Interactive props
+          pickable: true,
+          autoHighlight: true,
+          onHover: onHover,
+          onClick:onClick
+        })
+      }
+    
+    }) 
+  }
+
+  setLayers(newLayer)
+
+
+
+
 }
 
 export default function Layer({ allData , setAllData, layers, setLayers, setHoverInfo ,setClickInfo }) {

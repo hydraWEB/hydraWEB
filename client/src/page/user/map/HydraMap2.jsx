@@ -170,6 +170,7 @@ export default function HydraMap() {
   const [hoverInfo, setHoverInfo] = useState({});
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
+  
 
   // Data to be used by the LineLayer
 
@@ -372,7 +373,7 @@ export default function HydraMap() {
       <ShowWrapper isShow={openSheet}>
         <div className={styles.menu_desk_outer_layer}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} /* zoomTo = {} *//>
+            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} zoomTo = {zoomToLocation}/>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />

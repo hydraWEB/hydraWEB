@@ -7,6 +7,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import React, { useEffect, useState, useRef } from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import {
   alpha,
   ThemeProvider,
@@ -52,7 +58,7 @@ function SearchTextField(props) {
 }
 
 
-export default function Search(allData, setAllData, layers, setLayer, ZoomIn) {
+export default function Search({allData, setAllData, layers, setLayer, zoomTo}) {
   const { t, i18n } = useTranslation();
 
   const [text, setText] = useState("Changhua_0")
@@ -63,7 +69,7 @@ export default function Search(allData, setAllData, layers, setLayer, ZoomIn) {
     setText(t.target.value)
   }
   function filter() {
-    let alldt = allData.allData
+    let alldt = allData
     let resultMeasurement = []
     let isValid = false
     filteredMeasurement.forEach((n, i) => {
@@ -96,18 +102,17 @@ export default function Search(allData, setAllData, layers, setLayer, ZoomIn) {
       )
     )
 
-    function ZoomIn(){
-      return geometry
+    const ZoomIn = (data) => {
+      zoomTo(geometry)
     }
     
     return (
       <StyledLabel>
         <div>
           {data.measurement}
-          {/* {data.geometry} */}
           <Button
           onClick = {ZoomIn}>
-            Click Me
+            Zoom In
           </Button>
         </div>
       </StyledLabel>
@@ -125,17 +130,20 @@ export default function Search(allData, setAllData, layers, setLayer, ZoomIn) {
   useEffect(() => {
     let allMeasurement = []
     let filteredMeasurement = []
-    let alldt = allData.allData
-    for (let i = 0; i < alldt.length; i++) {
-      let file = alldt[i].files
-      for (let dt = 0; dt < file.length; dt++) {
-        let feat = file[dt]
-        for (let f = 0; f < feat.data.features.length; f++) {
-          allMeasurement.push(feat.data.features[f].properties.measurement)
+    if(allData.length > 0) {
+      let alldt = [...allData]
+      for (let i = 0; i < alldt.length; i++) {
+        let file = alldt[i].files
+        for (let dt = 0; dt < file.length; dt++) {
+          let feat = file[dt]
+          for (let f = 0; f < feat.data.features.length; f++) {
+            allMeasurement.push(feat.data.features[f].properties.measurement)
+          }
         }
       }
+      filteredMeasurement = [...new Set(allMeasurement)]  //unique
     }
-    filteredMeasurement = [...new Set(allMeasurement)]  //unique
+    
     setFilteredMeasurement(filteredMeasurement)
 
   }, [allData])

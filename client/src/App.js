@@ -60,10 +60,10 @@ export default function App(props) {
 
     return (
         <>
-            <ToastProvider placement={"bottom-right"}>
-                <ThemeProvider theme={darkTheme}>
-                    <div className={'root-container'}>
-                        <UserProvider initialUser={initialUser}>
+            <UserProvider initialUser={initialUser}>
+                <ToastProvider placement={"bottom-right"}>
+                    <ThemeProvider theme={darkTheme}>
+                        <div className={'root-container'}>
                             <Switch>
                                 <Route path="/user">
                                     <User />
@@ -75,10 +75,11 @@ export default function App(props) {
                                     <Guest />
                                 </Route>
                             </Switch>
-                        </UserProvider>
-                    </div>
-                </ThemeProvider>
-            </ToastProvider>
+                        </div>
+                    </ThemeProvider>
+                </ToastProvider>
+            </UserProvider>
+
 
         </>
     )

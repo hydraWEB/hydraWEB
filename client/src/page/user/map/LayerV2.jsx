@@ -482,6 +482,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
           pickable: true,
           autoHighlight: true,
           onHover: onHover,
+          onClick:onClick,
           filterEnabled: true,
           getFilterValue: getFilterValue,
           filterTransformSize: true,

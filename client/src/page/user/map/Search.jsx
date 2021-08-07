@@ -5,7 +5,6 @@ import { useTranslation, Trans } from "react-i18next";
 import { green } from '@material-ui/core/TextField';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { DataGrid } from '@material-ui/data-grid';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import React, { useEffect, useState, useRef } from 'react';
 import {

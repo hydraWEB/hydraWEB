@@ -9,8 +9,7 @@ import {
   faStreetView,
 } from '@fortawesome/free-solid-svg-icons'
 import {
-  OverlayTrigger, Tooltip, Button, Navbar, Nav, Dropdown, FormControl,
-  NavDropdown, ToggleButton, ToggleButtonGroup, InputGroup, Form, ButtonGroup
+  OverlayTrigger, Tooltip, 
 } from 'react-bootstrap';
 import { useTranslation, Trans } from "react-i18next";
 
@@ -20,14 +19,13 @@ import styled from "@emotion/styled/macro";
 import { DeckGL } from '@deck.gl/react';
 import { StaticMap } from 'react-map-gl';
 
-import { useToasts } from "react-toast-notifications";
-
 import Layer from "./LayerV2.jsx"
 import Print from "./Print.jsx"
 import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
 import GeometryEditor from "./TestLayer"
 import {FlyToInterpolator} from 'deck.gl';
+import StyleJson from './style.json'
 
 import {
   EditableGeoJsonLayer,
@@ -72,8 +70,6 @@ export const LogLatBar = styled.div(
     }
   )
 )
-
-
 
 
 function renderTooltip({ hoverInfo }) {
@@ -130,7 +126,7 @@ function renderInfo({ clickInfo }) {
         <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
       </div>
 
-      <p className={styles.tooltip_content}>
+      <p className={styles.tooltip_content_2}>
         {list}
       </p>
     </div>
@@ -140,9 +136,9 @@ function renderInfo({ clickInfo }) {
 export default function HydraMap() {
 
   const INITIAL_VIEW_STATE = {
-    longitude: 121,
-    latitude: 24,
-    zoom: 7,
+    longitude: 120.088825,
+    latitude: 24.021087,
+    zoom: 8,
     pitch: 0,
     bearing: 0
   };
@@ -190,7 +186,7 @@ export default function HydraMap() {
       zoom: 15,
       pitch: 0,
       bearing: 0,
-      transitionDuration: 200,
+      transitionDuration: 3000,
       transitionInterpolator: new FlyToInterpolator()  
     })
   }
@@ -208,9 +204,10 @@ export default function HydraMap() {
     setCurrentFunction(funcID)
   })
 
-  const onViewStateChange = (nextViewState) => {
-    setViewState(nextViewState['viewState'])
-  }
+  const onViewStateChange = React.useCallback(({viewState}) => {
+    setViewState(viewState);
+  }, []);
+
 
   const setHoverInfoFunc = (data) => {
     setHoverInfo(data)
@@ -224,11 +221,17 @@ export default function HydraMap() {
         zoom: 15,
         pitch: 0,
         bearing: 0,
-        transitionDuration: 2,
-        transitionInterpolator: new FlyToInterpolator()  
+        transitionDuration: 1000,
+        transitionInterpolator: new FlyToInterpolator({speed: 2000})  
       }
     )
     setClickInfo(data)
+  }
+
+  const setClickMapFunc= (data) => {
+    if(clickInfo != null){
+      setClickInfo(null)
+    }
   }
 
 
@@ -325,7 +328,7 @@ export default function HydraMap() {
               <OverlayTrigger
                 key='right'
                 placement='right'
-                overlay={
+                overlay={ 
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
                     {t('circle_analysis')}
                   </Tooltip>
@@ -401,21 +404,19 @@ export default function HydraMap() {
             </LogLatBar>
           </LogLatContainer>
         </div>
-        <div className={styles.map} id="map">
+        <div className={styles.map}>
           <DeckGL
             tooltip={true}
-            id="deck-gl-canvas"
             viewState={viewState} 
             onViewStateChange={onViewStateChange}
             controller={{
               doubleClickZoom: false
             }}
-            layers={layers}
+            layers={[layers]}
             ref={deckRef}
-            glOptions={{ preserveDrawingBuffer: true }}
             getCursor={getCursor}
           >
-            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} />
+            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true}  mapStyle={StyleJson}/>
             {renderTooltip({ hoverInfo })}
             {renderInfo({ clickInfo })}
           </DeckGL>

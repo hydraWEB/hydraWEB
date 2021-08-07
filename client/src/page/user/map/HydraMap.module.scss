@@ -6,7 +6,17 @@
     bottom: 0;
 }
 
+.map{
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
 .fragment {
+
     margin-left: 68px;
     background-color: #282c34;
     min-height: 100px;
@@ -184,6 +194,14 @@ ul {
     font-size: 15px;
     padding: 10px 10px 0 10px;
 }
+
+.tooltip_content_2{
+    max-height: 500px;
+    overflow-y: auto;
+    font-size: 15px;
+    padding: 10px 10px 0 10px;
+}
+
 
 .loglat{
     margin-top: 2px;

@@ -30,6 +30,7 @@ i18n
                     "announcement_setting":"Announcement Setting",
                     "account_setting":"Account Setting",
                     "ip_setting":"IP Setting",
+                    "draw":"draw",
                 }
             },
             zh_tw: {
@@ -53,6 +54,7 @@ i18n
                     "announcement_setting":"公告管理",
                     "account_setting":"帳號管理",
                     "ip_setting":"IP管理",
+                    "draw":"繪圖",
                 }
             }
         },

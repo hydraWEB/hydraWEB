@@ -16,7 +16,55 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import {zoomIn} from './LayerV2'
+import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
+import { zoomIn } from './LayerV2'
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExploreIcon from '@material-ui/icons/Explore';
+
+const Accordion = withStyles({
+  root: {
+    backgroundColor: '#024FA1',
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+    '&$expanded': {
+      margin: 'auto',
+    },
+  },
+  expanded: {},
+})(MuiAccordion);
+
+const AccordionSummary = withStyles({
+  root: {
+    backgroundColor: '#024FA1',
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    marginBottom: -1,
+    minHeight: 15,
+    '&$expanded': {
+      minHeight: 15,
+    },
+  },
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  expanded: {},
+})(MuiAccordionSummary);
+
+const AccordionDetails = withStyles((theme) => ({
+  root: {
+    padding: 0,
+  },
+}))(MuiAccordionDetails);
+
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -82,7 +130,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   const [searchResult, setsearchResult] = useState([])
   const [currentlayer, setCurrentLayer] = useState()
   const [searchResultLayer, setsearchResultLayer] = useState([])
-  const [data, setData]= useState()
+  const [data, setData] = useState()
 
   const sendText = (t) => {
     setText(t.target.value)
@@ -112,43 +160,44 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           }
         }
       }
-      
+
     }
     setData(data)
     setsearchResult(resultMeasurement)
   }
 
-  function ShowResult({measurement, geometry, name}) {
-    function btnClicked(){
-      zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,setClickInfo, geometry, data)
+  function ShowResult({ measurement, geometry, name }) {
+    function btnClicked() {
+      zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data)
       zoomTo(geometry)
     }
-    
-    
 
     return (
-      <StyledLabel>
-        <div>
-          {measurement}
-          &ensp;
-          {name}
-          &ensp;
-          {geometry[0]}
-          &ensp;
-          {geometry[1]}
-          <Button onClick ={btnClicked}> 
-
-            Zoom In
-          </Button>
-        </div>
-      </StyledLabel>
-
-    );
+      <div>
+        <Accordion square >
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <div className={styles.search_div}>
+              <Button variant="contained"  onClick={btnClicked}>
+                查看
+              </Button>
+              <Typography className="ml-3" >{measurement}</Typography>
+            </div>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className={styles.search_div2}>
+              <p>資料：{name}</p>
+              <p>經度：{geometry[0]}</p>
+              <p>緯度：{geometry[1]}</p>
+            </div>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+    )
   }
 
 
   let resultlist = searchResult.map((d) =>
-    <ShowResult measurement = {d.properties.measurement} geometry = {d.geometry.coordinates} name = {d.properties.name}/>
+    <ShowResult measurement={d.properties.measurement} geometry={d.geometry.coordinates} name={d.properties.name} />
   );
 
 
@@ -173,6 +222,8 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     setFilteredMeasurement(filteredMeasurement)
 
   }, [allData])
+
+
   return (
     <div>
       <h4 className={styles.func_title}>{t('search')}</h4>
@@ -185,9 +236,9 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           onChange={sendText}
         />
         <div className={styles.search_btn}>
-                  <IconButton type="submit" aria-label="search" onClick={filter}>
-          <SearchIcon />
-        </IconButton>
+          <IconButton type="submit" aria-label="search" onClick={filter}>
+            <SearchIcon />
+          </IconButton>
         </div>
 
       </div>

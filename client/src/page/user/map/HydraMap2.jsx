@@ -7,6 +7,7 @@ import {
   faExchangeAlt,
   faClone,
   faStreetView,
+  faPen
 } from '@fortawesome/free-solid-svg-icons'
 import {
   OverlayTrigger, Tooltip,
@@ -26,12 +27,35 @@ import CircleAnalysis from "./CircleAnalysis"
 import GeometryEditor from "./TestLayer"
 import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import MyLocationIcon from '@material-ui/icons/MyLocation';
+import ExploreIcon from '@material-ui/icons/Explore';
+import {
+  alpha,
+  ThemeProvider,
+  withStyles,
+  makeStyles,
+  createTheme,
+} from '@material-ui/core/styles';
 
 import {
   EditableGeoJsonLayer,
   ViewMode,
   DrawCircleFromCenterMode
 } from "nebula.gl";
+
+const FabIcon = withStyles({
+  root: {
+    width:40,
+    height:40,
+    marginBottom:10,
+  },
+  expanded: {},
+})(Fab);
 
 const ShowWrapper = styled.div(
   props => (
@@ -82,6 +106,27 @@ export const LogLatBar = styled.div(
 )
 
 
+export function distance(lon1, lat1, lon2, lat2) {
+  if ((lat1 == lat2) && (lon1 == lon2)) {
+    return 0;
+  }
+  else {
+    var radlat1 = Math.PI * lat1 / 180;
+    var radlat2 = Math.PI * lat2 / 180;
+    var theta = lon1 - lon2;
+    var radtheta = Math.PI * theta / 180;
+    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    if (dist > 1) {
+      dist = 1;
+    }
+    dist = Math.acos(dist);
+    dist = dist * 180 / Math.PI;
+    dist = dist * 60 * 1.1515;
+    dist = dist * 1.609344
+    return dist;
+  }
+}
+
 function renderTooltip({ hoverInfo }) {
   const { object, x, y } = hoverInfo;
 
@@ -111,7 +156,7 @@ function renderTooltip({ hoverInfo }) {
   );
 }
 
-function renderInfo({ clickInfo }) {
+function renderInfo(clickInfo, setClickInfo) {
   if (!clickInfo) {
     return null;
   }
@@ -132,8 +177,15 @@ function renderInfo({ clickInfo }) {
   return (
     <div className={styles.map_tooltip} style={{ bottom: 10, right: 10, zIndex: 10 }}>
       <div className={styles.tooltip_title}>
+        <div className={styles.info_div1}>
+          <IconButton onClick={(e) => setClickInfo(null)} >
+            <CloseIcon />
+          </IconButton>
+        </div>
         <p className={styles.tooltip_title_t1}>{clickInfo.object.properties.measurement}</p>
         <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
+        <div>
+        </div>
       </div>
 
       <p className={styles.tooltip_content_2}>
@@ -182,6 +234,17 @@ export default function HydraMap() {
     onEdit: onEdit
   });
 
+  const drawLayer = new EditableGeoJsonLayer({
+    id: "geojson-layer",
+    data: {
+      type: "FeatureCollection",
+      features: []
+    },
+    mode: mode,
+    selectedFeatureIndexes,
+    onEdit: onEdit
+  });
+
 
 
   const mapRef = useRef()
@@ -202,8 +265,8 @@ export default function HydraMap() {
       longitude: geometry[0],
       latitude: geometry[1],
       zoom: 15,
-      pitch: 0,
       bearing: 0,
+      pitch:viewState['pitch'],
       transitionDuration: 1000,
       transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
     })
@@ -237,8 +300,8 @@ export default function HydraMap() {
         longitude: data.object.geometry.coordinates[0],
         latitude: data.object.geometry.coordinates[1],
         zoom: 15,
-        pitch: 0,
         bearing: 0,
+        pitch:viewState['pitch'],
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
       }
@@ -260,28 +323,6 @@ export default function HydraMap() {
       }
     })
   }
-
-  function distance(lon1, lat1, lon2, lat2) {
-    if ((lat1 == lat2) && (lon1 == lon2)) {
-      return 0;
-    }
-    else {
-      var radlat1 = Math.PI * lat1 / 180;
-      var radlat2 = Math.PI * lat2 / 180;
-      var theta = lon1 - lon2;
-      var radtheta = Math.PI * theta / 180;
-      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      if (dist > 1) {
-        dist = 1;
-      }
-      dist = Math.acos(dist);
-      dist = dist * 180 / Math.PI;
-      dist = dist * 60 * 1.1515;
-      dist = dist * 1.609344
-      return dist;
-    }
-  }
-
 
   function onEdit({ updatedData, editType, featureIndexes, editContext }) {
 
@@ -452,6 +493,21 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('draw')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faPen} size="lg" color="white" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
           </ul>
         </nav>
       </div>
@@ -476,6 +532,9 @@ export default function HydraMap() {
           <ShowWrapper isShow={currentFunction === 5}>
             <GeometryEditor />
           </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 6}>
+
+          </ShowWrapper>
         </div>
       </ShowWrapper>
 
@@ -491,6 +550,45 @@ export default function HydraMap() {
             </LogLatBar>
           </LogLatContainer>
         </div>
+        <div className={styles.zoomIn_btn}>
+            <FabIcon color="light" onClick={(e) => {
+              setViewState({
+                longitude: viewState['longitude'],
+                latitude: viewState['latitude'],
+                zoom: viewState['zoom'] + 1.0,
+                pitch: viewState['pitch'] ,
+                transitionDuration: 500,
+                transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
+            })
+            }}>
+              <AddIcon />
+            </FabIcon>
+            <FabIcon color="light" onClick={(e) => {
+                setViewState({
+                  longitude: viewState['longitude'],
+                  latitude: viewState['latitude'],
+                  zoom: viewState['zoom'] - 1.0,
+                  pitch: viewState['pitch'] ,
+                  transitionDuration: 500,
+                  transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
+                })
+            }}>
+              <RemoveIcon />
+            </FabIcon>
+            <FabIcon color="light" onClick={(e) => {
+                setViewState({
+                  longitude: viewState['longitude'],
+                  latitude: viewState['latitude'],
+                  zoom: viewState['zoom'],
+                  pitch: 0 ,
+                  transitionDuration: 500,
+                  transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
+                })
+            }}>
+              <ExploreIcon />
+            </FabIcon>
+
+          </div>
         <div className={styles.map} >
           <DeckGL
             tooltip={true}
@@ -506,7 +604,8 @@ export default function HydraMap() {
           >
             <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} />
             {renderTooltip({ hoverInfo })}
-            {renderInfo({ clickInfo })}
+            {renderInfo(clickInfo, setClickInfo)}
+
           </DeckGL>
         </div>
       </div>

@@ -17,12 +17,24 @@ import {
 
 export default function CircleAnalysis({allData, layers, setLayers,editLayer,mode,setMode,radius,lastClick}) {
 
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
+  const {result,setResult} = useState([])
 
   function setEditLayerMode(mode){
     console.log(mode)
     setMode(mode)
   }
+
+  useEffect(()=>{
+    if(allData.length > 0){
+      let res = []
+      allData.forEach(element=>{
+        
+      })
+
+    }
+  },[mode])
+
 
   return (
     <div>

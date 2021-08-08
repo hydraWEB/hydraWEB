@@ -178,7 +178,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       <h4 className={styles.func_title}>{t('search')}</h4>
       <div className={styles.search_bar}>
         <SearchTextField
-          label="Search"
+          label="Search By Measurement"
           defaultValue="Changhua_0"
           variant="filled"
           id="Search"

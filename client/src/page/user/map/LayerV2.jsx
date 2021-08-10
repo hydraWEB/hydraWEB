@@ -4,6 +4,7 @@ import styles from './HydraMap.module.scss';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { DataFilterExtension } from '@deck.gl/extensions';
 import { GeoJsonLayer } from '@deck.gl/layers';
+import { ColumnLayer } from '@deck.gl/layers';
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
 import { LayerList } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
@@ -313,6 +314,29 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     return time1.valueOf()
   }
 
+  function fillcolor(d){
+    if(d.z > 34){
+      return [146,0,29]
+    }else if(d.z > 30){
+      return [182,21,19,255]
+    }else if(d.z > 25){
+      return [168,72,5,255]
+    }else if(d.z > 20){
+      return [158,91,5,255]
+    }else if(d.z > 15){
+      return [135,96,3,255]
+    }else if(d.z > 10){
+      return [98,97,0,255]
+    }else if(d.z > 5){
+      return [83,82,0,255]
+    }else if(d.z > 0){
+      return [54,85,24,255]
+    }
+    else{
+      return [54,138,155,255]
+    }
+       
+  }
 
   const OnListItemsChange = (e, index1, data, index) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
@@ -322,19 +346,32 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     let newLayer = [...layers] //複製一個layer
     newLayer.forEach((element, i) => {
       if (element.props.name == "ps_mean_v.xy.json") { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
-        newLayer[i] = new HexagonLayer({
-          id: data.name,
-          name: data.name,
-          data: element.props.data,
-          extruded: true,
-          pickable: true,
-          visible: data.value,
-          radius: 1000,
-          transitions: {
-            elevationScale: 3000
+        let hexdata = []
+        data.data.features.forEach((dl) => {
+          try {
+            hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]],z:dl.properties  })
+          } catch (error) {
+
           }
         })
-        //return;
+        newLayer.push(
+          new ColumnLayer({
+            id: data.name,
+            name: data.name,
+            data: hexdata,
+            extruded: true,
+            pickable: true,
+            visible: data.value,
+            radius: 500,
+            coverage: 0.7,
+            getElevation: d => d.z+20,
+            elevationScale: 500,
+            getPosition: d => d.COORDINATES,
+            getFillColor:fillcolor,
+            getLineColor: [0, 0, 0],
+          })
+        )
+        return;
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
         if (data.time_serie) {
@@ -422,14 +459,29 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             let hexdata = []
             data.data.features.forEach((dl) => {
               try {
-                hexdata.push({ "COORDINATES": [dl.geometry.coordinates[0], dl.geometry.coordinates[1]] })
+                hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]],z:dl.properties  })
               } catch (error) {
 
               }
             })
             newLayer.push(
-              new HexagonLayer({
-                id: data.value,
+              new ColumnLayer({
+                id: data.name,
+                name: data.name,
+                data: hexdata,
+                extruded: true,
+                pickable: true,
+                visible: data.value,
+                radius: 500,
+                coverage: 0.7,
+                getElevation: d => d.z,
+                elevationScale: 500,
+                getPosition: d => d.COORDINATES,
+                getFillColor:fillcolor,
+                getLineColor: [0, 0, 0],
+              })
+              /* new HexagonLayer({
+                id: data.name,
                 name: data.name,
                 visible: false,
                 data: hexdata,
@@ -437,8 +489,10 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 visible: data.value,
                 extruded: true,
                 getPosition: d => d.COORDINATES,
+                getElevation: d => d.z,
                 radius: 200,
-              })
+                coverage: 0.7
+              }) */
             )
             return
           }

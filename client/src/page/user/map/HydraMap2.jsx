@@ -200,8 +200,8 @@ export default function HydraMap() {
   const INITIAL_VIEW_STATE = {
     longitude: 120.088825,
     latitude: 24.021087,
-    zoom: 8,
-    pitch: 0,
+    zoom: 10,
+    pitch: 30,
     bearing: 0
   };
 

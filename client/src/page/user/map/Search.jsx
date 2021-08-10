@@ -203,7 +203,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
   useEffect(() => {
-    let allMeasurement = []
+   /*  let allMeasurement = []
     let filteredMeasurement = []
     if (allData.length > 0) {
       let alldt = [...allData]
@@ -219,7 +219,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       filteredMeasurement = [...new Set(allMeasurement)]  //unique
     }
 
-    setFilteredMeasurement(filteredMeasurement)
+    setFilteredMeasurement(filteredMeasurement) */
 
   }, [allData])
 

@@ -543,10 +543,10 @@ export default function HydraMap() {
           <LogLatContainer>
             <LogLatBar>
               <p className={styles.loglat}>{`EPSG 4326`}</p>
-              <p className={styles.loglat}>{`經度：${viewState['longitude'].toFixed(6)}`}</p>
-              <p className={styles.loglat}>{`緯度：${viewState['latitude'].toFixed(6)}`}</p>
-              <p className={styles.loglat}>{`縮放：${viewState['zoom'].toFixed(6)}`}</p>
-              <p className={styles.loglat}>{`角度：${viewState['pitch'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('longitude')}{`：${viewState['longitude'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('latitude')}{`：${viewState['latitude'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('zoom')}{`：${viewState['zoom'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('angle')}{`：${viewState['pitch'].toFixed(6)}`}</p>
             </LogLatBar>
           </LogLatContainer>
         </div>

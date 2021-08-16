@@ -18,16 +18,16 @@ import Staff from "./staff/Staff";
 import Cookies from "js-cookie";
 import { userProfile } from "../../lib/api";
 import { useTranslation, Trans } from "react-i18next";
+import { store_user_data, remove_user_data } from '../../provider/UserReducer.js'
+import { useSelector, useDispatch } from 'react-redux'
 
 const HydraMap = React.lazy(() => import('./map/HydraMap2'));
-import { useSelector, useDispatch } from 'react-redux'
-import { store_user_data, remove_user_data } from '../../provider/UserReducer'
 
 export default function User(props) {
     const { user, setUser } = useContext(userContext)
     const initialUser = useRef()
+    const userState = useSelector((state) => state.user.user_data)
     const dispatch = useDispatch()
-    const user = useSelector((state) => state.user.value)
 
     const { t, i18n } = useTranslation();
     const changeLanguage = lng => {
@@ -62,6 +62,11 @@ export default function User(props) {
 
                     </Nav>
                     <Nav>
+                        {userState != null &&
+                            <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>
+                                {userState['username']}
+                            </Link></Nav.Link>
+                        }
                         <Nav.Link><Link to="/user/announcement" className={styles.link}>{t("announcement")}</Link></Nav.Link>
                         {typeof user.current != 'undefined' &&
                             <>
@@ -93,7 +98,7 @@ export default function User(props) {
                     </Route>
                     <Route path="/user/hydramap">
                         <Suspense fallback={
-                        <h1>Loading...</h1>}
+                            <h1>Loading...</h1>}
                         >
                             <HydraMap />
                         </Suspense>

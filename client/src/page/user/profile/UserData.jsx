@@ -6,9 +6,10 @@ import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
 import {useToasts} from "react-toast-notifications";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function UserData() {
-
+    const { t, i18n } = useTranslation()
     let defaultData = {
         userid: "",
         username: "",
@@ -53,14 +54,14 @@ export default function UserData() {
         ))
     return (
         <div>
-            <p>使用者資料</p>
+            <p>{t('user_profile')}</p>
             { !isLoading &&
                 <>  {
                     isLoaded && <div>
-                        <p>id: {data.userid}</p>
-                        <p>name: {data.username}</p>
-                        <p>email: {data.email}</p>
-                        <p>phone: {data.phone}</p>
+                        <p>{t('id')}: {data.userid}</p>
+                        <p>{t('name')}: {data.username}</p>
+                        <p>{t('email')}: {data.email}</p>
+                        <p>{t('phone')}: {data.phone}</p>
                     </div>
                 }
 
@@ -69,7 +70,7 @@ export default function UserData() {
             <Button
                 onClick={handleLogout}
                 variant="primary" type="submit">
-                登出
+                {t('logout')}
             </Button>
         </div>
     )

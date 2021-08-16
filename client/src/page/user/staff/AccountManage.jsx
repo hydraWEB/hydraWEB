@@ -10,8 +10,9 @@ import {useTranslation} from "react-i18next";
 import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
 import Pagination from '@material-ui/lab/Pagination';
 
-function TableData({data}) {
 
+function TableData({data}) {
+    const { t, i18n } = useTranslation();
     const idItems = data.map((d, index) =>
         <tr>
             <StyledTd>{d.userid}</StyledTd>
@@ -25,9 +26,9 @@ function TableData({data}) {
             <Table striped bordered hover>
                 <thead>
                 <tr >
-                    <StyledTh>id</StyledTh>
-                    <StyledTh>username</StyledTh>
-                    <StyledTh>註冊時間</StyledTh>
+                    <StyledTh>{t('id')}</StyledTh>
+                    <StyledTh>{t("username")}</StyledTh>
+                    <StyledTh>{t("register_date")}</StyledTh>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,7 +70,7 @@ export default function AccountManage() {
 
     return (
         <div>
-            <Title>帳號管理</Title>
+            <Title>{t('account_manage')}</Title>
             <TableData data={data}/>
             <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
                             onChange={loadData}/>

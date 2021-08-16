@@ -148,9 +148,6 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     let data = []
     
 
-    
-
-
     for (let i = 0; i < alldt.length; i++) {
       let file = alldt[i].files
       for (let dt = 0; dt < file.length; dt++) {
@@ -171,7 +168,13 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
               }
             }
             else if(typeof feat.data.features[f].properties[currentTag] == "number"){
-              if (feat.data.features[f].properties[currentTag] == parseFloat(text)){
+              if (feat.data.features[f].properties[currentTag] === parseFloat(text)){
+                resultMeasurement.push(feat.data.features[f])
+                data.push(file[dt])
+              }
+            }
+            else if(typeof feat.data.features[f].properties[currentTag] == "boolean"){
+              if (feat.data.features[f].properties[currentTag].toString() === text){
                 resultMeasurement.push(feat.data.features[f])
                 data.push(file[dt])
               }
@@ -180,8 +183,6 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
         }
       }
     }
-
-    
     setData(data)
     setsearchResult(resultMeasurement)
   }
@@ -266,7 +267,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       <div className={styles.search_bar}>
         <div className={styles.search_tag}>
           <FormControl >
-            <InputLabel>Tags</InputLabel>
+            <InputLabel>{t('tags')}</InputLabel>
             <Select
               native
               value={currentTag}
@@ -283,7 +284,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
         </div>
         
         <SearchTextField
-          label="Search By Measurement"
+          label={t('search_by_tag')}
           defaultValue="Changhua_0"
           variant="filled"
           id="Search"
@@ -299,7 +300,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
       <div>
-        -
+        {resultlist}
       </div>
     </div>
   )

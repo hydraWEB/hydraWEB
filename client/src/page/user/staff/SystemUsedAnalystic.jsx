@@ -11,7 +11,7 @@ import Pagination from '@material-ui/lab/Pagination';
 
 
 function TableData({data}) {
-
+    const { t, i18n } = useTranslation()
     const idItems = data.map((d, index) =>
         <tr>
             <StyledTd>{d.id}</StyledTd>
@@ -26,10 +26,10 @@ function TableData({data}) {
             <Table striped bordered hover>
                 <thead>
                 <tr >
-                    <StyledTh>id</StyledTh>
-                    <StyledTh>username</StyledTh>
-                    <StyledTh>系統名稱</StyledTh>
-                    <StyledTh>使用時間</StyledTh>
+                    <StyledTh>{t('id')}</StyledTh>
+                    <StyledTh>{t('username')}</StyledTh>
+                    <StyledTh>{t('system_name')}</StyledTh>
+                    <StyledTh>{t('use_time')}</StyledTh>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,16 +64,20 @@ export default function SystemUsedAnalytics() {
 
         })
     }
+
+    const handleChange = (e) =>{
+        setPage(e.target.textContent.toString())
+      }
+
     useEffect(() => {
         loadData()
-    }, [])
+    }, [page])
 
     return (
         <div>
             <Title>{t('system_setting')}</Title>
             <TableData data={data}/>
-            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
-                            onChange={loadData}/>
+            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={handleChange}/>
         </div>
     )
 }

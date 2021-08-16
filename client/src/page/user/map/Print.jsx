@@ -106,11 +106,11 @@ export default function Print({ map, deck }) {
       <h4 className={styles.func_title}>{t('print')}</h4>
       <Form>
         <FormItem>
-          <h5>單位</h5>
+          <h5>{t('unit')}</h5>
           <FormItemContainer>
             <Form.Check
               type={'radio'}
-              label={'英吋'}
+              label={t('inch')}
               id={`inch`}
               value={"inch"}
               checked={unit === "inch"}
@@ -119,17 +119,17 @@ export default function Print({ map, deck }) {
             <Form.Check
               className="ml-3"
               type={'radio'}
-              label={'公尺'}
-              id={`millimeter`}
-              value={"millimeter"}
-              checked={unit === "millimeter"}
+              label={t('meter')}
+              id={`meter`}
+              value={"meter"}
+              checked={unit === "meter"}
               onChange={onChangeUnit}
             />
           </FormItemContainer>
         </FormItem>
 
         <FormItem>
-          <h5>輸出格式</h5>
+          <h5>{t('output_format')}</h5>
           <FormItemContainer>
             <Form.Check
               type={'radio'}
@@ -152,7 +152,7 @@ export default function Print({ map, deck }) {
         </FormItem>
 
 
-        <Button onClick={onBtnClick}>輸出</Button>
+        <Button onClick={onBtnClick}>{t('print')}</Button>
       </Form>
     </div>
   )

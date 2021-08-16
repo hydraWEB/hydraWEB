@@ -71,7 +71,7 @@ export default function Staff() {
                     <NormalButton link={"/user/staff/announcement-manage"}
                                   isLightOn={location.pathname === "/user/staff/announcement-manage" || location.pathname === "/user/staff/announcement-manage/new" || location.pathname === "/user/staff/announcement-manage/edit" || location.pathname === "/user/staff/announcement-manage/info" } text={t('announcement_setting')}/>
                     <NormalButton link={"/user/staff/account-manage"}
-                                  isLightOn={location.pathname === "/user/staff/account-manage"} text={t('account_setting')}/>
+                                  isLightOn={location.pathname === "/user/staff/account-manage"} text={t('account_manage')}/>
                     <NormalButton link={"/user/staff/ip-manage"} isLightOn={location.pathname === "/user/staff/ip-manage"}
                                   text={t('ip_setting')}/>
                 </div>

@@ -119,16 +119,16 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
 
       <div>
         <div className={styled.circleAnalysis_top}>
-          <p>半徑：{radius}km</p>
+          <p>{t('radius')}：{radius}km</p>
           {lastClick.length > 1 &&
-            <p>中心點：{lastClick[0]}, {lastClick[1]}</p>
+            <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>
 
           }
           <div className={styles.circle_analysis_btn}>
             <Button
               onClick={(e) => setEditLayerMode(DrawCircleFromCenterMode)}
               variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
-              Draw Circle
+              {t('draw_circle')}
             </Button>
           </div> 
         </div>

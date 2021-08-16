@@ -5,8 +5,10 @@ import Cookies from 'js-cookie'
 import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function Setting() {
+    const { t, i18n } = useTranslation()
     let history = useHistory()
     const location = useLocation()
     const {user, setUser} = useContext(userContext)
@@ -19,7 +21,7 @@ export default function Setting() {
         ))
     return (
         <div>
-            <p>設定</p>
+            <p>{t('setting')}</p>
         </div>
     )
 }

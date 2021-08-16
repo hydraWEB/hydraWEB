@@ -10,8 +10,10 @@ import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import {AnnouncementSendDelete} from "../../../lib/api";
 import {useToasts} from "react-toast-notifications";
+import { useTranslation, Trans } from "react-i18next";
 
 function TableData({ data,page,loadData }) {
+    const { t, i18n } = useTranslation()
     let history = useHistory();
     const [showDelete, setShowDelete] = useState(false);
     const [deleteData, setDeleteData] = useState(null);
@@ -56,9 +58,9 @@ function TableData({ data,page,loadData }) {
             <StyledTd>{d.created_at}</StyledTd>
             <StyledTd>{d.updated_at}</StyledTd>
             <StyledTd>
-                <Button variant="info" onClick={(e) => onInfoClick(d)}>查看</Button>
-                <Button variant="warning" onClick={(e) => onEditClick(d)}>修改</Button>
-                <Button variant="danger" onClick={(e) => handleOpen(d)}>刪除</Button>
+                <Button variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
+                <Button variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>
+                <Button variant="danger" onClick={(e) => handleOpen(d)}>{t('delete')}</Button>
             </StyledTd>
         </tr>
     );
@@ -69,16 +71,16 @@ function TableData({ data,page,loadData }) {
                 <div>
                     <Modal.Header closeButton>
                         {showDelete == true &&
-                            <Modal.Title>刪除 {deleteData.title} ?</Modal.Title>
+                            <Modal.Title>{t('delete')} {deleteData.title} ?</Modal.Title>
                         }
                     </Modal.Header>
-                    <Modal.Body>確定要刪除？</Modal.Body>
+                    <Modal.Body>{t('are_you_sure_you_want_to_delete?')}</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
-                            關閉
+                            {t('close')}
                         </Button>
                         <Button variant="danger" onClick={onDeleteClick}>
-                            刪除
+                            {t('delete')}
                         </Button>
                     </Modal.Footer>
                 </div>
@@ -88,12 +90,12 @@ function TableData({ data,page,loadData }) {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <StyledTh>id</StyledTh>
-                            <StyledTh>標題</StyledTh>
-                            <StyledTh>發布者</StyledTh>
-                            <StyledTh>創建日期</StyledTh>
-                            <StyledTh>修改日期</StyledTh>
-                            <StyledTh>操作</StyledTh>
+                            <StyledTh>{t('id')}</StyledTh>
+                            <StyledTh>{t('title')}</StyledTh>
+                            <StyledTh>{t('publisher')}</StyledTh>
+                            <StyledTh>{t('create_date')}</StyledTh>
+                            <StyledTh>{t('edit_date')}</StyledTh>
+                            <StyledTh>{t('operation')}</StyledTh>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,6 +116,7 @@ export default function Announcement() {
     const [currentPage, setCurrentPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
+    const { t, i18n } = useTranslation()
 
     const loadData = (page) => {
         AnnouncementList({
@@ -150,10 +153,10 @@ export default function Announcement() {
     return (
         <div>
             <Breadcrumb>
-                <Breadcrumb.Item active>公告管理</Breadcrumb.Item>
+                <Breadcrumb.Item active>{t('announcement_setting')}</Breadcrumb.Item>
             </Breadcrumb>
-            <Title>公告管理</Title>
-            <Link to={`/user/staff/announcement-manage/new`}><Button variant="primary">新增公告</Button></Link>
+            <Title>{t('announcement_setting')}</Title>
+            <Link to={`/user/staff/announcement-manage/new`}><Button variant="primary">{t('new_announcement')}</Button></Link>
             <TableData data={data} page={currentPage} loadData={loadData} />
             <Pagination count={totalpage} page={currentPage} variant="outlined" shape="rounded"
                 onChange={onChangePage} />

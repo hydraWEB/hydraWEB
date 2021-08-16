@@ -12,10 +12,11 @@ import Pagination from '@material-ui/lab/Pagination';
 import { css, jsx } from '@emotion/react/macro'
 import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
 import useQuery from "../../../lib/hook";
+import { useTranslation, Trans } from "react-i18next";
 
 
 function TableData({data}) {
-
+    const { t, i18n } = useTranslation()
     const idItems = data.map((d, index) =>
         <tr>
             <StyledTd>{d.id}</StyledTd>
@@ -29,9 +30,9 @@ function TableData({data}) {
             <Table striped bordered hover>
                 <thead>
                 <tr >
-                    <StyledTh>id</StyledTh>
-                    <StyledTh>username</StyledTh>
-                    <StyledTh>登入時間</StyledTh>
+                    <StyledTh>{t('id')}</StyledTh>
+                    <StyledTh>{t('username')}</StyledTh>
+                    <StyledTh>{t('login_date')}</StyledTh>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,7 +53,7 @@ export default function LoginAnalytics() {
     const [years, setYears] = useState([])
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
-
+    const { t, i18n } = useTranslation()
 
     const [currentSelectedYearIdx, setCurrentSelectedYearIdx] = useState(0)
     const onChangeYear = (index) => {
@@ -109,7 +110,7 @@ export default function LoginAnalytics() {
 
     return (
         <div>
-            <Title>登入統計</Title>
+            <Title>{t('login_summary')}</Title>
             {loading == 0 &&
             <img
                 className={styles.loading_image}
@@ -119,20 +120,20 @@ export default function LoginAnalytics() {
             {loading == 1 &&
             <>
                 <FlexColumnContainer>
-                    <span className={styles.item1}>登入時間</span>
+                    <span className={styles.item1}>{t('login_date')}</span>
                     <DropdownButton className={styles.item2} id="years" title={years[currentSelectedYearIdx]}>
                         {listItems}
                     </DropdownButton>
-                    <span className={styles.item2}>年</span>
+                    <span className={styles.item2}>{t('year')}</span>
                     <DropdownButton className={styles.item2} id="months" title={months[currentSelectedMonthIdx]}>
                         {listItems2}
                     </DropdownButton>
-                    <span className={styles.item2}>月</span>
+                    <span className={styles.item2}>{t('month')}</span>
                     <Button onClick={(e) => {
                         setPage(1)
                         loadData()
                     }
-                    } variant="outline-primary">查詢</Button>
+                    } variant="outline-primary">{t('search')}</Button>
 
                 </FlexColumnContainer>
                 <TableData data={data}/>

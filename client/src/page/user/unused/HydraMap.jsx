@@ -34,7 +34,7 @@ import { saveAs } from 'file-saver';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 
-import zhjsonData1 from '../../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
+import zhjsonData1 from '../../utils/108彰化地區地層下陷加密水準檢測成果表.json';
 import zhjsonData2 from '../../utils/108彰化地區地層下陷水準檢測成果表';
 import zhjsonData3 from '../../utils/GPS站_彰化縣';
 import zhjsonData4 from '../../utils/台灣自來水公司第十一區_彰化抽水井位置圖';

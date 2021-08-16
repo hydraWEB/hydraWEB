@@ -23,6 +23,12 @@ import { zoomIn } from './LayerV2'
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExploreIcon from '@material-ui/icons/Explore';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputBase from "@material-ui/core/InputBase";
 
 const Accordion = withStyles({
   root: {
@@ -128,9 +134,9 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   const [text, setText] = useState("Changhua_0")
   const [filteredMeasurement, setFilteredMeasurement] = useState()
   const [searchResult, setsearchResult] = useState([])
-  const [currentlayer, setCurrentLayer] = useState()
-  const [searchResultLayer, setsearchResultLayer] = useState([])
   const [data, setData] = useState()
+  const [tag, setTag] = useState([])
+  const [currentTag, setcurrentTag] = useState()
 
   const sendText = (t) => {
     setText(t.target.value)
@@ -140,28 +146,42 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     let alldt = allData
     let resultMeasurement = []
     let data = []
-    let isValid = false
+    
 
-    filteredMeasurement.forEach((n, i) => {
-      if (n === text) isValid = true
-    });
+    
 
 
-    if (isValid) {
-      for (let i = 0; i < alldt.length; i++) {
-        let file = alldt[i].files
-        for (let dt = 0; dt < file.length; dt++) {
-          let feat = file[dt]
-          for (let f = 0; f < feat.data.features.length; f++) {
-            if (text === feat.data.features[f].properties.measurement) {
-              resultMeasurement.push(feat.data.features[f])
-              data.push(file[dt])
+    for (let i = 0; i < alldt.length; i++) {
+      let file = alldt[i].files
+      for (let dt = 0; dt < file.length; dt++) {
+        let feat = file[dt]
+        for (let f = 0; f < feat.data.features.length; f++) {
+          let isValid = false
+          for(let t in feat.data.features[f].properties){
+            if (t == currentTag) {
+              isValid = true
+              break
+            }
+          }
+          if(isValid){
+            if(typeof feat.data.features[f].properties[currentTag] == "string"){
+              if (feat.data.features[f].properties[currentTag].indexOf(text) >= 0){
+                resultMeasurement.push(feat.data.features[f])
+                data.push(file[dt])
+              }
+            }
+            else if(typeof feat.data.features[f].properties[currentTag] == "number"){
+              if (feat.data.features[f].properties[currentTag] == parseFloat(text)){
+                resultMeasurement.push(feat.data.features[f])
+                data.push(file[dt])
+              }
             }
           }
         }
       }
-
     }
+
+    
     setData(data)
     setsearchResult(resultMeasurement)
   }
@@ -195,15 +215,26 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     )
   }
 
+  let selectTag = tag.map((d)=>
+  <option value={d}>{d}</option>
+  );
+
+  
+
 
   let resultlist = searchResult.map((d) =>
     <ShowResult measurement={d.properties.measurement} geometry={d.geometry.coordinates} name={d.properties.name} />
   );
 
+  const handleChange = (e) =>{
+    setcurrentTag(e.target.value)
+  }
+
 
 
   useEffect(() => {
-   /*  let allMeasurement = []
+    let alltags = []
+    let allMeasurement = []
     let filteredMeasurement = []
     if (allData.length > 0) {
       let alldt = [...allData]
@@ -213,13 +244,18 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           let feat = file[dt]
           for (let f = 0; f < feat.data.features.length; f++) {
             allMeasurement.push(feat.data.features[f].properties.measurement)
+            for (let key in feat.data.features[f].properties){
+              alltags.push(key)
+            }
+
           }
         }
       }
       filteredMeasurement = [...new Set(allMeasurement)]  //unique
     }
-
-    setFilteredMeasurement(filteredMeasurement) */
+    let filteredtags = [...new Set(alltags)]
+    setTag(filteredtags)
+    setFilteredMeasurement(filteredMeasurement)
 
   }, [allData])
 
@@ -228,6 +264,24 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     <div>
       <h4 className={styles.func_title}>{t('search')}</h4>
       <div className={styles.search_bar}>
+        <div className={styles.search_tag}>
+          <FormControl >
+            <InputLabel>Tags</InputLabel>
+            <Select
+              native
+              value={currentTag}
+              onChange={handleChange}
+              inputProps={{
+                name: 'Tags',
+                id: 'age-native-simple',
+              }}
+            >
+              <option aria-label="None" value="" />
+              {selectTag}
+            </Select>
+          </FormControl>
+        </div>
+        
         <SearchTextField
           label="Search By Measurement"
           defaultValue="Changhua_0"

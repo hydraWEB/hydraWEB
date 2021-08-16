@@ -364,7 +364,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             visible: data.value,
             radius: 500,
             coverage: 0.7,
-            getElevation: d => d.z+20,
+            getElevation: d => d.z+45.3,
             elevationScale: 500,
             getPosition: d => d.COORDINATES,
             getFillColor:fillcolor,

@@ -195,7 +195,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     return (
       <div>
         <Accordion square >
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
             <div className={styles.search_div}>
               <Button variant="contained"  onClick={btnClicked}>
                 查看
@@ -222,7 +222,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   
 
 
-  let resultlist = searchResult.map((d) =>
+  const resultlist = searchResult.map((d) =>
     <ShowResult measurement={d.properties.measurement} geometry={d.geometry.coordinates} name={d.properties.name} />
   );
 
@@ -299,11 +299,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
       <div>
-        {searchResult.length > 0 &&
-          <div className={styles.search_result_container}>
-            {resultlist}
-          </div>
-        }
+        -
       </div>
     </div>
   )

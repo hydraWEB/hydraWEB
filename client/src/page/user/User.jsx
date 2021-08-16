@@ -20,10 +20,14 @@ import { userProfile } from "../../lib/api";
 import { useTranslation, Trans } from "react-i18next";
 
 const HydraMap = React.lazy(() => import('./map/HydraMap2'));
+import { useSelector, useDispatch } from 'react-redux'
+import { store_user_data, remove_user_data } from '../../provider/UserReducer'
 
 export default function User(props) {
     const { user, setUser } = useContext(userContext)
     const initialUser = useRef()
+    const dispatch = useDispatch()
+    const user = useSelector((state) => state.user.value)
 
     const { t, i18n } = useTranslation();
     const changeLanguage = lng => {
@@ -40,6 +44,7 @@ export default function User(props) {
             userProfile().then((res) => {
                 initialUser.current = res.data.data.user
                 setUser(initialUser)
+                dispatch(store_user_data(res.data.data.user))
             }).catch((err) => {
 
             }).finally(() => {

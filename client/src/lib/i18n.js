@@ -12,12 +12,12 @@ i18n
         resources: {
             en: {
                 translations: {
-                    "platform_name":"Data calculation platform for hydrology and stratum subsidence monitoring",
+                    "platform_name":"Data Calculation Platform For Hydrology And Stratum Subsidence Monitoring",
                     "your_email":"Your Email Address",
-                    "admin": "admin",
+                    "admin": "Admin",
                     "language": "Language",
-                    "announcement": "announcement",
-                    "account": "account",
+                    "announcement": "Announcement",
+                    "account": "Account",
                     "search":"Search",
                     "layer":"Layer",
                     "3D_switch":"3D Switch",
@@ -32,7 +32,7 @@ i18n
                     "announcement_setting":"Announcement Setting",
                     "account_manage":"Account Manage",
                     "ip_setting":"IP Setting",
-                    "draw":"draw",
+                    "draw":"Draw",
                     "longitude":"Longitude",
                     "latitude":"Latitude",
                     "zoom":"Zoom",
@@ -78,8 +78,8 @@ i18n
                     "check_announcement":"Check Announcement",
                     //登入統計
                     "login_date":"Login Date",
-                    "year":"年",
-                    "month":"月",
+                    "year":"Year",
+                    "month":"Month",
                     //系統功能使用記錄
                     "system_name":"System Name",
                     "use_time":"Use Time",
@@ -152,8 +152,8 @@ i18n
                     "check_announcement":"查看公告",
                     //登入統計
                     "login_date":"登入時間",
-                    "year":"Year",
-                    "month":"Month",
+                    "year":"年",
+                    "month":"月",
                     //系統功能使用記錄
                     "system_name":"系統設定",
                     "use_time":"使用時間",

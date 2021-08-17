@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
 import {Button, Form, Table} from "react-bootstrap";
 import Pagination from '@material-ui/lab/Pagination';
+import useQuery from "../../../lib/hook";
 
 
 function TableData({data}) {
@@ -43,13 +44,14 @@ function TableData({data}) {
 
 export default function SystemUsedAnalytics() {
     let history = useHistory()
+    let query = useQuery();
     const location = useLocation()
     const {user, setUser} = useContext(userContext)
     const { t, i18n } = useTranslation();
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
-    const loadData = () => {
+    const loadData = (page) => {
         loginLog({
                 params: {
                     page: page,
@@ -64,20 +66,30 @@ export default function SystemUsedAnalytics() {
 
         })
     }
+    const onChangePage = (e, page) => {
+        history.replace(`/user/staff/system-used-analytics?p=${page}`)
+    }
 
-    const handleChange = (e) =>{
-        setPage(e.target.textContent.toString())
-      }
+   
 
     useEffect(() => {
-        loadData()
+        if (typeof query.get("p") !== 'undefined' && query.get("p") != null) {
+            setPage(parseInt(query.get("p")))
+        } else {
+            setPage(1)
+        }
+    }, [query])
+
+    useEffect(() => {
+        loadData(page)
     }, [page])
+
 
     return (
         <div>
             <Title>{t('system_setting')}</Title>
             <TableData data={data}/>
-            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={handleChange}/>
+            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={onChangePage}/>
         </div>
     )
 }

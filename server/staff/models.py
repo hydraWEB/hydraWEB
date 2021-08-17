@@ -3,6 +3,7 @@ from core.models import TimestampedModel
 from django.db import models
 from core.models import TimestampedModel
 from enum import IntEnum
+from django import forms
 
 class AnnouncementManager(models.Manager):
     def create_announcement(self,title,content,user):
@@ -30,6 +31,7 @@ class Announcement(TimestampedModel):
 class SystemOperationEnum(IntEnum):
     USER_LOGIN = 1
     USER_REGISTRATION = 2
+    
 
 
 class SystemRecordManager(models.Manager):
@@ -54,3 +56,17 @@ class SystemLog(TimestampedModel):
     user = models.ForeignKey('authentication.User', on_delete=models.CASCADE)
     operation = models.IntegerField()
     objects = SystemRecordManager()
+
+class IpSettingManager(models.Manager):
+    def create_black_list(self, ip_address):
+        res = self.create(ip_address=ip_address)
+
+    def delete_black_list(self, ip_address):
+        self.delete()
+
+    def edit_black_list(self, ip_address):
+        self.ip_address = ip_address
+        self.save()
+
+class IpSetting(TimestampedModel):
+    ip_address = models.GenericIPAddressField(primary_key=True)

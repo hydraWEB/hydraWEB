@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Announcement, SystemLog
+from .models import Announcement, SystemLog, IpSetting
 
 class UserSerializer(serializers.Serializer):
     userid = serializers.IntegerField()
@@ -48,3 +48,18 @@ class SystemLogSerialzer(serializers.ModelSerializer):
     class Meta:
         model = SystemLog
         fields = ['id', 'user', 'operation','created_at','updated_at']
+
+
+class IPManageSerializer(serializers.ModelSerializer):
+    ip_address = serializers.CharField(allow_null=False, max_length=150)
+    user = AuthUserSerializer(read_only=True)
+
+    def create(self,user):
+        IpSetting.objects.create_black_list(ip_address = self.validated_data['ip_address'],user=user)
+
+    def delete(self, user, instance, ip_address):
+        instance.delete_black_list()
+
+    class Meta:
+        model = IpSetting
+        fields = ['id','ip_address']

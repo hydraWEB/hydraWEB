@@ -16,7 +16,6 @@ function TableData({data}) {
             <StyledTd>{d.id}</StyledTd>
             <StyledTd>{d.user.username}</StyledTd>
             <StyledTd>{d.operation}</StyledTd>
-            <StyledTd>{d.created_at}</StyledTd>
         </tr>
     );
 
@@ -25,10 +24,7 @@ function TableData({data}) {
             <Table striped bordered hover>
                 <thead>
                 <tr >
-                    <StyledTh>{t('id')}</StyledTh>
-                    <StyledTh>{t('username')}</StyledTh>
-                    <StyledTh>{t('system_name')}</StyledTh>
-                    <StyledTh>{t('use_time')}</StyledTh>
+                    <StyledTh>{t('ip_address')}</StyledTh>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +47,7 @@ export default function IPManage() {
 
     return (
         <div>
-            <Title>{t('ip_setting')}</Title>
+            <Title>{t('black_list')}</Title>
             <TableData data={data}/>
             <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" /* onChange={} *//>
         </div>

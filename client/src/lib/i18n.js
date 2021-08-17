@@ -83,6 +83,9 @@ i18n
                     //系統功能使用記錄
                     "system_name":"System Name",
                     "use_time":"Use Time",
+                    //IP管理
+                    "ip_address":"IP Address",
+                    "black_list":"Black List",
                 }
             },
             zh_tw: {
@@ -157,6 +160,10 @@ i18n
                     //系統功能使用記錄
                     "system_name":"系統設定",
                     "use_time":"使用時間",
+                    //IP管理
+                    "ip_address":"IP地址",
+                    "black_list":"黑名單",
+                    
                 }
             }
         },

@@ -112,4 +112,6 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
         return token.decode('utf-8')
 
-
+class BlackList():
+    id = models.AutoField(primary_key=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)

@@ -7,7 +7,7 @@ from authentication.models import User
 from .models import Announcement, SystemLog, SystemOperationEnum, IpSetting
 from core.utils import StandardResultsSetPagination
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from .serializers import SystemLogSerialzer, StaffAnnouncementSerializer, UserAnnouncementSerializer, UserSerializer, IPManageSerializer
+from .serializers import SystemLogSerialzer, StaffAnnouncementSerializer, UserAnnouncementSerializer, UserSerializer, IPManageSerializer,AdminUserSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
@@ -52,6 +52,7 @@ class StaffAnnouncementViewSet(viewsets.ModelViewSet):
         serializer = StaffAnnouncementSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.delete(user=request.user, instance=a)
+        return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
 
 
 class UserAnnouncementViewSet(viewsets.ModelViewSet):
@@ -132,14 +133,31 @@ class AccountViewSet(viewsets.ModelViewSet):
     def list(self, request, **kwargs):
         queryset = self.paginate_queryset(
             self.get_queryset().order_by('-created_at'))
-        serializer = UserSerializer(queryset, many=True)
+        serializer = AdminUserSerializer(queryset, many=True)
+        
         return self.get_paginated_response(serializer.data)
 
+    def retrive(self, request, pk=None, **kwargs):
+        a = get_object_or_404(User, pk=pk)
+        serializer = AdminUserSerializer(data=a)
+        serializer.is_valid(raise_exception=True)
+        return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
+
     def patch(self, request, pk=None, **kwargs):
-        pass
+        a = get_object_or_404(User, pk=pk)
+        serializer = AdminUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.edit(user=request.user, instance=a)
+        return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
 
     def destory(self, request, pk=None, **kwargs):
-        pass
+        print("@@@@@")
+        a = get_object_or_404(User, pk=pk)
+        serializer = AdminUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.delete(user=request.user, instance=a)
+        return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
+
 
 
 class IPManageViewSet(viewsets.ModelViewSet):

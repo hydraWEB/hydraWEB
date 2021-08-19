@@ -1,12 +1,34 @@
 from rest_framework import serializers
 from .models import Announcement, SystemLog, IpSetting
+from authentication.models import User
 
 class UserSerializer(serializers.Serializer):
-    userid = serializers.IntegerField()
+    userid = serializers.IntegerField(read_only=True)
     username = serializers.CharField(max_length=255)
-    email = serializers.CharField(max_length=255)
+    email = serializers.CharField(max_length=255,read_only=True)
     avatar = serializers.CharField(max_length=255)
     phone = serializers.CharField(max_length=255)
+    created_at = serializers.DateTimeField(read_only=True)
+
+class AdminUserSerializer(UserSerializer):
+    password = serializers.CharField(max_length=255,write_only=True)
+    
+    def edit(self,instance, user):
+        instance.edit_user(
+            username=self.validated_data['username'],
+            avatar=self.validated_data['avatar'],
+            password=self.validated_data['password'],
+            phone=self.validated_data['phone'],
+            user=user)
+
+    def delete(self,instance, user):
+        instance.delete_user(
+            user=user)
+
+    class Meta:
+        model = User
+        fields = ['userid', 'username', 'email','avatar','phone','created_at']
+
 
 class AuthUserSerializer(serializers.Serializer):
     userid = serializers.IntegerField()

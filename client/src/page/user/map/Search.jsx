@@ -246,7 +246,14 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           for (let f = 0; f < feat.data.features.length; f++) {
             allMeasurement.push(feat.data.features[f].properties.measurement)
             for (let key in feat.data.features[f].properties){
-              alltags.push(key)
+              if(key.indexOf("prop")){
+                for(let prop in feat.data.features[f].properties[key]){
+                  alltags.push(prop)
+                }
+              }
+              else{
+                alltags.push(key)
+              }
             }
 
           }

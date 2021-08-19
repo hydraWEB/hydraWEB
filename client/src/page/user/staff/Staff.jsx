@@ -18,6 +18,10 @@ import {useTranslation} from "react-i18next";
 import AnnouncementNew from "./AnnouncementNew";
 import AnnouncementEdit from "./AnnouncementEdit"
 import AnnouncementInfo from "./AnnouncementInfo"
+import AccountManageNew from "./AccountManageNew"
+import AccountManageEdit from "./AccountManageEdit"
+import AcountManageInfo from "./AcountManageInfo"
+
 export const Title = styled.h1(
     props => ({
         fontSize: "20px",
@@ -71,7 +75,7 @@ export default function Staff() {
                     <NormalButton link={"/user/staff/announcement-manage"}
                                   isLightOn={location.pathname === "/user/staff/announcement-manage" || location.pathname === "/user/staff/announcement-manage/new" || location.pathname === "/user/staff/announcement-manage/edit" || location.pathname === "/user/staff/announcement-manage/info" } text={t('announcement_setting')}/>
                     <NormalButton link={"/user/staff/account-manage"}
-                                  isLightOn={location.pathname === "/user/staff/account-manage"} text={t('account_manage')}/>
+                                  isLightOn={location.pathname === "/user/staff/account-manage" || location.pathname === "/user/staff/account-manage/new" || location.pathname === "/user/staff/account-manage/edit" || location.pathname === "/user/staff/account-manage/info" } text={t('account_manage')}/>
                     <NormalButton link={"/user/staff/ip-manage"} isLightOn={location.pathname === "/user/staff/ip-manage"}
                                   text={t('ip_setting')}/>
                 </div>
@@ -99,12 +103,22 @@ export default function Staff() {
                     <Route path="/user/staff/announcement-manage">
                         <Announcement/>
                     </Route>
+                    <Route path="/user/staff/account-manage/info">
+                        <AcountManageInfo/>
+                    </Route>
+                    <Route path="/user/staff/account-manage/edit">
+                        <AccountManageEdit/>
+                    </Route>
+                    <Route path="/user/staff/account-manage/new">
+                        <AccountManageNew/>
+                    </Route>
                     <Route path="/user/staff/account-manage">
                         <AccountManage/>
                     </Route>
                     <Route path="/user/staff/ip-manage">
                         <IPManage/>
                     </Route>
+                    
                 </Switch>
             </div>
         </div>

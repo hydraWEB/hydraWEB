@@ -112,6 +112,20 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
         return token.decode('utf-8')
 
+    
+    def edit_user(self,username,avatar,password=None,phone=None,user=None):
+        self.username = username
+        self.avatar = avatar
+        self.phone = phone
+
+        if password is not None:
+            self.set_password(password)
+
+        self.save()
+
+    def delete_user(self,user):
+        self.delete()
+
 class BlackList():
     id = models.AutoField(primary_key=True)
     ip_address = models.GenericIPAddressField(blank=True, null=True)

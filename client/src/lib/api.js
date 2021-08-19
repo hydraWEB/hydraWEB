@@ -21,14 +21,21 @@ export const userForgotPasswdConfirm = (data) => guestRequest_client.post("api/v
 export const userProfile = () => userRequest_client.get("api/v1/auth/user/profile");
 
 export const accountList = (data) => userRequest_client.get("api/v1/staff/account",data)
+export const accountSendNew = (data) => userRequest_client.post("api/v1/staff/account",data)
+export const accountSendEdit = (data,id) => userRequest_client.put(`api/v1/staff/account/${id}/`,data)
+export const accountSendDelete = (id) => userRequest_client.delete(`api/v1/staff/account/${id}/`)
+export const accountInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/account/${id}/`,data)
+
 export const loginLog = (data) => userRequest_client.get("api/v1/staff/system-log",data)
 export const systemLogGetAllYear = () => userRequest_client.get("api/v1/staff/system-log/get-all-years")
+
 export const AnnouncementList = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
 export const AnnouncementSendNew = (data) => userRequest_client.post("api/v1/staff/announcement/",data)
 export const AnnouncementSendEdit = (data,id) => userRequest_client.put(`api/v1/staff/announcement/${id}/`,data)
 export const AnnouncementSendDelete = (id) => userRequest_client.delete(`api/v1/staff/announcement/${id}/`)
 export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/staff/announcement/",data)
 export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}/`,data)
+
 
 export const LayerList = (data) => guestRequest_client.get(`api/v1/user/layer`,data)
 

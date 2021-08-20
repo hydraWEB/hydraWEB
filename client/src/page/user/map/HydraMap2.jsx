@@ -478,7 +478,7 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
+{/*             <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -492,8 +492,8 @@ export default function HydraMap() {
                     icon={faMapMarker} size="lg" color="white" />
                 </div>
               </OverlayTrigger>
-            </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+            </MenuBtnWrapper> */}
+{/*             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -507,7 +507,7 @@ export default function HydraMap() {
                     icon={faPen} size="lg" color="white" />
                 </div>
               </OverlayTrigger>
-            </MenuBtnWrapper>
+            </MenuBtnWrapper> */}
           </ul>
         </nav>
       </div>
@@ -592,8 +592,9 @@ export default function HydraMap() {
         <div className={styles.map} >
           <DeckGL
             tooltip={true}
-            viewState={viewState}
-            onViewStateChange={onViewStateChange}
+            initialViewState={INITIAL_VIEW_STATE}
+            /* viewState={viewState}
+            onViewStateChange={onViewStateChange} */
             controller={{
               doubleClickZoom: false
             }}

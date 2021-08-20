@@ -113,6 +113,8 @@ class AccountViewSet(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,)
 
+    serializer_class = AdminUserSerializer
+
     def get_queryset(self):
         queryset = self.queryset
         userid = self.request.query_params.get('userid', None)
@@ -151,7 +153,6 @@ class AccountViewSet(viewsets.ModelViewSet):
         return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
 
     def destory(self, request, pk=None, **kwargs):
-        print("@@@@@")
         a = get_object_or_404(User, pk=pk)
         serializer = AdminUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

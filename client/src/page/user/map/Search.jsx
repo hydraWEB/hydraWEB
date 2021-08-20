@@ -246,7 +246,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           for (let f = 0; f < feat.data.features.length; f++) {
             allMeasurement.push(feat.data.features[f].properties.measurement)
             for (let key in feat.data.features[f].properties){
-              if(key.indexOf("prop")){
+              if(key === "prop1" || key === "prop2"){
                 for(let prop in feat.data.features[f].properties[key]){
                   alltags.push(prop)
                 }
@@ -254,6 +254,8 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
               else{
                 alltags.push(key)
               }
+              /* 
+              alltags.push(key) */
             }
 
           }

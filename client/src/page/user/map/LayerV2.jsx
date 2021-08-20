@@ -139,6 +139,8 @@ const checkBoxStyle = makeStyles({
   })
 });
 
+
+
 function CustomCheckBox({color,checked,onChange}){
   const classes1 = checkBoxStyle({ color: color});
   return(
@@ -274,7 +276,10 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,set
             pickable: true,
             autoHighlight: true,
             onHover: onHover,
-            onClick:onClick
+            onClick:onClick,
+            updateTriggers: {
+              visible: data.value
+            }
           })
         }
       }
@@ -397,7 +402,12 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             filterRange: [0, 0],
             // Define extensions
             extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-            onClick:onClick
+            onClick:onClick,
+            updateTriggers: {
+              visible: data.value,
+              getFilterValue: getFilterValue,
+            }
+            
           })
         } else {
           newLayer[i] = new GeoJsonLayer({
@@ -415,7 +425,10 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             pickable: true,
             autoHighlight: true,
             onHover: onHover,
-            onClick:onClick
+            onClick:onClick,
+            updateTriggers: {
+              visible: data.value
+            }
           })
         }
 
@@ -520,7 +533,11 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 filterRange: [0, 0],
                 // Define extensions
                 extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-                onClick:onClick
+                onClick:onClick,
+                updateTriggers:{
+                  getFilterValue: getFilterValue,
+                  visible: data.value,
+                }
               })
             )
           } else {
@@ -540,7 +557,10 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 pickable: true,
                 autoHighlight: true,
                 onHover: onHover,
-                onClick:onClick
+                onClick:onClick,
+                updateTriggers:{
+                  visible: data.value,
+                }
               }))
           }
 
@@ -603,7 +623,13 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
           filterRange: [time, time],
           onFilteredItemsChange: onFilteredItemsChange,
           // Define extensions
-          extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })]
+          extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
+          updateTriggers:{
+            filterRange: [time, time],
+            onFilteredItemsChange: onFilteredItemsChange,
+            getFilterValue: getFilterValue,
+            visible: data.value,
+          }
         })
       }
     })

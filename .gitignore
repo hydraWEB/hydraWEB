@@ -1,3 +1,2 @@
 .env
-.server/hydraweb/data
-.server/hydraweb/data2
+*.json

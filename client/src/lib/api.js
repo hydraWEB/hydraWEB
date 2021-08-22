@@ -40,7 +40,11 @@ export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/
 export const LayerList = (data) => guestRequest_client.get(`api/v1/user/layer`,data)
 
 export const SystemSettingList = (data) => userRequest_client.get(`api/v1/staff/system-updating/`,data)
-export const SystemSettingEdit = (data) => userRequest_client.put(`api/v1/staff/system-updating/`,data)
+export const SystemSettingEdit = (data,id) => userRequest_client.put(`api/v1/staff/system-updating/${id}/`,data)
+
+export const IPList = (data) => userRequest_client.get("api/v1/staff/ip/",data)
+export const IPSendDelete = (data,id) => userRequest_client.put(`api/v1/staff/ip/${id}/`,data)
+export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",data)
 
 
 export default userLogin

@@ -14,6 +14,7 @@ import SystemSetting from "./SystemSetting";
 import Announcement from "./Announcement";
 import AccountManage from "./AccountManage";
 import IPManage from "./IPManage";
+import IPManageNew from "./IPManageNew";
 import {useTranslation} from "react-i18next";
 import AnnouncementNew from "./AnnouncementNew";
 import AnnouncementEdit from "./AnnouncementEdit"
@@ -22,6 +23,7 @@ import AccountManageNew from "./AccountManageNew"
 import AccountManageEdit from "./AccountManageEdit"
 import AcountManageInfo from "./AcountManageInfo"
 import SystemUpdating from "./SystemUpdating"
+
 
 export const Title = styled.h1(
     props => ({
@@ -115,6 +117,9 @@ export default function Staff() {
                     </Route>
                     <Route path="/user/staff/account-manage">
                         <AccountManage/>
+                    </Route>
+                    <Route path="/user/staff/ip-manage/new">
+                        <IPManageNew/>
                     </Route>
                     <Route path="/user/staff/ip-manage">
                         <IPManage/>

@@ -58,8 +58,8 @@ class SystemLog(TimestampedModel):
     objects = SystemRecordManager()
 
 class IpSettingManager(models.Manager):
-    def create_black_list(self, ip_address):
-        res = self.create(ip_address=ip_address)
+    def create_black_list(self, ip_address, user):
+        res = self.create(ip_address=ip_address, user=user)
 
     def delete_black_list(self, ip_address):
         self.delete()
@@ -70,9 +70,12 @@ class IpSettingManager(models.Manager):
 
 class IpSetting(TimestampedModel):
     ip_address = models.GenericIPAddressField(primary_key=True)
+    user = models.ForeignKey('authentication.User', on_delete=models.CASCADE, default ="")
+    objects = IpSettingManager()
 
 
 class SystemSetting(TimestampedModel):
+    id = models.AutoField(primary_key=True)
     currentMode = models.IntegerField()
 
 class SystemSettingManager(models.Manager):

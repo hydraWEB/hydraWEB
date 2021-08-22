@@ -81,7 +81,7 @@ class SystemLogSerialzer(serializers.ModelSerializer):
 class IPManageSerializer(serializers.ModelSerializer):
     ip_address = serializers.CharField(allow_null=False, max_length=150)
     user = AuthUserSerializer(read_only=True)
-
+    
     def create(self,user):
         IpSetting.objects.create_black_list(ip_address = self.validated_data['ip_address'],user=user)
 
@@ -90,7 +90,7 @@ class IPManageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = IpSetting
-        fields = ['id','ip_address']
+        fields = ['ip_address', 'user']
 
 
 class SystemSettingSerializer(serializers.ModelSerializer):
@@ -100,5 +100,5 @@ class SystemSettingSerializer(serializers.ModelSerializer):
         instance.edit_mode(currentMode = self.validated_data['currentMode'])
 
     class Meta:
-        model = IpSetting
-        fields = ['currentMode']
+        model = SystemSetting
+        fields = ['id','currentMode']

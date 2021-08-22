@@ -1,5 +1,5 @@
 import {Form} from "react-bootstrap";
-import React, {Suspense, useContext, useState} from "react";
+import React, {Suspense, useContext, useState, useEffect} from "react";
 import {SystemSettingEdit, SystemSettingList} from "../../../lib/api";
 import Cookies from 'js-cookie'
 import {userContext} from "../../../provider/UserProvider";
@@ -7,41 +7,31 @@ import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
 import { useTranslation, Trans } from "react-i18next";
 import Button from '@material-ui/core/Button';
-
+import {useToasts} from "react-toast-notifications";
+import useQuery from "../../../lib/hook";
 
 export default function SystemSetting() {
+    
     const { t, i18n } = useTranslation()
     let history = useHistory()
     const location = useLocation()
     const {user, setUser} = useContext(userContext)
-    const [currentMode, setCurrentMode] = useState(1)   // 2 = 系統更新
-    
+    const [currentMode, setCurrentMode] = useState()   // 2 = 系統更新
+    let query = useQuery();
+    const { addToast } = useToasts();
 
     function handleChange(){
+        let nextMode = 0
+        let id =  1
         if(currentMode === 1){
-            setCurrentMode(2)
-            SystemSettingList({})
-            .then((res) => {
-                setCurrentMode(res.data.currentMode)
-            }).catch((err) => {
-    
-            }).finally(() => {
-    
-            })
-            history.push(`/user/staff/system-updating`);
-            
+            nextMode = 2
         }
         else{
-            setCurrentMode(1)
+            nextMode = 1
         }
-    }
-    /* const submitForm = (e) => {
-        let id =  query.get("id")
-        accountSendEdit({
-                username:username,
-                phone:phone,
-                password:password,
-                avatar:avatar
+        setCurrentMode(nextMode)
+        SystemSettingEdit({
+                currentMode:nextMode
             },id
         ).then((res) => {
             addToast('修改成功.', { appearance: 'success',autoDismiss:true });
@@ -52,25 +42,18 @@ export default function SystemSetting() {
         })
     }
 
+
     useEffect(() => {
-        if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
-            let id =  query.get("id")
-            accountInfoUser({},id)
+        SystemSettingList({})
             .then((res) => {
-                setUsername(res.data.username)
-                setEmail(res.data.email)
-                setId(res.data.id)
-                setPhone(res.data.Phone)
-                setAvatar(res.data.avatar)
+                setCurrentMode(res.data.results[0].currentMode)
             }).catch((err) => {
     
             }).finally(() => {
     
             })
-        } else {
-            
-        }
-    }, []) */
+    
+    }, [])
 
     return (
         <div>

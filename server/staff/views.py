@@ -4,7 +4,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
 
 from authentication.models import User
-from .models import Announcement, SystemLog, SystemOperationEnum, IpSetting
+from .models import Announcement, SystemLog, SystemOperationEnum, IpSetting, SystemSetting
 from core.utils import StandardResultsSetPagination
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from .serializers import SystemLogSerialzer, StaffAnnouncementSerializer, UserAnnouncementSerializer, UserSerializer, IPManageSerializer,AdminUserSerializer
@@ -182,3 +182,21 @@ class IPManageViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.delete(user=request.user,instance=a)
         pass
+
+class SystemSettingViewSet(viewsets.ModelViewSet):
+    queryset = SystemSetting.objects
+    pagination_class = StandardResultsSetPagination
+    permission_classes = (IsAdminUser,)
+    def get_queryset(self):
+        return self.queryset
+
+    def list(self, request, **kwargs):
+        queryset = self.paginate_queryset(
+        self.queryset.order_by('-created_at'))
+
+    def patch(self, request, pk=None, **kwargs):
+        a = get_object_or_404(SystemSetting)
+        serializer = SystemSettingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.edit(instance=a)
+        return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)

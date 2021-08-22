@@ -86,6 +86,8 @@ i18n
                     //IP管理
                     "ip_address":"IP Address",
                     "black_list":"Black List",
+                    //系統設定
+                    "change":"Change",
                 }
             },
             zh_tw: {
@@ -163,7 +165,8 @@ i18n
                     //IP管理
                     "ip_address":"IP地址",
                     "black_list":"黑名單",
-                    
+                    //系統設定
+                    "change":"切換",
                 }
             }
         },

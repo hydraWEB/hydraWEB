@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Announcement, SystemLog, IpSetting
+from .models import Announcement, SystemLog, IpSetting, SystemSetting
 from authentication.models import User
 
 class UserSerializer(serializers.Serializer):
@@ -91,3 +91,14 @@ class IPManageSerializer(serializers.ModelSerializer):
     class Meta:
         model = IpSetting
         fields = ['id','ip_address']
+
+
+class SystemSettingSerializer(serializers.ModelSerializer):
+    currentMode = serializers.IntegerField(read_only=True)
+
+    def edit(self, instance):
+        instance.edit_mode(currentMode = self.validated_data['currentMode'])
+
+    class Meta:
+        model = IpSetting
+        fields = ['currentMode']

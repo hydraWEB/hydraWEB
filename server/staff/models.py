@@ -70,3 +70,12 @@ class IpSettingManager(models.Manager):
 
 class IpSetting(TimestampedModel):
     ip_address = models.GenericIPAddressField(primary_key=True)
+
+
+class SystemSetting(TimestampedModel):
+    currentMode = models.IntegerField()
+
+class SystemSettingManager(models.Manager):
+    def edit_mode(self, currentMode):
+        self.currentMode = currentMode
+        self.save()

@@ -50,9 +50,9 @@ import {
 
 const FabIcon = withStyles({
   root: {
-    width:40,
-    height:40,
-    marginBottom:10,
+    width: 40,
+    height: 40,
+    marginBottom: 10,
   },
   expanded: {},
 })(Fab);
@@ -137,9 +137,24 @@ function renderTooltip({ hoverInfo }) {
   const props = object.properties;
 
   const list = Object.entries(props).map(([key, value]) => {
-    return (
-      <div>{key} : {value.toString()}</div>
-    );
+    if (typeof value === 'object' && value !== null) {
+      const list2 = Object.entries(value).map(([key2, value2]) => {
+        return (
+          <div>{key2} : {value2.toString()}</div>
+        )
+      })
+      return (
+        <div>
+          <h5>{key}:</h5>
+          <div>{list2}</div>
+        </div>
+      )
+    } else {
+      return (
+          <div>{key} : {value.toString()}</div>
+      );
+    }
+
   })
 
   return (
@@ -169,9 +184,24 @@ function renderInfo(clickInfo, setClickInfo) {
   const props = object.properties;
 
   const list = Object.entries(props).map(([key, value]) => {
-    return (
-      <div>{key} : {value.toString()}</div>
-    );
+    if (typeof value === 'object' && value !== null) {
+      const list2 = Object.entries(value).map(([key2, value2]) => {
+        return (
+          <div>{key2} : {value2.toString()}</div>
+        )
+      })
+      return (
+        <div>
+          <h5>{key}:</h5>
+          <div>{list2}</div>
+        </div>
+      )
+    } else {
+      return (
+          <div>{key} : {value.toString()}</div>
+      );
+    }
+
   })
 
   return (
@@ -252,6 +282,7 @@ export default function HydraMap() {
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
   const { t, i18n } = useTranslation();
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
+  const viewState2 = useRef(INITIAL_VIEW_STATE);
   const [currentFunction, setCurrentFunction] = useState(1)
   const [openSheet, setOpenSheet] = useState(true)
   const [hoverInfo, setHoverInfo] = useState({});
@@ -266,7 +297,7 @@ export default function HydraMap() {
       latitude: geometry[1],
       zoom: 15,
       bearing: 0,
-      pitch:viewState['pitch'],
+      pitch: viewState['pitch'],
       transitionDuration: 1000,
       transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
     })
@@ -289,6 +320,10 @@ export default function HydraMap() {
     setViewState(viewState);
   }, []);
 
+  function handleViewStateChange({ viewState: nextViewState }) {
+    viewState2.current = nextViewState
+  }
+
 
   const setHoverInfoFunc = (data) => {
     setHoverInfo(data)
@@ -301,7 +336,7 @@ export default function HydraMap() {
         latitude: data.object.geometry.coordinates[1],
         zoom: 15,
         bearing: 0,
-        pitch:viewState['pitch'],
+        pitch: viewState['pitch'],
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
       }
@@ -478,7 +513,7 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-{/*             <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
+            {/*             <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -493,7 +528,7 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper> */}
-{/*             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+            {/*             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -551,48 +586,49 @@ export default function HydraMap() {
           </LogLatContainer>
         </div>
         <div className={styles.zoomIn_btn}>
-            <FabIcon color="light" onClick={(e) => {
-              setViewState({
-                longitude: viewState['longitude'],
-                latitude: viewState['latitude'],
-                zoom: viewState['zoom'] + 1.0,
-                pitch: viewState['pitch'] ,
-                transitionDuration: 500,
-                transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
+          <FabIcon color="light" onClick={(e) => {
+            setViewState({
+              longitude: viewState['longitude'],
+              latitude: viewState['latitude'],
+              zoom: viewState['zoom'] + 1.0,
+              pitch: viewState['pitch'],
+              transitionDuration: 500,
+              transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
             })
-            }}>
-              <AddIcon />
-            </FabIcon>
-            <FabIcon color="light" onClick={(e) => {
-                setViewState({
-                  longitude: viewState['longitude'],
-                  latitude: viewState['latitude'],
-                  zoom: viewState['zoom'] - 1.0,
-                  pitch: viewState['pitch'] ,
-                  transitionDuration: 500,
-                  transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
-                })
-            }}>
-              <RemoveIcon />
-            </FabIcon>
-            <FabIcon color="light" onClick={(e) => {
-                setViewState({
-                  longitude: viewState['longitude'],
-                  latitude: viewState['latitude'],
-                  zoom: viewState['zoom'],
-                  pitch: 0 ,
-                  transitionDuration: 500,
-                  transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
-                })
-            }}>
-              <ExploreIcon />
-            </FabIcon>
+          }}>
+            <AddIcon />
+          </FabIcon>
+          <FabIcon color="light" onClick={(e) => {
+            setViewState({
+              longitude: viewState['longitude'],
+              latitude: viewState['latitude'],
+              zoom: viewState['zoom'] - 1.0,
+              pitch: viewState['pitch'],
+              transitionDuration: 500,
+              transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
+            })
+          }}>
+            <RemoveIcon />
+          </FabIcon>
+          <FabIcon color="light" onClick={(e) => {
+            setViewState({
+              longitude: viewState['longitude'],
+              latitude: viewState['latitude'],
+              zoom: viewState['zoom'],
+              pitch: 0,
+              transitionDuration: 500,
+              transitionInterpolator: new FlyToInterpolator({ speed: 5000 })
+            })
+          }}>
+            <ExploreIcon />
+          </FabIcon>
 
-          </div>
+        </div>
         <div className={styles.map} >
           <DeckGL
             tooltip={true}
             initialViewState={INITIAL_VIEW_STATE}
+            onViewStateChange={handleViewStateChange}
             /* viewState={viewState}
             onViewStateChange={onViewStateChange} */
             controller={{

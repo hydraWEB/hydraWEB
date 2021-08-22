@@ -21,6 +21,7 @@ import AnnouncementInfo from "./AnnouncementInfo"
 import AccountManageNew from "./AccountManageNew"
 import AccountManageEdit from "./AccountManageEdit"
 import AcountManageInfo from "./AcountManageInfo"
+import SystemUpdating from "./SystemUpdating"
 
 export const Title = styled.h1(
     props => ({
@@ -118,7 +119,9 @@ export default function Staff() {
                     <Route path="/user/staff/ip-manage">
                         <IPManage/>
                     </Route>
-                    
+                    <Route path="/user/staff/system-updating">
+                        <SystemUpdating/>
+                    </Route>
                 </Switch>
             </div>
         </div>

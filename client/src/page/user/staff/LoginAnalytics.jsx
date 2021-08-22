@@ -1,21 +1,21 @@
-import {Button, Form, Table} from "react-bootstrap";
-import React, {Suspense, useContext, useEffect, useState} from "react";
-import {loginLog, systemLogGetAllYear, userSignUp} from "../../../lib/api";
+import { Button, Form, Table } from "react-bootstrap";
+import React, { Suspense, useContext, useEffect, useState } from "react";
+import { loginLog, systemLogGetAllYear, userSignUp } from "../../../lib/api";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
-import {DropdownButton, Dropdown} from 'react-bootstrap';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 import styles from './LoginAnalytics.module.scss'
 import Pagination from '@material-ui/lab/Pagination';
 
 import { css, jsx } from '@emotion/react/macro'
-import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
+import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import useQuery from "../../../lib/hook";
 import { useTranslation, Trans } from "react-i18next";
 
 
-function TableData({data}) {
+function TableData({ data }) {
     const { t, i18n } = useTranslation()
     const idItems = data.map((d, index) =>
         <tr>
@@ -29,14 +29,14 @@ function TableData({data}) {
         <StyledTable>
             <Table striped bordered hover>
                 <thead>
-                <tr >
-                    <StyledTh>{t('id')}</StyledTh>
-                    <StyledTh>{t('username')}</StyledTh>
-                    <StyledTh>{t('login_date')}</StyledTh>
-                </tr>
+                    <tr >
+                        <StyledTh>{t('id')}</StyledTh>
+                        <StyledTh>{t('username')}</StyledTh>
+                        <StyledTh>{t('login_date')}</StyledTh>
+                    </tr>
                 </thead>
                 <tbody>
-                {idItems}
+                    {idItems}
                 </tbody>
             </Table>
         </StyledTable>
@@ -48,7 +48,7 @@ export default function LoginAnalytics() {
 
     let history = useHistory()
     const location = useLocation()
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
     const [loading, setLoading] = useState(0)
     const [years, setYears] = useState([])
     const [page, setPage] = useState(1)
@@ -66,26 +66,32 @@ export default function LoginAnalytics() {
 
     const listItems = years.map((year, index) =>
         <Dropdown.Item key={year.toString()} onClick={(e) => onChangeYear(index)}
-                       value={year}>{year.toString()}</Dropdown.Item>
+            value={year}>{year.toString()}</Dropdown.Item>
     );
 
     const months = ["全年度", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const listItems2 = months.map((month, index) =>
         <Dropdown.Item key={month.toString()} onClick={(e) => onChangeMonth(index)}
-                       value={month}>{month.toString()}</Dropdown.Item>
+            value={month}>{month.toString()}</Dropdown.Item>
     );
 
     const [data, setData] = useState([])
 
-    const loadData = () => {
+
+    const loadData = (p) => {
+        let currentPage = page
+        if((typeof p !== 'undefined')){
+            currentPage = p
+            setPage(p)
+        }
         loginLog({
-                params: {
-                    page: page,
-                    type: 'user_login',
-                    year: years[currentSelectedYearIdx],
-                    month: currentSelectedMonthIdx === 0 ? null : months[currentSelectedMonthIdx]
-                }
+            params: {
+                page: currentPage,
+                type: 'user_login',
+                year: years[currentSelectedYearIdx],
+                month: currentSelectedMonthIdx === 0 ? null : months[currentSelectedMonthIdx]
             }
+        }
         ).then((res) => {
             setData(res.data.results)
             setTotalPage(res.data.total_pages)
@@ -95,7 +101,6 @@ export default function LoginAnalytics() {
 
         })
     }
-
 
     useEffect(() => {
         systemLogGetAllYear().then((res) => {
@@ -112,35 +117,37 @@ export default function LoginAnalytics() {
         <div>
             <Title>{t('login_summary')}</Title>
             {loading == 0 &&
-            <img
-                className={styles.loading_image}
-                src="/img/loading.svg"
-            />
+                <img
+                    className={styles.loading_image}
+                    src="/img/loading.svg"
+                />
             }
             {loading == 1 &&
-            <>
-                <FlexColumnContainer>
-                    <span className={styles.item1}>{t('login_date')}</span>
-                    <DropdownButton className={styles.item2} id="years" title={years[currentSelectedYearIdx]}>
-                        {listItems}
-                    </DropdownButton>
-                    <span className={styles.item2}>{t('year')}</span>
-                    <DropdownButton className={styles.item2} id="months" title={months[currentSelectedMonthIdx]}>
-                        {listItems2}
-                    </DropdownButton>
-                    <span className={styles.item2}>{t('month')}</span>
-                    <Button onClick={(e) => {
-                        setPage(1)
-                        loadData()
-                    }
-                    } variant="outline-primary">{t('search')}</Button>
+                <>
+                    <FlexColumnContainer>
+                        <span className={styles.item1}>{t('login_date')}</span>
+                        <DropdownButton className={styles.item2} id="years" title={years[currentSelectedYearIdx]}>
+                            {listItems}
+                        </DropdownButton>
+                        <span className={styles.item2}>{t('year')}</span>
+                        <DropdownButton className={styles.item2} id="months" title={months[currentSelectedMonthIdx]}>
+                            {listItems2}
+                        </DropdownButton>
+                        <span className={styles.item2}>{t('month')}</span>
+                        <Button onClick={(e) => {
+                            setPage(1)
+                            loadData()
+                        }
+                        } variant="outline-primary">{t('search')}</Button>
 
-                </FlexColumnContainer>
-                <TableData data={data}/>
-                <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
-                            onChange={loadData}/>
+                    </FlexColumnContainer>
+                    <TableData data={data} />
+                    <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
+                        onChange={(e, page) => {
+                            loadData(page)
+                        }} />
 
-            </>
+                </>
             }
             {loading == 2
 

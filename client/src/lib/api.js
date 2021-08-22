@@ -39,5 +39,8 @@ export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/
 
 export const LayerList = (data) => guestRequest_client.get(`api/v1/user/layer`,data)
 
+export const SystemSettingList = (data) => userRequest_client.get(`api/v1/staff/system-updating/`,data)
+export const SystemSettingEdit = (data) => userRequest_client.put(`api/v1/staff/system-updating/`,data)
+
 
 export default userLogin

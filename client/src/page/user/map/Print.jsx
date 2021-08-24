@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation, Trans } from "react-i18next";
 import {
- Button, Form
+  Button, Form
 } from 'react-bootstrap';
 import styled from "@emotion/styled/macro";
 import { saveAs } from 'file-saver';
@@ -35,14 +35,15 @@ export default function Print({ map, deck }) {
     setForamt(e.target.value);
   }
 
-  const downloadImage = () => {
+  //這只能印出點
+  const createPrintMap1 = () => {
     const fileName = "Map.png";
 
     const mapboxCanvas = map.current.getMap().getCanvas(
       document.querySelector(".mapboxgl-canvas")
     );
     deck.current.deck.redraw(true);
-    const deckglCanvas = document.getElementById("deck-gl-canvas");
+    const deckglCanvas = document.getElementById("deckgl-overlay");
 
     let merge = document.createElement("canvas");
     merge.width = mapboxCanvas.width;
@@ -60,45 +61,9 @@ export default function Print({ map, deck }) {
     });
   };
 
-  const createPrintMap1 = () => {
-    const html2canvas = require("html2canvas")
-
-    let div = document.getElementsByClassName("mapboxgl-canvas")[0];
-    deck.current.deck.redraw(true)
-    html2canvas(div).then(canvas => {
-      document.body.appendChild(canvas);
-      deck.current.deck.redraw(true)
-      let a = document.createElement('a');
-      // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-      a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-      a.download = 'screenshot.png';
-      a.click();
-    });
-
-  }
-
-  const createPrintMap2 = () => {
-    const mapRef = map.current.getMap()
-    mapRef.getCanvas().toBlob(function (blob) {
-      saveAs(blob, 'map.png');
-    });
-  }
-
   const onBtnClick = () => {
-    //downloadImage()
-    //createPrintMap()
-    createPrintMap2()
+    createPrintMap1()
   }
-
-  /*    const screenshot = () => {
-        let canvas = $scope.scatterLayer.canvas;
-          document.body.appendChild(canvas);
-          let a = document.createElement('a');
-          // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-          a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-          a.download = 'screenshot.png';
-          a.click();
-     } */
 
 
   return (

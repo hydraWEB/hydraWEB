@@ -69,6 +69,7 @@ class IpSettingManager(models.Manager):
         self.save()
 
 class IpSetting(TimestampedModel):
+    """ id = models.AutoField(primary_key=True) """
     ip_address = models.GenericIPAddressField(primary_key=True)
     user = models.ForeignKey('authentication.User', on_delete=models.CASCADE, default ="")
     objects = IpSettingManager()

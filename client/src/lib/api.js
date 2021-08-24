@@ -43,7 +43,7 @@ export const SystemSettingList = (data) => userRequest_client.get(`api/v1/staff/
 export const SystemSettingEdit = (data,id) => userRequest_client.put(`api/v1/staff/system-updating/${id}/`,data)
 
 export const IPList = (data) => userRequest_client.get("api/v1/staff/ip/",data)
-export const IPSendDelete = (data,id) => userRequest_client.put(`api/v1/staff/ip/${id}/`,data)
+export const IPSendDelete = (id) => userRequest_client.delete(`api/v1/staff/ip/${id}/`)
 export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",data)
 
 

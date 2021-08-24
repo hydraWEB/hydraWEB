@@ -1,6 +1,5 @@
 from .models import IpSetting
-from rest_framework.response import Response
-from rest_framework import viewsets, status
+from django.http import HttpResponse
 
 class IpBlockMiddleware:
     def __init__(self, get_response):
@@ -16,8 +15,8 @@ class IpBlockMiddleware:
         get_ip = self.get_client_ip(request)
 
         for ip in all_ip:
-            if ip['ip_address'] == get_ip:
-                return Response({"status": "fobidden ip"}, status=status.HTTP_403_FORBIDDEN)
+            if ip.ip_address == get_ip:
+                return HttpResponse('ip not allowed')
 
 
         response = self.get_response(request) 

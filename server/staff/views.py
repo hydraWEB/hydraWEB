@@ -166,9 +166,10 @@ class IPManageViewSet(viewsets.ModelViewSet):
     pagination_class = StandardResultsSetPagination
     permission_classes = (IsAdminUser,)
 
-    def list(self, request, **kwargs):
-        queryset = self.paginate_queryset(
-        self.queryset.order_by('-created_at'))
+    def list(self, request, **kwargs): 
+        queryset = self.paginate_queryset(self.queryset.all())
+        serializer = IPManageSerializer(queryset, many=True)
+        return self.get_paginated_response(serializer.data)
 
     def create(self, request):
         serializer = IPManageSerializer(data=request.data)

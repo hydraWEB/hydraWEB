@@ -1,4 +1,4 @@
-import {Button, Form, Table} from "react-bootstrap";
+import {Button, Form, Table, Modal} from "react-bootstrap";
 import React, {Suspense, useContext, useState, useEffect} from "react";
 import {IPList,IPSendDelete} from "../../../lib/api";
 import Cookies from 'js-cookie'
@@ -35,6 +35,10 @@ function TableData({data, loadData}) {
         setDeleteData(d)
         setShowDelete(true)
     }
+    function handleClose() {
+        setShowDelete(false)
+        setDeleteData(null)
+    }
 
     const idItems = data.map((d, index) =>
         <tr>
@@ -46,21 +50,40 @@ function TableData({data, loadData}) {
     );
 
     return (
-        <StyledTable>
-            <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
-            <Table striped bordered hover>
-                <thead>
-                <tr >
-                    <StyledTd>{t('ip_address')}</StyledTd>
-                    <StyledTh>{t('operation')}</StyledTh>
-                </tr>
-                </thead>
-                <tbody>
-                {idItems}
-                </tbody>
-            </Table>
-        </StyledTable>
-
+        <>
+            <Modal show={showDelete} onHide={handleClose}>
+                    <div>
+                        <Modal.Header closeButton>
+                            {showDelete == true &&
+                                <Modal.Title>{t('delete')} {deleteData.ip_address} ?</Modal.Title>
+                            }
+                        </Modal.Header>
+                        <Modal.Body>{t('are_you_sure_you_want_to_delete?')}</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                {t('close')}
+                            </Button>
+                            <Button variant="danger" onClick={onDeleteClick}>
+                                {t('delete')}
+                            </Button>
+                        </Modal.Footer>
+                    </div>
+            </Modal>
+            <StyledTable>
+                <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
+                <Table striped bordered hover>
+                    <thead>
+                    <tr >
+                        <StyledTd>{t('ip_address')}</StyledTd>
+                        <StyledTh>{t('operation')}</StyledTh>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {idItems}
+                    </tbody>
+                </Table>
+            </StyledTable>
+        </>
     )
 }
 
@@ -90,7 +113,7 @@ export default function IPManage() {
         })
     }
     const onChangePage = (e, page) => {
-        history.replace(`/user/staff/announcement-manage?p=${page}`)
+        history.replace(`/user/staff/ip-manage?p=${page}`)
     }
 
     useEffect(() => {

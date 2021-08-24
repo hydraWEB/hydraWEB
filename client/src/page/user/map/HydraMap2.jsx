@@ -232,7 +232,8 @@ export default function HydraMap() {
     latitude: 24.021087,
     zoom: 10,
     pitch: 30,
-    bearing: 0
+    bearing: 0,
+    preserveDrawingBuffer: true
   };
 
   const [selectedFeatureIndexes] = React.useState([]);
@@ -339,6 +340,7 @@ export default function HydraMap() {
         pitch: viewState['pitch'],
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
+        
       }
     )
     setClickInfo(data)
@@ -624,13 +626,13 @@ export default function HydraMap() {
           </FabIcon>
 
         </div>
-        <div className={styles.map} >
+        <div className={styles.map} id="big_map">
           <DeckGL
             tooltip={true}
-            initialViewState={INITIAL_VIEW_STATE}
-            onViewStateChange={handleViewStateChange}
-            /* viewState={viewState}
-            onViewStateChange={onViewStateChange} */
+/*          initialViewState={INITIAL_VIEW_STATE}
+ */     
+             viewState={viewState}
+            onViewStateChange={onViewStateChange} 
             controller={{
               doubleClickZoom: false
             }}
@@ -639,7 +641,7 @@ export default function HydraMap() {
             getCursor={getCursor}
             onClick={saveLastClick}
           >
-            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} />
+            <StaticMap  ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
             {renderTooltip({ hoverInfo })}
             {renderInfo(clickInfo, setClickInfo)}
 

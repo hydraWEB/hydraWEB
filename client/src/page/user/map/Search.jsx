@@ -246,7 +246,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           for (let f = 0; f < feat.data.features.length; f++) {
             allMeasurement.push(feat.data.features[f].properties.measurement)
             for (let key in feat.data.features[f].properties){
-              if(key === "prop1" || key === "prop2"){
+              if(key.indexOf("prop") >= 0){
                 for(let prop in feat.data.features[f].properties[key]){
                   alltags.push(prop)
                 }
@@ -273,25 +273,24 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   return (
     <div>
       <h4 className={styles.func_title}>{t('search')}</h4>
+      <div className={styles.search_tag}>
+        <FormControl >
+          <InputLabel>{t('tags')}</InputLabel>
+          <Select
+            native
+            value={currentTag}
+            onChange={handleChange}
+            inputProps={{
+              name: 'Tags',
+              id: 'age-native-simple',
+            }}
+          >
+            <option aria-label="None" value="" />
+            {selectTag}
+          </Select>
+        </FormControl>
+      </div>
       <div className={styles.search_bar}>
-        <div className={styles.search_tag}>
-          <FormControl >
-            <InputLabel>{t('tags')}</InputLabel>
-            <Select
-              native
-              value={currentTag}
-              onChange={handleChange}
-              inputProps={{
-                name: 'Tags',
-                id: 'age-native-simple',
-              }}
-            >
-              <option aria-label="None" value="" />
-              {selectTag}
-            </Select>
-          </FormControl>
-        </div>
-        
         <SearchTextField
           label={t('search_by_tag')}
           defaultValue="Changhua_0"

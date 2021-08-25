@@ -41,6 +41,7 @@ import {
   makeStyles,
   createTheme,
 } from '@material-ui/core/styles';
+import * as d3 from "d3";
 
 import {
   EditableGeoJsonLayer,
@@ -221,6 +222,9 @@ function renderInfo(clickInfo, setClickInfo) {
       <p className={styles.tooltip_content_2}>
         {list}
       </p>
+      { 
+
+      }
     </div>
   );
 }
@@ -643,10 +647,10 @@ export default function HydraMap() {
           >
             <StaticMap  ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
             {renderTooltip({ hoverInfo })}
-            {renderInfo(clickInfo, setClickInfo)}
 
           </DeckGL>
         </div>
+        {renderInfo(clickInfo, setClickInfo)}
       </div>
     </>
 

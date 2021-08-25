@@ -126,7 +126,7 @@ export default function IPManage() {
 
     useEffect(() => {
         loadData(page)
-    }, [page])
+    },)
 
     return (
         <div>

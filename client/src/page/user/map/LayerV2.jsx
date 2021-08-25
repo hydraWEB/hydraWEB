@@ -4,6 +4,7 @@ import styles from './HydraMap.module.scss';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { DataFilterExtension } from '@deck.gl/extensions';
 import { GeoJsonLayer } from '@deck.gl/layers';
+import { ScenegraphLayer } from '@deck.gl/mesh-layers';
 import { ColumnLayer } from '@deck.gl/layers';
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
 import { LayerList } from '../../../lib/api'
@@ -78,7 +79,7 @@ function ValueLabelComponent(props) {
 const InputWrapper = styled.div(
   props => (
     {
-      width:"100%",
+      width: "100%",
       borderWidth: "2x",
       borderColor: "white",
       borderBottom: "1px",
@@ -102,7 +103,7 @@ const StyledLabel = styled.label(
   props => (
     {
       padding: "8px 10px 0px 10px",
-      marginBottom:0
+      marginBottom: 0
     }
   )
 )
@@ -141,15 +142,15 @@ const checkBoxStyle = makeStyles({
 
 
 
-function CustomCheckBox({color,checked,onChange}){
-  const classes1 = checkBoxStyle({ color: color});
-  return(
+function CustomCheckBox({ color, checked, onChange }) {
+  const classes1 = checkBoxStyle({ color: color });
+  return (
     <Checkbox
-    className={classes1.root}
-    checked={checked}
-    onChange={onChange}
-    color="default"
-  />
+      className={classes1.root}
+      checked={checked}
+      onChange={onChange}
+      color="default"
+    />
   )
 }
 
@@ -217,7 +218,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
             max={max}
             aria-labelledby="discrete-slider"
             valueLabelDisplay="auto"
-            color = "secondary"
+            color="secondary"
             step={null}
             defaultValue={min}
             marks={timeList}
@@ -235,7 +236,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
   )
 }
 
-export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,setClickInfo, geometry, data){
+export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data) {
   const onClick = (data) => {
     console.log(data)
     setClickInfo(data)
@@ -244,23 +245,23 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,set
     setHoverInfo(data)
   }
   let newMapData = [...allData]
-  for (let i = 0; i < newMapData.length; i++){
-    for (let j = 0; j < newMapData[i].files.length; j++){
-      for(let k = 0; k < data.length; k++){
-        if (newMapData[i].files[j].name === data[k].name){
+  for (let i = 0; i < newMapData.length; i++) {
+    for (let j = 0; j < newMapData[i].files.length; j++) {
+      for (let k = 0; k < data.length; k++) {
+        if (newMapData[i].files[j].name === data[k].name) {
           newMapData[i].files[j].value = true
         }
       }
     }
-    
+
   }
   setAllData(newMapData)
   let newLayer = []
-  if(layers.length > 0){
+  if (layers.length > 0) {
     newLayer = [...layers]
-    layers.forEach((element,i) => {
-      for (let k =0;k<data.length;k++){
-        if(element.props.id === data[k].name){
+    layers.forEach((element, i) => {
+      for (let k = 0; k < data.length; k++) {
+        if (element.props.id === data[k].name) {
           newLayer[i] = new GeoJsonLayer({
             id: data[k].name,
             name: data[k].name,
@@ -276,26 +277,26 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo ,set
             pickable: true,
             autoHighlight: true,
             onHover: onHover,
-            onClick:onClick,
+            onClick: onClick,
             updateTriggers: {
               visible: data.value
             }
           })
         }
       }
-    
-    }) 
+
+    })
   }
 
-  
-  
+
+
   setLayers(newLayer)
 
 
 
 }
 
-export default function Layer({ allData , setAllData, layers, setLayers, setHoverInfo ,setClickInfo }) {
+export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo }) {
 
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
@@ -312,6 +313,10 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     setClickInfo(data)
   }
 
+  const detectIfGeology = (data) => {
+    
+  }
+
 
   const getFilterValue = (d) => {
     const dayjs = require("dayjs")
@@ -319,30 +324,31 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     return time1.valueOf()
   }
 
-  function fillcolor(d){
-    if(d.z > 34){
-      return [146,0,29]
-    }else if(d.z > 30){
-      return [182,21,19,255]
-    }else if(d.z > 25){
-      return [168,72,5,255]
-    }else if(d.z > 20){
-      return [158,91,5,255]
-    }else if(d.z > 15){
-      return [135,96,3,255]
-    }else if(d.z > 10){
-      return [98,97,0,255]
-    }else if(d.z > 5){
-      return [83,82,0,255]
-    }else if(d.z > 0){
-      return [54,85,24,255]
+  function fillcolor(d) {
+    if (d.z > 34) {
+      return [146, 0, 29]
+    } else if (d.z > 30) {
+      return [182, 21, 19, 255]
+    } else if (d.z > 25) {
+      return [168, 72, 5, 255]
+    } else if (d.z > 20) {
+      return [158, 91, 5, 255]
+    } else if (d.z > 15) {
+      return [135, 96, 3, 255]
+    } else if (d.z > 10) {
+      return [98, 97, 0, 255]
+    } else if (d.z > 5) {
+      return [83, 82, 0, 255]
+    } else if (d.z > 0) {
+      return [54, 85, 24, 255]
     }
-    else{
-      return [54,138,155,255]
+    else {
+      return [54, 138, 155, 255]
     }
-       
+
   }
 
+  // index1:分類的index index:分類中檔案的index
   const OnListItemsChange = (e, index1, data, index) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value //CheckBox打勾是True沒打勾是False
     let newMapData = [...allData]
@@ -350,16 +356,43 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     setAllData(newMapData)
     let newLayer = [...layers] //複製一個layer
     newLayer.forEach((element, i) => {
-      if (element.props.name == "ps_mean_v.xy.json") { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
+      if (element.props.name === "3d_test.json" && data.name === "3d_test.json" || element.props.name === "3d_test2.json" && data.name === "3d_test2.json" ) {
         let hexdata = []
         data.data.features.forEach((dl) => {
           try {
-            hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]],z:dl.properties  })
+            hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
           } catch (error) {
 
           }
         })
-        newLayer.push(
+        newLayer[i] = new ScenegraphLayer({
+          id: data.name,
+          name: data.name,
+          data: hexdata,
+          
+          pickable: true,
+          visible: data.value,
+          scenegraph: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf',
+          getPosition: d => d.COORDINATES,
+          getOrientation: d => [0, Math.random() * 180, 90],
+          _animations: {
+            '*': { speed: 5 }
+          },
+          sizeScale: 500,
+          _lighting: 'pbr'
+        })
+        return
+      }
+      if (element.props.name == "ps_mean_v.xy.json" && data.name === "ps_mean_v.xy.json") { //3d圖層
+        let hexdata = []
+        data.data.features.forEach((dl) => {
+          try {
+            hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
+          } catch (error) {
+
+          }
+        })
+        newLayer[i] =
           new ColumnLayer({
             id: data.name,
             name: data.name,
@@ -369,13 +402,12 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             visible: data.value,
             radius: 500,
             coverage: 0.7,
-            getElevation: d => d.z+45.3,
+            getElevation: d => d.z + 45.3,
             elevationScale: 500,
             getPosition: d => d.COORDINATES,
-            getFillColor:fillcolor,
+            getFillColor: fillcolor,
             getLineColor: [0, 0, 0],
           })
-        )
         return;
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
@@ -385,6 +417,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             name: data.name,
             data: data.data,
             visible: data.value,
+            data_type:newMapData[index1].name,
             // Styles
             filled: true,
             pointRadiusMinPixels: 2,
@@ -402,12 +435,12 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             filterRange: [0, 0],
             // Define extensions
             extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-            onClick:onClick,
+            onClick: onClick,
             updateTriggers: {
               visible: data.value,
               getFilterValue: getFilterValue,
             }
-            
+
           })
         } else {
           newLayer[i] = new GeoJsonLayer({
@@ -425,7 +458,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
             pickable: true,
             autoHighlight: true,
             onHover: onHover,
-            onClick:onClick,
+            onClick: onClick,
             updateTriggers: {
               visible: data.value
             }
@@ -468,11 +501,38 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
       let newLayer = [...layers]
       list.forEach((l, index) => {
         l.files.forEach((data, idx) => {
+          if (data.name == "3d_test.json" || data.name === "3d_test2.json") {
+            let hexdata = []
+            data.data.features.forEach((dl) => {
+              try {
+                hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
+              } catch (error) {
+
+              }
+            })
+            newLayer.push(new ScenegraphLayer({
+              id: data.name,
+              name: data.name,
+              data: hexdata,
+              pickable: true,
+              visible: false,
+              data_type:l.name,
+              scenegraph: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf',
+              getPosition: d => d.COORDINATES,
+              getOrientation: d => [0, Math.random() * 180, 90],
+              _animations: {
+                '*': { speed: 5 }
+              },
+              sizeScale: 500,
+              _lighting: 'pbr'
+            }))
+            return
+          }
           if (data.name == "ps_mean_v.xy.json") {
             let hexdata = []
             data.data.features.forEach((dl) => {
               try {
-                hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]],z:dl.properties  })
+                hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
               } catch (error) {
 
               }
@@ -490,7 +550,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 getElevation: d => d.z,
                 elevationScale: 500,
                 getPosition: d => d.COORDINATES,
-                getFillColor:fillcolor,
+                getFillColor: fillcolor,
                 getLineColor: [0, 0, 0],
               })
               /* new HexagonLayer({
@@ -533,8 +593,8 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 filterRange: [0, 0],
                 // Define extensions
                 extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-                onClick:onClick,
-                updateTriggers:{
+                onClick: onClick,
+                updateTriggers: {
                   getFilterValue: getFilterValue,
                   visible: data.value,
                 }
@@ -547,6 +607,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 name: data.name,
                 data: data.data,
                 visible: data.value,
+                data_type:l.name,
                 // Styles
                 filled: true,
                 pointRadiusMinPixels: 2,
@@ -557,8 +618,8 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
                 pickable: true,
                 autoHighlight: true,
                 onHover: onHover,
-                onClick:onClick,
-                updateTriggers:{
+                onClick: onClick,
+                updateTriggers: {
                   visible: data.value,
                 }
               }))
@@ -585,7 +646,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
     })
   }
 
-  function setCurrentLayer(data,index1, time, index) {
+  function setCurrentLayer(data, index1, time, index) {
     //console.log(layers)
     let newLayer = [...layers] //複製一個layer
     let dayjs = require("dayjs")
@@ -615,7 +676,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
           pickable: true,
           autoHighlight: true,
           onHover: onHover,
-          onClick:onClick,
+          onClick: onClick,
           filterEnabled: true,
           getFilterValue: getFilterValue,
           filterTransformSize: true,
@@ -624,7 +685,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
           onFilteredItemsChange: onFilteredItemsChange,
           // Define extensions
           extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-          updateTriggers:{
+          updateTriggers: {
             filterRange: [time, time],
             onFilteredItemsChange: onFilteredItemsChange,
             getFilterValue: getFilterValue,
@@ -647,7 +708,7 @@ export default function Layer({ allData , setAllData, layers, setLayers, setHove
           <div className={styles.flex_column}>
             {
               d.files.map((data, index) =>
-                <CheckItem currentLayer={getLayer(data)} setCurrentLayer={(time) => setCurrentLayer(data,index1, time, index)} originData={originData} data={data} onChange={(e) => OnListItemsChange(e, index1, data, index)} />
+                <CheckItem currentLayer={getLayer(data)} setCurrentLayer={(time) => setCurrentLayer(data, index1, time, index)} originData={originData} data={data} onChange={(e) => OnListItemsChange(e, index1, data, index)} />
               )
             }
           </div>

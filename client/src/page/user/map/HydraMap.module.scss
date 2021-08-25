@@ -167,11 +167,14 @@ ul {
 .map_tooltip{
     position: fixed;
     background-color: #001845AA;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .tooltip_title{
     background-color: #282c34AA;
     padding: 10px 10px 1px 10px;
+    min-height: 70px;
 }
 
 .tooltip_title_t1{
@@ -192,7 +195,7 @@ ul {
 }
 
 .tooltip_content_2{
-    max-height: 500px;
+    max-height: 350px;
     overflow-y: auto;
     font-size: 15px;
     padding: 10px 10px 0 10px;

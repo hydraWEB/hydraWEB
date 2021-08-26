@@ -266,6 +266,7 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
             id: data[k].name,
             name: data[k].name,
             data: data[k].data,
+            data_type: newMapData[i].name,
             visible: true,
             // Styles
             filled: true,
@@ -314,7 +315,9 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
   }
 
   const detectIfGeology = (data) => {
-    
+    if(data.layer.props.data_type === 'Geology'){
+      console.log(data.layer.id)
+    }
   }
 
 
@@ -447,6 +450,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             id: data.name,
             name: data.name,
             data: data.data,
+            data_type:newMapData[index1].name,
             visible: value,
             // Styles
             filled: true,
@@ -665,6 +669,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
           id: data.name,
           name: data.name,
           data: data.data,
+          data_type:newMapData[index1].name,
           visible: data.value,
           // Styles
           filled: true,

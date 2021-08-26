@@ -34,6 +34,10 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import MyLocationIcon from '@material-ui/icons/MyLocation';
 import ExploreIcon from '@material-ui/icons/Explore';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Chart from "./Chart.jsx"
 import {
   alpha,
   ThemeProvider,
@@ -41,7 +45,6 @@ import {
   makeStyles,
   createTheme,
 } from '@material-ui/core/styles';
-import * as d3 from "d3";
 
 import {
   EditableGeoJsonLayer,
@@ -181,14 +184,43 @@ function renderInfo(clickInfo, setClickInfo) {
   if (!object) {
     return null;
   }
+  
 
   const props = object.properties;
 
+  function ShowButton(){
+    const [showChart, setShowChart] = React.useState(false)
+    
+
+    if(clickInfo.layer.props.data_type === "Geology"){
+      return (
+        <div> 
+          <Button onClick={(e)=>{setShowChart(true)}} >
+            地質鑽探資料
+          </Button>
+          <Chart showChart={showChart} setShowChart={setShowChart}  data={props}/>
+        </div>
+      )
+    }
+    else{
+      return (
+        <div></div>
+      )
+    }
+  }
+  
+
   const list = Object.entries(props).map(([key, value]) => {
+    if(clickInfo.layer.props.data_type === "Geology"){
+    }
+    
     if (typeof value === 'object' && value !== null) {
       const list2 = Object.entries(value).map(([key2, value2]) => {
         return (
-          <div>{key2} : {value2.toString()}</div>
+          <div>
+            {key2} : {value2.toString()}
+          </div>
+          
         )
       })
       return (
@@ -199,7 +231,8 @@ function renderInfo(clickInfo, setClickInfo) {
       )
     } else {
       return (
-          <div>{key} : {value.toString()}</div>
+          <div>{key} : {value.toString()}
+          </div>
       );
     }
 
@@ -214,17 +247,15 @@ function renderInfo(clickInfo, setClickInfo) {
           </IconButton>
         </div>
         <p className={styles.tooltip_title_t1}>{clickInfo.object.properties.measurement}</p>
+        
         <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
-        <div>
-        </div>
+        <ShowButton/>
       </div>
 
       <p className={styles.tooltip_content_2}>
         {list}
       </p>
-      { 
-
-      }
+      
     </div>
   );
 }

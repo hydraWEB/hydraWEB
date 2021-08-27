@@ -163,7 +163,7 @@ function renderTooltip({ hoverInfo }) {
 
   return (
     <div className={styles.map_tooltip} style={{ left: x, top: y, zIndex: 10 }}>
-      <div className={styles.tooltip_title}>
+      <div className={styles.tooltip_title_mouse}>
         <p className={styles.tooltip_title_t1}>{hoverInfo.object.properties.measurement}</p>
         <p className={styles.tooltip_title_t2}>{hoverInfo.layer.id}</p>
       </div>
@@ -198,7 +198,7 @@ function renderInfo(clickInfo, setClickInfo) {
           <Button onClick={(e)=>{setShowChart(true)}} >
             地質鑽探資料
           </Button>
-          <Chart showChart={showChart} setShowChart={setShowChart}  data={props}/>
+          <Chart showChart={showChart} setShowChart={setShowChart}  chartData={props}/>
         </div>
       )
     }

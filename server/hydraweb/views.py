@@ -12,14 +12,14 @@ class LayerAPIView(views.APIView):
 
     def get(self,request):
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        all_dir = os.listdir(f"{dir_path}\\data")
+        all_dir = os.listdir(f"{dir_path}/data")
         result = []
         for dir in all_dir:
             is_time_series = False
-            json_list = os.listdir(f"{dir_path}\\data\\{dir}")
+            json_list = os.listdir(f"{dir_path}/data/{dir}")
             res_json = []
             for js in json_list:
-                f = open(f'{dir_path}\\data\\{dir}\\{js}',"r",encoding="utf-8")
+                f = open(f'{dir_path}/data/{dir}/{js}',"r",encoding="utf-8")
                 if js.startswith("time_series_"):
                     is_time_series = True
                 else :

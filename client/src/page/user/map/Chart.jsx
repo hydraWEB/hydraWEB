@@ -66,7 +66,8 @@ function LineChart({ chartData }) {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      .attr("transform", `translate(${margin.left},${margin.top})`)
+      
 
     let maxdept = list[list.length - 1].下限深度
     let mindept = list[0].上限深度
@@ -74,6 +75,10 @@ function LineChart({ chartData }) {
     let calc = height / alldept
 
     var colorize3 = d3.scaleOrdinal().range(d3.schemePaired)
+    
+    //on hover div
+    var div = d3.select("body").append("div")
+      .style("opacity", 0);
 
     svg.append("text")
       .style("fill", "white")
@@ -137,7 +142,19 @@ function LineChart({ chartData }) {
       .attr('x', 105)
       .attr("fill", "white")
       .text((d, i) => d.岩類一)
-
+      /* .on("mouseover", onhover(105, (d) => {
+        return d.上限深度 * calc + 20 + 50
+      })) */
+      .on("mouseover", function (d, i) {
+        d3.select(this).transition()
+             .attr('opacity', '.0')
+        div.html(d.currentTarget.__data__.岩類一)
+      })
+      .on("mouseout", function (d, i) {
+        d3.select(this).transition()
+             .attr('opacity', '1');
+      });
+      
     svg.selectAll('rect.rock2')
       .data(list).enter().append("rect")
       .attr('y', (d) => {
@@ -165,8 +182,30 @@ function LineChart({ chartData }) {
       /* .attr("style", "font-family: arial; fill: white; writing-mode: tb") */
       .text((d, i) => d.岩類二)
 
+    var tooltip = d3.select("#岩類一_container")
+    .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .text("I'm a circle!");
+    
 
+    function onhover(x, y){
+      tooltip.append('line')
+      .style("stroke")
+      .attr('x1', x)
+      .attr('y1', y)
+      .attr('x2', x)
+      .attr('y2', y+100);
+    }
+    
+    var mouseG = svg.append("g")
+      .attr("class", "mouse-over-effects");
 
+    mouseG.append("path") // this is the black vertical line to follow mouse
+      .attr("class", "mouse-line")
+      .style("stroke", "black")
+      .style("stroke-width", "1px")
+      .style("opacity", "0");
   }
 
 

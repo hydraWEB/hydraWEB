@@ -1,4 +1,3 @@
-import {Form} from "react-bootstrap";
 import React, {Suspense, useContext, useState, useEffect} from "react";
 import {SystemSettingEdit, SystemSettingList} from "../../../lib/api";
 import Cookies from 'js-cookie'
@@ -6,9 +5,10 @@ import {userContext} from "../../../provider/UserProvider";
 import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
 import { useTranslation, Trans } from "react-i18next";
-import Button from '@material-ui/core/Button';
 import {useToasts} from "react-toast-notifications";
 import useQuery from "../../../lib/hook";
+import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
+import {  Title } from "./Staff";
 
 export default function SystemSetting() {
     
@@ -57,7 +57,10 @@ export default function SystemSetting() {
 
     return (
         <div>
-            <p>{t('system_setting')}</p>
+            <Breadcrumb>
+                <Breadcrumb.Item active>{t('system_setting')}</Breadcrumb.Item>
+            </Breadcrumb>
+            <Title>{t('system_setting')}</Title>
             <Button 
             variant="contained"
             onClick={handleChange}

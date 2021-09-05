@@ -1,5 +1,6 @@
 .wrapper{
   display: flex;
+  width: 100%;
 }
 
 .menu_desk {
@@ -23,10 +24,14 @@
   flex-direction: column;
 }
 
-.profile_container{
+.profile_container {
   height: calc(100vh - 4rem);
   padding: 1em;
+  width: 90%;
+  overflow-y: auto;
+  background: #fafafafd;
 }
+
 .title{
   padding-left: 15px;
   padding-bottom: 10px;

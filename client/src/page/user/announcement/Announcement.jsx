@@ -1,30 +1,30 @@
-import {Button, Form} from "react-bootstrap";
-import React, {Suspense, useContext, useEffect, useState} from "react";
-import {AnnouncementInfoUser, AnnouncementList, AnnouncementListUser, userSignUp} from "../../../lib/api";
+import { Button, Form } from "react-bootstrap";
+import React, { Suspense, useContext, useEffect, useState } from "react";
+import { AnnouncementInfoUser, AnnouncementList, AnnouncementListUser, userSignUp } from "../../../lib/api";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styles from "./Announcement.module.scss";
 import styled from "@emotion/styled";
 import NormalButton from "../../../component/NormalButton";
-import {faUser} from "@fortawesome/free-solid-svg-icons";
-import {useTranslation} from "react-i18next";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 import useQuery from "../../../lib/hook";
-import {StyledTd} from "../staff/Staff";
+import { StyledTd } from "../staff/Staff";
 import Pagination from "@material-ui/lab/Pagination";
 
 const StyledPaginationWrapper = styled.div(
     props => (
         {
-            marginTop:'15px',
-            marginBottom:'15px'
+            marginTop: '15px',
+            marginBottom: '15px'
         }
     ))
 
 export default function Announcement() {
     let history = useHistory()
     const location = useLocation()
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
     const { t, i18n } = useTranslation();
     let query = useQuery();
 
@@ -37,10 +37,10 @@ export default function Announcement() {
 
     const loadData = (page) => {
         AnnouncementListUser({
-                params: {
-                    page: page
-                }
+            params: {
+                page: page
             }
+        }
         ).then((res) => {
             setPageListData(res.data.results)
             setTotalPage(res.data.total_pages)
@@ -52,7 +52,7 @@ export default function Announcement() {
     }
 
     const loadExData = (id) => {
-        AnnouncementInfoUser({},id
+        AnnouncementInfoUser({}, id
         ).then((res) => {
             setInfoData(res.data)
         }).catch((err) => {
@@ -63,26 +63,26 @@ export default function Announcement() {
     }
 
     const onChangePage = (e, page) => {
-        if(currentID!=null){
+        if (currentID != null) {
             history.replace(`/user/announcement?p=${page}&id=${currentID}`)
-        }else{
+        } else {
             history.replace(`/user/announcement?p=${page}`)
         }
     }
 
-    const onChangeID= (e, id) => {
+    const onChangeID = (e, id) => {
         history.replace(`/user/announcement?p=${currentPage}&id=${id}`)
     }
 
     useEffect(() => {
         let test = query.get("p")
         let test2 = query.get("id")
-        if (typeof query.get("p")!=='undefined' && query.get("p") != null) {
+        if (typeof query.get("p") !== 'undefined' && query.get("p") != null) {
             setCurrentPage(parseInt(query.get("p")))
         } else {
             setCurrentPage(1)
         }
-        if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
+        if (typeof query.get("id") !== 'undefined' && query.get("id") != null) {
             setCurrentID(parseInt(query.get("id")))
         }
     }, [query])
@@ -97,7 +97,7 @@ export default function Announcement() {
 
     const items = pageListData.map((d, index) =>
         <tr>
-            <NormalButton onClick={(e)=>onChangeID(e,d.id)} isLightOn={currentID==d.id} text={d.title} icon={faUser} />
+            <NormalButton onClick={(e) => onChangeID(e, d.id)} isLightOn={currentID == d.id} text={d.title} icon={faUser} />
         </tr>
     );
 
@@ -106,16 +106,19 @@ export default function Announcement() {
             <div className={styles.menu_desk} >
                 <div className={styles.menu_desk_container} >
                     <span className={styles.title}>{t('announcement')}</span>
-                    {items}
                     <StyledPaginationWrapper>
                         <Pagination count={totalpage} page={currentPage} variant="outlined" shape="rounded"
-                                    onChange={onChangePage}/>
+                            onChange={onChangePage} />
                     </StyledPaginationWrapper>
+                    {items}
                 </div>
             </div>
             <div className={styles.profile_container} >
-                <p>{infoData.title}</p>
-                <p>{infoData.content}</p>
+                <p className={styles.annoTitle}>{infoData.title}</p>
+                <div
+                    dangerouslySetInnerHTML={{
+                        __html: infoData.content
+                    }}></div>
             </div>
         </div>
     )

@@ -1,17 +1,18 @@
-import {Button, Form, Table, Modal} from "react-bootstrap";
-import React, {Suspense, useContext, useState, useEffect} from "react";
-import {IPList,IPSendDelete} from "../../../lib/api";
+import { Breadcrumb, Button, Form, Table, Modal } from "react-bootstrap";
+import React, { Suspense, useContext, useState, useEffect } from "react";
+import { IPList, IPSendDelete } from "../../../lib/api";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import { useTranslation, Trans } from "react-i18next";
 import useQuery from "../../../lib/hook";
 import Pagination from '@material-ui/lab/Pagination';
-import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
-import {useToasts} from "react-toast-notifications";
+import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
+import { useToasts } from "react-toast-notifications";
+import styles from './Staff.module.scss'
 
-function TableData({data, loadData}) {
+function TableData({ data, loadData }) {
     const { t, i18n } = useTranslation()
     const [showDelete, setShowDelete] = useState(false);
     const [deleteData, setDeleteData] = useState(null);
@@ -21,12 +22,12 @@ function TableData({data, loadData}) {
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
-        IPSendDelete(deleteData.ip_address).then((res)=>{
-            addToast('刪除成功.', { appearance: 'success',autoDismiss:true });
+        IPSendDelete(deleteData.ip_address).then((res) => {
+            addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
             loadData(page)
-        }).catch((err)=>{
+        }).catch((err) => {
 
-        }).finally(()=>{
+        }).finally(() => {
 
         })
     }
@@ -52,34 +53,33 @@ function TableData({data, loadData}) {
     return (
         <>
             <Modal show={showDelete} onHide={handleClose}>
-                    <div>
-                        <Modal.Header closeButton>
-                            {showDelete == true &&
-                                <Modal.Title>{t('delete')} {deleteData.ip_address} ?</Modal.Title>
-                            }
-                        </Modal.Header>
-                        <Modal.Body>{t('are_you_sure_you_want_to_delete?')}</Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                {t('close')}
-                            </Button>
-                            <Button variant="danger" onClick={onDeleteClick}>
-                                {t('delete')}
-                            </Button>
-                        </Modal.Footer>
-                    </div>
+                <div>
+                    <Modal.Header closeButton>
+                        {showDelete == true &&
+                            <Modal.Title>{t('delete')} {deleteData.ip_address} ?</Modal.Title>
+                        }
+                    </Modal.Header>
+                    <Modal.Body>{t('are_you_sure_you_want_to_delete?')}</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            {t('close')}
+                        </Button>
+                        <Button variant="danger" onClick={onDeleteClick}>
+                            {t('delete')}
+                        </Button>
+                    </Modal.Footer>
+                </div>
             </Modal>
             <StyledTable>
-                <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
                 <Table striped bordered hover>
                     <thead>
-                    <tr >
-                        <StyledTd>{t('ip_address')}</StyledTd>
-                        <StyledTh>{t('operation')}</StyledTh>
-                    </tr>
+                        <tr >
+                            <StyledTd>{t('ip_address')}</StyledTd>
+                            <StyledTh>{t('operation')}</StyledTh>
+                        </tr>
                     </thead>
                     <tbody>
-                    {idItems}
+                        {idItems}
                     </tbody>
                 </Table>
             </StyledTable>
@@ -95,7 +95,7 @@ export default function IPManage() {
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
 
     const loadData = (page) => {
         IPList({
@@ -126,13 +126,19 @@ export default function IPManage() {
 
     useEffect(() => {
         loadData(page)
-    },)
+    })
 
     return (
         <div>
+            <Breadcrumb>
+                <Breadcrumb.Item active>{t('black_list')}</Breadcrumb.Item>
+            </Breadcrumb>
             <Title>{t('black_list')}</Title>
-            <TableData data={data}/>
-            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={onChangePage}/>
+            <div className={styles.funcItem}>
+                <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
+            </div>
+            <TableData data={data} />
+            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={onChangePage} />
         </div>
     )
 }

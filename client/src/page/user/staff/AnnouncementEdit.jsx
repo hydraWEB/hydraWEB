@@ -12,6 +12,9 @@ import styles from "../User.module.scss";
 import {useToasts} from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
 
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 export default function AnnouncementEdit() {
     const { t, i18n } = useTranslation()
     let query = useQuery();
@@ -65,10 +68,27 @@ export default function AnnouncementEdit() {
                     <Form.Label>{t('title')}</Form.Label>
                     <Form.Control type="text" placeholder="" value={title} onChange={(e)=>setTitle(e.target.value)} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>{t('content')}</Form.Label>
-                    <Form.Control as="textarea" rows={3}  value={content} onChange={e=>setContent(e.target.value)}  />
-                </Form.Group>
+                <div className={styles.editor} >
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={content}
+                        onReady={editor => {
+                            // You can store the "editor" and use when it is needed.
+                            console.log('Editor is ready to use!', editor);
+                        }}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
+                            setContent(data)
+                            console.log({ event, editor, data });
+                        }}
+                        onBlur={(event, editor) => {
+                            console.log('Blur.', editor);
+                        }}
+                        onFocus={(event, editor) => {
+                            console.log('Focus.', editor);
+                        }}
+                    />
+                </div>
             </Form>
             <Button variant="primary" onClick={(e)=>submitForm(e)}>{t('confirm')}</Button>
 

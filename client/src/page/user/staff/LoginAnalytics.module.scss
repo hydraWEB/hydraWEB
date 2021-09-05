@@ -1,12 +1,13 @@
 .item1{
   margin-left:10px;
   margin-right:10px;
-  color:white;
+  align-self: center;
 }
 .item2{
   margin-left:10px;
   margin-right:10px;
-  color:white;
+  vertical-align:middle;
+  align-self: center;
 }
 
 .loading_image{
@@ -16,4 +17,11 @@
   left: 58%;
   top: 48%;
 
+}
+
+.loginAnalyItem{
+  background: rgb(230, 238, 238);
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
 }

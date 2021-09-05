@@ -8,11 +8,12 @@ import styled from "@emotion/styled";
 import { StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
-import {AnnouncementSendDelete} from "../../../lib/api";
-import {useToasts} from "react-toast-notifications";
+import { AnnouncementSendDelete } from "../../../lib/api";
+import { useToasts } from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
+import styles from './Staff.module.scss'
 
-function TableData({ data,page,loadData }) {
+function TableData({ data, page, loadData }) {
     const { t, i18n } = useTranslation()
     let history = useHistory();
     const [showDelete, setShowDelete] = useState(false);
@@ -30,12 +31,12 @@ function TableData({ data,page,loadData }) {
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
-        AnnouncementSendDelete(deleteData.id).then((res)=>{
-            addToast('刪除成功.', { appearance: 'success',autoDismiss:true });
+        AnnouncementSendDelete(deleteData.id).then((res) => {
+            addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
             loadData(page)
-        }).catch((err)=>{
+        }).catch((err) => {
 
-        }).finally(()=>{
+        }).finally(() => {
 
         })
     }
@@ -58,9 +59,9 @@ function TableData({ data,page,loadData }) {
             <StyledTd>{d.created_at}</StyledTd>
             <StyledTd>{d.updated_at}</StyledTd>
             <StyledTd>
-                <Button variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
-                <Button variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>
-                <Button variant="danger" onClick={(e) => handleOpen(d)}>{t('delete')}</Button>
+                <Button className="mr-2" variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
+                <Button className="mr-2" variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>
+                <Button className="mr-2" variant="danger" onClick={(e) => handleOpen(d)}>{t('delete')}</Button>
             </StyledTd>
         </tr>
     );
@@ -156,7 +157,9 @@ export default function Announcement() {
                 <Breadcrumb.Item active>{t('announcement_setting')}</Breadcrumb.Item>
             </Breadcrumb>
             <Title>{t('announcement_setting')}</Title>
-            <Link to={`/user/staff/announcement-manage/new`}><Button variant="primary">{t('new_announcement')}</Button></Link>
+            <div className={styles.funcItem}>
+                <Link to={`/user/staff/announcement-manage/new`}><Button variant="primary">{t('new_announcement')}</Button></Link>
+            </div>
             <TableData data={data} page={currentPage} loadData={loadData} />
             <Pagination count={totalpage} page={currentPage} variant="outlined" shape="rounded"
                 onChange={onChangePage} />

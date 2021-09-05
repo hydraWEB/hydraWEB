@@ -6,9 +6,9 @@ import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
 import {useTranslation} from "react-i18next";
 import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
-import {Button, Form, Table} from "react-bootstrap";
 import Pagination from '@material-ui/lab/Pagination';
 import useQuery from "../../../lib/hook";
+import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
 
 
 function TableData({data}) {
@@ -87,7 +87,10 @@ export default function SystemUsedAnalytics() {
 
     return (
         <div>
-            <Title>{t('system_setting')}</Title>
+            <Breadcrumb>
+                <Breadcrumb.Item active>{t('system_function_usage')}</Breadcrumb.Item>
+            </Breadcrumb>
+            <Title>{t('system_function_usage')}</Title>
             <TableData data={data}/>
             <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={onChangePage}/>
         </div>

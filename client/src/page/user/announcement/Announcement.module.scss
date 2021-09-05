@@ -1,5 +1,6 @@
-.wrapper{
+.wrapper {
   display: flex;
+  width: 100%;
 }
 
 .menu_desk {
@@ -10,27 +11,37 @@
   padding-right: 20px;
   position: sticky;
   background: #001845;
-  width:400px;
+  width: 280px;
   left: 0;
   bottom: 0;
   z-index: 7;
   top: 0;
 }
 
-.profile_container{
+.profile_container {
   height: calc(100vh - 4rem);
   padding: 1em;
+  width: 90%;
+  overflow-y: auto;
+  background: #fafafafd;
 }
 
-
-.menu_desk_container{
+.menu_desk_container {
   height: calc(100vh - 5rem);
   display: flex;
   flex-direction: column;
 }
 
-.title{
+.title {
   padding-left: 15px;
   padding-bottom: 10px;
-  color:white;
+  color: white;
+}
+
+.annoTitle {
+  font-weight: bold;
+  font-size: 21px;
+
+  padding-top: 15px;
+  padding-bottom: 30px;
 }

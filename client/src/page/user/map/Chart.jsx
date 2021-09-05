@@ -50,8 +50,39 @@ function LineChart({ chartData }) {
         setInfo(value)
       }
     })
-
+    title(list)
     岩類一(list)
+  }
+
+  function title(list){
+    const margin = { top: 0, right: 0, bottom: 0, left: 0 },
+      width = 400 - margin.left - margin.right,
+      height = 50 - margin.top - margin.bottom;
+
+    var svg = d3.select("#title")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`)
+
+      svg.append("text")
+      .style("fill", "white")
+      .attr('y', 20)
+      .attr('x', 0)
+      .text("深度(m)")
+
+    svg.append("text")
+      .style("fill", "white")
+      .attr('y', 20)
+      .attr('x', 105)
+      .text("岩類一")
+
+    svg.append("text")
+      .style("fill", "white")
+      .attr('y', 20)
+      .attr('x', 215)
+      .text("岩類二")
   }
 
 
@@ -61,6 +92,11 @@ function LineChart({ chartData }) {
       height = 1000 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
+
+    
+      
+
+
     var svg = d3.select("#岩類一_container")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -80,37 +116,21 @@ function LineChart({ chartData }) {
     var div = d3.select("body").append("div")
       .style("opacity", 0);
 
-    svg.append("text")
-      .style("fill", "white")
-      .attr('y', 20)
-      .attr('x', 0)
-      .text("深度")
+    
 
-    svg.append("text")
-      .style("fill", "white")
-      .attr('y', 20)
-      .attr('x', 105)
-      .text("岩類一")
-
-    svg.append("text")
-      .style("fill", "white")
-      .attr('y', 20)
-      .attr('x', 215)
-      .text("岩類二")
-
-    //上限 axis
+    //上限深度
     svg.selectAll("text.depth")
       .data(list).enter().append("text")
       .attr("class", "depth")
       .attr('y', (d) => {
-        return ((d.上限深度) * calc) + 15 + 50
+        return ((d.上限深度) * calc) + 15
       })
       .attr('x', 0)
       .attr("fill", "white")
       .attr("width", 100)
       .text((d, i) => d.上限深度)
 
-    //下限 axis
+    //下限深度
     svg.append("text")
       .data([list[list.length - 1]])
       .style("fill", "white")
@@ -118,10 +138,12 @@ function LineChart({ chartData }) {
       .attr('x', 0)
       .text((d, i) => d.下限深度)
 
+
+    //岩類1圖表
     svg.selectAll('rect.rock1')
       .data(list).enter().append("rect")
       .attr('y', (d) => {
-        return d.上限深度 * calc + 50
+        return d.上限深度 * calc
       })
       .attr('x', 100)
       .attr("height", (d) => {
@@ -131,13 +153,14 @@ function LineChart({ chartData }) {
       .attr('stroke', 'black')
       .attr('fill', (d, i) => colorize3(d.岩類一));
 
+    //岩類1圖表內的字體
     svg.selectAll("text.rock1")
       .data(list)
       .enter()
       .append("text")
       .attr("class", "hour")
       .attr('y', (d) => {
-        return d.上限深度 * calc + 20 + 50
+        return d.上限深度 * calc + 20
       })
       .attr('x', 105)
       .attr("fill", "white")
@@ -150,21 +173,12 @@ function LineChart({ chartData }) {
         d3.select("line")
           .style("opacity", "1");
       }) */
-      /* .on("mouseover", onhover()) */
-      /* .on("mouseover", function (d, i) {
-        d3.select(this).transition()
-             .attr('opacity', '.0')
-        div.html(d.currentTarget.__data__.岩類一)
-      })
-      .on("mouseout", function (d, i) {
-        d3.select(this).transition()
-             .attr('opacity', '1');
-      }); */
+      
       
     svg.selectAll('rect.rock2')
       .data(list).enter().append("rect")
       .attr('y', (d) => {
-        return d.上限深度 * calc + 50
+        return d.上限深度 * calc
       })
       .attr('x', 210)
       .attr("height", (d) => {
@@ -181,12 +195,13 @@ function LineChart({ chartData }) {
       .append("text")
       .attr("class", "rock2")
       .attr('y', (d) => {
-        return d.上限深度 * calc + 20 + 50
+        return d.上限深度 * calc + 20
       })
       .attr('x', 215)
       .attr("fill", "white")
-      /* .attr("style", "font-family: arial; fill: white; writing-mode: tb") */
       .text((d, i) => d.岩類二)
+      /* .attr("style", "font-family: arial; fill: white; writing-mode: tb") */
+      
 
     var tooltip = d3.select("#岩類一_container")
     .append("div")
@@ -233,6 +248,7 @@ function LineChart({ chartData }) {
 
   return (
     <div className={styles.chart_container}>
+      <div id="title" className={styles.chart_title}/>
       <div id="岩類一_container" className={styles.chart_container} />
     </div>
   );

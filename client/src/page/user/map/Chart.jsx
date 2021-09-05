@@ -270,7 +270,7 @@ function LineChart({ chartData }) {
         var mouse = d3.pointer(e);
         var r1,r2
         let depth = mouse[1] / calc
-        var roundOffDepth = Math.round(depth)
+        var roundOffDepth = depth.toFixed(2)
         
         for(let i = 0;i<list.length;i++){
           if(roundOffDepth >= list[i].上限深度 && roundOffDepth <= list[i].下限深度){

@@ -161,8 +161,10 @@ export default function Announcement() {
                 <Link to={`/user/staff/announcement-manage/new`}><Button variant="primary">{t('new_announcement')}</Button></Link>
             </div>
             <TableData data={data} page={currentPage} loadData={loadData} />
-            <Pagination count={totalpage} page={currentPage} variant="outlined" shape="rounded"
-                onChange={onChangePage} />
+            <div className={styles.pageItem}>
+                <Pagination count={totalpage} page={currentPage} color="primary"
+                    onChange={onChangePage} />
+            </div>
         </div>
     )
 }

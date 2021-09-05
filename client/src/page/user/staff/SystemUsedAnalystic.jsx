@@ -1,17 +1,18 @@
-import React, {Suspense, useContext, useEffect, useState} from "react";
-import {loginLog, systemLogGetAllYear, userSignUp} from "../../../lib/api";
+import React, { Suspense, useContext, useEffect, useState } from "react";
+import { loginLog, systemLogGetAllYear, userSignUp } from "../../../lib/api";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
-import {useTranslation} from "react-i18next";
-import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
+import { useTranslation } from "react-i18next";
+import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from '@material-ui/lab/Pagination';
 import useQuery from "../../../lib/hook";
 import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
+import styles from './Staff.module.scss'
 
 
-function TableData({data}) {
+function TableData({ data }) {
     const { t, i18n } = useTranslation()
     const idItems = data.map((d, index) =>
         <tr>
@@ -26,15 +27,15 @@ function TableData({data}) {
         <StyledTable>
             <Table striped bordered hover>
                 <thead>
-                <tr >
-                    <StyledTh>{t('id')}</StyledTh>
-                    <StyledTh>{t('username')}</StyledTh>
-                    <StyledTh>{t('system_name')}</StyledTh>
-                    <StyledTh>{t('use_time')}</StyledTh>
-                </tr>
+                    <tr >
+                        <StyledTh>{t('id')}</StyledTh>
+                        <StyledTh>{t('username')}</StyledTh>
+                        <StyledTh>{t('system_name')}</StyledTh>
+                        <StyledTh>{t('use_time')}</StyledTh>
+                    </tr>
                 </thead>
                 <tbody>
-                {idItems}
+                    {idItems}
                 </tbody>
             </Table>
         </StyledTable>
@@ -46,17 +47,17 @@ export default function SystemUsedAnalytics() {
     let history = useHistory()
     let query = useQuery();
     const location = useLocation()
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
     const { t, i18n } = useTranslation();
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
     const loadData = (page) => {
         loginLog({
-                params: {
-                    page: page,
-                }
+            params: {
+                page: page,
             }
+        }
         ).then((res) => {
             setData(res.data.results)
             setTotalPage(res.data.total_pages)
@@ -70,7 +71,7 @@ export default function SystemUsedAnalytics() {
         history.replace(`/user/staff/system-used-analytics?p=${page}`)
     }
 
-   
+
 
     useEffect(() => {
         if (typeof query.get("p") !== 'undefined' && query.get("p") != null) {
@@ -91,8 +92,11 @@ export default function SystemUsedAnalytics() {
                 <Breadcrumb.Item active>{t('system_function_usage')}</Breadcrumb.Item>
             </Breadcrumb>
             <Title>{t('system_function_usage')}</Title>
-            <TableData data={data}/>
-            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={onChangePage}/>
+            <TableData data={data} />
+            <div className={styles.pageItem}>
+                <Pagination count={totalpage} page={page} onChange={onChangePage} color="primary" />
+            </div>
+
         </div>
     )
 }

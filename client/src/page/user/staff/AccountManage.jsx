@@ -1,4 +1,4 @@
-import {Breadcrumb, Button, Form, Table, Modal } from "react-bootstrap";
+import { Breadcrumb, Button, Form, Table, Modal } from "react-bootstrap";
 import React, { Suspense, useContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie'
 import { userContext } from "../../../provider/UserProvider";
@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from '@material-ui/lab/Pagination';
 import { useToasts } from "react-toast-notifications";
+import styles from './Staff.module.scss'
 
 
 function TableData({ data, loadData }) {
@@ -138,8 +139,10 @@ export default function AccountManage() {
             </Breadcrumb>
             <Title>{t('account_manage')}</Title>
             <TableData data={data} loadData={loadData} />
-            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
+            <div className={styles.pageItem}>
+            <Pagination count={totalpage} page={page} color="primary"
                 onChange={loadData} />
+            </div>
         </div>
     )
 }

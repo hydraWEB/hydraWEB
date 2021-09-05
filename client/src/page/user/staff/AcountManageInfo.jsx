@@ -1,11 +1,11 @@
-import {Breadcrumb, Button, Form, Table} from "react-bootstrap";
-import React, {Suspense, useContext, useEffect, useState} from "react";
-import {accountInfoUser, accountSendEdit} from "../../../lib/api";
+import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
+import React, { Suspense, useContext, useEffect, useState } from "react";
+import { accountInfoUser, accountSendEdit } from "../../../lib/api";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import {StyledTable, StyledTd, StyledTh, Title} from "./Staff";
+import { StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
@@ -22,33 +22,37 @@ export default function AcountManageInfo() {
     const [phone, setPhone] = useState("")
 
     useEffect(() => {
-        if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
-            let id =  query.get("id") 
-            accountInfoUser({},id)
-            .then((res) => {
-                setUsername(res.data.username)
-                setEmail(res.data.email)
-                setId(res.data.id)
-                setPhone(res.data.Phone)
-            }).catch((err) => {
-    
-            }).finally(() => {
-    
-            })
+        if (typeof query.get("id") !== 'undefined' && query.get("id") != null) {
+            let id = query.get("id")
+            accountInfoUser({}, id)
+                .then((res) => {
+                    setUsername(res.data.username)
+                    setEmail(res.data.email)
+                    setId(res.data.id)
+                    setPhone(res.data.Phone)
+                }).catch((err) => {
+
+                }).finally(() => {
+
+                })
         } else {
-            
+
         }
     }, [query])
 
     return (
         <div>
-            <p>{t('user_profile')}</p>
-                <div>
-                    <p>{t('id')}: {id}</p>
-                    <p>{t('name')}: {username}</p>
-                    <p>{t('email')}: {email}</p>
-                    <p>{t('phone')}: {phone}</p>
-                </div>
+            <Breadcrumb>
+                <Breadcrumb.Item ><Link to="/user/staff/account-manage">{t('account_manage')}</Link></Breadcrumb.Item>
+                <Breadcrumb.Item active>{t('user_profile')}</Breadcrumb.Item>
+            </Breadcrumb>
+            <Title>{t('user_profile')}</Title>
+            <div>
+                <p>{t('id')}: {id}</p>
+                <p>{t('name')}: {username}</p>
+                <p>{t('email')}: {email}</p>
+                <p>{t('phone')}: {phone}</p>
+            </div>
         </div>
     )
 }

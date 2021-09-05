@@ -22,6 +22,9 @@ import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import { blue } from '@material-ui/core/colors';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import DialogContent from '@material-ui/core/DialogContent';
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -32,6 +35,12 @@ const useStyles1 = makeStyles((theme) => ({
 function LineChart({ chartData }) {
 
   const [info, setInfo] = useState(null)
+
+  const [currentTooltopData, setCurrentTooltipData] = useState({
+    rock1:0,
+    rock2:0,
+    depth:0
+  })
 
   useEffect(() => {
     drawChart();
@@ -56,7 +65,7 @@ function LineChart({ chartData }) {
 
   function title(list){
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
-      width = 400 - margin.left - margin.right,
+      width = 500 - margin.left - margin.right,
       height = 50 - margin.top - margin.bottom;
 
     var svg = d3.select("#title")
@@ -88,13 +97,13 @@ function LineChart({ chartData }) {
 
   function 岩類一(list) {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
-      width = 400 - margin.left - margin.right,
+      width = 500 - margin.left - margin.right,
       height = 1000 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
 
     
-      
+    
 
 
     var svg = d3.select("#岩類一_container")
@@ -108,7 +117,7 @@ function LineChart({ chartData }) {
     let maxdept = list[list.length - 1].下限深度
     let mindept = list[0].上限深度
     let alldept = maxdept - mindept
-    let calc = height / alldept
+    var calc = height / alldept
 
     var colorize3 = d3.scaleOrdinal().range(d3.schemePaired)
     
@@ -203,22 +212,36 @@ function LineChart({ chartData }) {
       /* .attr("style", "font-family: arial; fill: white; writing-mode: tb") */
       
 
-    var tooltip = d3.select("#岩類一_container")
-    .append("div")
-      .style("position", "absolute")
-      .style("visibility", "hidden")
-      .text("I'm a circle!");
+
+    
     
 
     var mouseG = svg.append("g")
+    
+    //answer
+    mouseG.append("text")
+      .attr("class", "rock_tooltip_answer_1")
+      .style("fill", "white")
+      .style("opacity", "0");
+
+    mouseG.append("text")
+      .attr("class", "rock_tooltip_answer_2")
+      .style("fill", "white")
+      .style("opacity", "0");
+
+    mouseG.append("text")
+      .attr("class", "rock_tooltip_answer_depth")
+      .style("fill", "white")
+      .style("opacity", "0");
 
     mouseG.append("line") // this is the black vertical line to follow mouse
       .attr("class", "mouse-line")
       .style("stroke", "black")
-      .style("stroke-width", 10)
+      .style("stroke-width", 1)
       .style("opacity", "0");
 
     mouseG.append('rect')
+      .data(list)
       .attr('width', width)
       .attr('height', height)
       .attr('fill', 'none')
@@ -226,19 +249,73 @@ function LineChart({ chartData }) {
       .on('mouseout', function() { // on mouse out hide line, circles and text
         d3.select(".mouse-line")
           .style("opacity", "0");
+        d3.select(".rock_tooltip_answer_1")
+          .style("opacity", "0");
+        d3.select(".rock_tooltip_answer_2")
+          .style("opacity", "0");
+        d3.select(".rock_tooltip_answer_depth")
+          .style("opacity", "0");
       })
       .on('mouseover', function() { // on mouse in show line, circles and text
         d3.select(".mouse-line")
           .style("opacity", "1");
+          d3.select(".rock_tooltip_answer_1")
+          .style("opacity", "1");
+        d3.select(".rock_tooltip_answer_2")
+          .style("opacity", "1");
+        d3.select(".rock_tooltip_answer_depth")
+          .style("opacity", "1");
       })
       .on('mousemove', e => { // mouse moving over canvas
         var mouse = d3.pointer(e);
-        console.log(mouse)
+        var r1,r2
+        let depth = mouse[1] / calc
+        var roundOffDepth = Math.round(depth)
+        
+        for(let i = 0;i<list.length;i++){
+          if(roundOffDepth >= list[i].上限深度 && roundOffDepth <= list[i].下限深度){
+            r1 = list[i].岩類一
+            r2 = list[i].岩類二
+            console.log(list[i])
+          }
+        }
+        
         d3.select(".mouse-line")
           .attr("x1", 0)
           .attr("y1", mouse[1])
           .attr("x2", 10000)
           .attr("y2", mouse[1])
+        if(mouse[1] < 900){
+          //answer 
+          d3.select(".rock_tooltip_answer_1")
+            .attr('y', mouse[1]+20)
+            .attr('x', 350)
+            .text(`岩類一：${r1}`)
+          d3.select(".rock_tooltip_answer_2")
+            .attr('y', mouse[1]+40)
+            .attr('x', 350)
+            .text(`岩類二：${r2}`)
+          d3.select(".rock_tooltip_answer_depth")
+            .attr('y', mouse[1]+60)
+            .attr('x', 350)
+            .text(`深度：${depth.toFixed(3)}`)
+        }
+        else{
+          d3.select(".rock_tooltip_answer_1")
+            .attr('y', mouse[1]+20 - 70)
+            .attr('x', 350)
+            .text(`岩類一：${r1}`)
+          d3.select(".rock_tooltip_answer_2")
+            .attr('y', mouse[1]+40 - 70)
+            .attr('x', 350)
+            .text(`岩類二：${r2}`)
+          d3.select(".rock_tooltip_answer_depth")
+            .attr('y', mouse[1]+60 - 70)
+            .attr('x', 350)
+            .text(`深度：${depth.toFixed(3)}`)
+        }
+        
+        
       });
       
 
@@ -266,9 +343,13 @@ export default function Chart({ showChart, setShowChart, chartData }) {
 
   return (
     <div>
-      <Dialog maxWidth="false" onClose={handleClose} open={showChart}>
+      <Dialog maxWidth="false" onClose={handleClose} open={showChart} scroll={'paper'}
+>
+        
         <DialogTitle >地質鑽探資料</DialogTitle>
+        <DialogContent dividers={true}>
         <LineChart chartData={chartData} />
+        </DialogContent>
       </Dialog>
     </div>
   );

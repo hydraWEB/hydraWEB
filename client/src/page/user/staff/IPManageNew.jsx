@@ -1,15 +1,15 @@
-import {Breadcrumb, Button, Form, Table} from "react-bootstrap";
-import React, {Suspense, useContext, useEffect, useState} from "react";
-import {IPSendNew} from "../../../lib/api";
+import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
+import React, { Suspense, useContext, useEffect, useState } from "react";
+import { IPSendNew } from "../../../lib/api";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import {StyledTable, StyledTd, StyledTh, Title} from "./Staff";
+import { StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
-import {useToasts} from "react-toast-notifications";
+import { useToasts } from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
 
 export default function AnnouncementEdit() {
@@ -21,10 +21,10 @@ export default function AnnouncementEdit() {
 
     const submitForm = (e) => {
         IPSendNew({
-                ip_address:ipAddress,
-            }
+            ip_address: ipAddress,
+        }
         ).then((res) => {
-            addToast('新增成功.', { appearance: 'success',autoDismiss:true });
+            addToast('新增成功.', { appearance: 'success', autoDismiss: true });
             history.push(`/user/staff/ip-manage`)
         }).catch((err) => {
 
@@ -51,14 +51,18 @@ export default function AnnouncementEdit() {
 
     return (
         <div>
+            <Breadcrumb>
+                <Breadcrumb.Item ><Link to="/user/staff/ip-manage">{t('ip_setting')}</Link></Breadcrumb.Item>
+                <Breadcrumb.Item active>{t('ip_setting')}</Breadcrumb.Item>
+            </Breadcrumb>
             <Title>{t('ip_setting')}</Title>
             <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>{t('ip_address')}</Form.Label>
-                    <Form.Control type="text" placeholder="" value={ipAddress} onChange={(e)=>setIpAddress(e.target.value)} />
+                    <Form.Control type="text" placeholder="" value={ipAddress} onChange={(e) => setIpAddress(e.target.value)} />
                 </Form.Group>
             </Form>
-            <Button variant="primary" onClick={(e)=>submitForm(e)}>{t('confirm')}</Button>
+            <Button variant="primary" onClick={(e) => submitForm(e)}>{t('confirm')}</Button>
         </div>
     )
 }

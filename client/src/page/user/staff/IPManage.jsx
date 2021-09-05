@@ -131,14 +131,17 @@ export default function IPManage() {
     return (
         <div>
             <Breadcrumb>
-                <Breadcrumb.Item active>{t('black_list')}</Breadcrumb.Item>
+                <Breadcrumb.Item active>{t('ip_setting')}</Breadcrumb.Item>
             </Breadcrumb>
-            <Title>{t('black_list')}</Title>
+            <Title>{t('ip_setting')}</Title>
             <div className={styles.funcItem}>
                 <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
             </div>
             <TableData data={data} />
-            <Pagination count={totalpage} page={page} variant="outlined" shape="rounded" onChange={onChangePage} />
+            <div className={styles.pageItem}>
+                <Pagination count={totalpage} page={page} onChange={onChangePage} color="primary" />
+
+            </div>
         </div>
     )
 }

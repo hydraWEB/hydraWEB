@@ -6,7 +6,7 @@ import { userContext } from "../../../provider/UserProvider";
 import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import styles from './LoginAnalytics.module.scss'
+import styles from './Staff.module.scss'
 import Pagination from '@material-ui/lab/Pagination';
 
 import { css, jsx } from '@emotion/react/macro'
@@ -127,7 +127,7 @@ export default function LoginAnalytics() {
             }
             {loading == 1 &&
                 <>
-                    <div className={styles.loginAnalyItem}>
+                    <div className={styles.funcItem}>
                         <span className={styles.item1}>{t('login_date')}</span>
                         <DropdownButton className={styles.item2} id="years" title={years[currentSelectedYearIdx]}>
                             {listItems}
@@ -144,10 +144,12 @@ export default function LoginAnalytics() {
                         } variant="outline-primary">{t('search')}</Button>
                     </div>
                     <TableData data={data} />
-                    <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
-                        onChange={(e, page) => {
-                            loadData(page)
-                        }} />
+                    <div className={styles.pageItem}>
+                        <Pagination count={totalpage} page={page} color="primary"
+                            onChange={(e, page) => {
+                                loadData(page)
+                            }} />
+                    </div>
 
                 </>
             }

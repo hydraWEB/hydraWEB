@@ -1,4 +1,4 @@
-import { Button, Form, Table } from "react-bootstrap";
+import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
 import React, { Suspense, useContext, useEffect, useState } from "react";
 import { loginLog, systemLogGetAllYear, userSignUp } from "../../../lib/api";
 import Cookies from 'js-cookie'
@@ -80,7 +80,7 @@ export default function LoginAnalytics() {
 
     const loadData = (p) => {
         let currentPage = page
-        if((typeof p !== 'undefined')){
+        if ((typeof p !== 'undefined')) {
             currentPage = p
             setPage(p)
         }
@@ -115,6 +115,9 @@ export default function LoginAnalytics() {
 
     return (
         <div>
+            <Breadcrumb>
+                <Breadcrumb.Item active>{t('login_summary')}</Breadcrumb.Item>
+            </Breadcrumb>
             <Title>{t('login_summary')}</Title>
             {loading == 0 &&
                 <img
@@ -124,7 +127,7 @@ export default function LoginAnalytics() {
             }
             {loading == 1 &&
                 <>
-                    <FlexColumnContainer>
+                    <div className={styles.loginAnalyItem}>
                         <span className={styles.item1}>{t('login_date')}</span>
                         <DropdownButton className={styles.item2} id="years" title={years[currentSelectedYearIdx]}>
                             {listItems}
@@ -139,8 +142,7 @@ export default function LoginAnalytics() {
                             loadData()
                         }
                         } variant="outline-primary">{t('search')}</Button>
-
-                    </FlexColumnContainer>
+                    </div>
                     <TableData data={data} />
                     <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
                         onChange={(e, page) => {

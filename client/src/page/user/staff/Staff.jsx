@@ -27,9 +27,9 @@ import SystemUpdating from "./SystemUpdating"
 
 export const Title = styled.h1(
     props => ({
-        fontSize: "20px",
-        margin: "10px 10px 30px 0px",
-
+        fontSize: "21px",
+        fontWeight:"bold",
+        margin: "30px 10px 20px 0px",
     })
 )
 
@@ -41,13 +41,13 @@ export const FlexColumnContainer = styled.div(
 
 export const StyledTh = styled.th(
     props => ({
-        color:"white"
+        color:"black"
     })
 )
 
 export const StyledTd = styled.td(
     props => ({
-        color:"white"
+        color:"black"
     })
 )
 

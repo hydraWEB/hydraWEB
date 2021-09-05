@@ -1,17 +1,17 @@
-import {Button, Form, Table, Modal} from "react-bootstrap";
-import React, {Suspense, useContext,useState,useEffect} from "react";
+import {Breadcrumb, Button, Form, Table, Modal } from "react-bootstrap";
+import React, { Suspense, useContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie'
-import {userContext} from "../../../provider/UserProvider";
-import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
+import { userContext } from "../../../provider/UserProvider";
+import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
-import {userSignUp, accountList, accountSendNew, accountSendEdit, accountSendDelete} from "../../../lib/api";
-import {useTranslation} from "react-i18next";
-import {FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title} from "./Staff";
+import { userSignUp, accountList, accountSendNew, accountSendEdit, accountSendDelete } from "../../../lib/api";
+import { useTranslation } from "react-i18next";
+import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from '@material-ui/lab/Pagination';
-import {useToasts} from "react-toast-notifications";
+import { useToasts } from "react-toast-notifications";
 
- 
-function TableData({data, loadData}) {
+
+function TableData({ data, loadData }) {
     const { t, i18n } = useTranslation();
     const [showDelete, setShowDelete] = useState(false);
     const [deleteData, setDeleteData] = useState(null);
@@ -30,12 +30,12 @@ function TableData({data, loadData}) {
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
-        accountSendDelete(deleteData.userid).then((res)=>{
-            addToast('刪除成功.', { appearance: 'success',autoDismiss:true });
+        accountSendDelete(deleteData.userid).then((res) => {
+            addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
             loadData(page)
-        }).catch((err)=>{
+        }).catch((err) => {
 
-        }).finally(()=>{
+        }).finally(() => {
 
         })
     }
@@ -56,9 +56,9 @@ function TableData({data, loadData}) {
             <StyledTd>{d.username}</StyledTd>
             <StyledTd>{d.created_at}</StyledTd>
             <StyledTd>
-                <Button variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
-                <Button variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>
-                <Button variant="danger" onClick={(e) => handleOpen(d)}>{t('delete')}</Button>
+                <Button className="mr-2" variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
+                <Button className="mr-2" variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>
+                <Button className="mr-2" variant="danger" onClick={(e) => handleOpen(d)}>{t('delete')}</Button>
             </StyledTd>
         </tr>
     );
@@ -87,25 +87,25 @@ function TableData({data, loadData}) {
             <StyledTable>
                 <Table striped bordered hover>
                     <thead>
-                    <tr >
-                        <StyledTh>{t('id')}</StyledTh>
-                        <StyledTh>{t("username")}</StyledTh>
-                        <StyledTh>{t("register_date")}</StyledTh>
-                        <StyledTh>{t('operation')}</StyledTh>
-                    </tr>
+                        <tr >
+                            <StyledTh>{t('id')}</StyledTh>
+                            <StyledTh>{t("username")}</StyledTh>
+                            <StyledTh>{t("register_date")}</StyledTh>
+                            <StyledTh>{t('operation')}</StyledTh>
+                        </tr>
                     </thead>
                     <tbody>
-                    {idItems}
+                        {idItems}
                     </tbody>
                 </Table>
             </StyledTable>
-    </>
+        </>
     )
 }
 
 export default function AccountManage() {
     const location = useLocation()
-    const {user, setUser} = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
     const { t, i18n } = useTranslation();
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
@@ -113,10 +113,10 @@ export default function AccountManage() {
 
     const loadData = () => {
         accountList({
-                params: {
-                    page: page,
-                }
+            params: {
+                page: page,
             }
+        }
         ).then((res) => {
             setData(res.data.results)
             setTotalPage(res.data.total_pages)
@@ -133,10 +133,13 @@ export default function AccountManage() {
 
     return (
         <div>
+            <Breadcrumb>
+                <Breadcrumb.Item active>{t('account_manage')}</Breadcrumb.Item>
+            </Breadcrumb>
             <Title>{t('account_manage')}</Title>
-            <TableData data={data} loadData={loadData}/>
+            <TableData data={data} loadData={loadData} />
             <Pagination count={totalpage} page={page} variant="outlined" shape="rounded"
-                            onChange={loadData}/>
+                onChange={loadData} />
         </div>
     )
 }

@@ -21,9 +21,9 @@
 .profile_container{
   height: calc(100vh - 4rem);
   padding: 1em;
-  margin-left: 10px;
   width: 90%;
   overflow-y: auto;
+  background: #fafafafd;
 }
 
 
@@ -37,4 +37,11 @@
   padding-left: 15px;
   padding-bottom: 10px;
   color:white;
+}
+
+.funcItem{
+  background: rgb(230, 238, 238);
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
 }

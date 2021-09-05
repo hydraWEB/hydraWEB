@@ -235,3 +235,102 @@
 2021/07/05 06:21:31 [notice] 99#99: worker process 238 exited with code 0
 2021/07/05 06:21:31 [notice] 99#99: worker process 235 exited with code 0
 2021/07/05 06:21:31 [notice] 99#99: exit
+2021/09/05 07:24:49 [notice] 99#99: using the "epoll" event method
+2021/09/05 07:24:49 [notice] 99#99: nginx/1.21.0
+2021/09/05 07:24:49 [notice] 99#99: built by gcc 8.3.0 (Debian 8.3.0-6) 
+2021/09/05 07:24:49 [notice] 99#99: OS: Linux 5.4.72-microsoft-standard-WSL2
+2021/09/05 07:24:49 [notice] 99#99: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2021/09/05 07:24:49 [notice] 99#99: start worker processes
+2021/09/05 07:24:49 [notice] 99#99: start worker process 146
+2021/09/05 07:24:49 [notice] 99#99: start worker process 147
+2021/09/05 07:24:49 [notice] 99#99: start worker process 148
+2021/09/05 07:24:49 [notice] 99#99: start worker process 149
+2021/09/05 07:24:49 [notice] 99#99: start worker process 150
+2021/09/05 07:24:49 [notice] 99#99: start worker process 151
+2021/09/05 07:24:49 [notice] 99#99: start worker process 152
+2021/09/05 07:24:49 [notice] 99#99: start worker process 153
+2021/09/05 07:25:00 [notice] 233#233: signal process started
+2021/09/05 07:25:00 [notice] 99#99: signal 1 (SIGHUP) received from 233, reconfiguring
+2021/09/05 07:25:00 [notice] 99#99: reconfiguring
+2021/09/05 07:25:00 [notice] 99#99: using the "epoll" event method
+2021/09/05 07:25:00 [notice] 99#99: start worker processes
+2021/09/05 07:25:00 [notice] 99#99: start worker process 235
+2021/09/05 07:25:00 [notice] 99#99: start worker process 236
+2021/09/05 07:25:00 [notice] 99#99: start worker process 237
+2021/09/05 07:25:00 [notice] 99#99: start worker process 238
+2021/09/05 07:25:00 [notice] 99#99: start worker process 239
+2021/09/05 07:25:00 [notice] 99#99: start worker process 240
+2021/09/05 07:25:00 [notice] 99#99: start worker process 241
+2021/09/05 07:25:00 [notice] 99#99: start worker process 242
+2021/09/05 07:25:01 [notice] 146#146: gracefully shutting down
+2021/09/05 07:25:01 [notice] 148#148: gracefully shutting down
+2021/09/05 07:25:01 [notice] 153#153: gracefully shutting down
+2021/09/05 07:25:01 [notice] 152#152: gracefully shutting down
+2021/09/05 07:25:01 [notice] 148#148: exiting
+2021/09/05 07:25:01 [notice] 147#147: gracefully shutting down
+2021/09/05 07:25:01 [notice] 149#149: gracefully shutting down
+2021/09/05 07:25:01 [notice] 150#150: gracefully shutting down
+2021/09/05 07:25:01 [notice] 151#151: gracefully shutting down
+2021/09/05 07:25:01 [notice] 151#151: exiting
+2021/09/05 07:25:01 [notice] 146#146: exiting
+2021/09/05 07:25:01 [notice] 152#152: exiting
+2021/09/05 07:25:01 [notice] 152#152: exit
+2021/09/05 07:25:01 [notice] 153#153: exiting
+2021/09/05 07:25:01 [notice] 148#148: exit
+2021/09/05 07:25:01 [notice] 147#147: exiting
+2021/09/05 07:25:01 [notice] 147#147: exit
+2021/09/05 07:25:01 [notice] 149#149: exiting
+2021/09/05 07:25:01 [notice] 150#150: exiting
+2021/09/05 07:25:01 [notice] 151#151: exit
+2021/09/05 07:25:01 [notice] 146#146: exit
+2021/09/05 07:25:01 [notice] 153#153: exit
+2021/09/05 07:25:01 [notice] 149#149: exit
+2021/09/05 07:25:01 [notice] 150#150: exit
+2021/09/05 07:25:02 [notice] 99#99: signal 17 (SIGCHLD) received from 146
+2021/09/05 07:25:02 [notice] 99#99: worker process 146 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: worker process 148 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: worker process 147 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: worker process 150 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: worker process 151 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: worker process 152 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: worker process 153 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: signal 29 (SIGIO) received
+2021/09/05 07:25:02 [notice] 99#99: signal 17 (SIGCHLD) received from 153
+2021/09/05 07:25:02 [notice] 99#99: signal 17 (SIGCHLD) received from 149
+2021/09/05 07:25:02 [notice] 99#99: worker process 149 exited with code 0
+2021/09/05 07:25:02 [notice] 99#99: signal 29 (SIGIO) received
+2021/09/05 07:34:22 [notice] 99#99: signal 15 (SIGTERM) received from 1, exiting
+2021/09/05 07:34:22 [notice] 235#235: exiting
+2021/09/05 07:34:22 [notice] 239#239: exiting
+2021/09/05 07:34:22 [notice] 240#240: exiting
+2021/09/05 07:34:22 [notice] 242#242: exiting
+2021/09/05 07:34:22 [notice] 236#236: exiting
+2021/09/05 07:34:22 [notice] 238#238: exiting
+2021/09/05 07:34:22 [notice] 237#237: exiting
+2021/09/05 07:34:22 [notice] 242#242: exit
+2021/09/05 07:34:22 [notice] 241#241: exiting
+2021/09/05 07:34:22 [notice] 235#235: exit
+2021/09/05 07:34:22 [notice] 239#239: exit
+2021/09/05 07:34:22 [notice] 238#238: exit
+2021/09/05 07:34:22 [notice] 236#236: exit
+2021/09/05 07:34:22 [notice] 240#240: exit
+2021/09/05 07:34:22 [notice] 237#237: exit
+2021/09/05 07:34:22 [notice] 241#241: exit
+2021/09/05 07:34:22 [notice] 99#99: signal 14 (SIGALRM) received
+2021/09/05 07:34:22 [notice] 99#99: signal 17 (SIGCHLD) received from 239
+2021/09/05 07:34:22 [notice] 99#99: worker process 238 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: worker process 239 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: signal 29 (SIGIO) received
+2021/09/05 07:34:22 [notice] 99#99: signal 17 (SIGCHLD) received from 237
+2021/09/05 07:34:22 [notice] 99#99: worker process 236 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: worker process 237 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: worker process 241 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: signal 29 (SIGIO) received
+2021/09/05 07:34:22 [notice] 99#99: signal 17 (SIGCHLD) received from 236
+2021/09/05 07:34:22 [notice] 99#99: signal 17 (SIGCHLD) received from 235
+2021/09/05 07:34:22 [notice] 99#99: worker process 235 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: signal 29 (SIGIO) received
+2021/09/05 07:34:22 [notice] 99#99: signal 17 (SIGCHLD) received from 240
+2021/09/05 07:34:22 [notice] 99#99: worker process 240 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: worker process 242 exited with code 0
+2021/09/05 07:34:22 [notice] 99#99: exit

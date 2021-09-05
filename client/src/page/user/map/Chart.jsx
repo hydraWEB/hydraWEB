@@ -61,7 +61,7 @@ function LineChart({ chartData }) {
       height = 1000 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    const svg = d3.select("#岩類一_container")
+    var svg = d3.select("#岩類一_container")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
@@ -142,10 +142,16 @@ function LineChart({ chartData }) {
       .attr('x', 105)
       .attr("fill", "white")
       .text((d, i) => d.岩類一)
-      /* .on("mouseover", onhover(105, (d) => {
-        return d.上限深度 * calc + 20 + 50
-      })) */
-      .on("mouseover", function (d, i) {
+      /* .on('mouseout', function() { // on mouse out hide line, circles and text
+        d3.select("line")
+          .style("opacity", "0");
+      })
+      .on('mouseover', function() { // on mouse in show line, circles and text
+        d3.select("line")
+          .style("opacity", "1");
+      }) */
+      /* .on("mouseover", onhover()) */
+      /* .on("mouseover", function (d, i) {
         d3.select(this).transition()
              .attr('opacity', '.0')
         div.html(d.currentTarget.__data__.岩類一)
@@ -153,7 +159,7 @@ function LineChart({ chartData }) {
       .on("mouseout", function (d, i) {
         d3.select(this).transition()
              .attr('opacity', '1');
-      });
+      }); */
       
     svg.selectAll('rect.rock2')
       .data(list).enter().append("rect")
@@ -189,24 +195,40 @@ function LineChart({ chartData }) {
       .text("I'm a circle!");
     
 
-    function onhover(x, y){
-      tooltip.append('line')
-      .style("stroke")
-      .attr('x1', x)
-      .attr('y1', y)
-      .attr('x2', x)
-      .attr('y2', y+100);
-    }
-    
     var mouseG = svg.append("g")
-      .attr("class", "mouse-over-effects");
 
-    mouseG.append("path") // this is the black vertical line to follow mouse
+    mouseG.append("line") // this is the black vertical line to follow mouse
       .attr("class", "mouse-line")
       .style("stroke", "black")
-      .style("stroke-width", "1px")
+      .style("stroke-width", 10)
       .style("opacity", "0");
+
+    mouseG.append('rect')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('fill', 'none')
+      .attr('pointer-events', 'all')  
+      .on('mouseout', function() { // on mouse out hide line, circles and text
+        d3.select(".mouse-line")
+          .style("opacity", "0");
+      })
+      .on('mouseover', function() { // on mouse in show line, circles and text
+        d3.select(".mouse-line")
+          .style("opacity", "1");
+      })
+      .on('mousemove', e => { // mouse moving over canvas
+        var mouse = d3.pointer(e);
+        console.log(mouse)
+        d3.select(".mouse-line")
+          .attr("x1", 0)
+          .attr("y1", mouse[1])
+          .attr("x2", 10000)
+          .attr("y2", mouse[1])
+      });
+      
+
   }
+  
 
 
   return (

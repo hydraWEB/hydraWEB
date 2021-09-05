@@ -61,12 +61,13 @@ function LineChart({ chartData }) {
       height = 1000 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    const svg = d3.select("#岩類一_container")
+    var svg = d3.select("#岩類一_container")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      .attr("transform", `translate(${margin.left},${margin.top})`)
+      
 
     let maxdept = list[list.length - 1].下限深度
     let mindept = list[0].上限深度
@@ -74,6 +75,10 @@ function LineChart({ chartData }) {
     let calc = height / alldept
 
     var colorize3 = d3.scaleOrdinal().range(d3.schemePaired)
+    
+    //on hover div
+    var div = d3.select("body").append("div")
+      .style("opacity", 0);
 
     svg.append("text")
       .style("fill", "white")
@@ -137,7 +142,25 @@ function LineChart({ chartData }) {
       .attr('x', 105)
       .attr("fill", "white")
       .text((d, i) => d.岩類一)
-
+      /* .on('mouseout', function() { // on mouse out hide line, circles and text
+        d3.select("line")
+          .style("opacity", "0");
+      })
+      .on('mouseover', function() { // on mouse in show line, circles and text
+        d3.select("line")
+          .style("opacity", "1");
+      }) */
+      /* .on("mouseover", onhover()) */
+      /* .on("mouseover", function (d, i) {
+        d3.select(this).transition()
+             .attr('opacity', '.0')
+        div.html(d.currentTarget.__data__.岩類一)
+      })
+      .on("mouseout", function (d, i) {
+        d3.select(this).transition()
+             .attr('opacity', '1');
+      }); */
+      
     svg.selectAll('rect.rock2')
       .data(list).enter().append("rect")
       .attr('y', (d) => {
@@ -165,9 +188,47 @@ function LineChart({ chartData }) {
       /* .attr("style", "font-family: arial; fill: white; writing-mode: tb") */
       .text((d, i) => d.岩類二)
 
+    var tooltip = d3.select("#岩類一_container")
+    .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .text("I'm a circle!");
+    
 
+    var mouseG = svg.append("g")
+
+    mouseG.append("line") // this is the black vertical line to follow mouse
+      .attr("class", "mouse-line")
+      .style("stroke", "black")
+      .style("stroke-width", 10)
+      .style("opacity", "0");
+
+    mouseG.append('rect')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('fill', 'none')
+      .attr('pointer-events', 'all')  
+      .on('mouseout', function() { // on mouse out hide line, circles and text
+        d3.select(".mouse-line")
+          .style("opacity", "0");
+      })
+      .on('mouseover', function() { // on mouse in show line, circles and text
+        d3.select(".mouse-line")
+          .style("opacity", "1");
+      })
+      .on('mousemove', e => { // mouse moving over canvas
+        var mouse = d3.pointer(e);
+        console.log(mouse)
+        d3.select(".mouse-line")
+          .attr("x1", 0)
+          .attr("y1", mouse[1])
+          .attr("x2", 10000)
+          .attr("y2", mouse[1])
+      });
+      
 
   }
+  
 
 
   return (

@@ -1,4 +1,3 @@
-import {useHistory} from "react-router-dom";
 import React, {useContext, useState} from "react";
 import {userContext} from "../../provider/UserProvider";
 import styled from "@emotion/styled";
@@ -6,6 +5,7 @@ import userLogin, {userSignUp} from "../../lib/api";
 import {Alert, Breadcrumb, Button, Form} from "react-bootstrap";
 import './SignUp.module.scss';
 import {useToasts} from "react-toast-notifications";
+import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
 
 const Title = styled.h2(
     props => ({
@@ -18,7 +18,6 @@ const FormLogin = styled.div(
         padding:"50px",
         maxWidth:"700px",
         margin:"0 auto",
-
     })
 )
 
@@ -111,8 +110,8 @@ export default function SignUp() {
         <FormLogin>
             <Form onSubmit={handleSignUp}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/guest/login">
-                        首頁
+                    <Breadcrumb.Item>
+                        <Link to="/guest/login">首頁</Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>註冊</Breadcrumb.Item>
                 </Breadcrumb>

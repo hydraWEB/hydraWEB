@@ -6,6 +6,7 @@ import {
 import styled from "@emotion/styled/macro";
 import { saveAs } from 'file-saver';
 import styles from './HydraMap.module.scss';
+import { jsPDF } from "jspdf";
 
 
 const FormItem = styled.div(
@@ -37,7 +38,7 @@ export default function Print({ map, deck }) {
 
   //這只能印出點
   const createPrintMap1 = () => {
-    const fileName = "Map.png";
+    const fileName = "Map";
 
     const mapboxCanvas = map.current.getMap().getCanvas(
       document.querySelector(".mapboxgl-canvas")
@@ -50,25 +51,56 @@ export default function Print({ map, deck }) {
     merge.height = mapboxCanvas.height;
 
     var context = merge.getContext("2d");
-
+    
     context.globalAlpha = 1.0;
     context.drawImage(mapboxCanvas, 0, 0);
     context.globalAlpha = 1.0;
     context.drawImage(deckglCanvas, 0, 0);
-
+    
     merge.toBlob(blob => {
       saveAs(blob, fileName);
     });
   };
 
+  const createPDFPrintMap = () => {
+    const mapboxCanvas = map.current.getMap().getCanvas(
+      document.querySelector(".mapboxgl-canvas")
+    );
+    deck.current.deck.redraw(true);
+    const deckglCanvas = document.getElementById("deckgl-overlay");
+
+    let merge = document.createElement("canvas");
+    merge.width = mapboxCanvas.width;
+    merge.height = mapboxCanvas.height;
+
+    var context = merge.getContext("2d");
+    
+    context.globalAlpha = 1.0;
+    context.drawImage(mapboxCanvas, 0, 0);
+    context.globalAlpha = 1.0;
+    context.drawImage(deckglCanvas, 0, 0);
+    
+    var imgData = merge.toDataURL("image/jpeg", 1.0)
+    
+    var pdf = new jsPDF('l', 'px', [merge.width, merge.height]);
+    pdf.addImage(imgData, 'JPEG', 0, 0,merge.width, merge.height);
+    pdf.save("download.pdf");
+  }
+
   const onBtnClick = () => {
-    createPrintMap1()
+    if(format === "PNG"){
+      createPrintMap1()
+    }
+    else{
+      createPDFPrintMap()
+    }
   }
 
 
   return (
-    <div>
+      <div>
       <h4 className={styles.func_title}>{t('print')}</h4>
+      <div className={styles.all_print}>
       <Form>
         <FormItem>
           <h5>{t('unit')}</h5>
@@ -81,22 +113,14 @@ export default function Print({ map, deck }) {
               checked={unit === "inch"}
               onChange={onChangeUnit}
             />
-            <Form.Check
-              className="ml-3"
-              type={'radio'}
-              label={t('meter')}
-              id={`meter`}
-              value={"meter"}
-              checked={unit === "meter"}
-              onChange={onChangeUnit}
-            />
+            
           </FormItemContainer>
         </FormItem>
 
-        <FormItem>
+        <FormItem >
           <h5>{t('output_format')}</h5>
           <FormItemContainer>
-            <Form.Check
+            <Form.Check 
               type={'radio'}
               label={'PNG'}
               id={`PNG`}
@@ -119,6 +143,9 @@ export default function Print({ map, deck }) {
 
         <Button onClick={onBtnClick}>{t('print')}</Button>
       </Form>
+      </div>
+
     </div>
+
   )
 }

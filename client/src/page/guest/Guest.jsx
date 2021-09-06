@@ -27,20 +27,22 @@ export default function Guest() {
 
     return (
         <>
-            <Switch>
-                <Route path="/guest/signup">
-                    <SignUp />
-                </Route>
-                <Route path="/guest/login">
-                    <Login />
-                </Route>
-                <Route path="/guest/forgot-password">
-                    <ForgotPasswd />
-                </Route>
-                <Route path="/guest/reset-password">
-                    <ResetPasswd />
-                </Route>
-            </Switch>
+            <div style={{background:'white', minHeight:"100vh"}}>
+                <Switch>
+                    <Route path="/guest/signup">
+                        <SignUp />
+                    </Route>
+                    <Route path="/guest/login">
+                        <Login />
+                    </Route>
+                    <Route path="/guest/forgot-password">
+                        <ForgotPasswd />
+                    </Route>
+                    <Route path="/guest/reset-password">
+                        <ResetPasswd />
+                    </Route>
+                </Switch>
+            </div>
         </>
     )
 

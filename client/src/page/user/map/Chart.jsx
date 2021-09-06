@@ -345,11 +345,15 @@ export default function Chart({ showChart, setShowChart, chartData }) {
     <div>
       <Dialog maxWidth="false" onClose={handleClose} open={showChart} scroll={'paper'}
 >
+        <div className={styles.chart_box}>
+          <DialogTitle >地質鑽探資料</DialogTitle>
+          <Button>列印</Button>
+        </div>
         
-        <DialogTitle >地質鑽探資料</DialogTitle>
         <DialogContent dividers={true}>
         <LineChart chartData={chartData} />
         </DialogContent>
+        
       </Dialog>
     </div>
   );

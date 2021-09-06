@@ -1,4 +1,3 @@
-import {useHistory, useParams} from "react-router-dom";
 import React, {useContext, useEffect, useState} from "react";
 import {userContext} from "../../provider/UserProvider";
 import styled from "@emotion/styled";
@@ -11,6 +10,7 @@ import userLogin, {
 import {Alert, Breadcrumb, Button, Form} from "react-bootstrap";
 import './SignUp.module.scss';
 import {useToasts} from "react-toast-notifications";
+import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
 
 const Title = styled.h2(
     props => ({
@@ -115,8 +115,8 @@ export default function ResetPasswd({match}) {
     return (
         <FormLogin>
             <Breadcrumb>
-                <Breadcrumb.Item href="/guest/login">
-                    首頁
+                <Breadcrumb.Item >
+                    <Link to="/guest/login">首頁</Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item active>重設密碼</Breadcrumb.Item>
             </Breadcrumb>

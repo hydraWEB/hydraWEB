@@ -52,7 +52,7 @@ export default function AnnouncementEdit() {
     return (
         <div>
             <Breadcrumb>
-                <Breadcrumb.Item ><Link to="/user/staff/ip-manage">{t('ip_setting')}</Link></Breadcrumb.Item>
+                <Breadcrumb.Item ><Link to="/user/staff/ip-manage">{t('black_list')}</Link></Breadcrumb.Item>
                 <Breadcrumb.Item active>{t('ip_setting')}</Breadcrumb.Item>
             </Breadcrumb>
             <Title>{t('ip_setting')}</Title>

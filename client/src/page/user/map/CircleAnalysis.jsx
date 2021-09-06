@@ -118,7 +118,7 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
       </h4>
 
       <div>
-        <div className={styled.circleAnalysis_top}>
+        <div className={styles.circleAnalysis_top}>
           <p>{t('radius')}：{radius}km</p>
           {lastClick.length > 1 &&
             <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>

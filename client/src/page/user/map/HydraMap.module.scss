@@ -279,20 +279,31 @@ ul {
 }
 
 .circleAnalysis_top{
-    padding-left: 30px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
-    color:white;
+    color:#FAFAFA;
 }
 
 .circle_analysis_btn{
     display: flex;
     flex-direction: column-reverse;
     margin-right: 20px;
-    margin-left: 20px;
     margin-bottom: 20px;
 }
 
 .search_tag{
     
+}
+
+.all_print{
+    color:white
+}
+
+.white_text{
+    color:white
+}
+
+.chart_box{
+    display: flex;
 }

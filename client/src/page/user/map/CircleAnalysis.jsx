@@ -67,20 +67,34 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
     let arr = []
     let arrmeasurement = []
     let arrtime = []
-    for (let i in data.data.properties) {
-      if (i !== "TWD97_X" && i !== "TWD97_Y" && i !== "time_series" && i !== "measurement" && i !== "time") {
+    for (var i in data.data.properties) {
+      if(i.indexOf("prop") >= 0){
         arr.push(i)
         arr.push(" : ")
-        arr.push(data.data.properties[i])
         arr.push(", ")
+        for (let k in data.data.properties[i]){
+          arr.push(k)
+          arr.push(" : ")
+          arr.push(data.data.properties[i][k])
+          arr.push(", ")
+        }
       }
-      else if (i === "measurement") {
-        arrmeasurement.push(data.data.properties[i])
+      else{
+        if (i !== "TWD97_X" && i !== "TWD97_Y" && i !== "time_series" && i !== "measurement" && i !== "time") {
+          arr.push(i)
+          arr.push(" : ")
+          arr.push(data.data.properties[i])
+          arr.push(", ")
+        }
+        else if (i === "measurement") {
+          arrmeasurement.push(data.data.properties[i])
+        }
+        else if (i === "time") {
+          let dayjs = require("dayjs")
+          arrtime.push(dayjs(data.data.properties[i]).format('YYYY/MM/DD'))
+        }
       }
-      else if (i === "time") {
-        let dayjs = require("dayjs")
-        arrtime.push(dayjs(data.data.properties[i]).format('YYYY/MM/DD'))
-      }
+      
     }
     return (
       <div>

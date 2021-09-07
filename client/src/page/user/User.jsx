@@ -20,6 +20,8 @@ import { userProfile } from "../../lib/api";
 import { useTranslation, Trans } from "react-i18next";
 import { store_user_data, remove_user_data } from '../../provider/UserReducer.js'
 import { useSelector, useDispatch } from 'react-redux'
+import Tutorial from './Tutorial';
+import Document from './Document';
 
 const HydraMap = React.lazy(() => import('./map/HydraMap2'));
 
@@ -62,8 +64,8 @@ export default function User(props) {
 
                     </Nav>
                     <Nav>
-                        <Nav.Link><Link to="/user/hydramap" className={styles.link}>使用簡介</Link></Nav.Link>
-                        <Nav.Link><Link to="/user/hydramap" className={styles.link}>計畫概述</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/tutorial" className={styles.link}>使用簡介</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/document" className={styles.link}>計畫概述</Link></Nav.Link>
 
                         <Nav.Link><Link to="/user/announcement" className={styles.link}>{t("announcement")}</Link></Nav.Link>
                         {typeof user.current != 'undefined' &&
@@ -85,6 +87,12 @@ export default function User(props) {
 
             <div className={styles.user_container}>
                 <Switch>
+                    <Route path="/user/tutorial">
+                        <Tutorial />
+                    </Route>
+                    <Route path="/user/document">
+                        <Document />
+                    </Route>
                     <Route path="/user/announcement">
                         <Announcement />
                     </Route>

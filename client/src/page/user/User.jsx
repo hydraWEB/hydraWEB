@@ -62,11 +62,9 @@ export default function User(props) {
 
                     </Nav>
                     <Nav>
-                        {userState != null &&
-                            <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>
-                                {userState['username']}
-                            </Link></Nav.Link>
-                        }
+                        <Nav.Link><Link to="/user/hydramap" className={styles.link}>使用簡介</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/hydramap" className={styles.link}>計畫概述</Link></Nav.Link>
+
                         <Nav.Link><Link to="/user/announcement" className={styles.link}>{t("announcement")}</Link></Nav.Link>
                         {typeof user.current != 'undefined' &&
                             <>

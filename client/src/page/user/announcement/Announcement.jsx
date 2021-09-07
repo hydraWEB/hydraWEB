@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import useQuery from "../../../lib/hook";
 import { StyledTd } from "../staff/Staff";
 import Pagination from "@material-ui/lab/Pagination";
+import dayjs from 'dayjs'
 
 const StyledPaginationWrapper = styled.div(
     props => (
@@ -33,7 +34,7 @@ export default function Announcement() {
     const [currentID, setCurrentID] = useState(null)
     const [totalpage, setTotalPage] = useState(0)
     const [pageListData, setPageListData] = useState([])
-    const [infoData, setInfoData] = useState([])
+    const [infoData, setInfoData] = useState(null)
 
     const loadData = (page) => {
         AnnouncementListUser({
@@ -114,11 +115,24 @@ export default function Announcement() {
                 </div>
             </div>
             <div className={styles.profile_container} >
-                <p className={styles.annoTitle}>{infoData.title}</p>
-                <div
-                    dangerouslySetInnerHTML={{
-                        __html: infoData.content
-                    }}></div>
+                {infoData != null &&
+                    <div>
+                        <div className={styles.funcItem}>
+                            <h1 className={styles.annoTitle}>{infoData.title}</h1>
+                            <span className={styles.annoDate}>發布日期：{dayjs(infoData.created_at).format('YYYY/MM/DD')}</span>
+                        </div>
+                        <div className={styles.ArticleItem}
+                            dangerouslySetInnerHTML={{
+                                __html: infoData.content
+                            }}></div>
+                    </div>
+                }
+                {infoData == null &&
+                    <div>
+                        <div className={styles.funcItem}>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )

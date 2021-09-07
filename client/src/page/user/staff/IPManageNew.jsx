@@ -52,10 +52,10 @@ export default function AnnouncementEdit() {
     return (
         <div>
             <Breadcrumb>
-                <Breadcrumb.Item ><Link to="/user/staff/ip-manage">{t('black_list')}</Link></Breadcrumb.Item>
-                <Breadcrumb.Item active>{t('ip_setting')}</Breadcrumb.Item>
+                <Breadcrumb.Item ><Link to="/user/staff/ip-manage">{t('ip_manage')}</Link></Breadcrumb.Item>
+                <Breadcrumb.Item active>{t('new_ip_address')}</Breadcrumb.Item>
             </Breadcrumb>
-            <Title>{t('ip_setting')}</Title>
+            <Title>{t('new_ip_address')}</Title>
             <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>{t('ip_address')}</Form.Label>

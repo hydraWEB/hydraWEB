@@ -36,7 +36,7 @@ export default function NormalButton({
     const ButtonText = styled.span(
         props => (
             {
-                fontSize:"18px"
+                fontSize:"15px"
             }
         ))
 
@@ -49,16 +49,16 @@ export default function NormalButton({
         ))
 
     const buttonStyle = props => ({
+        width:"100%",
         marginTop: "3px",
         marginBottom: "3px",
         position: "relative",
         borderRadius: "4px",
         display: "flex",
-        height: "42px",
         flexDirection: "row",
         alignItems: 'center',
         outline: 'none',
-        padding: '8px 14px 8px 14px',
+        padding: '7px 10px 7px 10px',
     })
 
 

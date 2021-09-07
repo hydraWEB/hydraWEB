@@ -29,9 +29,12 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
   const { t, i18n } = useTranslation()
   const [searchResult, setsearchResult] = useState([])
 
-  function setEditLayerMode(mode) {
-    console.log(mode)
-    setMode(mode)
+  function setEditLayerMode() {
+    if(mode == DrawCircleFromCenterMode){
+      setMode(ViewMode)
+    }else{
+      setMode(DrawCircleFromCenterMode)
+    }
   }
 
   function filter() {
@@ -126,9 +129,9 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
           }
           <div className={styles.circle_analysis_btn}>
             <Button
-              onClick={(e) => setEditLayerMode(DrawCircleFromCenterMode)}
+              onClick={(e) => setEditLayerMode()}
               variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
-              {t('draw_circle')}
+              {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}       
             </Button>
           </div> 
         </div>

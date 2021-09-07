@@ -56,7 +56,6 @@ export default function Print({ map, deck }) {
     context.drawImage(mapboxCanvas, 0, 0);
     context.globalAlpha = 1.0;
     context.drawImage(deckglCanvas, 0, 0);
-    
     merge.toBlob(blob => {
       saveAs(blob, fileName);
     });

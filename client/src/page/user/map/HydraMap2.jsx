@@ -1,4 +1,4 @@
-import React, { DrawCircle, useState, useRef } from 'react';
+import React, { DrawCircle, useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faPrint,
@@ -155,7 +155,7 @@ function renderTooltip({ hoverInfo }) {
       )
     } else {
       return (
-          <div>{key} : {value.toString()}</div>
+        <div>{key} : {value.toString()}</div>
       );
     }
 
@@ -184,43 +184,43 @@ function renderInfo(clickInfo, setClickInfo) {
   if (!object) {
     return null;
   }
-  
+
 
   const props = object.properties;
 
-  function ShowButton(){
+  function ShowButton() {
     const [showChart, setShowChart] = React.useState(false)
-    
 
-    if(clickInfo.layer.props.data_type === "Geology"){
+
+    if (clickInfo.layer.props.data_type === "Geology") {
       return (
-        <div> 
-          <Button onClick={(e)=>{setShowChart(true)}} >
+        <div>
+          <Button onClick={(e) => { setShowChart(true) }} >
             地質鑽探資料
           </Button>
-          <Chart showChart={showChart} setShowChart={setShowChart}  chartData={props}/>
+          <Chart showChart={showChart} setShowChart={setShowChart} chartData={props} />
         </div>
       )
     }
-    else{
+    else {
       return (
         <div></div>
       )
     }
   }
-  
+
 
   const list = Object.entries(props).map(([key, value]) => {
-    if(clickInfo.layer.props.data_type === "Geology"){
+    if (clickInfo.layer.props.data_type === "Geology") {
     }
-    
+
     if (typeof value === 'object' && value !== null) {
       const list2 = Object.entries(value).map(([key2, value2]) => {
         return (
           <div>
             {key2} : {value2.toString()}
           </div>
-          
+
         )
       })
       return (
@@ -231,8 +231,8 @@ function renderInfo(clickInfo, setClickInfo) {
       )
     } else {
       return (
-          <div>{key} : {value.toString()}
-          </div>
+        <div>{key} : {value.toString()}
+        </div>
       );
     }
 
@@ -247,17 +247,39 @@ function renderInfo(clickInfo, setClickInfo) {
           </IconButton>
         </div>
         <p className={styles.tooltip_title_t1}>{clickInfo.object.properties.measurement}</p>
-        
+
         <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
-        <ShowButton/>
+        <ShowButton />
       </div>
 
       <p className={styles.tooltip_content_2}>
         {list}
       </p>
-      
+
     </div>
   );
+}
+
+function ContextMenu({ parentRef }) {
+  const [isVisible, setVisibility] = useState(false);
+  useEffect(() => {
+    const parent = parentRef.current;
+    if (!parent) {
+      return;
+    }
+    const showMenu = (e) => {
+      e.preventDefault();
+      console.log('show');
+    }
+    parent.addEventListener('contextmenu', showMenu);
+    return () => {
+      parent.removeEventListener('contextmenu', showMenu);
+    }
+  });
+
+  return isVisible ? <div className='context-menu'>
+    Menu
+  </div> : null
 }
 
 export default function HydraMap() {
@@ -375,7 +397,7 @@ export default function HydraMap() {
         pitch: viewState['pitch'],
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
-        
+
       }
     )
     setClickInfo(data)
@@ -664,10 +686,10 @@ export default function HydraMap() {
         <div className={styles.map} id="big_map">
           <DeckGL
             tooltip={true}
-/*          initialViewState={INITIAL_VIEW_STATE}
- */     
-             viewState={viewState}
-            onViewStateChange={onViewStateChange} 
+            /*          initialViewState={INITIAL_VIEW_STATE}
+             */
+            viewState={viewState}
+            onViewStateChange={onViewStateChange}
             controller={{
               doubleClickZoom: false
             }}
@@ -676,7 +698,7 @@ export default function HydraMap() {
             getCursor={getCursor}
             onClick={saveLastClick}
           >
-            <StaticMap  ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
+            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
             {renderTooltip({ hoverInfo })}
 
           </DeckGL>

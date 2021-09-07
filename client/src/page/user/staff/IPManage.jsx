@@ -131,9 +131,9 @@ export default function IPManage() {
     return (
         <div>
             <Breadcrumb>
-                <Breadcrumb.Item active>{t('ip_setting')}</Breadcrumb.Item>
+                <Breadcrumb.Item active>{t('ip_manage')}</Breadcrumb.Item>
             </Breadcrumb>
-            <Title>{t('ip_setting')}</Title>
+            <Title>{t('ip_manage')}</Title>
             <div className={styles.funcItem}>
                 <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
             </div>

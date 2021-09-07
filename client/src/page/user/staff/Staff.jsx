@@ -68,7 +68,7 @@ export default function Staff() {
         <div className={styles.wrapper}>
             <div className={styles.menu_desk}>
                 <div className={styles.menu_desk_container}>
-                    <span className={styles.title}>{t("account")}</span>
+                    <span className={styles.title}>{t("admin")}</span>
                     <NormalButton link={"/user/staff/login-analytics"}
                                   isLightOn={location.pathname === "/user/staff/login-analytics"} text={t('login_summary')}/>
                     <NormalButton link={"/user/staff/system-used-analytics"}
@@ -80,7 +80,7 @@ export default function Staff() {
                     <NormalButton link={"/user/staff/account-manage"}
                                   isLightOn={location.pathname === "/user/staff/account-manage" || location.pathname === "/user/staff/account-manage/new" || location.pathname === "/user/staff/account-manage/edit" || location.pathname === "/user/staff/account-manage/info" } text={t('account_manage')}/>
                     <NormalButton link={"/user/staff/ip-manage"} isLightOn={location.pathname === "/user/staff/ip-manage" || location.pathname === "/user/staff/ip-manage/new"}
-                                  text={t('ip_setting')}/>
+                                  text={t('ip_manage')}/>
                 </div>
             </div>
             <div className={styles.profile_container}>

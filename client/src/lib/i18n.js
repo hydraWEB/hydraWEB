@@ -31,7 +31,7 @@ i18n
                     "system_setting":"System Setting",
                     "announcement_setting":"Announcement Setting",
                     "account_manage":"Account Manage",
-                    "ip_setting":"IP Setting",
+                    "ip_manage":"IP Setting",
                     "draw":"Draw",
                     "longitude":"Longitude",
                     "latitude":"Latitude",
@@ -43,6 +43,7 @@ i18n
                     "radius":"Radius",
                     "center_point":"Center Point",
                     "draw_circle":"Draw Circle",
+                    "cancel_draw_circle":"cancel",
                     //列印
                     "unit":"Unit",
                     "inch":"Inch",
@@ -113,7 +114,7 @@ i18n
                     "system_setting":"系統設定",
                     "announcement_setting":"公告管理",
                     "account_manage":"帳號管理",
-                    "ip_setting":"IP管理",
+                    "ip_manage":"IP管理",
                     "draw":"繪圖",
                     "longitude":"經度",
                     "latitude":"緯度",
@@ -125,6 +126,7 @@ i18n
                     "radius":"半徑",
                     "center_point":"中心點",
                     "draw_circle":"繪製區域",
+                    "cancel_draw_circle":"取消",
                     //列印
                     "unit":"單位",
                     "inch":"英吋",

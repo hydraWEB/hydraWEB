@@ -1,4 +1,4 @@
-import {Button, Form, ListGroup} from "react-bootstrap";
+import { Breadcrumb, Button, Form, Table, Modal } from "react-bootstrap";
 import React, {Suspense, useContext, useEffect, useState} from "react";
 import {userForgotPasswdCheckToken, userProfile, userSignUp} from "../../../lib/api";
 import Cookies from 'js-cookie'
@@ -7,6 +7,7 @@ import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
 import {useToasts} from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
+import styles from "./Profile.module.scss"
 
 export default function UserData() {
     const { t, i18n } = useTranslation()
@@ -54,7 +55,10 @@ export default function UserData() {
         ))
     return (
         <div>
-            <p>{t('user_profile')}</p>
+            <Breadcrumb>
+                <Breadcrumb.Item active>{t('user_profile')}</Breadcrumb.Item>
+            </Breadcrumb>
+            <p className={styles.page_title}>{t('user_profile')}</p>
             { !isLoading &&
                 <>  {
                     isLoaded && <div>

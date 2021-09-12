@@ -153,30 +153,49 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       for (let dt = 0; dt < file.length; dt++) {
         let feat = file[dt]
         for (let f = 0; f < feat.data.features.length; f++) {
-          let isValid = false
           for(let t in feat.data.features[f].properties){
-            if (t == currentTag) {
-              isValid = true
-              break
-            }
-          }
-          if(isValid){
-            if(typeof feat.data.features[f].properties[currentTag] == "string"){
-              if (feat.data.features[f].properties[currentTag].indexOf(text) >= 0){
-                resultMeasurement.push(feat.data.features[f])
-                data.push(file[dt])
+            if (t.indexOf('prop') >= 0){
+              for(let k in feat.data.features[f].properties[t]){
+                if(k === currentTag){
+                  if(typeof feat.data.features[f].properties[t][currentTag] == "string"){
+                    if (feat.data.features[f].properties[t][currentTag].indexOf(text) >= 0){
+                      resultMeasurement.push(feat.data.features[f])
+                      data.push(file[dt])
+                    }
+                  }
+                  else if(typeof feat.data.features[f].properties[t][currentTag] == "number"){
+                    if (feat.data.features[f].properties[t][currentTag] === parseFloat(text)){
+                      resultMeasurement.push(feat.data.features[f])
+                      data.push(file[dt])
+                    }
+                  }
+                  else if(typeof feat.data.features[f].properties[t][currentTag] == "boolean"){
+                    if (feat.data.features[f].properties[t][currentTag].toString() === text){
+                      resultMeasurement.push(feat.data.features[f])
+                      data.push(file[dt])
+                    }
+                  }
+                }
               }
             }
-            else if(typeof feat.data.features[f].properties[currentTag] == "number"){
-              if (feat.data.features[f].properties[currentTag] === parseFloat(text)){
-                resultMeasurement.push(feat.data.features[f])
-                data.push(file[dt])
+            else if (t == currentTag) {
+              if(typeof feat.data.features[f].properties[currentTag] == "string"){
+                if (feat.data.features[f].properties[currentTag].indexOf(text) >= 0){
+                  resultMeasurement.push(feat.data.features[f])
+                  data.push(file[dt])
+                }
               }
-            }
-            else if(typeof feat.data.features[f].properties[currentTag] == "boolean"){
-              if (feat.data.features[f].properties[currentTag].toString() === text){
-                resultMeasurement.push(feat.data.features[f])
-                data.push(file[dt])
+              else if(typeof feat.data.features[f].properties[currentTag] == "number"){
+                if (feat.data.features[f].properties[currentTag] === parseFloat(text)){
+                  resultMeasurement.push(feat.data.features[f])
+                  data.push(file[dt])
+                }
+              }
+              else if(typeof feat.data.features[f].properties[currentTag] == "boolean"){
+                if (feat.data.features[f].properties[currentTag].toString() === text){
+                  resultMeasurement.push(feat.data.features[f])
+                  data.push(file[dt])
+                }
               }
             }
           }
@@ -187,33 +206,55 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     setsearchResult(resultMeasurement)
   }
 
-  function ShowResult({ measurement, geometry, name }) {
+  function ShowResult({ geometry, name, properties }) {
     function btnClicked() {
       zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data)
       zoomTo(geometry)
     }
-
-    return (
-      <div>
-        <Accordion square >
-          <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
-            <div className={styles.search_div}>
-              <Button variant="contained"  onClick={btnClicked}>
-                查看
-              </Button>
-              <Typography className="ml-3" >{measurement}</Typography>
-            </div>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className={styles.search_div2}>
-              <p>資料：{name}</p>
-              <p>經度：{geometry[0]}</p>
-              <p>緯度：{geometry[1]}</p>
-            </div>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-    )
+    if(name === undefined){
+      return (
+        <div>
+          <Accordion square >
+            <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
+              <div className={styles.search_div}>
+                <Button variant="contained"  onClick={btnClicked}>
+                  查看
+                </Button>
+                <Typography className="ml-3" >{properties.prop1.檔名}</Typography>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className={styles.search_div2}>
+                <p>經度：{geometry[0]}</p>
+                <p>緯度：{geometry[1]}</p>
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      )
+    }
+    else{
+      return (
+        <div>
+          <Accordion square >
+            <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
+              <div className={styles.search_div}>
+                <Button variant="contained"  onClick={btnClicked}>
+                  查看
+                </Button>
+                <Typography className="ml-3" >{name}</Typography>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div className={styles.search_div2}>
+                <p>經度：{geometry[0]}</p>
+                <p>緯度：{geometry[1]}</p>
+              </div>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      )
+    }
   }
 
   let selectTag = tag.map((d)=>
@@ -224,7 +265,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
   const resultlist = searchResult.map((d) =>
-    <ShowResult measurement={d.properties.measurement} geometry={d.geometry.coordinates} name={d.properties.name} />
+    <ShowResult geometry={d.geometry.coordinates} name={d.properties.name} properties={d.properties}/>
   );
 
   const handleChange = (e) =>{

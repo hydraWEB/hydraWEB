@@ -5,14 +5,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Toolbox } from "@nebula.gl/editor";
 import DeckGL from "deck.gl";
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import MuiAccordion from '@material-ui/core/Accordion';
+import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
+import Pagination from "@material-ui/lab/Pagination";
 
 import {
   EditableGeoJsonLayer,
@@ -24,15 +23,62 @@ import {
 
 import { distance } from "./HydraMap2";
 
+
+const Accordion = withStyles({
+  root: {
+    backgroundColor: '#024FA1',
+    boxShadow: 'none',
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+    '&$expanded': {
+      margin: 'auto',
+    },
+  },
+  expanded: {},
+})(MuiAccordion);
+
+const AccordionSummary = withStyles({
+  root: {
+    backgroundColor: '#024FA1',
+    borderBottom: '1px solid rgba(0, 0, 0, .125)',
+    marginBottom: -1,
+    minHeight: 20,
+    '&$expanded': {
+      minHeight: 20,
+    },
+  },
+  content: {
+    '&$expanded': {
+      margin: '12px 0',
+    },
+  },
+  expanded: {},
+})(MuiAccordionSummary);
+
+const AccordionDetails = withStyles((theme) => ({
+  root: {
+    padding: 0,
+  },
+}))(MuiAccordionDetails);
+
+
+
 export default function CircleAnalysis({ radius, setRadius, allData, layers, setLayers, editLayer, mode, setMode, lastClick }) {
 
   const { t, i18n } = useTranslation()
   const [searchResult, setsearchResult] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPageData, setCurrentPageData] = useState([])
+  const [totalpage, setTotalPage] = useState(0)
 
   function setEditLayerMode() {
-    if(mode == DrawCircleFromCenterMode){
+    if (mode == DrawCircleFromCenterMode) {
       setMode(ViewMode)
-    }else{
+    } else {
       setMode(DrawCircleFromCenterMode)
     }
   }
@@ -62,24 +108,31 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
       }
     }
     setsearchResult(resultMeasurement)
+    currentPageDataSetting(resultMeasurement, 1)
+    setCurrentPage(1)
   }
   function ShowResult(data) {
     let arr = []
+    let title = []
     let arrmeasurement = []
     let arrtime = []
     for (var i in data.data.properties) {
-      if(i.indexOf("prop") >= 0){
+      if (i.indexOf("prop") >= 0) {
+        if (title.length === 0) {
+          title.push(data.data.properties["prop1"]["檔名"])
+        }
+
         arr.push(i)
         arr.push(" : ")
         arr.push(", ")
-        for (let k in data.data.properties[i]){
+        for (let k in data.data.properties[i]) {
           arr.push(k)
           arr.push(" : ")
           arr.push(data.data.properties[i][k])
           arr.push(", ")
         }
       }
-      else{
+      else {
         if (i !== "TWD97_X" && i !== "TWD97_Y" && i !== "time_series" && i !== "measurement" && i !== "time") {
           arr.push(i)
           arr.push(" : ")
@@ -87,14 +140,14 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
           arr.push(", ")
         }
         else if (i === "measurement") {
-          arrmeasurement.push(data.data.properties[i])
+          title.push(data.data.properties[i])
         }
         else if (i === "time") {
           let dayjs = require("dayjs")
           arrtime.push(dayjs(data.data.properties[i]).format('YYYY/MM/DD'))
         }
       }
-      
+
     }
     return (
       <div>
@@ -104,7 +157,7 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>{arrmeasurement}</Typography>
+            <Typography>{title}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
@@ -117,17 +170,25 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
     )
   }
 
-  let resultlist = searchResult.map((d) =>
+  let resultlist = currentPageData.map((d) =>
     <ShowResult data={d} />
   );
+
+  function currentPageDataSetting(resultMeasurement, page) {
+    let totalPage = Math.ceil(resultMeasurement.length / 10)
+    let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
+    setCurrentPageData(pageData)
+    setTotalPage(totalPage)
+  }
+
+  const onChangePage = (e, page) => {
+    currentPageDataSetting(searchResult, page)
+    setCurrentPage(page)
+  }
 
   useEffect(() => {
     filter()
   }, [radius])
-
-
-
-
 
   return (
     <div>
@@ -145,12 +206,19 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
             <Button
               onClick={(e) => setEditLayerMode()}
               variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
-              {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}       
+              {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}
             </Button>
-          </div> 
+          </div>
         </div>
         <div className={styles.circleAnalysis_search_result}>
-          {resultlist}
+          {searchResult.length > 0 &&
+            <>
+              <Pagination className="mb-3" count={totalpage} page={currentPage} variant="outlined" shape="rounded"
+                onChange={onChangePage} />
+              {resultlist}
+            </>
+          }
+
         </div>
       </div>
 

@@ -313,3 +313,14 @@ ul {
 
 .chart_print{
 }
+
+.context_menu{
+    position: fixed;
+    background-color: #282c34AA;
+}
+
+.context_menu_item_container{
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+}

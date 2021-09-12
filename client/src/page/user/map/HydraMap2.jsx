@@ -260,8 +260,13 @@ function renderInfo(clickInfo, setClickInfo) {
   );
 }
 
-function ContextMenu({ parentRef }) {
+function ContextMenu({ parentRef,lastClick }) {
   const [isVisible, setVisibility] = useState(false);
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
+
+
+  
   useEffect(() => {
     const parent = parentRef.current;
     if (!parent) {
@@ -269,16 +274,28 @@ function ContextMenu({ parentRef }) {
     }
     const showMenu = (e) => {
       e.preventDefault();
-      console.log('show');
+      setVisibility(!isVisible)
+      setX(e.clientX)
+      setY(e.clientY)
+    }
+    const hideMenu = (e) => {
+      setVisibility(false)
     }
     parent.addEventListener('contextmenu', showMenu);
+    parent.addEventListener('click', hideMenu);
     return () => {
       parent.removeEventListener('contextmenu', showMenu);
+      parent.removeEventListener('click', hideMenu);
     }
   });
 
-  return isVisible ? <div className='context-menu'>
-    Menu
+  return isVisible ? <div>
+    <div style={{ left: x, top: y, zIndex: 10 }} className={styles.context_menu}>
+      <div className={styles.context_menu_item_container}>
+        <p>x：{lastClick[0]}</p>
+        <p>y：{lastClick[1]}</p>
+      </div>
+    </div>
   </div> : null
 }
 
@@ -334,7 +351,7 @@ export default function HydraMap() {
   });
 
 
-
+  const containerRef = useRef()
   const mapRef = useRef()
   const deckRef = useRef()
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
@@ -683,7 +700,7 @@ export default function HydraMap() {
           </FabIcon>
 
         </div>
-        <div className={styles.map} id="big_map">
+        <div className={styles.map} id="big_map" ref={containerRef}>
           <DeckGL
             tooltip={true}
             /*          initialViewState={INITIAL_VIEW_STATE}
@@ -700,7 +717,7 @@ export default function HydraMap() {
           >
             <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
             {renderTooltip({ hoverInfo })}
-
+            <ContextMenu parentRef={containerRef} lastClick={lastClick}/>
           </DeckGL>
         </div>
         {renderInfo(clickInfo, setClickInfo)}

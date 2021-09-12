@@ -192,7 +192,7 @@ function renderInfo(clickInfo, setClickInfo) {
     const [showChart, setShowChart] = React.useState(false)
 
 
-    if (clickInfo.layer.props.data_type === "Geology" || clickInfo.layer.props.data_type === "Geology2" ) {
+    if (clickInfo.layer.props.data_type === "Geology") {
       return (
         <div>
           <Button onClick={(e) => { setShowChart(true) }} >
@@ -260,13 +260,13 @@ function renderInfo(clickInfo, setClickInfo) {
   );
 }
 
-function ContextMenu({ parentRef,lastClick }) {
+function ContextMenu({ parentRef, lastClick,startCircleAnalysis,setCurrentFunction }) {
   const [isVisible, setVisibility] = useState(false);
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
 
 
-  
+
   useEffect(() => {
     const parent = parentRef.current;
     if (!parent) {
@@ -274,7 +274,7 @@ function ContextMenu({ parentRef,lastClick }) {
     }
     const showMenu = (e) => {
       e.preventDefault();
-      setVisibility(!isVisible)
+      setVisibility(true)
       setX(e.clientX)
       setY(e.clientY)
     }
@@ -289,11 +289,22 @@ function ContextMenu({ parentRef,lastClick }) {
     }
   });
 
+  function startCircleAnalysisFunc(e){
+    setCurrentFunction(3)
+    setVisibility(false)
+    startCircleAnalysis()
+  }
+
   return isVisible ? <div>
     <div style={{ left: x, top: y, zIndex: 10 }} className={styles.context_menu}>
       <div className={styles.context_menu_item_container}>
-        <p>x：{lastClick[0]}</p>
-        <p>y：{lastClick[1]}</p>
+        <p className={styles.context_menu_item_text}>x：{lastClick[0]}</p>
+      </div>
+      <div className={styles.context_menu_item_container}>
+        <p className={styles.context_menu_item_text}>y：{lastClick[1]}</p>
+      </div>
+      <div className={styles.context_menu_item_container} onClick={startCircleAnalysisFunc}>
+        <p className={styles.context_menu_item_text}>環域分析</p>
       </div>
     </div>
   </div> : null
@@ -370,7 +381,7 @@ export default function HydraMap() {
     setViewState({
       longitude: geometry[0],
       latitude: geometry[1],
-      zoom: 15,
+      zoom: viewState['zoom'],
       bearing: 0,
       pitch: viewState['pitch'],
       transitionDuration: 1000,
@@ -405,18 +416,18 @@ export default function HydraMap() {
   }
 
   const setClickInfoFunc = (data) => {
-    setViewState(
+/*     setViewState(
       {
         longitude: data.object.geometry.coordinates[0],
         latitude: data.object.geometry.coordinates[1],
-        zoom: 15,
+        zoom: 10,
         bearing: 0,
         pitch: viewState['pitch'],
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
 
       }
-    )
+    ) */
     setClickInfo(data)
   }
 
@@ -717,9 +728,9 @@ export default function HydraMap() {
           >
             <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
             {renderTooltip({ hoverInfo })}
-            <ContextMenu parentRef={containerRef} lastClick={lastClick}/>
           </DeckGL>
         </div>
+        <ContextMenu parentRef={containerRef} lastClick={lastClick} startCircleAnalysis={()=>{setEditLayerMode(DrawCircleFromCenterMode)}} setCurrentFunction={setCurrentFunction} />
         {renderInfo(clickInfo, setClickInfo)}
       </div>
     </>

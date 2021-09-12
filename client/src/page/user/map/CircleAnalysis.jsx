@@ -111,11 +111,35 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
     currentPageDataSetting(resultMeasurement, 1)
     setCurrentPage(1)
   }
+
   function ShowResult(data) {
     let arr = []
     let title = []
     let arrmeasurement = []
     let arrtime = []
+
+
+    const list = Object.entries(data.data.properties).map(([key, value]) => {
+      if (typeof value === 'object' && value !== null) {
+        const list2 = Object.entries(value).map(([key2, value2]) => {
+          return (
+            <div>{key2} : {value2.toString()}</div>
+          )
+        })
+        return (
+          <div>
+            <h5>{key}:</h5>
+            <div>{list2}</div>
+          </div>
+        )
+      } else {
+        return (
+          <div>{key} : {value.toString()}</div>
+        );
+      }
+
+    })
+
     for (var i in data.data.properties) {
       if (i.indexOf("prop") >= 0) {
         if (title.length === 0) {
@@ -161,68 +185,74 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              <p>{arr}</p>
-              <p>{arrtime}</p>
+                <> {list}</>
             </Typography>
           </AccordionDetails>
         </Accordion>
       </div>
     )
-  }
+  
+}
 
-  let resultlist = currentPageData.map((d) =>
-    <ShowResult data={d} />
-  );
 
-  function currentPageDataSetting(resultMeasurement, page) {
-    let totalPage = Math.ceil(resultMeasurement.length / 10)
-    let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
-    setCurrentPageData(pageData)
-    setTotalPage(totalPage)
-  }
 
-  const onChangePage = (e, page) => {
-    currentPageDataSetting(searchResult, page)
-    setCurrentPage(page)
-  }
+let resultlist = currentPageData.map((d) =>
+  <div>
+    {
+      d !== undefined &&  <ShowResult data={d} />
+    }
+  </div>
+);
 
-  useEffect(() => {
-    filter()
-  }, [radius])
+function currentPageDataSetting(resultMeasurement, page) {
+  let totalPage = Math.ceil(resultMeasurement.length / 10)
+  let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
+  setCurrentPageData(pageData)
+  setTotalPage(totalPage)
+}
 
-  return (
+const onChangePage = (e, page) => {
+  currentPageDataSetting(searchResult, page)
+  setCurrentPage(page)
+}
+
+useEffect(() => {
+  filter()
+}, [radius])
+
+return (
+  <div>
+    <h4 className={styles.func_title}>{t('circle_analysis')}
+    </h4>
+
     <div>
-      <h4 className={styles.func_title}>{t('circle_analysis')}
-      </h4>
+      <div className={styles.circleAnalysis_top}>
+        <p>{t('radius')}：{radius}km</p>
+        {lastClick.length > 1 &&
+          <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>
 
-      <div>
-        <div className={styles.circleAnalysis_top}>
-          <p>{t('radius')}：{radius}km</p>
-          {lastClick.length > 1 &&
-            <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>
-
-          }
-          <div className={styles.circle_analysis_btn}>
-            <Button
-              onClick={(e) => setEditLayerMode()}
-              variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
-              {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}
-            </Button>
-          </div>
-        </div>
-        <div className={styles.circleAnalysis_search_result}>
-          {searchResult.length > 0 &&
-            <>
-              <Pagination className="mb-3" count={totalpage} page={currentPage} variant="outlined" shape="rounded"
-                onChange={onChangePage} />
-              {resultlist}
-            </>
-          }
-
+        }
+        <div className={styles.circle_analysis_btn}>
+          <Button
+            onClick={(e) => setEditLayerMode()}
+            variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
+            {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}
+          </Button>
         </div>
       </div>
+      <div className={styles.circleAnalysis_search_result}>
+        {searchResult.length > 0 &&
+          <>
+            <Pagination className="mb-3" count={totalpage} page={currentPage} variant="outlined" shape="rounded"
+              onChange={onChangePage} />
+            {resultlist}
+          </>
+        }
 
+      </div>
     </div>
 
-  )
+  </div>
+
+)
 }

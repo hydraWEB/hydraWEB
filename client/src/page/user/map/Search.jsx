@@ -208,11 +208,12 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     }
     setData(data)
     setsearchResult(resultMeasurement)
+    setCurrentPage(1)
+    currentPageDataSetting(resultMeasurement, 1)
   }
 
   function ShowResult({ geometry, name, properties }) {
-    setCurrentPage(1)
-
+    
     function btnClicked() {
       zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data)
       zoomTo(geometry)
@@ -270,7 +271,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
 
-  const resultlist = searchResult.map((d) =>
+  const resultlist = currentPageData.map((d) =>
     <ShowResult geometry={d.geometry.coordinates} name={d.properties.name} properties={d.properties}/>
   );
 
@@ -323,7 +324,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     let filteredtags = [...new Set(alltags)]
     setTag(filteredtags)
     setFilteredMeasurement(filteredMeasurement)
-    currentPageDataSetting(filteredMeasurement, 1)
+    
 
   }, [allData])
 

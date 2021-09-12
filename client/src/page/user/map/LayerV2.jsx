@@ -314,9 +314,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setClickInfo(data)
   }
 
- 
-
-
   const getFilterValue = (d) => {
     const dayjs = require("dayjs")
     let time1 = dayjs(d.properties.time)

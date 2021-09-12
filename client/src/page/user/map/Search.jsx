@@ -29,6 +29,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputBase from "@material-ui/core/InputBase";
+import Pagination from "@material-ui/lab/Pagination";
 
 const Accordion = withStyles({
   root: {
@@ -137,6 +138,9 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   const [data, setData] = useState()
   const [tag, setTag] = useState([])
   const [currentTag, setcurrentTag] = useState()
+  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPageData, setCurrentPageData] = useState([])
+  const [totalpage, setTotalPage] = useState(0)
 
   const sendText = (t) => {
     setText(t.target.value)
@@ -207,6 +211,8 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   }
 
   function ShowResult({ geometry, name, properties }) {
+    setCurrentPage(1)
+
     function btnClicked() {
       zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data)
       zoomTo(geometry)
@@ -261,7 +267,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   <option value={d}>{d}</option>
   );
 
-  
+
 
 
   const resultlist = searchResult.map((d) =>
@@ -272,7 +278,17 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     setcurrentTag(e.target.value)
   }
 
-
+  function currentPageDataSetting(resultMeasurement, page) {
+    let totalPage = Math.ceil(resultMeasurement.length / 10)
+    let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
+    setCurrentPageData(pageData)
+    setTotalPage(totalPage)
+  }
+  
+  const onChangePage = (e, page) => {
+    currentPageDataSetting(searchResult, page)
+    setCurrentPage(page)
+  }
 
   useEffect(() => {
     let alltags = []
@@ -307,6 +323,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     let filteredtags = [...new Set(alltags)]
     setTag(filteredtags)
     setFilteredMeasurement(filteredMeasurement)
+    currentPageDataSetting(filteredMeasurement, 1)
 
   }, [allData])
 
@@ -349,7 +366,13 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
       <div>
-        {resultlist}
+        {resultlist.length > 0 &&
+          <>
+            <Pagination className="mb-3" count={totalpage} page={currentPage} variant="outlined" shape="rounded"
+              onChange={onChangePage} />
+            {resultlist}
+          </>
+        }
       </div>
     </div>
   )

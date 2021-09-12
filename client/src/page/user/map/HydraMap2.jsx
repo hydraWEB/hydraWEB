@@ -192,7 +192,7 @@ function renderInfo(clickInfo, setClickInfo) {
     const [showChart, setShowChart] = React.useState(false)
 
 
-    if (clickInfo.layer.props.data_type === "Geology") {
+    if (clickInfo.layer.props.data_type === "Geology" || clickInfo.layer.props.data_type === "Geology2" ) {
       return (
         <div>
           <Button onClick={(e) => { setShowChart(true) }} >

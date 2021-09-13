@@ -39,6 +39,7 @@ i18n
                     "angle":"Angle",
                     "search_by_tag":"Search By Tag",
                     "tags":"Tags",
+                    "measurement":"measurement",
                     //環域分析
                     "radius":"Radius",
                     "center_point":"Center Point",
@@ -117,11 +118,12 @@ i18n
                     "ip_manage":"IP管理",
                     "draw":"繪圖",
                     "longitude":"經度",
-                    "latitude":"緯度",
+                    "latitude":"緯度", 
                     "zoom":"縮放",
                     "angle":"角度",
                     "search_by_tag":"透過標籤搜尋",
                     "tags":"標籤",
+                    "measurement":"測量",
                     //環域分析
                     "radius":"半徑",
                     "center_point":"中心點",

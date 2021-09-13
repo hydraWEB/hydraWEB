@@ -698,7 +698,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
 
   let BtnList = allData.map((d, index1) =>
     <div>
-      <Accordion square >
+      <Accordion square defaultExpanded>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" expandIcon={<ExpandMoreIcon />}>
           <Typography>{d.name}</Typography>
         </AccordionSummary>

@@ -7,7 +7,8 @@ import {
   faExchangeAlt,
   faClone,
   faStreetView,
-  faPen
+  faPen,
+  faRuler
 } from '@fortawesome/free-solid-svg-icons'
 import {
   OverlayTrigger, Tooltip,
@@ -24,7 +25,10 @@ import Layer from "./LayerV2.jsx"
 import Print from "./Print.jsx"
 import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
-import GeometryEditor from "./TestLayer"
+import Chart from "./Chart.jsx"
+import Draw from "./Draw"
+import Measurement from "./Measurement"
+
 import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
 import CloseIcon from '@material-ui/icons/Close';
@@ -37,7 +41,8 @@ import ExploreIcon from '@material-ui/icons/Explore';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Chart from "./Chart.jsx"
+
+
 import {
   alpha,
   ThemeProvider,
@@ -339,8 +344,19 @@ export default function HydraMap() {
   };
 
 
-  const editLayer = new EditableGeoJsonLayer({
-    id: "geojson-layer",
+  const circleAnalysisLayer = new EditableGeoJsonLayer({
+    id: "circle-analysis-layer",
+    data: {
+      type: "FeatureCollection",
+      features: []
+    },
+    mode: mode,
+    selectedFeatureIndexes,
+    onEdit: onEdit
+  });
+
+  const measurementLayer = new EditableGeoJsonLayer({
+    id: "measurement-layer",
     data: {
       type: "FeatureCollection",
       features: []
@@ -351,7 +367,7 @@ export default function HydraMap() {
   });
 
   const drawLayer = new EditableGeoJsonLayer({
-    id: "geojson-layer",
+    id: "draw-layer",
     data: {
       type: "FeatureCollection",
       features: []
@@ -375,12 +391,12 @@ export default function HydraMap() {
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
 
-  const [layers, setLayers] = useState([editLayer])
+  const [layers, setLayers] = useState([circleAnalysisLayer,measurementLayer,drawLayer])
 
   const zoomToLocation = (geometry) => {
     setViewState({
-      longitude: geometry[0],
-      latitude: geometry[1],
+      longitude: geometry.coordinates[0],
+      latitude: geometry.coordinates[1],
       zoom: viewState['zoom'],
       bearing: 0,
       pitch: viewState['pitch'],
@@ -440,7 +456,7 @@ export default function HydraMap() {
 
   function getCursor() {
     layers.forEach((element, i) => {
-      if (element.props.id == "geojson-layer") {
+      if (element.props.id == "circle-analysis-layer") {
         element.getCursor.bind(element)
       }
     })
@@ -450,13 +466,13 @@ export default function HydraMap() {
 
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
-      if (element.props.id == "geojson-layer") {
+      if (element.props.id == "circle-analysis-layer") {
         if (updatedData.features.length > 0) {
           setMode(() => ViewMode)
           let d = distance(lastClickRef.current[0], lastClickRef.current[1], updatedData.features[0].geometry.coordinates[0][0][0], updatedData.features[0].geometry.coordinates[0][0][1])
           setRadius(d)
           newLayer[i] = new EditableGeoJsonLayer({
-            id: "geojson-layer",
+            id: "circle-analysis-layer",
             data: updatedData,
             mode: ViewMode,
             selectedFeatureIndexes,
@@ -464,7 +480,7 @@ export default function HydraMap() {
           });
         } else {
           newLayer[i] = new EditableGeoJsonLayer({
-            id: "geojson-layer",
+            id: "circle-analysis-layer",
             data: updatedData,
             mode: modeRef.current,
             selectedFeatureIndexes,
@@ -480,11 +496,11 @@ export default function HydraMap() {
   const setEditLayerMode = (m) => {
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
-      if (element.props.id == "geojson-layer") {
+      if (element.props.id == "circle-analysis-layer") {
         if (m === DrawCircleFromCenterMode) {
           setMode(() => m)
           newLayer[i] = new EditableGeoJsonLayer({
-            id: "geojson-layer",
+            id: "circle-analysis-layer",
             data: {
               type: "FeatureCollection",
               features: []
@@ -496,7 +512,7 @@ export default function HydraMap() {
         } else {
           setMode(() => ViewMode)
           newLayer[i] = new EditableGeoJsonLayer({
-            id: "geojson-layer",
+            id: "circle-analysis-layer",
             data: element.props.data,
             selectedFeatureIndexes,
             mode: ViewMode,
@@ -600,22 +616,7 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            {/*             <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
-              <OverlayTrigger
-                key='right'
-                placement='right'
-                overlay={
-                  <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('locate')}
-                  </Tooltip>
-                }>
-                <div className={styles.menu_btn} >
-                  <FontAwesomeIcon
-                    icon={faMapMarker} size="lg" color="white" />
-                </div>
-              </OverlayTrigger>
-            </MenuBtnWrapper> */}
-            {/*             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+            <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -629,7 +630,22 @@ export default function HydraMap() {
                     icon={faPen} size="lg" color="white" />
                 </div>
               </OverlayTrigger>
-            </MenuBtnWrapper> */}
+            </MenuBtnWrapper> 
+             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('measurement')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faRuler} size="lg" color="white" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
           </ul>
         </nav>
       </div>
@@ -646,16 +662,16 @@ export default function HydraMap() {
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <CircleAnalysis radius={radius} setRadius={setRadius} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={editLayer} mode={mode} setMode={setEditLayerMode} lastClick={lastClick} />
+            <CircleAnalysis radius={radius} setRadius={setRadius} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={circleAnalysisLayer} mode={mode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation}/>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
             <Print map={mapRef} deck={deckRef} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 5}>
-            <GeometryEditor />
+            <Draw />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 6}>
-
+            <Measurement />
           </ShowWrapper>
         </div>
       </ShowWrapper>

@@ -129,6 +129,8 @@ function SearchTextField(props) {
 }
 
 
+
+
 export default function Search({ allData, setAllData, layers, setLayers, zoomTo, setHoverInfo, setClickInfo }) {
   const { t, i18n } = useTranslation();
 
@@ -218,6 +220,10 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data)
       zoomTo(geometry)
     }
+
+    
+
+
     if(name === undefined){
       return (
         <div>
@@ -272,6 +278,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
   const resultlist = currentPageData.map((d) =>
+  
     <ShowResult geometry={d.geometry.coordinates} name={d.properties.name} properties={d.properties}/>
   );
 
@@ -371,6 +378,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           <>
             <Pagination className="mb-3" count={totalpage} page={currentPage} variant="outlined" shape="rounded"
               onChange={onChangePage} />
+            
             {resultlist}
           </>
         }

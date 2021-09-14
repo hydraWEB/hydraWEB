@@ -74,77 +74,77 @@ const Accordion = withStyles({
   
 
 
-export default function SearchResult({data, name, zoomTo}){
+export default function SearchResult({data, zoomTo, allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, zoomInData}){
     var title = []
     function btnClicked() {
-        
-        zoomTo(data.geometry)
+      zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, data.geometry, zoomInData)
+      zoomTo(data.geometry)
     }
     const xyCord = Object.entries(data.geometry).map(([key, value]) => {
-        if (typeof value === 'object' && value !== null) {
-          const list2 = Object.entries(value).map(([key2, value2]) => {
-            let tempKey = 'X Coordinate'
-            if (key2 === '1') {
-              tempKey = 'Y Coordinate'
-            }
-            return (
-              <div>{tempKey} : {value2.toString()}</div>
-            )
-          })
-          if (key === "coordinates") {
-            return (
-              <div>
-                <div>{list2}</div>
-              </div>
-            )
+      if (typeof value === 'object' && value !== null) {
+        const list2 = Object.entries(value).map(([key2, value2]) => {
+          let tempKey = 'X Coordinate'
+          if (key2 === '1') {
+            tempKey = 'Y Coordinate'
           }
-          else{
-            return (
-              <div>
-                <h5>{key}:</h5>
-                <div>{list2}</div>
-              </div>
-            )
-          }
-        } else {
           return (
-            <div>{key} : {value.toString()}</div>
-          );
-        
+            <div>{tempKey} : {value2.toString()}</div>
+          )
+        })
+        if (key === "coordinates") {
+          return (
+            <div>
+              <div>{list2}</div>
+            </div>
+          )
         }
+        else{
+          return (
+            <div>
+              <h5>{key}:</h5>
+              <div>{list2}</div>
+            </div>
+          )
+        }
+      } else {
+        return (
+          <div>{key} : {value.toString()}</div>
+        );
+      
+      }
     })
     const list = Object.entries(data.properties).map(([key, value]) => {
-        if (typeof value === 'object' && value !== null) {
-            const list2 = Object.entries(value).map(([key2, value2]) => {
-            return (
-                <div>{key2} : {value2.toString()}</div>
-            )
-            })
-            return (
-            <div>
-                <h5>{key}:</h5>
-                <div>{list2}</div>
-            </div>
-            )
-        } else {
-            return (
-            <div>{key} : {value.toString()}</div>
-            );
-        }
+      if (typeof value === 'object' && value !== null) {
+          const list2 = Object.entries(value).map(([key2, value2]) => {
+          return (
+              <div>{key2} : {value2.toString()}</div>
+          )
+          })
+          return (
+          <div>
+              <h5>{key}:</h5>
+              <div>{list2}</div>
+          </div>
+          )
+      } else {
+          return (
+          <div>{key} : {value.toString()}</div>
+          );
+      }
     })
     for (var i in data.properties) {
-        if (i.indexOf("prop") >= 0) {
-            if (title.length === 0) {
-            title.push(data.properties["prop1"]["檔名"])
-            break
-            }
-        }
-        else {
-            if (i === "measurement") {
-            title.push(data.properties[i])
-            break
-            }
-        }
+      if (i.indexOf("prop") >= 0) {
+          if (title.length === 0) {
+          title.push(data.properties["prop1"]["檔名"])
+          break
+          }
+      }
+      else {
+          if (i === "measurement") {
+          title.push(data.properties[i])
+          break
+          }
+      }
     }
     return (
     <div>

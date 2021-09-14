@@ -13,6 +13,7 @@ import {
   makeStyles,
   createTheme,
 } from '@material-ui/core/styles';
+
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
@@ -30,6 +31,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputBase from "@material-ui/core/InputBase";
 import Pagination from "@material-ui/lab/Pagination";
+import SearchFunction from './SearchFunction.jsx'
 
 const Accordion = withStyles({
   root: {
@@ -133,7 +135,7 @@ function SearchTextField(props) {
 
 export default function Search({ allData, setAllData, layers, setLayers, zoomTo, setHoverInfo, setClickInfo }) {
   const { t, i18n } = useTranslation();
-
+  const [cursor, setCursor] = useState("crosshair");
   const [text, setText] = useState("Changhua_0")
   const [filteredMeasurement, setFilteredMeasurement] = useState()
   const [searchResult, setsearchResult] = useState([])
@@ -143,6 +145,11 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   const [currentPage, setCurrentPage] = useState(1)
   const [currentPageData, setCurrentPageData] = useState([])
   const [totalpage, setTotalPage] = useState(0)
+  
+  /* const changeCursor = () => {
+    setCursor('crosshair')
+  }
+   */
 
   const sendText = (t) => {
     setText(t.target.value)
@@ -152,8 +159,6 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     let alldt = allData
     let resultMeasurement = []
     let data = []
-    
-
     for (let i = 0; i < alldt.length; i++) {
       let file = alldt[i].files
       for (let dt = 0; dt < file.length; dt++) {
@@ -214,62 +219,6 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     currentPageDataSetting(resultMeasurement, 1)
   }
 
-  function ShowResult({ geometry, name, properties }) {
-    
-    function btnClicked() {
-      zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data)
-      zoomTo(geometry)
-    }
-
-    
-
-
-    if(name === undefined){
-      return (
-        <div>
-          <Accordion square >
-            <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
-              <div className={styles.search_div}>
-                <Button variant="contained"  onClick={btnClicked}>
-                  查看
-                </Button>
-                <Typography className="ml-3" >{properties.prop1.檔名}</Typography>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className={styles.search_div2}>
-                <p>經度：{geometry[0]}</p>
-                <p>緯度：{geometry[1]}</p>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      )
-    }
-    else{
-      return (
-        <div>
-          <Accordion square >
-            <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
-              <div className={styles.search_div}>
-                <Button variant="contained"  onClick={btnClicked}>
-                  查看
-                </Button>
-                <Typography className="ml-3" >{name}</Typography>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className={styles.search_div2}>
-                <p>經度：{geometry[0]}</p>
-                <p>緯度：{geometry[1]}</p>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      )
-    }
-  }
-
   let selectTag = tag.map((d)=>
   <option value={d}>{d}</option>
   );
@@ -278,8 +227,13 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
   const resultlist = currentPageData.map((d) =>
-  
-    <ShowResult geometry={d.geometry.coordinates} name={d.properties.name} properties={d.properties}/>
+  <div>
+      {
+        d !== undefined && 
+        <SearchFunction data = {d} zoomTo={zoomTo} allData={allData} setAllData={setAllData} layers={layers} 
+        setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={data}/>
+      }
+    </div>
   );
 
   const handleChange = (e) =>{
@@ -337,7 +291,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
 
 
   return (
-    <div>
+    <div >
       <h4 className={styles.func_title}>{t('search')}</h4>
       <div className={styles.search_tag}>
         <FormControl >
@@ -369,7 +323,9 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
             <SearchIcon />
           </IconButton>
         </div>
-
+        {/* <div>
+          <Button variant="contained" onClick = {changeCursor}>Change Cursor</Button>
+        </div> */}
       </div>
 
 

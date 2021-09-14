@@ -69,14 +69,14 @@ const AccordionDetails = withStyles((theme) => ({
 
 
 
-export default function CircleAnalysis({ radius, setRadius, allData, layers, setLayers, editLayer, mode, setMode, lastClick, zoomTo }) {
+export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, editLayer, mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo }) {
 
   const { t, i18n } = useTranslation()
   const [searchResult, setsearchResult] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [currentPageData, setCurrentPageData] = useState([])
   const [totalpage, setTotalPage] = useState(0)
-
+  const [data, setData] = useState()
   function setEditLayerMode() {
     if (mode == DrawCircleFromCenterMode) {
       setMode(ViewMode)
@@ -112,13 +112,16 @@ export default function CircleAnalysis({ radius, setRadius, allData, layers, set
     setsearchResult(resultMeasurement)
     currentPageDataSetting(resultMeasurement, 1)
     setCurrentPage(1)
+    setData(data)
   }
 
 
   let resultlist = currentPageData.map((d) =>
     <div>
       {
-        d !== undefined && <SearchFunction data = {d} zoomTo={zoomTo}/>
+        d !== undefined && 
+        <SearchFunction data = {d} zoomTo={zoomTo} allData={allData} setAllData={setAllData} layers={layers} 
+        setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={data}/>
       }
     </div>
   );

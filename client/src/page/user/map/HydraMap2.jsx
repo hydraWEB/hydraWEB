@@ -54,7 +54,10 @@ import {
 import {
   EditableGeoJsonLayer,
   ViewMode,
-  DrawCircleFromCenterMode
+  DrawCircleFromCenterMode,
+  MeasureDistanceMode,
+  MeasureAreaMode,
+  MeasureAngleMode
 } from "nebula.gl";
 
 const FabIcon = withStyles({
@@ -265,7 +268,7 @@ function renderInfo(clickInfo, setClickInfo) {
   );
 }
 
-function ContextMenu({ parentRef, lastClick,startCircleAnalysis,setCurrentFunction }) {
+function ContextMenu({ parentRef, lastClick, startCircleAnalysis, setCurrentFunction }) {
   const [isVisible, setVisibility] = useState(false);
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
@@ -294,7 +297,7 @@ function ContextMenu({ parentRef, lastClick,startCircleAnalysis,setCurrentFuncti
     }
   });
 
-  function startCircleAnalysisFunc(e){
+  function startCircleAnalysisFunc(e) {
     setCurrentFunction(3)
     setVisibility(false)
     startCircleAnalysis()
@@ -318,21 +321,29 @@ function ContextMenu({ parentRef, lastClick,startCircleAnalysis,setCurrentFuncti
 export default function HydraMap() {
 
   const INITIAL_VIEW_STATE = {
-    longitude: 120.088825,
-    latitude: 24.021087,
-    zoom: 10,
-    pitch: 30,
+    longitude: 120.113924,
+    latitude: 23.898837,
+    zoom: 7,
+    pitch: 0,
     bearing: 0,
     preserveDrawingBuffer: true
   };
 
   const [selectedFeatureIndexes] = React.useState([]);
   const [radius, setRadius] = useState(0)
-  const [mode, _setMode] = useState(() => ViewMode)
-  const modeRef = useRef(mode);
-  const setMode = data => {
-    modeRef.current = data;
-    _setMode(data);
+
+  const [circleAnalysisMode, _setCircleAnalysisMode] = useState(() => ViewMode)
+  const circleAnalysisModeRef = useRef(circleAnalysisMode);
+  const setCircleAnalysisMode = data => {
+    circleAnalysisModeRef.current = data;
+    _setCircleAnalysisMode(data);
+  };
+
+  const [measurementMode, _setMeasurementMode] = useState(() => ViewMode)
+  const measurementModeRef = useRef(measurementMode);
+  const setMeasurementMode = data => {
+    measurementModeRef.current = data;
+    _setMeasurementMode(data);
   };
 
 
@@ -350,7 +361,7 @@ export default function HydraMap() {
       type: "FeatureCollection",
       features: []
     },
-    mode: mode,
+    mode: circleAnalysisMode,
     selectedFeatureIndexes,
     onEdit: onEdit
   });
@@ -361,9 +372,12 @@ export default function HydraMap() {
       type: "FeatureCollection",
       features: []
     },
-    mode: mode,
+    mode: measurementMode,
     selectedFeatureIndexes,
-    onEdit: onEdit
+    onEdit: onEdit,
+    modeConfig: {
+      formatTooltip: (distance) => parseFloat(distance).toFixed(2) + "units",
+    },
   });
 
   const drawLayer = new EditableGeoJsonLayer({
@@ -372,7 +386,7 @@ export default function HydraMap() {
       type: "FeatureCollection",
       features: []
     },
-    mode: mode,
+    mode: circleAnalysisMode,
     selectedFeatureIndexes,
     onEdit: onEdit
   });
@@ -391,7 +405,7 @@ export default function HydraMap() {
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
 
-  const [layers, setLayers] = useState([circleAnalysisLayer,measurementLayer,drawLayer])
+  const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer, drawLayer])
 
   const zoomToLocation = (geometry) => {
     setViewState({
@@ -432,18 +446,18 @@ export default function HydraMap() {
   }
 
   const setClickInfoFunc = (data) => {
-/*     setViewState(
-      {
-        longitude: data.object.geometry.coordinates[0],
-        latitude: data.object.geometry.coordinates[1],
-        zoom: 10,
-        bearing: 0,
-        pitch: viewState['pitch'],
-        transitionDuration: 1000,
-        transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
-
-      }
-    ) */
+    /*     setViewState(
+          {
+            longitude: data.object.geometry.coordinates[0],
+            latitude: data.object.geometry.coordinates[1],
+            zoom: 10,
+            bearing: 0,
+            pitch: viewState['pitch'],
+            transitionDuration: 1000,
+            transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
+    
+          }
+        ) */
     setClickInfo(data)
   }
 
@@ -456,7 +470,10 @@ export default function HydraMap() {
 
   function getCursor() {
     layers.forEach((element, i) => {
-      if (element.props.id == "circle-analysis-layer") {
+      if (element.props.id === "circle-analysis-layer") {
+        element.getCursor.bind(element)
+      }
+      if (element.props.id === "measurement-layer") {
         element.getCursor.bind(element)
       }
     })
@@ -468,7 +485,7 @@ export default function HydraMap() {
     newLayer.forEach((element, i) => {
       if (element.props.id == "circle-analysis-layer") {
         if (updatedData.features.length > 0) {
-          setMode(() => ViewMode)
+          setCircleAnalysisMode(() => ViewMode)
           let d = distance(lastClickRef.current[0], lastClickRef.current[1], updatedData.features[0].geometry.coordinates[0][0][0], updatedData.features[0].geometry.coordinates[0][0][1])
           setRadius(d)
           newLayer[i] = new EditableGeoJsonLayer({
@@ -482,7 +499,30 @@ export default function HydraMap() {
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
             data: updatedData,
-            mode: modeRef.current,
+            mode: circleAnalysisModeRef.current,
+            selectedFeatureIndexes,
+            onEdit: onEdit
+          });
+        }
+
+      }
+      if (element.props.id == "measurement-layer") {
+        if (updatedData.features.length > 0) {
+          setMeasurementMode(() => ViewMode)
+          let d = distance(lastClickRef.current[0], lastClickRef.current[1], updatedData.features[0].geometry.coordinates[0][0][0], updatedData.features[0].geometry.coordinates[0][0][1])
+          setRadius(d)
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "measurement-layer",
+            data: updatedData,
+            mode: ViewMode,
+            selectedFeatureIndexes,
+            onEdit: onEdit
+          });
+        } else {
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "measurement-layer",
+            data: updatedData,
+            mode: measurementModeRef.current,
             selectedFeatureIndexes,
             onEdit: onEdit
           });
@@ -498,7 +538,7 @@ export default function HydraMap() {
     newLayer.forEach((element, i) => {
       if (element.props.id == "circle-analysis-layer") {
         if (m === DrawCircleFromCenterMode) {
-          setMode(() => m)
+          setCircleAnalysisMode(() => m)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
             data: {
@@ -510,9 +550,34 @@ export default function HydraMap() {
             onEdit: onEdit
           });
         } else {
-          setMode(() => ViewMode)
+          setCircleAnalysisMode(() => ViewMode)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
+            data: element.props.data,
+            selectedFeatureIndexes,
+            mode: ViewMode,
+            onEdit: onEdit
+          });
+        }
+
+      }
+      if (element.props.id == "measurement-layer") {
+        if (m === MeasureDistanceMode || m === MeasureAreaMode || m === MeasureAngleMode) {
+          setMeasurementMode(() => m)
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "measurement-layer",
+            data: {
+              type: "FeatureCollection",
+              features: []
+            },
+            selectedFeatureIndexes,
+            mode: m,
+            onEdit: onEdit
+          });
+        } else {
+          setMeasurementMode(() => ViewMode)
+          newLayer[i] = new EditableGeoJsonLayer({
+            id: "measurement-layer",
             data: element.props.data,
             selectedFeatureIndexes,
             mode: ViewMode,
@@ -630,8 +695,8 @@ export default function HydraMap() {
                     icon={faPen} size="lg" color="white" />
                 </div>
               </OverlayTrigger>
-            </MenuBtnWrapper> 
-             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -662,7 +727,7 @@ export default function HydraMap() {
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <CircleAnalysis radius={radius} setRadius={setRadius} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={circleAnalysisLayer} mode={mode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation}/>
+            <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={circleAnalysisLayer} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
             <Print map={mapRef} deck={deckRef} />
@@ -671,7 +736,7 @@ export default function HydraMap() {
             <Draw />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 6}>
-            <Measurement />
+            <Measurement mode={measurementMode} setMode={setEditLayerMode} />
           </ShowWrapper>
         </div>
       </ShowWrapper>
@@ -746,7 +811,7 @@ export default function HydraMap() {
             {renderTooltip({ hoverInfo })}
           </DeckGL>
         </div>
-        <ContextMenu parentRef={containerRef} lastClick={lastClick} startCircleAnalysis={()=>{setEditLayerMode(DrawCircleFromCenterMode)}} setCurrentFunction={setCurrentFunction} />
+        <ContextMenu parentRef={containerRef} lastClick={lastClick} startCircleAnalysis={() => { setEditLayerMode(DrawCircleFromCenterMode) }} setCurrentFunction={setCurrentFunction} />
         {renderInfo(clickInfo, setClickInfo)}
       </div>
     </>

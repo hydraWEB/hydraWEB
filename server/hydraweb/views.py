@@ -5,8 +5,11 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework import views
 import os 
+import pymongo
 import json
 
+from .utils import get_db_handle
+import pprint
 
 class LayerAPIView(views.APIView):
 
@@ -33,5 +36,15 @@ class LayerAPIView(views.APIView):
 
 class LayerListAPIView(views.APIView):
 
-    def post(self,request):
+    def get(self,request):
+        client = pymongo.MongoClient('mongodb://localhost:27017')
+        db = client['hydraweb']
+        collection = db.get_collection("maps")
+        print(collection)
+        resultarr = []
+        result = collection.find()
+        for dt in result:
+            resultarr.append(dt)
+
+        return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
         pass

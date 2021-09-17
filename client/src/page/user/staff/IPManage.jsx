@@ -12,17 +12,16 @@ import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./S
 import { useToasts } from "react-toast-notifications";
 import styles from './Staff.module.scss'
 
-function TableData({ data, loadData }) {
+function TableData({ data, page, loadData }) {
     const { t, i18n } = useTranslation()
     const [showDelete, setShowDelete] = useState(false);
     const [deleteData, setDeleteData] = useState(null);
     const { addToast } = useToasts();
-    const [page, setPage] = useState(1);
 
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
-        IPSendDelete(deleteData.ip_address).then((res) => {
+        IPSendDelete(deleteData.id).then((res) => {
             addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
             loadData(page)
         }).catch((err) => {
@@ -126,7 +125,7 @@ export default function IPManage() {
 
     useEffect(() => {
         loadData(page)
-    })
+    }, [page])
 
     return (
         <div>
@@ -137,7 +136,7 @@ export default function IPManage() {
             <div className={styles.funcItem}>
                 <Link to={`/user/staff/ip-manage/new`}><Button variant="primary">{t('new_ip_address')}</Button></Link>
             </div>
-            <TableData data={data} />
+            <TableData data={data} page={page} loadData={loadData} />
             <div className={styles.pageItem}>
                 <Pagination count={totalpage} page={page} onChange={onChangePage} color="primary" />
 

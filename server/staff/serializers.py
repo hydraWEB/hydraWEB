@@ -90,7 +90,7 @@ class IPManageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = IpSetting
-        fields = ['ip_address', 'user']
+        fields = ['id','ip_address', 'user']
 
 
 class SystemSettingSerializer(serializers.ModelSerializer):

@@ -13,6 +13,7 @@ python-dotenv = "*"
 django-rest-passwordreset = "*"
 celery = "*"
 influxdb-client = "*"
+pymongo = "*"
 
 [dev-packages]
 

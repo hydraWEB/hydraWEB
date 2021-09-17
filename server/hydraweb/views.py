@@ -41,10 +41,12 @@ class LayerListAPIView(views.APIView):
         db = client['hydraweb']
         collection = db.get_collection("maps")
         print(collection)
-        resultarr = []
         result = collection.find()
-        for dt in result:
-            resultarr.append(dt)
+        json_docs = []
 
-        return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
+        for dt in result:
+            json_doc = json.dumps(dt)
+            json_docs.append(json_doc)
+
+        return Response({"status":"created","data":json_docs}, status=status.HTTP_200_OK)   
         pass

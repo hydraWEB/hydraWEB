@@ -57,7 +57,7 @@ class LayerListAPIView(views.APIView):
                 #res_json.append({"name": i, "data": new_json,"time_serie":False})
                 #i = i + 1
             #resultarr.append({"name": 'test', "file":res_json})
-            #break 
+            #break
 
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
         pass

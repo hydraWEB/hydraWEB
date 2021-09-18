@@ -352,7 +352,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setAllData(newMapData)
     let newLayer = [...layers] //複製一個layer
     newLayer.forEach((element, i) => {
-      if (element.props.name === "3d_test.json" && data.name === "3d_test.json" || element.props.name === "3d_test2.json" && data.name === "3d_test2.json" ) {
+      if (element.props.name === "GPS0" && data.name === "GPS0" || element.props.name === "GPS0" && data.name === "GPS0" ) {
         let hexdata = []
         data.data.features.forEach((dl) => {
           try {
@@ -498,7 +498,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       let newLayer = [...layers]
       list.forEach((l, index) => {
         l.files.forEach((data, idx) => {
-          if (data.name == "3d_test.json" || data.name === "3d_test2.json") {
+          if (data.name == "GPS0" || data.name === "GPS0") {
             let hexdata = []
             data.data.features.forEach((dl) => {
               try {

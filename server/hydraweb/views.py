@@ -39,25 +39,24 @@ class LayerListAPIView(views.APIView):
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client['hydraweb']
-        collection = db.get_collection("maps")
+        allCollection = db.collection_names()
         resultarr = []
-        res_json = []
-        result = collection.find()
-        
-        for dt in result:
+    
+        for col in allCollection:
+            collection = db.get_collection(col)
+            result = collection.find()
             i = 0
-            for feat in dt['features']:
-                print(feat)
-                
-                break
-                #new_json = {
-                #    "type": "FeatureCollection",
-                #    "features": [feat]
-                #}
-                #res_json.append({"name": i, "data": new_json,"time_serie":False})
-                #i = i + 1
-            #resultarr.append({"name": 'test', "file":res_json})
-            #break
+            res_json = []
+            for dt in result:
+                feat = dt['features']
+                new_json = {
+                    "type": "FeatureCollection",
+                    "features": feat
+                }
+                res_json.append({"name": col+str(i), "data": new_json,"time_serie":False})
+                i = i + 1
+            resultarr.append({"name": col, "file":res_json})
+        
 
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
         pass

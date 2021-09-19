@@ -53,7 +53,7 @@ class LayerListAPIView(views.APIView):
                     "type": "FeatureCollection",
                     "features": feat
                 }
-                res_json.append({"name": col+str(i), "data": new_json,"time_serie":False})
+                res_json.append({"name": dt['name'], "data": new_json,"time_serie":False})
                 i = i + 1
             resultarr.append({"name": col, "file":res_json})
         

@@ -408,6 +408,15 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
         if (data.time_serie) {
+          let measurementMap = new Map();
+          
+          data.data.features.forEach((da) => {
+            let value = measurementMap.get(da.properties._measurement)
+            //value.push(da)
+            measurementMap.set(da._measurement, value);
+          })
+
+          console.log(measurementMap)
           newLayer[i] = new GeoJsonLayer({
             id: data.name,
             name: data.name,
@@ -566,7 +575,9 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             )
             return
           }
-          if (data.time_serie) {
+          if (data.time_serie) {    
+ 
+            
             newLayer.push(
               new GeoJsonLayer({
                 id: data.name,
@@ -597,6 +608,10 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 }
               })
             )
+
+            
+
+            
           } else {
             newLayer.push(
               new GeoJsonLayer({

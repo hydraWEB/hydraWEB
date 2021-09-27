@@ -8,7 +8,8 @@ import {
   faClone,
   faStreetView,
   faPen,
-  faRuler
+  faRuler,
+  faWater
 } from '@fortawesome/free-solid-svg-icons'
 import {
   OverlayTrigger, Tooltip,
@@ -28,6 +29,7 @@ import CircleAnalysis from "./CircleAnalysis"
 import Chart from "./Chart.jsx"
 import Draw from "./Draw"
 import Measurement from "./Measurement"
+import WaterLevel from "./WaterLevel"
 
 import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
@@ -404,7 +406,6 @@ export default function HydraMap() {
   const [hoverInfo, setHoverInfo] = useState({});
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
-
   const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer, drawLayer])
 
   const zoomToLocation = (geometry) => {
@@ -711,6 +712,21 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 7} onClick={(e) => functionChangeToggle(7)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('waterlevel')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faWater} size="lg" color="white" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
           </ul>
         </nav>
       </div>
@@ -739,7 +755,14 @@ export default function HydraMap() {
             <Measurement mode={measurementMode} setMode={setEditLayerMode} />
           </ShowWrapper>
         </div>
+        <ShowWrapper isShow={currentFunction === 7}>
+          <div className={styles.menu_desk_outer_layer_2}>
+            <WaterLevel allData={allData} />
+          </div>
+        </ShowWrapper>
       </ShowWrapper>
+
+
 
       <div className={styles.fragment}>
         <div>

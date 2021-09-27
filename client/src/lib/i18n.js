@@ -40,6 +40,7 @@ i18n
                     "search_by_tag":"Search By Tag",
                     "tags":"Tags",
                     "measurement":"measurement",
+                    "waterlevel":"Water Level",
                     //環域分析
                     "radius":"Radius",
                     "center_point":"Center Point",
@@ -92,7 +93,7 @@ i18n
                     //系統設定
                     "change":"Change",
                     //IP管理
-                    
+                    "water_level":"Water Level",
                 }
             },
             zh_tw: {
@@ -124,6 +125,7 @@ i18n
                     "search_by_tag":"透過標籤搜尋",
                     "tags":"標籤",
                     "measurement":"測量",
+                    "waterlevel":"水位",
                     //環域分析
                     "radius":"半徑",
                     "center_point":"中心點",
@@ -175,7 +177,7 @@ i18n
                     "new_ip_address":"新增IP地址",
                     //系統設定
                     "change":"切換",
-                    
+                    "water_level":"水位",
                 }
             }
         },

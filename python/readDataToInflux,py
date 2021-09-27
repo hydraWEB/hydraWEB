@@ -1,0 +1,51 @@
+import json
+import os
+import influxdb_client
+from influxdb_client.client.write_api import SYNCHRONOUS
+
+
+token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg=="
+org = "hydraweb"
+bucket = "ground_water_observation_well"
+url="http://localhost:8086"
+
+client = influxdb_client.InfluxDBClient(
+   url=url,
+   token=token,
+   org=org
+)
+
+write_api = client.write_api(write_options=SYNCHRONOUS)
+
+path = "C:/Users/Leong/Downloads/地下水觀測井位置圖"
+resultpath = "C:/Users/Leong/HydraWeb2/HydraWeb/python/result"
+
+for filename in os.listdir(path):
+    with open(os.path.join(path, filename), 'r',encoding="utf-8") as f:
+        
+        data = json.load(f)
+        for feature in data['features']:
+            key = []
+            value = []
+            for dt in feature:
+                if(dt == "geometry"):
+                    key.append('lat')
+                    key.append('lon')
+                    value.append(feature[dt]["coordinates"][0])
+                    value.append(feature[dt]["coordinates"][1])
+                elif (dt == 'properties'):
+                    for prop in feature[dt]:
+                        if(prop == "prop1"):
+                            for p in feature[dt][prop]:
+                                if(p == 'ST_NO'):
+                                    fieldkey = p
+                                    field = feature[dt][prop][p]
+                                key.append(p)
+                                value.append(feature[dt][prop][p])
+                        else:
+                            key.append('Water_Level')
+                            value.append(feature[dt][prop]['Water_Level'])
+                            p = influxdb_client.Point(feature['properties']['prop1']['ST_NO']).time(feature[dt][prop]['TIME']).field(fieldkey,field)
+                            for i in range(0, len(key)):
+                                p.tag(key[i],value[i])
+                            write_api.write(bucket=bucket, org=org, record=p)

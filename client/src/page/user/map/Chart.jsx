@@ -123,12 +123,6 @@ function LineChart({ chartData }) {
 
     var colorize3 = d3.scaleOrdinal().range(d3.schemePaired)
 
-    //on hover div
-    var div = d3.select("body").append("div")
-      .style("opacity", 0);
-
-
-
     //上限深度
     svg.selectAll("text.depth")
       .data(list).enter().append("text")

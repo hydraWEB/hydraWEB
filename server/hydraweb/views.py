@@ -105,7 +105,10 @@ class LayerListAPIView(views.APIView):
         db = client['hydraweb']
         allCollection = db.collection_names()
         resultarr = []
-    
+        res_json2 = []
+        waterjsondt = self.query_city("groundwater_well")
+        res_json2.append({"name": "Ground Water Well", "data": waterjsondt, "time_serie":False})
+        resultarr.append({"name": "", "file":res_json2})
         for col in allCollection:
             collection = db.get_collection(col)
             result = collection.find()
@@ -126,6 +129,7 @@ class LayerListAPIView(views.APIView):
                 if dt['name'].startswith("time_series_108雲林地區地層下陷水準檢測成果表"):
                     is_time_series = True
                     yljsondt = self.query_city("Yunlin")
+                    
                     res_json.append({"name": dt['name'], "data": yljsondt,"time_serie":is_time_series})
                 elif dt['name'].startswith("time_series_108彰化地區地層下陷水準檢測成果表"):
                     is_time_series = True

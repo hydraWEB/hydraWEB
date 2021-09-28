@@ -6,7 +6,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg=="
 org = "hydraweb"
-bucket = "ground_water_observation_well"
+bucket = "groundwater_well"
 url="http://localhost:8086"
 
 client = influxdb_client.InfluxDBClient(

@@ -31,19 +31,48 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Select from '@material-ui/core/Select';
+import SearchIcon from '@material-ui/icons/Search';
 
 export default function WaterLevel({allData}){
 
-    const [allTime, setAllTime] = useState()
+    const [data, setData] = useState()
     const [allStation, setAllStation] = useState([])
     const [currentStation, setCurrentStation] = useState()
     const [currentStationData, setCurrentStationData] = useState()
     const { t, i18n } = useTranslation();
 
   
+    function findCurrentStation(){
+        let stationDataArr
+        allData.forEach(e => {
+            if(e.name === 'ground water well'){
+                e.files.forEach(dt => {
+                    dt.data.features.forEach(feat => {
+                        let st_no = feat.properties.prop1.ST_NO
+                        if(typeof feat.properties.prop1.ST_NO === 'number'){
+                            st_no = feat.properties.prop1.ST_NO.toString()
+                        }
+                        if(st_no === currentStation){
+                            stationDataArr = feat
+                        }
+                    })
+                })
+            }
+        })
+        let data = []
+        for (let p in stationDataArr.properties){
+            if (p !== 'prop1'){
+                let tempArr = {}
+                tempArr["date"] = stationDataArr.properties[p].TIME
+                tempArr["value"] = stationDataArr.properties[p].Water_Level
+                data.push(tempArr)
+            }
+        }
+        setData(data)
+        setCurrentStationData(stationDataArr)
+    }
 
-
-    function findAllStation(target_st){
+    function findAllStation(){
         let allStationArr = []
         allData.forEach((e, i) => {
             if (e.name === 'ground water well'){
@@ -63,24 +92,75 @@ export default function WaterLevel({allData}){
         setAllStation(allStationArr)
     }
 
-    function findAllTime(){
+    useEffect(() => {
+        if(data !== undefined){
+            drawChart()
+        }
+    }, [data])
 
-    }
 
     useEffect(() => {
         findAllStation()
-        drawChart();
       }, [allData]);
 
-      
-    
+    function findAllTime(){
+        let timeArr = []
+        currentStationData.forEach(dt => {
 
-    function drawChart(){
+        })
+    }   
 
+
+    function drawChart(){   
+        const margin = { top: 0, right: 0, bottom: 0, left: 0 },
+            width = 500 - margin.left - margin.right,
+            height = 700 - margin.top - margin.bottom;
+        const yMinValue = d3.min(data, d=> d.value);
+        const yMaxValue = d3.max(data, d=> d.value);
+        const xMinValue = d3.min(data, d=> d.date);
+        const xMaxValue = d3.max(data, d=> d.date);
+        
+        const svg = d3.select('#LineChart')
+            .append('svg')
+            .attr('width', width + margin.left + margin.right)
+            .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
+        
+        const xScale = d3.scaleTime()
+            .domain(d3.extent(data, (d) => new Date(d.date)))
+            .range([0,width]);
+
+        const yScale = d3.scaleLinear()
+            .domain([0, yMaxValue])
+            .range([height, 0]);
+
+        const line = d3.line()
+            .x((d) => xScale(d.x))
+            .y((d) => yScale(d.y));
+
+        const dataset = data.map((d) => ({
+            x: new Date(d.date),
+            y: d.value
+        }));
+
+
+        svg.append('path')
+            .datum(dataset)
+            .attr('fill',"white")
+            .attr('stroke', '#f6c3d0')
+            .attr('stroke-width', 10)
+            .attr('class', 'line')
+            .attr('d', line)
+    }
+
+    const onClick = (e) => {
+        findCurrentStation()
     }
 
     const handleChange = (e) =>{
         setCurrentStation(e.target.value)
+        
     }
 
     let selectStation = allStation.map((d)=>
@@ -104,10 +184,14 @@ export default function WaterLevel({allData}){
 
                 {selectStation}
             </Select>
+            <IconButton type="submit" aria-label="search" onClick={onClick}>
+                <SearchIcon />
+            </IconButton>
             <div className={styles.water_level_layout}>
                 <div className={styles.water_level_layout_left}>Left</div>
                 <div className={styles.water_level_layout_right}>Right</div>
             </div>
+            <div id="LineChart"/>
         </div>
     );
 }

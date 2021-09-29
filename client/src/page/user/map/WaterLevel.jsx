@@ -105,6 +105,9 @@ export default function WaterLevel({ allData }) {
         })
         setAllStation(allStationArr)
     }
+    useEffect(() => {
+        findAllStation()
+    }, [currentFile])
 
     useEffect(() => {
         if (data !== undefined) {
@@ -115,7 +118,6 @@ export default function WaterLevel({ allData }) {
 
     useEffect(() => {
         findAllFile()
-        findAllStation()
     }, [allData]);
 
 

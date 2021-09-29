@@ -367,20 +367,57 @@ ul {
 
 .water_level_layout{
     float: left;
-    width: 100%;
+    width: 95%;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 20px;
     color:white;
 }
 
 .water_level_layout_left {
     float: left;
-    background-color:black;
     width: 30%;
+    overflow-y: auto;
+    max-height: 82vh;
 }
+
+.water_level_layout_left_1 {
+    border-radius: 5px;
+    background-color:black;
+    padding: 10px;
+}
+
+.water_level_layout_left_2 {
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color:black;
+    padding: 10px;
+}
+
 .water_level_layout_right {
     float: left;
-    background-color:black;
-    width: 60%;
+    width: 68%;
     margin-left: 2%;
+    overflow-x: scroll;
+}
+
+.water_level_layout_right_1 {
+    background-color:white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.water_level_graph{
+    background-color: white;
+    color:black;
+    width:200%;
+}
+.water_level_dropdown{
+    padding: 0 20px 10px 20px;
+}
+.axisBlack line{
+    stroke: black;
+}
+.axisRed text{
+    fill: black;
 }

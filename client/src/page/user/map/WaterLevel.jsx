@@ -134,6 +134,9 @@ export default function WaterLevel({ allData }) {
         console.log(xMinValue)
         console.log(xMaxValue)
 
+        let idleTimeout
+        function idled(){ idleTimeout = null;}
+        
         d3.select("#LineChart").html("");
 
         var svg = d3.select('#LineChart')
@@ -153,15 +156,37 @@ export default function WaterLevel({ allData }) {
             .domain([yMinValue, yMaxValue])
             .range([height, 0]);
 
-        const line = d3.line()
-            .x((d) => xScale(d.x))
-            .y((d) => yScale(d.y))
-            .curve(d3.curveMonotoneX);
+        const line = svg.append("g")
+            .attr("clip-path", "url(#clip)")
 
         const dataset = data.map((d) => ({
             x: new Date(d.date),
             y: d.value
         }));
+
+        var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
+            .extent( [ [0,0], [width,height] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+            .on("end", updateChart)
+
+        line.append("path")
+            .datum(dataset)
+            .attr('fill-opacity', 0)
+            .attr('stroke', '#f6c3d0')
+            .attr('stroke-width', 3)
+            .attr('class', 'line')
+            .attr('d', d3.line()
+                .x(function(d) {return xScale(d.x)})
+                .y(function(d) {return yScale(d.y)})
+                )
+
+        line.append("g")
+            .attr("class","brush")
+            .call(brush)
+        /* var line = d3.line()
+            .x((d) => xScale(d.x))
+            .y((d) => yScale(d.y)) */
+
+        
 
         const focus = svg.append('g')
             .attr('class', 'focus')
@@ -174,19 +199,30 @@ export default function WaterLevel({ allData }) {
             .attr("x", 15)
             .attr("dy", ".31em");
 
+        const clip = svg.append("defs")
+            .append("svg:clipPath")
+            .attr("id","clip")
+            .append("svg:rect")
+            .attr("width",width)
+            .attr("height",height)
+            .attr("x",0)
+            .attr("y",0);
+            
+        
+
         const tooltip = d3.select('#LineChart')
             .append('div')
             .attr('class','tooltip')
             .style('opacity', 0);
 
-        svg.append('g')     //x-axis
+        var xAxis = svg.append('g')     //x-axis
             .attr('class','x-axis')
             .attr('transform', `translate(0,${height})`)
             .call(d3.axisBottom().scale(xScale).tickSize(15).tickFormat(d3.timeFormat("%Y-%m-%d:%H-%M-%S")));
             
         svg.selectAll('line')
 
-        svg.append('g')     //y-axis
+        var yAxis = svg.append('g')     //y-axis
             .attr('class', 'y-axis')
             .attr("fill", 'black')
             .call(d3.axisLeft(yScale))
@@ -239,8 +275,21 @@ export default function WaterLevel({ allData }) {
                 //focus.select(".x-hover-line").attr("y2", mouse[0]);
                 //focus.select(".y-hover-line").attr("x2", mouse[1]);
               });
+
         
         
+        function updateChart(event,d){
+            var extent = event.selection
+            if(!extent){
+                if(!idleTimeout) return idleTimeout = setTimeout(idled, 350)
+                xScale.domain([ 4,8])
+            }
+            else{
+                xScale.domain([xScale.invert(extent[0]),xScale.invert(extent[1])])
+                line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+            }
+
+        }
     }
 
     const onClick = (e) => {
@@ -278,7 +327,7 @@ export default function WaterLevel({ allData }) {
                 <div className={styles.water_level_layout_left}>
                     <div className={styles.water_level_layout_left_1}>
                         <div className={styles.water_level_dropdown}>
-                            <h3>選擇座標</h3>
+                            <h5>選擇座標</h5>
                             <Select
                                 native
                                 value={currentFile}
@@ -291,6 +340,7 @@ export default function WaterLevel({ allData }) {
                                 <option aria-label="None" value="" />
                                 {selectFile}
                             </Select>
+                            <br/>
                             <Select
                                 native
                                 value={currentStation}
@@ -303,9 +353,10 @@ export default function WaterLevel({ allData }) {
                                 <option aria-label="None" value="" />
                                 {selectStation}
                             </Select>
-                            <IconButton type="submit" aria-label="search" onClick={onClick}>
-                                <SearchIcon />
-                            </IconButton>
+                            <br/>
+                            <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onClick}  startIcon={<SearchIcon />}>
+                                搜尋 
+                            </Button>
                         </div>
                     </div>
                     <div className={styles.water_level_layout_left_2}>

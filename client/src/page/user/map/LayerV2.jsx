@@ -6,7 +6,7 @@ import { DataFilterExtension } from '@deck.gl/extensions';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import { ScenegraphLayer } from '@deck.gl/mesh-layers';
 import { ColumnLayer } from '@deck.gl/layers';
-import { HexagonLayer } from '@deck.gl/aggregation-layers';
+import { HexagonLayer,HeatmapLayer } from '@deck.gl/aggregation-layers';
 import { LayerList } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from '@material-ui/core/Slider';
@@ -388,7 +388,8 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
 
           }
         })
-        newLayer[i] =
+        
+      /*   newLayer[i] =
           new ColumnLayer({
             id: data.name,
             name: data.name,
@@ -403,6 +404,18 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             getPosition: d => d.COORDINATES,
             getFillColor: fillcolor,
             getLineColor: [0, 0, 0],
+          }) */
+
+          newLayer[i] =
+          new HeatmapLayer({
+            id: data.name,
+            name: data.name,
+            data: hexdata,
+            extruded: true,
+            pickable: true,
+            visible: data.value,
+            getWeight: d => d.z + 45.3,
+            getPosition: d => d.COORDINATES,
           })
         return;
       }
@@ -544,7 +557,17 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
               }
             })
             newLayer.push(
-              new ColumnLayer({
+              new HeatmapLayer({
+                id: data.name,
+                name: data.name,
+                data: hexdata,
+                extruded: true,
+                pickable: true,
+                visible: data.value,
+                getWeight: d => d.z + 45.3,
+                getPosition: d => d.COORDINATES,
+              })
+              /* new ColumnLayer({
                 id: data.name,
                 name: data.name,
                 data: hexdata,
@@ -558,7 +581,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 getPosition: d => d.COORDINATES,
                 getFillColor: fillcolor,
                 getLineColor: [0, 0, 0],
-              })
+              }) */
               /* new HexagonLayer({
                 id: data.name,
                 name: data.name,

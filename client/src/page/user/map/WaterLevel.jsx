@@ -111,7 +111,7 @@ export default function WaterLevel({ allData }) {
 
     useEffect(() => {
         if (data !== undefined) {
-            drawChart()
+            DrawChart()
         }
     }, [data])
 
@@ -121,7 +121,7 @@ export default function WaterLevel({ allData }) {
     }, [allData]);
 
 
-    function drawChart() {
+    function DrawChart() {
         const margin = { top: 30, right: 0, bottom: 30, left: 55 },
             width = 1650 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
@@ -163,31 +163,84 @@ export default function WaterLevel({ allData }) {
             y: d.value
         }));
 
-        svg.append('g')
+        const focus = svg.append('g')
+            .attr('class', 'focus')
+            .style('display','none');
+
+        focus.append('circle')
+            .attr("r", 7.5);
+
+        focus.append("text")
+            .attr("x", 15)
+            .attr("dy", ".31em");
+
+        const tooltip = d3.select('#LineChart')
+            .append('div')
+            .attr('class','tooltip')
+            .style('opacity', 0);
+
+        svg.append('g')     //x-axis
             .attr('class','x-axis')
             .attr('transform', `translate(0,${height})`)
-            .call(d3.axisBottom().scale(xScale).tickSize(15).tickFormat(d3.timeFormat("%Y-%m-%d:%H-%M-%S")))
+            .call(d3.axisBottom().scale(xScale).tickSize(15).tickFormat(d3.timeFormat("%Y-%m-%d:%H-%M-%S")));
             
-        
         svg.selectAll('line')
 
-        svg.append('g')
+        svg.append('g')     //y-axis
             .attr('class', 'y-axis')
             .attr("fill", 'black')
             .call(d3.axisLeft(yScale))
             .selectAll("text")
             .attr("fill", 'black')
 
-        svg.append('path')
+        svg.append('path')      //chart line
             .datum(dataset)
-            .attr('fill', "white")
+            .attr('fill-opacity', 0)
             .attr('stroke', '#f6c3d0')
             .attr('stroke-width', 3)
             .attr('class', 'line')
             .attr('d', line)
 
         svg.selectAll("text")
-            .attr("fill", 'black')
+            .attr("fill", 'black');
+        
+        svg.append('rect')
+            .attr('class','overlay')
+            .attr('width', width)
+            .attr('height',height)
+            .style('opacity', 0)
+            .on('mouseover', () => {
+                focus.style('display',null);
+            })
+            .on('mouseout', () =>{
+                focus.style("display", "none");
+            })
+            .on('mousemove', e => { // mouse moving over canvas
+                let length = dataset.length
+                let w = 1593.977294921875 - 0.20454709231853485
+                let calc = w / length
+                var mouse = d3.pointer(e)
+                let x_location = Math.floor((mouse[0]+0.20454709231853485)/calc)
+                if(x_location === length) x_location -= 1;
+                focus.attr("transform", "translate(" + xScale(dataset[x_location]['x']) + "," + yScale(dataset[x_location]['y']) + ")");
+                focus.select("text").text(function() { return dataset[x_location]["y"]});
+                if(x_location > length - 70){
+                    focus.select("text")
+                        .attr("x", -50)
+                        .attr("y", -20);
+                }
+                else{
+                    focus.select("text")
+                        .attr("x", 0)
+                        .attr("y", -20);
+                }
+                
+                
+                //focus.select(".x-hover-line").attr("y2", mouse[0]);
+                //focus.select(".y-hover-line").attr("x2", mouse[1]);
+              });
+        
+        
     }
 
     const onClick = (e) => {

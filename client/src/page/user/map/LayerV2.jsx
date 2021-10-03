@@ -416,6 +416,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             visible: data.value,
             getWeight: d => d.z + 45.3,
             getPosition: d => d.COORDINATES,
+            
           })
         return;
       }

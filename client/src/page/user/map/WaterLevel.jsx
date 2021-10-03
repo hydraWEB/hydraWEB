@@ -89,7 +89,7 @@ export default function WaterLevel({ allData }) {
         allData.forEach((e, i) => {
             if (e.name === 'ground water well') {
                 e.files.forEach(dt => {
-                    if(dt.name === currentFile){
+                    if (dt.name === currentFile) {
                         dt.data.features.forEach(feat => {
                             if (typeof feat.properties.prop1.ST_NO === "number") {
                                 let st_no = feat.properties.prop1.ST_NO.toString()
@@ -122,174 +122,126 @@ export default function WaterLevel({ allData }) {
 
 
     function DrawChart() {
-        const margin = { top: 30, right: 0, bottom: 30, left: 55 },
-            width = 1650 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
-        const yMinValue = d3.min(data, d => d.value);
-        const yMaxValue = d3.max(data, d => d.value);
-        const xMinValue = d3.min(data, d => d.date);
-        const xMaxValue = d3.max(data, d => d.date);
-        console.log(yMinValue)
-        console.log(yMaxValue)
-        console.log(xMinValue)
-        console.log(xMaxValue)
+        const margin = {top: 10, right: 30, bottom: 30, left: 60},
+            width = 460 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
 
-        let idleTimeout
-        function idled(){ idleTimeout = null;}
-        
-        d3.select("#LineChart").html("");
+        // append the svg object to the body of the page
+        const svg = d3.select("#my_dataviz")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform",
+                `translate(${margin.left}, ${margin.top})`);
 
-        var svg = d3.select('#LineChart')
-            .append('svg')
-            .attr('width', width + margin.left + margin.right)
-            .attr('height', height + margin.top + margin.bottom)
-            .append('g')
-            .attr('transform', `translate(${margin.left},${margin.top})`);
+        //Read the data
+        d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
 
-        svg.select("#LineChart").selectAll("*").remove();
+        // When reading the csv, I must format variables:
+        function(d){
+            return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+        }).then(
 
-        const xScale = d3.scaleTime()
-            .domain(d3.extent(data, (d) => new Date(d.date)))
-            .range([0, width]);
+        // Now I can use this dataset:
+        function(data) {
 
-        const yScale = d3.scaleLinear()
-            .domain([yMinValue, yMaxValue])
-            .range([height, 0]);
+            // Add X axis --> it is a date format
+            const x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return d.date; }))
+            .range([ 0, width ]);
+            var xAxis = svg.append("g")
+            .attr("transform", `translate(0, ${height})`)
+            .call(d3.axisBottom(x));
 
-        const line = svg.append("g")
+            // Add Y axis
+            const y = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) { return +d.value; })])
+            .range([ height, 0 ]);
+            var yAxis = svg.append("g")
+            .call(d3.axisLeft(y));
+
+            // Add a clipPath: everything out of this area won't be drawn.
+            const clip = svg.append("defs").append("svg:clipPath")
+                .attr("id", "clip")
+                .append("svg:rect")
+                .attr("width", width )
+                .attr("height", height )
+                .attr("x", 0)
+                .attr("y", 0);
+
+            // Add brushing
+            const brush = d3.brushX()                   // Add the brush feature using the d3.brush function
+                .extent( [ [0,0], [width,height] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
+                .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
+
+            // Create the line variable: where both the line and the brush take place
+            const line = svg.append('g')
             .attr("clip-path", "url(#clip)")
 
-        const dataset = data.map((d) => ({
-            x: new Date(d.date),
-            y: d.value
-        }));
-
-        var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-            .extent( [ [0,0], [width,height] ] )  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-            .on("end", updateChart)
-
-        line.append("path")
-            .datum(dataset)
-            .attr('fill-opacity', 0)
-            .attr('stroke', '#f6c3d0')
-            .attr('stroke-width', 3)
-            .attr('class', 'line')
-            .attr('d', d3.line()
-                .x(function(d) {return xScale(d.x)})
-                .y(function(d) {return yScale(d.y)})
+            // Add the line
+            line.append("path")
+            .datum(data)
+            .attr("class", "line")  // I add the class line to be able to modify this line later on.
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 1.5)
+            .attr("d", d3.line()
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(d.value) })
                 )
 
-        line.append("g")
-            .attr("class","brush")
-            .call(brush)
-        /* var line = d3.line()
-            .x((d) => xScale(d.x))
-            .y((d) => yScale(d.y)) */
+            // Add the brushing
+            line
+            .append("g")
+                .attr("class", "brush")
+                .call(brush);
 
-        
+            // A function that set idleTimeOut to null
+            let idleTimeout
+            function idled() { idleTimeout = null; }
 
-        const focus = svg.append('g')
-            .attr('class', 'focus')
-            .style('display','none');
+            // A function that update the chart for given boundaries
+            function updateChart(event,d) {
 
-        focus.append('circle')
-            .attr("r", 7.5);
-
-        focus.append("text")
-            .attr("x", 15)
-            .attr("dy", ".31em");
-
-        const clip = svg.append("defs")
-            .append("svg:clipPath")
-            .attr("id","clip")
-            .append("svg:rect")
-            .attr("width",width)
-            .attr("height",height)
-            .attr("x",0)
-            .attr("y",0);
-            
-        
-
-        const tooltip = d3.select('#LineChart')
-            .append('div')
-            .attr('class','tooltip')
-            .style('opacity', 0);
-
-        var xAxis = svg.append('g')     //x-axis
-            .attr('class','x-axis')
-            .attr('transform', `translate(0,${height})`)
-            .call(d3.axisBottom().scale(xScale).tickSize(15).tickFormat(d3.timeFormat("%Y-%m-%d:%H-%M-%S")));
-            
-        svg.selectAll('line')
-
-        var yAxis = svg.append('g')     //y-axis
-            .attr('class', 'y-axis')
-            .attr("fill", 'black')
-            .call(d3.axisLeft(yScale))
-            .selectAll("text")
-            .attr("fill", 'black')
-
-        svg.append('path')      //chart line
-            .datum(dataset)
-            .attr('fill-opacity', 0)
-            .attr('stroke', '#f6c3d0')
-            .attr('stroke-width', 3)
-            .attr('class', 'line')
-            .attr('d', line)
-
-        svg.selectAll("text")
-            .attr("fill", 'black');
-        
-        svg.append('rect')
-            .attr('class','overlay')
-            .attr('width', width)
-            .attr('height',height)
-            .style('opacity', 0)
-            .on('mouseover', () => {
-                focus.style('display',null);
-            })
-            .on('mouseout', () =>{
-                focus.style("display", "none");
-            })
-            .on('mousemove', e => { // mouse moving over canvas
-                let length = dataset.length
-                let w = 1593.977294921875 - 0.20454709231853485
-                let calc = w / length
-                var mouse = d3.pointer(e)
-                let x_location = Math.floor((mouse[0]+0.20454709231853485)/calc)
-                if(x_location === length) x_location -= 1;
-                focus.attr("transform", "translate(" + xScale(dataset[x_location]['x']) + "," + yScale(dataset[x_location]['y']) + ")");
-                focus.select("text").text(function() { return dataset[x_location]["y"]});
-                if(x_location > length - 70){
-                    focus.select("text")
-                        .attr("x", -50)
-                        .attr("y", -20);
-                }
-                else{
-                    focus.select("text")
-                        .attr("x", 0)
-                        .attr("y", -20);
-                }
-                
-                
-                //focus.select(".x-hover-line").attr("y2", mouse[0]);
-                //focus.select(".y-hover-line").attr("x2", mouse[1]);
-              });
-
-        
-        
-        function updateChart(event,d){
+            // What are the selected boundaries?
             var extent = event.selection
+
+            // If no selection, back to initial coordinate. Otherwise, update X axis domain
             if(!extent){
-                if(!idleTimeout) return idleTimeout = setTimeout(idled, 350)
-                xScale.domain([ 4,8])
-            }
-            else{
-                xScale.domain([xScale.invert(extent[0]),xScale.invert(extent[1])])
+                if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
+                x.domain([ 4,8])
+            }else{
+                x.domain([ x.invert(extent[0]), x.invert(extent[1]) ])
                 line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
             }
 
-        }
+            // Update axis and line position
+            xAxis.transition().duration(1000).call(d3.axisBottom(x))
+            line
+                .select('.line')
+                .transition()
+                .duration(1000)
+                .attr("d", d3.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.value) })
+                )
+            }
+
+            // If user double click, reinitialize the chart
+            svg.on("dblclick",function(){
+            x.domain(d3.extent(data, function(d) { return d.date; }))
+            xAxis.transition().call(d3.axisBottom(x))
+            line
+                .select('.line')
+                .transition()
+                .attr("d", d3.line()
+                .x(function(d) { return x(d.date) })
+                .y(function(d) { return y(d.value) })
+            )
+            });
+
+        })
     }
 
     const onClick = (e) => {
@@ -340,7 +292,7 @@ export default function WaterLevel({ allData }) {
                                 <option aria-label="None" value="" />
                                 {selectFile}
                             </Select>
-                            <br/>
+                            <br />
                             <Select
                                 native
                                 value={currentStation}
@@ -353,19 +305,19 @@ export default function WaterLevel({ allData }) {
                                 <option aria-label="None" value="" />
                                 {selectStation}
                             </Select>
-                            <br/>
-                            <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onClick}  startIcon={<SearchIcon />}>
-                                搜尋 
+                            <br />
+                            <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onClick} startIcon={<SearchIcon />}>
+                                搜尋
                             </Button>
                         </div>
                     </div>
                     <div className={styles.water_level_layout_left_2}>
-                       {list}
+                        {list}
                     </div>
                 </div>
                 <div className={styles.water_level_layout_right}>
                     <div className={styles.water_level_layout_right_1}>
-                        <div id="LineChart" className={styles.water_level_graph} />
+                        <div id="my_dataviz" className={styles.water_level_graph} />
                     </div>
                 </div>
             </div>

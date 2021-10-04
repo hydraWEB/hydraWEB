@@ -32,6 +32,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Select from '@material-ui/core/Select';
 import SearchIcon from '@material-ui/icons/Search';
+import Popover from '@mui/material/Popover';
 
 export default function WaterLevel({ allData }) {
 
@@ -41,6 +42,7 @@ export default function WaterLevel({ allData }) {
     const [currentFile, setCurrentFile] = useState()
     const [currentStation, setCurrentStation] = useState()
     const [currentStationData, setCurrentStationData] = useState(null)
+    const [openpop, setOpenpop] = useState(null)
     const { t, i18n } = useTranslation();
 
     function findCurrentStation() {
@@ -141,6 +143,16 @@ export default function WaterLevel({ allData }) {
             y: d.value
         }));
 
+        const focus = svg.append('g')
+            .attr('class', 'focus')
+            .style('display', 'none');
+
+        focus.append('circle')
+            .attr("r", 7.5);
+
+        focus.append("text")
+            .attr("x", 15)
+            .attr("dy", ".31em");
 
 
         // Add X axis --> it is a date format
@@ -226,6 +238,37 @@ export default function WaterLevel({ allData }) {
         }
 
         // If user double click, reinitialize the chart
+        svg.on('mouseover', () => {
+            focus.style('display',null);
+        })
+        .on('mouseout', () =>{
+            focus.style("display", "none");
+        })
+        .on('mousemove', e => { // mouse moving over canvas
+            let length = dataset.length
+            let w = 1593.977294921875 - 0.20454709231853485
+            let calc = w / length
+            var mouse = d3.pointer(e)
+            let x_location = Math.floor((mouse[0]+0.20454709231853485)/calc)
+            if(x_location === length) x_location -= 1;
+            focus.attr("transform", "translate(" + x(dataset[x_location]['x']) + "," + y(dataset[x_location]['y']) + ")");
+            focus.select("text").text(function() { return dataset[x_location]["y"]});
+            if(x_location > length - 70){
+                focus.select("text")
+                    .attr("x", -50)
+                    .attr("y", -20);
+            }
+            else{
+                focus.select("text")
+                    .attr("x", 0)
+                    .attr("y", -20);
+            }
+            
+            
+            //focus.select(".x-hover-line").attr("y2", mouse[0]);
+            //focus.select(".y-hover-line").attr("x2", mouse[1]);
+          });
+
         svg.on("dblclick",function(){
         x.domain(d3.extent(dataset, function(d) { return d.x; }))
         xAxis.transition().call(d3.axisBottom().scale(x).tickSize(15).tickFormat(d3.timeFormat("%Y-%m-%d:%H-%M-%S")));
@@ -266,11 +309,20 @@ export default function WaterLevel({ allData }) {
             <div>{key} : {value.toString()}</div>
         )
     })
+    const handlePopClick = (event) => {
+        setOpenpop(event.currentTarget);
+    }
+    const handleClose = () => {
+        setOpenpop(null);
+      };
+    const open = Boolean(openpop);
+    const id = open ? 'simple-popover' : undefined
+
     return (
         <div>
-            <h4 className={styles.func_title}>{t('water_level')}</h4>
-
-
+            <h4 className={styles.func_title}>{t('water_level')}
+            
+            </h4>
             <div className={styles.water_level_layout}>
                 <div className={styles.water_level_layout_left}>
                     <div className={styles.water_level_layout_left_1}>
@@ -305,6 +357,19 @@ export default function WaterLevel({ allData }) {
                             <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onClick} startIcon={<SearchIcon />}>
                                 搜尋
                             </Button>
+                            <Button className="mt-2" variant="contained" onClick={handlePopClick}>Help</Button>
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={openpop}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                            >
+                                <Typography sx={{ p: 2 }}>Brush the chart to zoom.Double click to re-initialize</Typography>
+                            </Popover>
                         </div>
                     </div>
                     <div className={styles.water_level_layout_left_2}>

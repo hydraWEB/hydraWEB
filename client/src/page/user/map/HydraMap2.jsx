@@ -12,7 +12,9 @@ import {
   faWater
 } from '@fortawesome/free-solid-svg-icons'
 import {
+  Container,
   OverlayTrigger, Tooltip,
+  Row, Col,Image
 } from 'react-bootstrap';
 import { useTranslation, Trans } from "react-i18next";
 
@@ -815,6 +817,7 @@ export default function HydraMap() {
           </FabIcon>
 
         </div>
+        
         <div className={styles.map} id="big_map" ref={containerRef}>
           <DeckGL
             tooltip={true}

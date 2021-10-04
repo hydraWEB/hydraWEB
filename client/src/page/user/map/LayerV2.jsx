@@ -119,8 +119,15 @@ const hashCode = (str) => { // java String#hashCode
 
 export const getDotColor = d => {
   let a = hashCode(d.name)
+
   return [(a >> 1) & 255, (a << 3) & 255, (a >> 5) & 255]
 };
+
+export const getDotColor2 = d => {
+  if(d){
+    return 
+  }
+}
 
 function componentToHex(c) {
   var hex = c.toString(16);
@@ -274,6 +281,7 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
             pointRadiusScale: 5,
             getPointRadius: f => 5,
             getFillColor: getDotColor(data[k]),
+            stroked: false,
             // Interactive props
             pickable: true,
             autoHighlight: true,
@@ -321,28 +329,79 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
   }
 
   function fillcolor(d) {
-    if (d.z > 34) {
+    if (d.properties > 34) {
       return [146, 0, 29]
-    } else if (d.z > 30) {
+    } else if (d.properties > 30) {
       return [182, 21, 19, 255]
-    } else if (d.z > 25) {
+    } else if (d.properties > 25) {
       return [168, 72, 5, 255]
-    } else if (d.z > 20) {
+    } else if (d.properties > 20) {
       return [158, 91, 5, 255]
-    } else if (d.z > 15) {
+    } else if (d.properties > 15) {
       return [135, 96, 3, 255]
-    } else if (d.z > 10) {
+    } else if (d.properties > 10) {
       return [98, 97, 0, 255]
-    } else if (d.z > 5) {
+    } else if (d.properties > 5) {
       return [83, 82, 0, 255]
-    } else if (d.z > 0) {
+    } else if (d.properties > 0) {
       return [54, 85, 24, 255]
     }
     else {
       return [54, 138, 155, 255]
     }
+  }
+
+
+  function fillcolor2(d) {
+    function hslToRgb(h, s, l) {
+      let c = (1 - Math.abs(2 * l - 1)) * s;
+      let hp = h / 60.0;
+      let x = c * (1 - Math.abs((hp % 2) - 1));
+      let rgb1;
+      if (isNaN(h)) rgb1 = [0, 0, 0];
+      else if (hp <= 1) rgb1 = [c, x, 0];
+      else if (hp <= 2) rgb1 = [x, c, 0];
+      else if (hp <= 3) rgb1 = [0, c, x];
+      else if (hp <= 4) rgb1 = [0, x, c];
+      else if (hp <= 5) rgb1 = [x, 0, c];
+      else if (hp <= 6) rgb1 = [c, 0, x];
+      let m = l - c * 0.5;
+      return [
+        Math.round(255 * (rgb1[0] + m)),
+        Math.round(255 * (rgb1[1] + m)),
+        Math.round(255 * (rgb1[2] + m))];
+  }
+    /* console.log(hslToRgb(8,1,0.5)) */
+    const maxValue = 47.3;
+    const minValue = -45.3;
+    const count = 240/(maxValue-minValue);    //0.38583333    2.591792657
+    let calc = Math.ceil((d.properties + 45.3) * count)
+    
+    return hslToRgb(calc,0.9,0.5)
+    
+    /* if (d.properties > 34) {
+      return [146, 0, 29]
+    } else if (d.properties > 30) {
+      return [182, 21, 19, 255]
+    } else if (d.properties > 25) {
+      return [168, 72, 5, 255]
+    } else if (d.properties > 20) {
+      return [158, 91, 5, 255]
+    } else if (d.properties > 15) {
+      return [135, 96, 3, 255]
+    } else if (d.properties > 10) {
+      return [98, 97, 0, 255]
+    } else if (d.properties > 5) {
+      return [83, 82, 0, 255]
+    } else if (d.properties > 0) {
+      return [54, 85, 24, 255]
+    }
+    else {
+      return [54, 138, 155, 255]
+    } */
 
   }
+
 
   // index1:分類的index index:分類中檔案的index
   const OnListItemsChange = (e, index1, data, index) => {
@@ -406,7 +465,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             getLineColor: [0, 0, 0],
           }) */
 
-          newLayer[i] =
+          /* newLayer[i] =
           new HeatmapLayer({
             id: data.name,
             name: data.name,
@@ -414,10 +473,33 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             extruded: true,
             pickable: true,
             visible: data.value,
-            getWeight: d => d.z + 45.3,
+            getWeight: d => d.z,
             getPosition: d => d.COORDINATES,
             
+          }) */
+          newLayer[i] = new GeoJsonLayer({
+            id: data.name,
+            name: data.name,
+            data: data.data,
+            data_type:newMapData[index1].name,
+            visible: value,
+            // Styles
+            filled: true,
+            pointRadiusMinPixels: 2,
+            pointRadiusScale: 5,
+            getPointRadius: f => 5,
+            getFillColor: fillcolor2,
+            stroked: false,
+            // Interactive props
+            pickable: true,
+            autoHighlight: true,
+            onHover: onHover,
+            onClick: onClick,
+            updateTriggers: {
+              visible: data.value
+            }
           })
+          
         return;
       }
       if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
@@ -443,6 +525,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             pointRadiusScale: 5,
             getPointRadius: f => 5,
             getFillColor: getDotColor(data),
+            stroked: false,
             // Interactive props
             pickable: true,
             autoHighlight: true,
@@ -474,6 +557,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             pointRadiusScale: 5,
             getPointRadius: f => 5,
             getFillColor: getDotColor(data),
+            stroked: false,
             // Interactive props
             pickable: true,
             autoHighlight: true,
@@ -558,16 +642,38 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
               }
             })
             newLayer.push(
-              new HeatmapLayer({
+              new GeoJsonLayer({
+                id: data.name,
+                name: data.name,
+                data: data.data,
+                visible: data.value,
+                // Styles
+                filled: true,
+                pointRadiusMinPixels: 2,
+                pointRadiusScale: 5,
+                getPointRadius: f => 5,
+                getFillColor: fillcolor2,
+                stroked: false,
+                // Interactive props
+                pickable: true,
+                autoHighlight: true,
+                onHover: onHover,
+                onClick: onClick,
+                updateTriggers: {
+                  visible: data.value
+                }
+              })
+              /* new HeatmapLayer({
                 id: data.name,
                 name: data.name,
                 data: hexdata,
                 extruded: true,
                 pickable: true,
                 visible: data.value,
-                getWeight: d => d.z + 45.3,
+                getWeight: d => d.z,
                 getPosition: d => d.COORDINATES,
-              })
+
+              }) */
               /* new ColumnLayer({
                 id: data.name,
                 name: data.name,
@@ -672,6 +778,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     }).finally(() => {
 
     })
+    /* fillcolor2() */
   }, [])
 
   function getLayer(data) {
@@ -709,6 +816,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
           pointRadiusScale: 5,
           getPointRadius: f => 5,
           getFillColor: getDotColor(data),
+          stroked: false,
           // Interactive props
           pickable: true,
           autoHighlight: true,

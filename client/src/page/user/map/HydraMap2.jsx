@@ -32,7 +32,6 @@ import Chart from "./Chart.jsx"
 import Draw from "./Draw"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevel"
-
 import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
 import CloseIcon from '@material-ui/icons/Close';
@@ -395,7 +394,7 @@ export default function HydraMap() {
     onEdit: onEdit
   });
 
-
+  
   const containerRef = useRef()
   const mapRef = useRef()
   const deckRef = useRef()
@@ -409,6 +408,7 @@ export default function HydraMap() {
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
   const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer, drawLayer])
+  const [showChart, setShowChart] = useState(false)
 
   const zoomToLocation = (geometry) => {
     setViewState({
@@ -815,8 +815,17 @@ export default function HydraMap() {
           }}>
             <ExploreIcon />
           </FabIcon>
+          <div className={styles.ps_chart_container} >
+            <img className={styles.ps_chart} src='/img/chart.png' alt="chart"/>
+            <div className={styles.ps_chart_right_container} >
+              <p className={styles.ps_chart_right_container_text1}>47.3</p>
+              <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+            </div>
+          </div>
 
         </div>
+        
+
         
         <div className={styles.map} id="big_map" ref={containerRef}>
           <DeckGL

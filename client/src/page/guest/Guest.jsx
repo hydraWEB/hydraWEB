@@ -1,5 +1,4 @@
 import React, { useState, useContext, Suspense } from 'react';
-import { login } from '../../utils/api'
 import {
     BrowserRouter as Router,
     Switch,

@@ -79,7 +79,6 @@ INSTALLED_APPS = [
     'core',
     'staff',
     'hydraweb',
-    'influx'
 ]
 
 MIDDLEWARE = [

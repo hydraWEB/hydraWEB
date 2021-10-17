@@ -10,7 +10,6 @@ import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, f
 import { OverlayTrigger, Tooltip, Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 import styles from './User.module.scss';
-import Home from './Home';
 import Profile from './profile/Profile';
 import Announcement from './announcement/Announcement';
 import { userContext } from "../../provider/UserProvider";

@@ -31,7 +31,7 @@ import CircleAnalysis from "./CircleAnalysis"
 import Chart from "./Chart.jsx"
 import Draw from "./Draw"
 import Measurement from "./Measurement"
-import WaterLevel from "./WaterLevel"
+import WaterLevel from "./WaterLevelV2"
 import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
 import CloseIcon from '@material-ui/icons/Close';

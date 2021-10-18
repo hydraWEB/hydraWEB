@@ -63,8 +63,8 @@ export default function User(props) {
 
                     </Nav>
                     <Nav>
-                        <Nav.Link><Link to="/user/tutorial" className={styles.link}>使用簡介</Link></Nav.Link>
-                        <Nav.Link><Link to="/user/document" className={styles.link}>計畫概述</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/tutorial" className={styles.link}>{t('tutorial')}</Link></Nav.Link>
+                        <Nav.Link><Link to="/user/document" className={styles.link}>{t('overview')}</Link></Nav.Link>
 
                         <Nav.Link><Link to="/user/announcement" className={styles.link}>{t("announcement")}</Link></Nav.Link>
                         {typeof user.current != 'undefined' &&

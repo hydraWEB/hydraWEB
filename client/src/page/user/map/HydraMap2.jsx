@@ -275,8 +275,7 @@ function ContextMenu({ parentRef, lastClick, startCircleAnalysis, setCurrentFunc
   const [isVisible, setVisibility] = useState(false);
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
-
-
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const parent = parentRef.current;
@@ -315,7 +314,7 @@ function ContextMenu({ parentRef, lastClick, startCircleAnalysis, setCurrentFunc
         <p className={styles.context_menu_item_text}>y：{lastClick[1]}</p>
       </div>
       <div className={styles.context_menu_item_container} onClick={startCircleAnalysisFunc}>
-        <p className={styles.context_menu_item_text}>環域分析</p>
+        <p className={styles.context_menu_item_text}>{t('circle_analysis')}</p>
       </div>
     </div>
   </div> : null

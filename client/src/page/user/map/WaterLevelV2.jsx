@@ -38,42 +38,51 @@ import { useToasts } from "react-toast-notifications";
 
 export default function WaterLevelV2({ }) {
 
-  const [data, setData] = useState()
   const [allStation, setAllStation] = useState([])
   const [currentStation, setCurrentStation] = useState('')
   const [currentStationData, setCurrentStationData] = useState(null)
   const [openpop, setOpenpop] = useState(null)
+  const [isLoadingStation, setLoadingStation] = useState(true)
+  const [isLoadingData, setLoadingData] = useState(false)
   const { t, i18n } = useTranslation();
   const { addToast } = useToasts();
 
   useEffect(() => {
     WaterLevelAllStations().then((res) => {
-      addToast('所有測站載入成功.', { appearance: 'success', autoDismiss: true });
+      addToast(t('water_level_loading_success'), { appearance: 'success', autoDismiss: true });
       setAllStation(res.data.data)
     }).catch((err) => {
-      addToast('測站載入失敗.', { appearance: 'error', autoDismiss: true });
+      addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
     }).finally(() => {
-
+      setLoadingStation(false);
     })
   }, [])
 
   const onSearchClick = (e) => {
+    
+    DrawEmptyChart()
+    setLoadingData(true)
     WaterLevelGetDataByStNo({
-      st_no:currentStation
+      st_no: currentStation
     }).then((res) => {
       setCurrentStationData(res.data.data)
     }).catch((err) => {
-      addToast('測站載入失敗.', { appearance: 'error', autoDismiss: true });
+      addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
     }).finally(() => {
-
+      setLoadingData(false)
     })
   }
 
   useEffect(() => {
-    if (data !== undefined) {
+    if (currentStationData !== null) {
       DrawChart()
     }
-  }, [data])
+  }, [currentStationData])
+
+  function DrawEmptyChart() {
+    d3.select("#LineChart").html("");
+    const svg = d3.select("#LineChart")
+  }
 
   function DrawChart() {
     d3.select("#LineChart").html("");
@@ -90,9 +99,9 @@ export default function WaterLevelV2({ }) {
       .attr("transform",
         `translate(${margin.left}, ${margin.top})`);
 
-    const dataset = data.map((d) => ({
-      x: new Date(d.date),
-      y: d.value
+    const dataset = currentStationData.map((d) => ({
+      x: new Date(d[0]),
+      y: d[1]
     }));
 
     const focus = svg.append('g')
@@ -204,10 +213,10 @@ export default function WaterLevelV2({ }) {
         var mouse = d3.pointer(e)
         let x_location = Math.floor((mouse[0] + 0.20454709231853485) / calc)
         if (x_location === length) x_location -= 1;
-        if (x_location >= 0) {
+        if (dataset[x_location] !== undefined) {
           focus.attr("transform", "translate(" + x(dataset[x_location]['x']) + "," + y(dataset[x_location]['y']) + ")");
           focus.select("text").text(function () { return dataset[x_location]["y"] });
-          if (x_location > length - 70) {
+          if (x_location > (length * 0.95)) {
             focus.select("text")
               .attr("x", -50)
               .attr("y", -20);
@@ -250,11 +259,11 @@ export default function WaterLevelV2({ }) {
   );
 
 
-  const list = Object.entries(currentStationData == null ? [] : currentStationData.properties.prop1).map(([key, value]) => {
+  /* const list = Object.entries(currentStationData == null ? [] : currentStationData.properties.prop1).map(([key, value]) => {
     return (
       <div>{key} : {value.toString()}</div>
     )
-  })
+  }) */
   const handlePopClick = (event) => {
     setOpenpop(event.currentTarget);
   }
@@ -266,55 +275,67 @@ export default function WaterLevelV2({ }) {
 
   return (
     <div>
-      <h4 className={styles.func_title}>{t('water_level')}
-
-      </h4>
-      <div className={styles.water_level_layout}>
-        <div className={styles.water_level_layout_left}>
-          <div className={styles.water_level_layout_left_1}>
-            <div className={styles.water_level_dropdown}>
-              <h5>選擇座標</h5>
-              <Select
-                native
-                value={currentStation}
-                onChange={handleChange}
-                inputProps={{
-                  name: 'Station Number',
-                  id: 'age-native-simple',
-                }}
-              >
-                <option aria-label="None" value="" />
-                {selectStation}
-              </Select>
-              <br />
-              <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
-                搜尋
-              </Button>
-              <Button className="mt-2" variant="contained" onClick={handlePopClick}>Help</Button>
-              <Popover
-                id={id}
-                open={open}
-                anchorEl={openpop}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-              >
-                <Typography sx={{ p: 2 }}>Brush the chart to zoom.Double click to re-initialize</Typography>
-              </Popover>
+      <h4 className={styles.func_title}>{t('water_level')}</h4>
+      {isLoadingStation ?
+        <img
+          className={styles.loading_image}
+          src="/img/loading.svg"
+        />
+        :
+        <div className={styles.water_level_layout}>
+          <div className={styles.water_level_layout_left}>
+            <div className={styles.water_level_layout_left_1}>
+              <div className={styles.water_level_dropdown}>
+                <h5>{t('select_coordinate')}</h5>
+                <Select
+                  native
+                  value={currentStation}
+                  onChange={handleChange}
+                  inputProps={{
+                    name: 'Station Number',
+                    id: 'age-native-simple',
+                  }}
+                >
+                  <option aria-label="None" value="" />
+                  {selectStation}
+                </Select>
+                <br />
+                <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
+                  {t('search')}
+                </Button>
+                <Button className="mt-2 ml-2" variant="contained" onClick={handlePopClick}>{t('help')}</Button>
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={openpop}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                >
+                  <Typography sx={{ p: 2 }}>Brush the chart to zoom.Double click to re-initialize</Typography>
+                </Popover>
+              </div>
+            </div>
+            <div className={styles.water_level_layout_left_2}>
+              {/* {list} */}
             </div>
           </div>
-          <div className={styles.water_level_layout_left_2}>
-            {list}
+          <div className={styles.water_level_layout_right}>
+              {isLoadingData &&
+                <div className={styles.wl_loading_container}>
+                  <img
+                    className={styles.loading_image_2}
+                    src="/img/loading.svg"
+                  /> 
+                  <h5>{t('loading')}...</h5>  
+                </div>
+              }
+              <div id="LineChart" className={styles.water_level_graph} />
           </div>
         </div>
-        <div className={styles.water_level_layout_right}>
-          <div className={styles.water_level_layout_right_1}>
-            <div id="LineChart" className={styles.water_level_graph} />
-          </div>
-        </div>
-      </div>
+      }
     </div>
   );
 }

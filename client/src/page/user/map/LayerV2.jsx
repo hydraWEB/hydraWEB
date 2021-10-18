@@ -583,7 +583,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         setDataLoadProgess(percentCompleted)
       }
     }).then((res) => {
-      addToast('圖層載入成功.', { appearance: 'success', autoDismiss: true });
+      addToast(t('layer_loading_success'), { appearance: 'success', autoDismiss: true });
       setDataLoadState(1)
       let list = []
       res.data.data.forEach((element, idx) => {
@@ -774,7 +774,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
 
     }).catch((err) => {
       setDataLoadState(2)
-      addToast('圖層載入失敗.', { appearance: 'error', autoDismiss: true });
+      addToast(t('layer_loading_fail'), { appearance: 'error', autoDismiss: true });
     }).finally(() => {
 
     })

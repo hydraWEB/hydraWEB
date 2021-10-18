@@ -41,28 +41,28 @@ export default function Measurement({ mode, setMode }) {
   return (<div>
     <h4 className={styles.func_title}>{t('measurement')}</h4>
     <div className={styles.all_print}>
-      <h5>距離</h5>
+      <h5>{t('distance')}</h5>
       <div className={styles.circle_analysis_btn}>
         <Button
           onClick={(e) => setMeasureDistanceMode()}
           variant={mode == MeasureDistanceMode ? "contained" : "outlined"}        >
-          {mode == MeasureDistanceMode ? t('cancel_draw_circle') : t('draw_circle')}
+          {mode == MeasureDistanceMode ? t('cancel_draw_circle') : t('measurement_draw')}
         </Button>
       </div>
-      <h5>面積</h5>
+      <h5>{t('area')}</h5>
       <div className={styles.circle_analysis_btn}>
         <Button
           onClick={(e) => setMeasureAreaMode()}
           variant={mode == MeasureAreaMode ? "contained" : "outlined"}        >
-          {mode == MeasureAreaMode ? t('cancel_draw_circle') : t('draw_circle')}
+          {mode == MeasureAreaMode ? t('cancel_draw_circle') : t('measurement_draw')}
         </Button>
       </div>
-      <h5>角度</h5>
+      <h5>{t('angle')}</h5>
       <div className={styles.circle_analysis_btn}>
         <Button
           onClick={(e) => setMeasureAngleMode()}
           variant={mode == MeasureAngleMode ? "contained" : "outlined"}        >
-          {mode == MeasureAngleMode ? t('cancel_draw_circle') : t('draw_circle')}
+          {mode == MeasureAngleMode ? t('cancel_draw_circle') : t('measurement_draw')}
         </Button>
       </div>
     </div>

@@ -149,7 +149,6 @@ class WaterLevelAPI(views.APIView):
 
     def post(self,request):
         st_no = request.data['st_no']
-        print(st_no)
         res = self.get_target_station_data("groundwater",st_no)
         return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
         

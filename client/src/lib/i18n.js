@@ -92,8 +92,24 @@ i18n
                     "new_ip_address":"New IP Address",
                     //系統設定
                     "change":"Change",
-                    //IP管理
+                    //水位
+                    "select_coordinate":"Select Coordinate",
                     "water_level":"Water Level",
+                    "help":"Help",
+                    "loading":"Loading",
+                    //使用簡介
+                    "tutorial":"Tutorial",
+                    //計劃概述
+                    "overview":"Overview",
+                    //loading
+                    "water_level_loading_fail":"Water Level Load Fail",
+                    "water_level_loading_success":"Water Level Load Success",
+                    "layer_loading_fail":"Layer Load Fail",
+                    "layer_loading_success":"Layer Load Success",
+                    //測量
+                    "measurement_draw":"Draw",
+                    "distance":"Distance",
+                    "area":"Area",
                 }
             },
             zh_tw: {
@@ -177,7 +193,24 @@ i18n
                     "new_ip_address":"新增IP地址",
                     //系統設定
                     "change":"切換",
+                    //水位
+                    "select_coordinate":"選擇坐標",
                     "water_level":"水位",
+                    "help":"幫助",
+                    "loading":"載入中",
+                    //使用簡介
+                    "tutorial":"使用簡介",
+                    //計劃概述
+                    "overview":"計畫概述",
+                    //loading
+                    "water_level_loading_fail":"測站載入失敗",
+                    "water_level_loading_success":"測站載入成功",
+                    "layer_loading_fail":"圖層載入失敗",
+                    "layer_loading_success":"圖層載入成功",
+                    //測量
+                    "measurement_draw":"繪製",
+                    "distance":"距離",
+                    "area":"面積",
                 }
             }
         },

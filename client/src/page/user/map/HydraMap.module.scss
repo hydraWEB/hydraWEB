@@ -398,19 +398,15 @@ ul {
     float: left;
     width: 68%;
     margin-left: 2%;
-    overflow-x: scroll;
-}
-
-.water_level_layout_right_1 {
-    border-radius: 5px;
-    padding: 10px;
+    overflow-x: auto;
 }
 
 .water_level_graph{
+    padding-right: 20px;
     border-radius: 5px;
     background-color: white;
     color:black;
-    width:200%;
+    width:fit-content;  
 }
 .water_level_dropdown{
     padding: 0 20px 10px 20px;
@@ -444,3 +440,26 @@ ul {
     font-size: 15px;
     margin-top: 360px;
 }
+
+
+.wl_loading_container{
+   margin: 0 auto;
+   margin-top: 100px;
+   width: 100px;
+}
+
+.loading_image{
+    width:80px;
+    height:80px;
+    position: fixed;
+    left: 50%;
+    top: 45%;
+}
+
+.loading_image_2{
+    margin-left: 5px;
+    width:50px;
+    height:50px;
+}
+
+

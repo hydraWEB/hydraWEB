@@ -15,4 +15,6 @@ for file in FileList:
       data = json.load(f)
       result["ST_NO"] = data[0]["tags"]["ST_NO"]
       result["NAME_C"] = data[0]["tags"]["NAME_C"]
+      result["min_time"] = data[0]["time"]
+      result["max_time"] = data[-1]["time"]
   x = mycol.insert_one(result)

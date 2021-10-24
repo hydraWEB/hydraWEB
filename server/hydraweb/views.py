@@ -168,7 +168,8 @@ class WaterLevelAPI(views.APIView):
         query_api = client.query_api()
         query = f'from (bucket:"{bucket}")\
         |> range(start: 1970-01-01T00:00:00Z)\
-        |> filter(fn: (r) => r["ST_NO"] == "{st_no}")'
+        |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
+        |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998)'
         result = query_api.query(query=query, org = org)
         for table in result:
             for i,t in enumerate(table):
@@ -198,6 +199,8 @@ class WaterLevelAllStationAPI(views.APIView):
                 temp  = []
                 temp.append(dt["ST_NO"])
                 temp.append(dt["NAME_C"])
+                temp.append(dt["min_time"])
+                temp.append(dt["max_time"])
                 resultArr.append(temp)
         return resultArr
 

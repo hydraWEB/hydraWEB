@@ -33,20 +33,59 @@ import IconButton from '@material-ui/core/IconButton';
 import Select from '@material-ui/core/Select';
 import SearchIcon from '@material-ui/icons/Search';
 import Popover from '@mui/material/Popover';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { WaterLevelAllStations, WaterLevelGetDataByStNo } from '../../../lib/api'
 import { useToasts } from "react-toast-notifications";
+import DatePicker from '@mui/lab/DatePicker';
+import TextField from '@mui/material/TextField';
+import * as dayjs from 'dayjs'
 
 export default function WaterLevelV2({ }) {
 
   const [allStation, setAllStation] = useState([])
-  const [currentStation, setCurrentStation] = useState('')
+  const [currentStation, setCurrentStation] = useState(null)
   const [currentStationData, setCurrentStationData] = useState(null)
   const [openpop, setOpenpop] = useState(null)
   const [isLoadingStation, setLoadingStation] = useState(true)
   const [isLoadingData, setLoadingData] = useState(false)
   const { t, i18n } = useTranslation();
-  const { addToast } = useToasts();
 
+  const [minTimeOptions, setMinTimeOptions] = useState({
+    "year": [],
+    "month": [],
+    "day": [],
+    "hour": [],
+
+  })
+  
+  const [minTimeDatePicker, setMinTimeDatePicker] = useState()
+  const [minTime, setMinTime] = useState({
+    "year": 2000,
+    "month": 12,
+    "day": 11,
+    "hour": 13,
+  })
+
+  const [maxTimeOptions, setMaxTimeOptions] = useState({
+    "year": [],
+    "month": [],
+    "day": [],
+    "hour": [],
+  })
+
+  const [maxTime, setMaxTime] = useState({
+    "year": 0,
+    "month": 0,
+    "day": 0,
+    "hour": 0,
+  })
+
+
+
+  const { addToast } = useToasts();
+  
+  let dayjs = require("dayjs")
   useEffect(() => {
     WaterLevelAllStations().then((res) => {
       addToast(t('water_level_loading_success'), { appearance: 'success', autoDismiss: true });
@@ -59,11 +98,11 @@ export default function WaterLevelV2({ }) {
   }, [])
 
   const onSearchClick = (e) => {
-    
+
     DrawEmptyChart()
     setLoadingData(true)
     WaterLevelGetDataByStNo({
-      st_no: currentStation
+      st_no: currentStation[0]
     }).then((res) => {
       setCurrentStationData(res.data.data)
     }).catch((err) => {
@@ -82,6 +121,47 @@ export default function WaterLevelV2({ }) {
   function DrawEmptyChart() {
     d3.select("#LineChart").html("");
     const svg = d3.select("#LineChart")
+  }
+
+  function FindMinMaxTime(target) {
+    console.log(target)
+    
+    let minTime = dayjs(target[2])
+    let maxTime = dayjs(target[3])
+
+    let minYear = minTime.year();
+    let maxYear = maxTime.year();
+    let minMonth = minTime.month();
+    let maxMonth = maxTime.month();
+    let minDay = minTime.day();
+    let maxDay = maxTime.day();
+    let minHour = minTime.hour();
+    let maxHour = maxTime.hour();
+
+    for (let i = minYear; i <= maxYear; i++) {
+      minTimeOptions['year'].push(i);
+      maxTimeOptions['year'].push(i);
+    }
+    for (let i = minMonth; i <= 12; i++) {
+      minTimeOptions['month'].push(i);
+    }
+    for (let i = 1; i <= maxMonth; i++) {
+      maxTimeOptions['month'].push(i);
+    }
+
+    for (let i = minDay; i <= 31; i++) {
+      minTimeOptions['day'].push(i);
+    }
+    for (let i = 1; i <= maxDay; i++) {
+      maxTimeOptions['day'].push(i);
+    }
+
+    for (let i = minHour; i < 24; i++) {
+      minTimeOptions['hour'].push(i);
+    }
+    for (let i = 0; i <= maxHour; i++) {
+      maxTimeOptions['hour'].push(i);
+    }
   }
 
   function DrawChart() {
@@ -249,15 +329,18 @@ export default function WaterLevelV2({ }) {
   }
 
 
-  const handleChange = (e) => {
+  const stationSelectOnChange = (e) => {
+    console.log(e.target.value)
+    FindMinMaxTime(e.target.value)
     setCurrentStation(e.target.value)
   }
 
-
   let selectStation = allStation.map((d) =>
-    <option value={d[0]}>{`${d[0]} ${d[1]}`}</option>
+    <option value={d}>{`${d[0]} ${d[1]}`}</option>
   );
-
+  let selectMinHour = minTimeOptions['hour'].map((d) =>
+    <option value={d}>d</option>
+  );
 
   /* const list = Object.entries(currentStationData == null ? [] : currentStationData.properties.prop1).map(([key, value]) => {
     return (
@@ -290,7 +373,7 @@ export default function WaterLevelV2({ }) {
                 <Select
                   native
                   value={currentStation}
-                  onChange={handleChange}
+                  onChange={stationSelectOnChange}
                   inputProps={{
                     name: 'Station Number',
                     id: 'age-native-simple',
@@ -300,6 +383,48 @@ export default function WaterLevelV2({ }) {
                   {selectStation}
                 </Select>
                 <br />
+                <h5>選擇最小時間</h5>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label="Basic example"
+                    value={minTimeDatePicker}
+                    minDate={dayjs('2021-01-01T00:00:00Z',"MM/DD/YYYY")}
+                    maxDate={dayjs('2021-08-31T15:00:00Z',"MM/DD/YYYY")}
+                    onChange={(newValue) => {
+                      
+                      setMinTimeDatePicker(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                <h5>選擇最大時間</h5>
+                <p>年</p>
+                <Select
+                  value={maxTime}
+                >
+                  {maxTimeOptions['year'].map((d) =>
+                    <option value={d[3]}>{`${d[3]}`}</option>
+                  )}
+                </Select>
+                <p>月</p>
+                <Select
+                  value={maxTime}
+                >
+                  { }
+                </Select>
+                <p>日</p>
+                <Select
+                  value={maxTime}
+                >
+                  { }
+                </Select>
+                <p>小時</p>
+                <Select
+                  value={maxTime['hour']}
+                >
+                  {selectMinHour}
+                </Select>
+
                 <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
                   {t('search')}
                 </Button>
@@ -323,16 +448,16 @@ export default function WaterLevelV2({ }) {
             </div>
           </div>
           <div className={styles.water_level_layout_right}>
-              {isLoadingData &&
-                <div className={styles.wl_loading_container}>
-                  <img
-                    className={styles.loading_image_2}
-                    src="/img/loading.svg"
-                  /> 
-                  <h5>{t('loading')}...</h5>  
-                </div>
-              }
-              <div id="LineChart" className={styles.water_level_graph} />
+            {isLoadingData &&
+              <div className={styles.wl_loading_container}>
+                <img
+                  className={styles.loading_image_2}
+                  src="/img/loading.svg"
+                />
+                <h5>{t('loading')}...</h5>
+              </div>
+            }
+            <div id="LineChart" className={styles.water_level_graph} />
           </div>
         </div>
       }

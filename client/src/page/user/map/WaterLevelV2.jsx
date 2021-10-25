@@ -51,35 +51,18 @@ export default function WaterLevelV2({ }) {
   const [isLoadingData, setLoadingData] = useState(false)
   const { t, i18n } = useTranslation();
 
-  const [minTimeOptions, setMinTimeOptions] = useState({
-    "year": [],
-    "month": [],
-    "day": [],
-    "hour": [],
-
-  })
+  const [minHourOptions, setMinHourOptions] = useState([])
   
-  const [minTimeDatePicker, setMinTimeDatePicker] = useState()
-  const [minTime, setMinTime] = useState({
-    "year": 2000,
-    "month": 12,
-    "day": 11,
-    "hour": 13,
-  })
+  const [minDate, setMinDate] = useState()
+  const [maxDate, setMaxDate] = useState()
+  const [minTimeDatePicker, setMinTimeDatePicker] = useState()  //最小時間的value
+  const [maxTimeDatePicker, setMaxTimeDatePicker] = useState()  //最大時間的value
 
-  const [maxTimeOptions, setMaxTimeOptions] = useState({
-    "year": [],
-    "month": [],
-    "day": [],
-    "hour": [],
-  })
+  const [minHour, setMinHour] = useState(0)
 
-  const [maxTime, setMaxTime] = useState({
-    "year": 0,
-    "month": 0,
-    "day": 0,
-    "hour": 0,
-  })
+  const [maxHourOptions, setMaxHourOptions] = useState([])
+
+  const [maxHour, setMaxHour] = useState(0)
 
 
 
@@ -102,7 +85,7 @@ export default function WaterLevelV2({ }) {
     DrawEmptyChart()
     setLoadingData(true)
     WaterLevelGetDataByStNo({
-      st_no: currentStation[0]
+      st_no: currentStation
     }).then((res) => {
       setCurrentStationData(res.data.data)
     }).catch((err) => {
@@ -123,45 +106,41 @@ export default function WaterLevelV2({ }) {
     const svg = d3.select("#LineChart")
   }
 
-  function FindMinMaxTime(target) {
-    console.log(target)
-    
-    let minTime = dayjs(target[2])
-    let maxTime = dayjs(target[3])
+  const stationSelectOnChange = (e) => {
+    console.log(e.target.value)
+    FindMinMaxTime(e.target.value)
+    setCurrentStation(allStation[e.target.value][0])  
+  }
+
+  function FindMinMaxTime(index) {
+    var utc = require('dayjs/plugin/utc')
+    var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+    console.log(allStation[index]) 
+    console.log(typeof allStation[index])
+    let minTime = dayjs(allStation[index][2]).tz("Etc/GMT")
+    let maxTime = dayjs(allStation[index][3]).tz("Etc/GMT")
+
 
     let minYear = minTime.year();
     let maxYear = maxTime.year();
     let minMonth = minTime.month();
     let maxMonth = maxTime.month();
-    let minDay = minTime.day();
-    let maxDay = maxTime.day();
+    let minDay = minTime.date();
+    let maxDay = maxTime.date();
     let minHour = minTime.hour();
     let maxHour = maxTime.hour();
-
-    for (let i = minYear; i <= maxYear; i++) {
-      minTimeOptions['year'].push(i);
-      maxTimeOptions['year'].push(i);
+    let hourArr = []
+    for (let i =0;i<24;i++){    
+      hourArr.push(i)
     }
-    for (let i = minMonth; i <= 12; i++) {
-      minTimeOptions['month'].push(i);
-    }
-    for (let i = 1; i <= maxMonth; i++) {
-      maxTimeOptions['month'].push(i);
-    }
-
-    for (let i = minDay; i <= 31; i++) {
-      minTimeOptions['day'].push(i);
-    }
-    for (let i = 1; i <= maxDay; i++) {
-      maxTimeOptions['day'].push(i);
-    }
-
-    for (let i = minHour; i < 24; i++) {
-      minTimeOptions['hour'].push(i);
-    }
-    for (let i = 0; i <= maxHour; i++) {
-      maxTimeOptions['hour'].push(i);
-    }
+    setMinHourOptions(hourArr)
+    setMaxHourOptions(hourArr)
+    setMinDate(new Date(minYear, minMonth, minDay))
+    setMaxDate(new Date(maxYear, maxMonth, maxDay))
+    setMinTimeDatePicker(new Date(minYear, minMonth, minDay))
+    setMaxTimeDatePicker(new Date(maxYear, maxMonth, maxDay))
   }
 
   function DrawChart() {
@@ -329,17 +308,15 @@ export default function WaterLevelV2({ }) {
   }
 
 
-  const stationSelectOnChange = (e) => {
-    console.log(e.target.value)
-    FindMinMaxTime(e.target.value)
-    setCurrentStation(e.target.value)
-  }
 
-  let selectStation = allStation.map((d) =>
-    <option value={d}>{`${d[0]} ${d[1]}`}</option>
+  let selectStation = allStation.map((d,index) =>
+    <option value={index}>{`${d[0]} ${d[1]}`}</option>
   );
-  let selectMinHour = minTimeOptions['hour'].map((d) =>
-    <option value={d}>d</option>
+  let selectMinHour = minHourOptions.map((d) =>
+    <option value={d}>{d}</option>
+  );
+  let selectMaxHour = maxHourOptions.map((d) =>
+    <option value={d}>{d}</option>
   );
 
   /* const list = Object.entries(currentStationData == null ? [] : currentStationData.properties.prop1).map(([key, value]) => {
@@ -370,6 +347,9 @@ export default function WaterLevelV2({ }) {
             <div className={styles.water_level_layout_left_1}>
               <div className={styles.water_level_dropdown}>
                 <h5>{t('select_coordinate')}</h5>
+
+                <h5>選擇區域</h5>
+
                 <Select
                   native
                   value={currentStation}
@@ -383,46 +363,51 @@ export default function WaterLevelV2({ }) {
                   {selectStation}
                 </Select>
                 <br />
+                
                 <h5>選擇最小時間</h5>
+
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     label="Basic example"
                     value={minTimeDatePicker}
-                    minDate={dayjs('2021-01-01T00:00:00Z',"MM/DD/YYYY")}
-                    maxDate={dayjs('2021-08-31T15:00:00Z',"MM/DD/YYYY")}
+                    minDate={minDate}   
+                    maxDate={maxDate}
                     onChange={(newValue) => {
-                      
                       setMinTimeDatePicker(newValue);
                     }}
                     renderInput={(params) => <TextField {...params} />}
                   />
                 </LocalizationProvider>
-                <h5>選擇最大時間</h5>
-                <p>年</p>
-                <Select
-                  value={maxTime}
-                >
-                  {maxTimeOptions['year'].map((d) =>
-                    <option value={d[3]}>{`${d[3]}`}</option>
-                  )}
-                </Select>
-                <p>月</p>
-                <Select
-                  value={maxTime}
-                >
-                  { }
-                </Select>
-                <p>日</p>
-                <Select
-                  value={maxTime}
-                >
-                  { }
-                </Select>
                 <p>小時</p>
                 <Select
-                  value={maxTime['hour']}
+                  value={minHour}
+                  onChange={(newValue) => {
+                    setMinHour(newValue.target.value)
+                  }}
                 >
                   {selectMinHour}
+                </Select>
+                <h5>選擇最大時間</h5>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label="Basic example"
+                    value={maxTimeDatePicker}
+                    minDate={minDate}   
+                    maxDate={maxDate}
+                    onChange={(newValue) => {
+                      setMaxTimeDatePicker(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
+                <p>小時</p>
+                <Select
+                  value={maxHour}
+                  onChange={(newValue) => {
+                    setMaxHour(newValue.target.value)
+                  }}
+                >
+                  {selectMaxHour}
                 </Select>
 
                 <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>

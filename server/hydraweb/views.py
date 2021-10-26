@@ -150,10 +150,12 @@ class WaterLevelAPI(views.APIView):
     def post(self,request):
         print(request.data)
         st_no = request.data['st_no']
-        res = self.get_target_station_data("groundwater",st_no)
+        start_time = request.data['start_time']
+        end_time = request.data['end_time']
+        res = self.get_target_station_data("groundwater",st_no,start_time,end_time)
         return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
         
-    def get_target_station_data(self, bucket, st_no):
+    def get_target_station_data(self, bucket, st_no, start_time, end_time):
         token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg=="
         org = "hydraweb"
         url = "http://localhost:8086"
@@ -167,8 +169,9 @@ class WaterLevelAPI(views.APIView):
             org=org
         )
         query_api = client.query_api()
+        #|> range(start: 1970-01-01T00:00:00Z)\
         query = f'from (bucket:"{bucket}")\
-        |> range(start: 1970-01-01T00:00:00Z)\
+        |> range(start: {start_time}, stop: {end_time})\
         |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
         |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998)'
         result = query_api.query(query=query, org = org)

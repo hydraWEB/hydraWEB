@@ -461,5 +461,24 @@ ul {
     width:50px;
     height:50px;
 }
+.wl_left_1{
+    margin-bottom: 10px;
+    background-color: rgba(18, 131, 42, 0.164);
+    padding: 15px 15px 5px 15px;
+    border-radius: 5px;
+ }
+ .wl_left_1_container{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+ }
 
+ .wl_left_1_container_div{
+    align-self: center;
+}
 
+ .wl_left_1_container_text{
+     align-self: center;
+     margin-left:10px;
+     margin-right:10px;   
+ }

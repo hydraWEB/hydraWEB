@@ -45,6 +45,7 @@ export default function WaterLevelV2({ }) {
 
   const [allStation, setAllStation] = useState([])
   const [currentStation, setCurrentStation] = useState(null)
+  const [currentStationIndex, setCurrentStationIndex] = useState(null)
   const [currentStationData, setCurrentStationData] = useState(null)
   const [openpop, setOpenpop] = useState(null)
   const [isLoadingStation, setLoadingStation] = useState(true)
@@ -52,23 +53,18 @@ export default function WaterLevelV2({ }) {
   const { t, i18n } = useTranslation();
 
   const [minHourOptions, setMinHourOptions] = useState([])
-  
-  const [minDate, setMinDate] = useState()
-  const [maxDate, setMaxDate] = useState()
+  const [minDate, setMinDate] = useState()                      //該站點最小的時間
+  const [maxDate, setMaxDate] = useState()                      //該站點最大的時間
   const [minTimeDatePicker, setMinTimeDatePicker] = useState()  //最小時間的value
   const [maxTimeDatePicker, setMaxTimeDatePicker] = useState()  //最大時間的value
-
   const [minHour, setMinHour] = useState(0)
-
   const [maxHourOptions, setMaxHourOptions] = useState([])
-
   const [maxHour, setMaxHour] = useState(0)
 
-
-
   const { addToast } = useToasts();
-  
+
   let dayjs = require("dayjs")
+
   useEffect(() => {
     WaterLevelAllStations().then((res) => {
       addToast(t('water_level_loading_success'), { appearance: 'success', autoDismiss: true });
@@ -80,19 +76,44 @@ export default function WaterLevelV2({ }) {
     })
   }, [])
 
-  const onSearchClick = (e) => {
+  useEffect(() => {
+    if(allStation.length > 0){
+      FindMinMaxTime(0)
+      setCurrentStation(allStation[0][0])
+      setCurrentStationIndex(0)
+    }
+  }, [allStation])
 
-    DrawEmptyChart()
-    setLoadingData(true)
-    WaterLevelGetDataByStNo({
-      st_no: currentStation
-    }).then((res) => {
-      setCurrentStationData(res.data.data)
-    }).catch((err) => {
-      addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
-    }).finally(() => {
-      setLoadingData(false)
-    })
+  const onSearchClick = (e) => {
+    let time_is_valid = timeIsValid()
+    var utc = require('dayjs/plugin/utc')
+    var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+    let minDateUnix = parseInt((minTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(minHour)*3600
+    let maxDateUnix = parseInt((maxTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(maxHour)*3600
+    console.log(minDateUnix)
+    console.log(maxDateUnix)
+    let start_datetime = dayjs.unix(minDateUnix)
+    let end_datetime = dayjs.unix(maxDateUnix)
+    if (time_is_valid) {
+      DrawEmptyChart()
+      setLoadingData(true)
+      WaterLevelGetDataByStNo({
+        st_no: currentStation,
+        start_time:start_datetime,
+        end_time:end_datetime, 
+      }).then((res) => {
+        setCurrentStationData(res.data.data)
+      }).catch((err) => {
+        addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
+      }).finally(() => {
+        setLoadingData(false)
+      })
+    }
+    else {
+      alert("Minimum time must be smaller than Maximum time")
+    }
   }
 
   useEffect(() => {
@@ -107,9 +128,26 @@ export default function WaterLevelV2({ }) {
   }
 
   const stationSelectOnChange = (e) => {
-    console.log(e.target.value)
     FindMinMaxTime(e.target.value)
-    setCurrentStation(allStation[e.target.value][0])  
+    setCurrentStation(allStation[e.target.value][0])
+    setCurrentStationIndex(e.target.value)
+  }
+
+  function timeIsValid() {
+
+    let minDateUnix = parseInt((minTimeDatePicker.getTime() / 1000).toFixed(0))
+    /* let minHourUnix = parseInt((minHour.getTime() / 1000).toFixed(0)) */
+    let maxDateUnix = parseInt((maxTimeDatePicker.getTime() / 1000).toFixed(0))
+    /* let maxHourUnix = parseInt((maxHour.getTime() / 1000).toFixed(0)) */
+    if (minDateUnix > maxDateUnix) {
+      return false
+    }
+    else if (minDateUnix === maxDateUnix){
+      if (parseInt(minHour) > parseInt(maxHour)) {
+        return false
+      }
+    }
+    return true
   }
 
   function FindMinMaxTime(index) {
@@ -117,12 +155,8 @@ export default function WaterLevelV2({ }) {
     var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
     dayjs.extend(utc)
     dayjs.extend(timezone)
-    console.log(allStation[index]) 
-    console.log(typeof allStation[index])
     let minTime = dayjs(allStation[index][2]).tz("Etc/GMT")
     let maxTime = dayjs(allStation[index][3]).tz("Etc/GMT")
-
-
     let minYear = minTime.year();
     let maxYear = maxTime.year();
     let minMonth = minTime.month();
@@ -132,7 +166,7 @@ export default function WaterLevelV2({ }) {
     let minHour = minTime.hour();
     let maxHour = maxTime.hour();
     let hourArr = []
-    for (let i =0;i<24;i++){    
+    for (let i = 0; i < 24; i++) {
       hourArr.push(i)
     }
     setMinHourOptions(hourArr)
@@ -308,8 +342,7 @@ export default function WaterLevelV2({ }) {
   }
 
 
-
-  let selectStation = allStation.map((d,index) =>
+  let selectStation = allStation.map((d, index) =>
     <option value={index}>{`${d[0]} ${d[1]}`}</option>
   );
   let selectMinHour = minHourOptions.map((d) =>
@@ -348,67 +381,76 @@ export default function WaterLevelV2({ }) {
               <div className={styles.water_level_dropdown}>
                 <h5>{t('select_coordinate')}</h5>
 
-                <h5>選擇區域</h5>
+                <div className={styles.wl_left_1}>
+                  <h5>選擇區域</h5>
+                  <Select
+                    native
+                    value={currentStationIndex}
+                    onChange={stationSelectOnChange}
+                  >
+                    {selectStation}
+                  </Select>
+                </div>
 
-                <Select
-                  native
-                  value={currentStation}
-                  onChange={stationSelectOnChange}
-                  inputProps={{
-                    name: 'Station Number',
-                    id: 'age-native-simple',
-                  }}
-                >
-                  <option aria-label="None" value="" />
-                  {selectStation}
-                </Select>
-                <br />
-                
-                <h5>選擇最小時間</h5>
+                <div className={styles.wl_left_1}>
+                  <h5>選擇最小時間</h5>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={minTimeDatePicker}
+                      minDate={minDate}
+                      maxDate={maxDate}
+                      onChange={(newValue) => {
+                        setMinTimeDatePicker(newValue);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                  <div className={styles.wl_left_1_container}>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={minHour}
+                        onChange={(newValue) => {
+                          setMinHour(newValue.target.value)
+                        }}
+                      >
+                        {selectMinHour}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>小時</span>
+                  </div>
+                </div>
 
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Basic example"
-                    value={minTimeDatePicker}
-                    minDate={minDate}   
-                    maxDate={maxDate}
-                    onChange={(newValue) => {
-                      setMinTimeDatePicker(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-                <p>小時</p>
-                <Select
-                  value={minHour}
-                  onChange={(newValue) => {
-                    setMinHour(newValue.target.value)
-                  }}
-                >
-                  {selectMinHour}
-                </Select>
-                <h5>選擇最大時間</h5>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DatePicker
-                    label="Basic example"
-                    value={maxTimeDatePicker}
-                    minDate={minDate}   
-                    maxDate={maxDate}
-                    onChange={(newValue) => {
-                      setMaxTimeDatePicker(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-                <p>小時</p>
-                <Select
-                  value={maxHour}
-                  onChange={(newValue) => {
-                    setMaxHour(newValue.target.value)
-                  }}
-                >
-                  {selectMaxHour}
-                </Select>
+                <div className={styles.wl_left_1}>
+                  <h5>選擇最大時間</h5>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      value={maxTimeDatePicker}
+                      minDate={minDate}
+                      maxDate={maxDate}
+                      onChange={(newValue) => {
+                        setMaxTimeDatePicker(newValue);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+
+                  <div className={styles.wl_left_1_container}>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={maxHour}
+                        onChange={(newValue) => {
+                          setMaxHour(newValue.target.value)
+                        }}
+                      >
+                        {selectMaxHour}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>小時</span>
+                  </div>
+                </div>
+
 
                 <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
                   {t('search')}

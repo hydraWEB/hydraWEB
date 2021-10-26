@@ -4,7 +4,7 @@ import datetime
 
 token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg==" #改成自己的
 org = "hydraweb"  #改成自己的
-bucket = "groundwater2" #改成自己的
+bucket = "optimization_data" #改成自己的
 url="http://localhost:8086"
 
 client = influxdb_client.InfluxDBClient(
@@ -18,7 +18,7 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 import json
 import os
 
-root = 'C:/Users/Leong/Downloads/groundwater-20211012T125833Z-001/groundwater' #改成自己的
+root = 'C:/Users/Leong/Downloads/optimization_data-20211024T060434Z-001/optimization_data' #改成自己的
 FileList = os.listdir(root)
 
 

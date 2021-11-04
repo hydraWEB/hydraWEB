@@ -305,8 +305,8 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
 
 }
 
-export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo }) {
-
+export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible }) {
+  
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
   const [dataLoadState, setDataLoadState] = useState(0)
@@ -412,6 +412,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     let newLayer = [...layers] //複製一個layer
     newLayer.forEach((element, i) => {
       if (element.props.name === "GPS" && data.name === "GPS" || element.props.name === "GPS" && data.name === "GPS" ) {
+        
         let hexdata = []
         data.data.features.forEach((dl) => {
           try {
@@ -439,6 +440,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         return
       }
       if (element.props.name == "ps_mean_v.xy.json" && data.name === "ps_mean_v.xy.json") { //3d圖層
+        setChartIsVisible(value)
         let hexdata = []
         data.data.features.forEach((dl) => {
           try {
@@ -601,7 +603,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       })
       setAllData(list)
       setOriginData(list)
-
       let newLayer = [...layers]
       list.forEach((l, index) => {
         l.files.forEach((data, idx) => {

@@ -69,7 +69,7 @@ const AccordionDetails = withStyles((theme) => ({
 
 
 
-export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, editLayer, mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo }) {
+export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo }) {
 
   const { t, i18n } = useTranslation()
   const [searchResult, setsearchResult] = useState([])

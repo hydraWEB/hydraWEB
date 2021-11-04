@@ -97,6 +97,9 @@ i18n
                     "water_level":"Water Level",
                     "help":"Help",
                     "loading":"Loading",
+                    "select_area":"Select Area",
+                    "select_min_time":"Select Minium Time",
+                    "select_max_time":"Select Maxium Time",
                     //使用簡介
                     "tutorial":"Tutorial",
                     //計劃概述
@@ -198,6 +201,9 @@ i18n
                     "water_level":"水位",
                     "help":"幫助",
                     "loading":"載入中",
+                    "select_area":"選擇區域",
+                    "select_min_time":"選擇最小時間",
+                    "select_max_time":"選擇最大時間",
                     //使用簡介
                     "tutorial":"使用簡介",
                     //計劃概述

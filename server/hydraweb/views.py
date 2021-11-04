@@ -147,15 +147,17 @@ class WaterLevelAPI(views.APIView):
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
 
-    def post(self,request):
+    def post(self,request):     #從influx拿該站點資料
         print(request.data)
         st_no = request.data['st_no']
         start_time = request.data['start_time']
         end_time = request.data['end_time']
-        res = self.get_target_station_data("groundwater",st_no,start_time,end_time)
+        res = self.get_target_station_data("optimization_data",st_no,start_time,end_time)       #要改
         return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
         
     def get_target_station_data(self, bucket, st_no, start_time, end_time):
+        print(start_time)
+        print(end_time)
         token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg=="
         org = "hydraweb"
         url = "http://localhost:8086"
@@ -191,21 +193,22 @@ class WaterLevelAllStationAPI(views.APIView):
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
 
-    def get_all_station(self,collection):
+    def get_all_station(self,collection):   #從mongo拿所有的站點資料
         client = pymongo.MongoClient('mongodb://localhost:27017')
-        db = client['ST_NO']
+        db = client['ST_NO']        #要改
         allCollection = db.collection_names()
         resultArr = []
         for col in allCollection:
-            collection = db.get_collection(col)
-            result = collection.find()
-            for dt in result:
-                temp  = []
-                temp.append(dt["ST_NO"])
-                temp.append(dt["NAME_C"])
-                temp.append(dt["min_time"])
-                temp.append(dt["max_time"])
-                resultArr.append(temp)
+            if(col == 'optimization_data'):
+                collection = db.get_collection(col)
+                result = collection.find()
+                for dt in result:
+                    temp  = []
+                    temp.append(dt["ST_NO"])
+                    temp.append(dt["NAME_C"])
+                    temp.append(dt["min_time"])
+                    temp.append(dt["max_time"])
+                    resultArr.append(temp)
         return resultArr
 
     def get(self,request):

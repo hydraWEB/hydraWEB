@@ -29,7 +29,6 @@ import Print from "./Print.jsx"
 import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
 import Chart from "./Chart.jsx"
-import Draw from "./Draw"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevelV2"
 import { FlyToInterpolator } from 'deck.gl';
@@ -406,6 +405,7 @@ export default function HydraMap() {
   const [hoverInfo, setHoverInfo] = useState({});
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
+  const [chartIsVisible, setChartIsVisible] = useState(false)
   const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer, drawLayer])
   const [showChart, setShowChart] = useState(false)
 
@@ -683,21 +683,6 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 5} onClick={(e) => functionChangeToggle(5)}>
-              <OverlayTrigger
-                key='right'
-                placement='right'
-                overlay={
-                  <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('draw')}
-                  </Tooltip>
-                }>
-                <div className={styles.menu_btn} >
-                  <FontAwesomeIcon
-                    icon={faPen} size="lg" color="white" />
-                </div>
-              </OverlayTrigger>
-            </MenuBtnWrapper>
             <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
               <OverlayTrigger
                 key='right'
@@ -738,19 +723,16 @@ export default function HydraMap() {
             <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
-            <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+            <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 2}>
             <h4 className={styles.func_title}>{t('3D_switch')}</h4>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} setLayers={setLayersFunc} editLayer={circleAnalysisLayer} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+            <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} setLayers={setLayersFunc} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
             <Print map={mapRef} deck={deckRef} />
-          </ShowWrapper>
-          <ShowWrapper isShow={currentFunction === 5}>
-            <Draw />
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 6}>
             <Measurement mode={measurementMode} setMode={setEditLayerMode} />
@@ -815,11 +797,17 @@ export default function HydraMap() {
             <ExploreIcon />
           </FabIcon>
           <div className={styles.ps_chart_container} >
-            <img className={styles.ps_chart} src='/img/chart.png' alt="chart"/>
-            <div className={styles.ps_chart_right_container} >
-              <p className={styles.ps_chart_right_container_text1}>47.3</p>
-              <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+            {chartIsVisible &&
+            <div>
+              <img className={styles.ps_chart} src='/img/chart.png' alt="chart"/>
+              <div className={styles.ps_chart_right_container} >
+                <p className={styles.ps_chart_right_container_text1}>47.3</p>
+                <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+              </div>
             </div>
+            }
+            
+            
           </div>
 
         </div>

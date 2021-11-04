@@ -96,6 +96,8 @@ export default function WaterLevelV2({ }) {
     console.log(maxDateUnix)
     let start_datetime = dayjs.unix(minDateUnix)
     let end_datetime = dayjs.unix(maxDateUnix)
+    console.log(start_datetime)
+    console.log(end_datetime)
     if (time_is_valid) {
       DrawEmptyChart()
       setLoadingData(true)
@@ -382,7 +384,7 @@ export default function WaterLevelV2({ }) {
                 <h5>{t('select_coordinate')}</h5>
 
                 <div className={styles.wl_left_1}>
-                  <h5>選擇區域</h5>
+                  <h5>{t('select_area')}</h5>
                   <Select
                     native
                     value={currentStationIndex}
@@ -393,7 +395,7 @@ export default function WaterLevelV2({ }) {
                 </div>
 
                 <div className={styles.wl_left_1}>
-                  <h5>選擇最小時間</h5>
+                  <h5>{t('select_min_time')}</h5>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={minTimeDatePicker}
@@ -417,12 +419,12 @@ export default function WaterLevelV2({ }) {
                         {selectMinHour}
                       </Select>
                     </div>
-                    <span className={styles.wl_left_1_container_text}>小時</span>
+                    <span className={styles.wl_left_1_container_text}>h</span>
                   </div>
                 </div>
 
                 <div className={styles.wl_left_1}>
-                  <h5>選擇最大時間</h5>
+                  <h5>{t('select_max_time')}</h5>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                       value={maxTimeDatePicker}
@@ -447,7 +449,7 @@ export default function WaterLevelV2({ }) {
                         {selectMaxHour}
                       </Select>
                     </div>
-                    <span className={styles.wl_left_1_container_text}>小時</span>
+                    <span className={styles.wl_left_1_container_text}>h</span>
                   </div>
                 </div>
 
@@ -470,9 +472,7 @@ export default function WaterLevelV2({ }) {
                 </Popover>
               </div>
             </div>
-            <div className={styles.water_level_layout_left_2}>
-              {/* {list} */}
-            </div>
+           
           </div>
           <div className={styles.water_level_layout_right}>
             {isLoadingData &&

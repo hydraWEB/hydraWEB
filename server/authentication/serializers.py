@@ -98,7 +98,6 @@ class ResetPasswordSerializer(serializers.Serializer):
             raise Http404(_("The token has expired"))
         return attrs
 
-
 class UserSerializer(serializers.ModelSerializer):
     userid = serializers.CharField(max_length=255)
     class Meta:

@@ -104,41 +104,50 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         db = client['hydraweb']
         allCollection = db.collection_names()
         resultarr = []
-        res_json2 = []
-        waterjsondt = self.query_city("groundwater_well")
-        res_json2.append({"name": "Ground Water Well", "data": waterjsondt, "time_serie":False})
-        resultarr.append({"name": "", "file":res_json2})
         for col in allCollection:
             collection = db.get_collection(col)
             result = collection.find()
             i = 0
             res_json = []
-            
-            for dt in result:
-                is_time_series = False
-                feat = dt['features']
+            feats = []
+            print(col)
+            if col == 'ps':
+                """ for dt in result:
+                    is_time_series = False
+                    feat = {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates" : [dt['x'],dt['y']]
+                        },
+                        "properties": dt['z']
+                    }
+                    feats.append(feat)
                 new_json = {
                     "type": "FeatureCollection",
-                    "features": feat
+                    "features": feats
                 }
-                #if dt['name'].startswith("time_serie"):
-                #    is_time_series = True
-                #    res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
-                
-                if dt['name'].startswith("time_series_108雲林地區地層下陷水準檢測成果表"):
-                    is_time_series = True
-                    yljsondt = self.query_city("Yunlin")
-                    
-                    res_json.append({"name": dt['name'], "data": yljsondt,"time_serie":is_time_series})
-                elif dt['name'].startswith("time_series_108彰化地區地層下陷水準檢測成果表"):
-                    is_time_series = True
-                    zhjsondt = self.query_city("Changhua")
-                    res_json.append({"name": dt['name'], "data": zhjsondt,"time_serie":is_time_series})
-                else:
+                res_json.append({"name": "ps_mean_v.xy.json", "data": new_json,"time_serie":is_time_series})
+                resultarr.append({"name": col, "file":res_json}) """
+            else:
+                for dt in result:
                     is_time_series = False
-                    res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
-                i = i + 1
-            resultarr.append({"name": col, "file":res_json})
+                    feat = dt['features']
+                    new_json = {
+                        "type": "FeatureCollection",
+                        "features": feat
+                    }
+                    
+                    if dt['name'].startswith("time_series_108雲林地區地層下陷水準檢測成果表"):
+                        is_time_series = True
+                        res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
+                    elif dt['name'].startswith("time_series_108彰化地區地層下陷水準檢測成果表"):
+                        is_time_series = True
+                        res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
+                    else:
+                        is_time_series = False
+                        res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
+                resultarr.append({"name": col, "file":res_json})
         
 
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   

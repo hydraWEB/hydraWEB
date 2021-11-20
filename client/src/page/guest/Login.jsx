@@ -106,6 +106,10 @@ export default function Login() {
             <div className={styles.container}>
                 <div className={styles.formConatainer} >
                     <div className={styles.formLogin}>
+                        <div className={styles.formLogin_left}>
+                            <img src="/img/login_display.jpg"/>
+                        </div>
+                        <div className={styles.formLogin_right}>
                         <Form onSubmit={handleLogin}>
                             <Title>濁水溪沖積扇水文與地層下陷監測展示平台</Title>
 
@@ -154,6 +158,7 @@ export default function Login() {
 
 
                         </Form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import { AnnouncementSendDelete } from "../../../lib/api";
 import { useToasts } from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
 import styles from './Staff.module.scss'
+import * as dayjs from 'dayjs'
 
 function TableData({ data, page, loadData }) {
     const { t, i18n } = useTranslation()
@@ -19,7 +20,7 @@ function TableData({ data, page, loadData }) {
     const [showDelete, setShowDelete] = useState(false);
     const [deleteData, setDeleteData] = useState(null);
     const { addToast } = useToasts();
-
+    let dayjs = require("dayjs")
     function onInfoClick(d) {
         history.push(`/user/staff/announcement-manage/info?id=${d.id}`);
     }
@@ -55,9 +56,10 @@ function TableData({ data, page, loadData }) {
         <tr>
             <StyledTd>{d.id}</StyledTd>
             <StyledTd>{d.title}</StyledTd>
+            
             <StyledTd>{d.user.username}</StyledTd>
-            <StyledTd>{d.created_at}</StyledTd>
-            <StyledTd>{d.updated_at}</StyledTd>
+            <StyledTd>{dayjs(d.created_at).format("YYYY/MM/DD")}</StyledTd>
+            <StyledTd>{dayjs(d.updated_at).format("YYYY/MM/DD")}</StyledTd>
             <StyledTd>
                 <Button className="mr-2" variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
                 <Button className="mr-2" variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>

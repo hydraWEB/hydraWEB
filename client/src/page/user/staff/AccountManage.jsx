@@ -10,7 +10,7 @@ import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./S
 import Pagination from '@material-ui/lab/Pagination';
 import { useToasts } from "react-toast-notifications";
 import styles from './Staff.module.scss'
-
+import * as dayjs from 'dayjs'
 
 function TableData({ data, loadData }) {
     const { t, i18n } = useTranslation();
@@ -19,7 +19,7 @@ function TableData({ data, loadData }) {
     const { addToast } = useToasts();
     const [page, setPage] = useState(1);
     let history = useHistory();
-
+    let dayjs = require("dayjs")
     function onInfoClick(d) {
         history.push(`/user/staff/account-manage/info?id=${d.userid}`);
     }
@@ -55,7 +55,7 @@ function TableData({ data, loadData }) {
         <tr>
             <StyledTd>{d.userid}</StyledTd>
             <StyledTd>{d.username}</StyledTd>
-            <StyledTd>{d.created_at}</StyledTd>
+            <StyledTd>{dayjs(d.created_at).format("YYYY/MM/DD")}</StyledTd>
             <StyledTd>
                 <Button className="mr-2" variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
                 <Button className="mr-2" variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>

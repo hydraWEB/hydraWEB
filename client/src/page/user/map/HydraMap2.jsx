@@ -152,17 +152,18 @@ function renderTooltip({ hoverInfo }) {
 
   const list = Object.entries(props).map(([key, value]) => {
     if (typeof value === 'object' && value !== null) {
-      const list2 = Object.entries(value).map(([key2, value2]) => {
+      if(key === 'prop1'){
+        const list2 = Object.entries(value).map(([key2, value2]) => {
+          return (
+            <div>{key2} : {value2.toString()}</div>
+          )
+        })
         return (
-          <div>{key2} : {value2.toString()}</div>
+          <div>
+            <div>{list2}</div>
+          </div>
         )
-      })
-      return (
-        <div>
-          <h5>{key}:</h5>
-          <div>{list2}</div>
-        </div>
-      )
+      }
     } else {
       return (
         <div>{key} : {value.toString()}</div>
@@ -225,20 +226,21 @@ function renderInfo(clickInfo, setClickInfo) {
     }
 
     if (typeof value === 'object' && value !== null) {
-      const list2 = Object.entries(value).map(([key2, value2]) => {
+      if(key === 'prop1'){
+        const list2 = Object.entries(value).map(([key2, value2]) => {
+          return (
+            <div>
+              {key2} : {value2.toString()}
+            </div>
+          )
+        })
+
         return (
           <div>
-            {key2} : {value2.toString()}
+            <div>{list2}</div>
           </div>
-
         )
-      })
-      return (
-        <div>
-          <h5>{key}:</h5>
-          <div>{list2}</div>
-        </div>
-      )
+      }
     } else {
       return (
         <div>{key} : {value.toString()}
@@ -249,7 +251,7 @@ function renderInfo(clickInfo, setClickInfo) {
   })
 
   return (
-    <div className={styles.map_tooltip} style={{ bottom: 10, right: 10, zIndex: 10 }}>
+    <div className={styles.map_tooltip2} style={{ bottom: 10, right: 10, zIndex: 10 }}>
       <div className={styles.tooltip_title}>
         <div className={styles.info_div1}>
           <IconButton onClick={(e) => setClickInfo(null)} >

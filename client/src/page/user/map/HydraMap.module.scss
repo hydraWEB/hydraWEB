@@ -181,6 +181,16 @@ ul {
 }
 
 .map_tooltip{
+    width: 400px;
+    position: fixed;
+    background-color: #001845AA;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.map_tooltip2{
+    width: 400px;
+    height: 350px;
     position: fixed;
     background-color: #001845AA;
     margin-right: 10px;
@@ -217,7 +227,7 @@ ul {
 }
 
 .tooltip_content_2{
-    max-height: 350px;
+    max-height: 270px;
     overflow-y: auto;
     font-size: 15px;
     padding: 10px 10px 0 10px;

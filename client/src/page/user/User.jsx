@@ -55,8 +55,11 @@ export default function User(props) {
 
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="" variant="dark" className={styles.navbar}>
-                <Navbar.Brand><Link to="/user/hydramap" className={styles.link}>{t('platform_name')}</Link></Navbar.Brand>
+            <Navbar collapseOnSelect expand="lg" variant="dark" className={styles.navbar}>
+                <Navbar.Brand>
+                    <img src='/img/login_display.jpg' className={styles.title_img}/>
+                    <Link to="/user/hydramap" className={styles.title}>{t('platform_name')}</Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="mr-auto">
@@ -76,7 +79,7 @@ export default function User(props) {
                         }
 
                         <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>{t("account")}</Link></Nav.Link>
-                        <NavDropdown title={t("language")} id="nav-dropdown">
+                        <NavDropdown className={styles.link} title={t("language")} id="nav-dropdown">
                             <NavDropdown.Item eventKey="4.1" onClick={(e) => changeLanguage("en")}>English</NavDropdown.Item>
                             <NavDropdown.Item eventKey="4.2" onClick={(e) => changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
                         </NavDropdown>

@@ -40,7 +40,7 @@ export default function Measurement({ mode, setMode }) {
 
   return (<div>
     <h4 className={styles.func_title}>{t('measurement')}</h4>
-    <div className={styles.all_print}>
+    <div className={styles.function_wrapper_measurement}>
       <h5>{t('distance')}</h5>
       <div className={styles.circle_analysis_btn}>
         <Button

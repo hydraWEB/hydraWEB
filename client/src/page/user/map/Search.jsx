@@ -24,14 +24,14 @@ import { zoomIn } from './LayerV2'
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExploreIcon from '@material-ui/icons/Explore';
-import Select from '@material-ui/core/Select';
+import Select from '@mui/material/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
 import InputBase from "@material-ui/core/InputBase";
 import Pagination from "@material-ui/lab/Pagination";
 import SearchFunction from './SearchFunction.jsx'
+import MenuItem from '@mui/material/MenuItem';
 
 const Accordion = withStyles({
   root: {
@@ -293,21 +293,17 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
   return (
     <div >
       <h4 className={styles.func_title}>{t('search')}</h4>
+      <div className={styles.function_wrapper}>
       <div className={styles.search_tag}>
+      <p  className={styles.search_tag_text}>{t('tags')}：</p>
         <FormControl >
-          <InputLabel>{t('tags')}</InputLabel>
-          <Select
-            native
+          <NativeSelect
+
             value={currentTag}
             onChange={handleChange}
-            inputProps={{
-              name: 'Tags',
-              id: 'age-native-simple',
-            }}
           >
-            <option aria-label="None" value="" />
             {selectTag}
-          </Select>
+          </NativeSelect>
         </FormControl>
       </div>
       <div className={styles.search_bar}>
@@ -327,6 +323,8 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
           <Button variant="contained" onClick = {changeCursor}>Change Cursor</Button>
         </div> */}
       </div>
+      </div>
+     
 
 
       <div>

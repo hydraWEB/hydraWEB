@@ -26,7 +26,7 @@ import { green } from '@material-ui/core/colors';
 
 const Accordion = withStyles({
   root: {
-    backgroundColor: '#024FA1',
+    backgroundColor: '#457ee7aa',
     boxShadow: 'none',
     '&:not(:last-child)': {
       borderBottom: 0,
@@ -43,7 +43,7 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
   root: {
-    backgroundColor: '#024FA1',
+    backgroundColor: '#457ee7aa',
     borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 20,

@@ -119,9 +119,9 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
   let resultlist = currentPageData.map((d) =>
     <div>
       {
-        d !== undefined && 
-        <SearchFunction data = {d} zoomTo={zoomTo} allData={allData} setAllData={setAllData} layers={layers} 
-        setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={data}/>
+        d !== undefined &&
+        <SearchFunction data={d} zoomTo={zoomTo} allData={allData} setAllData={setAllData} layers={layers}
+          setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={data} />
       }
     </div>
   );
@@ -148,20 +148,23 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       </h4>
 
       <div>
-        <div className={styles.circleAnalysis_top}>
-          <p>{t('radius')}：{radius}km</p>
-          {lastClick.length > 1 &&
-            <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>
+        <div className={styles.function_wrapper_circle_analysis}>
+          <div className={styles.circleAnalysis_top}>
+            <p>{t('radius')}：{radius}km</p>
+            {lastClick.length > 1 &&
+              <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>
 
-          }
-          <div className={styles.circle_analysis_btn}>
-            <Button
-              onClick={(e) => setEditLayerMode()}
-              variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
-              {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}
-            </Button>
+            }
+            <div className={styles.circle_analysis_btn}>
+              <Button
+                onClick={(e) => setEditLayerMode()}
+                variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
+                {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}
+              </Button>
+            </div>
           </div>
         </div>
+
         <div className={styles.circleAnalysis_search_result}>
           {searchResult.length > 0 &&
             <>

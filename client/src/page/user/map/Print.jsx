@@ -99,7 +99,7 @@ export default function Print({ map, deck }) {
   return (
       <div>
       <h4 className={styles.func_title}>{t('print')}</h4>
-      <div className={styles.all_print}>
+      <div className={styles.function_wrapper_print}>
       <Form>
         <FormItem>
           <h5>{t('unit')}</h5>

@@ -9,12 +9,13 @@ import {
   faStreetView,
   faPen,
   faRuler,
-  faWater
+  faWater,
+  faInfo
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
   OverlayTrigger, Tooltip,
-  Row, Col,Image
+  Row, Col, Image
 } from 'react-bootstrap';
 import { useTranslation, Trans } from "react-i18next";
 
@@ -75,15 +76,12 @@ const ShowWrapper = styled.div(
   props => (
     {
       display: props.isShow ? 'inline-block' : 'none',
-      width: "100%"
     }
   )
 )
-const MenuBtnWrapper = styled.li(
+const MenuBtnWrapper = styled.div(
   props => (
     {
-      padding: "25px 10px 10px 22px",
-      alignItems: "center",
       background: props.isShow ? '#92a4e4' : null,
       cursor: 'pointer'
     }
@@ -152,7 +150,7 @@ function renderTooltip({ hoverInfo }) {
 
   const list = Object.entries(props).map(([key, value]) => {
     if (typeof value === 'object' && value !== null) {
-      if(key === 'prop1'){
+      if (key === 'prop1') {
         const list2 = Object.entries(value).map(([key2, value2]) => {
           return (
             <div>{key2} : {value2.toString()}</div>
@@ -226,7 +224,7 @@ function renderInfo(clickInfo, setClickInfo) {
     }
 
     if (typeof value === 'object' && value !== null) {
-      if(key === 'prop1'){
+      if (key === 'prop1') {
         const list2 = Object.entries(value).map(([key2, value2]) => {
           return (
             <div>
@@ -394,7 +392,7 @@ export default function HydraMap() {
     onEdit: onEdit
   });
 
-  
+
   const containerRef = useRef()
   const mapRef = useRef()
   const deckRef = useRef()
@@ -602,8 +600,7 @@ export default function HydraMap() {
     <>
       <div className={styles.top_level_nav}>
         <nav className={styles.top_level_nav_wrapper}>
-          <ul>
-            <MenuBtnWrapper isShow={currentFunction === 0} onClick={(e) => functionChangeToggle(0)}>
+            <MenuBtnWrapper isShow={currentFunction === 0 && openSheet == true} onClick={(e) => functionChangeToggle(0)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -615,12 +612,12 @@ export default function HydraMap() {
                 <div className={styles.menu_btn} >
                   <FontAwesomeIcon
                     icon={faSearch}
-                    size="lg" color="white" />
+                    size="lg" color="gray" />
                 </div>
 
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 1} onClick={(e) => functionChangeToggle(1)}>
+            <MenuBtnWrapper isShow={currentFunction === 1 && openSheet == true} onClick={(e) => functionChangeToggle(1)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -632,27 +629,11 @@ export default function HydraMap() {
                 <div className={styles.menu_btn}>
                   <FontAwesomeIcon
                     icon={faClone}
-                    size="lg" color="white" />
+                    size="lg" color="gray" />
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 2} onClick={(e) => functionChangeToggle(2)}>
-              <OverlayTrigger
-                key='right'
-                placement='right'
-                overlay={
-                  <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('3D_switch')}
-                  </Tooltip>
-                }>
-                <div className={styles.menu_btn}>
-                  <FontAwesomeIcon
-                    icon={faExchangeAlt}
-                    size="lg" color="white" />
-                </div>
-              </OverlayTrigger>
-            </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 3} onClick={(e) => functionChangeToggle(3)}>
+            <MenuBtnWrapper isShow={currentFunction === 3 && openSheet == true} onClick={(e) => functionChangeToggle(3)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -664,11 +645,11 @@ export default function HydraMap() {
                 <div className={styles.menu_btn}>
                   <FontAwesomeIcon
                     icon={faStreetView}
-                    size="lg" color="white" />
+                    size="lg" color="gray" />
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 4} onClick={(e) => functionChangeToggle(4)}>
+            <MenuBtnWrapper isShow={currentFunction === 4 && openSheet == true} onClick={(e) => functionChangeToggle(4)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -681,11 +662,11 @@ export default function HydraMap() {
 
                   <FontAwesomeIcon
                     icon={faPrint}
-                    size="lg" color="white" />
+                    size="lg" color="gray" />
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 6} onClick={(e) => functionChangeToggle(6)}>
+            <MenuBtnWrapper isShow={currentFunction === 6 && openSheet == true} onClick={(e) => functionChangeToggle(6)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -696,11 +677,11 @@ export default function HydraMap() {
                 }>
                 <div className={styles.menu_btn} >
                   <FontAwesomeIcon
-                    icon={faRuler} size="lg" color="white" />
+                    icon={faRuler} size="lg" color="gray" />
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <MenuBtnWrapper isShow={currentFunction === 7} onClick={(e) => functionChangeToggle(7)}>
+            <MenuBtnWrapper isShow={currentFunction === 7 && openSheet == true} onClick={(e) => functionChangeToggle(7)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -711,41 +692,67 @@ export default function HydraMap() {
                 }>
                 <div className={styles.menu_btn} >
                   <FontAwesomeIcon
-                    icon={faWater} size="lg" color="white" />
+                    icon={faWater} size="lg" color="gray" />
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-          </ul>
-        </nav>
-      </div>
+            <div className={styles.menu_btn_bottom}>
+            <MenuBtnWrapper isShow={currentFunction === 8 && openSheet == true} onClick={(e) => functionChangeToggle(8)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('waterlevel')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faInfo} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
+            </div>
 
-      <ShowWrapper isShow={openSheet}>
-        <div className={styles.menu_desk_outer_layer}>
+        </nav>
+
+                
+        <ShowWrapper isShow={openSheet}>
           <ShowWrapper isShow={currentFunction === 0}>
-            <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+            <div className={styles.menu_desk_outer_layer}>
+              <Search allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+            </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
-            <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} />
-          </ShowWrapper>
-          <ShowWrapper isShow={currentFunction === 2}>
-            <h4 className={styles.func_title}>{t('3D_switch')}</h4>
+            <div className={styles.menu_desk_outer_layer}>
+              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} />
+            </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
-            <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} setLayers={setLayersFunc} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+            <div className={styles.menu_desk_outer_layer}>
+              <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} setLayers={setLayersFunc} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+            </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
-            <Print map={mapRef} deck={deckRef} />
+            <div className={styles.menu_desk_outer_layer}>
+              <Print map={mapRef} deck={deckRef} />
+            </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 6}>
-            <Measurement mode={measurementMode} setMode={setEditLayerMode} />
+            <div className={styles.menu_desk_outer_layer}>
+              <Measurement mode={measurementMode} setMode={setEditLayerMode} />
+            </div>
           </ShowWrapper>
-        </div>
-        <ShowWrapper isShow={currentFunction === 7}>
-          <div className={styles.menu_desk_outer_layer_2}>
-            <WaterLevel allData={allData} />
-          </div>
+          <ShowWrapper isShow={currentFunction === 7}>
+            <div className={styles.menu_desk_outer_layer_2}>
+              <WaterLevel allData={allData} />
+            </div>
+          </ShowWrapper>
         </ShowWrapper>
-      </ShowWrapper>
+
+      </div>
+
+
 
 
 
@@ -800,22 +807,22 @@ export default function HydraMap() {
           </FabIcon>
           <div className={styles.ps_chart_container} >
             {chartIsVisible &&
-            <div>
-              <img className={styles.ps_chart} src='/img/chart.png' alt="chart"/>
-              <div className={styles.ps_chart_right_container} >
-                <p className={styles.ps_chart_right_container_text1}>47.3</p>
-                <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+              <div>
+                <img className={styles.ps_chart} src='/img/chart.png' alt="chart" />
+                <div className={styles.ps_chart_right_container} >
+                  <p className={styles.ps_chart_right_container_text1}>47.3</p>
+                  <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+                </div>
               </div>
-            </div>
             }
-            
-            
+
+
           </div>
 
         </div>
-        
 
-        
+
+
         <div className={styles.map} id="big_map" ref={containerRef}>
           <DeckGL
             tooltip={true}

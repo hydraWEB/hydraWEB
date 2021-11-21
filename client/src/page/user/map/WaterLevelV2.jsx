@@ -379,7 +379,7 @@ export default function WaterLevelV2({ }) {
         :
         <div className={styles.water_level_layout}>
           <div className={styles.water_level_layout_left}>
-            <div className={styles.water_level_layout_left_1}>
+            <div className={styles.function_wrapper_waterlevel}>
               <div className={styles.water_level_dropdown}>
                 <h5>{t('select_coordinate')}</h5>
 

@@ -8,6 +8,9 @@ export default function Tutorial(){
       <div className={styles.content}>
         簡介
       </div>
+      <div className={styles.content}>
+        本平台可使用
+      </div>
     </div>)
 
 }

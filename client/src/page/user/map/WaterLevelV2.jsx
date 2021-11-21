@@ -41,12 +41,12 @@ import DatePicker from '@mui/lab/DatePicker';
 import TextField from '@mui/material/TextField';
 import * as dayjs from 'dayjs'
 
-export default function WaterLevelV2({ }) {
+export default function WaterLevel({STNO}) {
 
   const [allStation, setAllStation] = useState([])
-  const [currentStation, setCurrentStation] = useState(null)
-  const [currentStationIndex, setCurrentStationIndex] = useState(null)
-  const [currentStationData, setCurrentStationData] = useState(null)
+  const [currentStation, setCurrentStation] = useState(null) //點選後存起來的下拉選單資料
+  const [currentStationIndex, setCurrentStationIndex] = useState(null) //水位資料的index
+  const [currentStationData, setCurrentStationData] = useState(null) //水位資料
   const [openpop, setOpenpop] = useState(null)
   const [isLoadingStation, setLoadingStation] = useState(true)
   const [isLoadingData, setLoadingData] = useState(false)
@@ -62,6 +62,16 @@ export default function WaterLevelV2({ }) {
   const [maxHour, setMaxHour] = useState(0)
 
   const { addToast } = useToasts();
+
+  function FindIndexOfSTNO(){
+    for (let i = 0;i<allStation.length;i++){
+      if(allStation[i][0] === STNO){
+        let idx = i;
+        return idx
+      }
+    }
+    return 0
+  }
 
   let dayjs = require("dayjs")
 
@@ -84,7 +94,20 @@ export default function WaterLevelV2({ }) {
     }
   }, [allStation])
 
+  useEffect(() => {
+    if(allStation.length > 0 && STNO !==""){
+      let idx = FindIndexOfSTNO()
+      FindMinMaxTime(idx)
+      setCurrentStation(allStation[idx][0])
+      setCurrentStationIndex(idx)
+    }
+  },[STNO])
+
   const onSearchClick = (e) => {
+    if(STNO != ""){
+      setCurrentStation(STNO)
+    }
+    let currStation = currentStation
     let time_is_valid = timeIsValid()
     var utc = require('dayjs/plugin/utc')
     var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
@@ -102,7 +125,7 @@ export default function WaterLevelV2({ }) {
       DrawEmptyChart()
       setLoadingData(true)
       WaterLevelGetDataByStNo({
-        st_no: currentStation,
+        st_no: currStation,
         start_time:start_datetime,
         end_time:end_datetime, 
       }).then((res) => {
@@ -130,6 +153,7 @@ export default function WaterLevelV2({ }) {
   }
 
   const stationSelectOnChange = (e) => {
+    console.log(e.target.value)
     FindMinMaxTime(e.target.value)
     setCurrentStation(allStation[e.target.value][0])
     setCurrentStationIndex(e.target.value)
@@ -354,11 +378,6 @@ export default function WaterLevelV2({ }) {
     <option value={d}>{d}</option>
   );
 
-  /* const list = Object.entries(currentStationData == null ? [] : currentStationData.properties.prop1).map(([key, value]) => {
-    return (
-      <div>{key} : {value.toString()}</div>
-    )
-  }) */
   const handlePopClick = (event) => {
     setOpenpop(event.currentTarget);
   }
@@ -454,7 +473,7 @@ export default function WaterLevelV2({ }) {
                 </div>
 
 
-                <Button className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
+                <Button id="seachClickTrigger" className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
                   {t('search')}
                 </Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handlePopClick}>{t('help')}</Button>
@@ -490,4 +509,4 @@ export default function WaterLevelV2({ }) {
       }
     </div>
   );
-}
+};

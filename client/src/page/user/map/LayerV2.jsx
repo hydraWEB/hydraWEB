@@ -6,7 +6,7 @@ import { DataFilterExtension } from '@deck.gl/extensions';
 import { GeoJsonLayer } from '@deck.gl/layers';
 import { ScenegraphLayer } from '@deck.gl/mesh-layers';
 import { ColumnLayer } from '@deck.gl/layers';
-import { HexagonLayer,HeatmapLayer } from '@deck.gl/aggregation-layers';
+import { HexagonLayer, HeatmapLayer } from '@deck.gl/aggregation-layers';
 import { LayerList } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from '@material-ui/core/Slider';
@@ -65,7 +65,6 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
-
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
 
@@ -98,7 +97,6 @@ const InputWrapper = styled.div(
   )
 )
 
-
 const StyledLabel = styled.label(
   props => (
     {
@@ -107,7 +105,6 @@ const StyledLabel = styled.label(
     }
   )
 )
-
 
 const hashCode = (str) => { // java String#hashCode
   var hash = 0;
@@ -124,8 +121,8 @@ export const getDotColor = d => {
 };
 
 export const getDotColor2 = d => {
-  if(d){
-    return 
+  if (d) {
+    return
   }
 }
 
@@ -147,8 +144,6 @@ const checkBoxStyle = makeStyles({
   })
 });
 
-
-
 function CustomCheckBox({ color, checked, onChange }) {
   const classes1 = checkBoxStyle({ color: color });
   return (
@@ -160,7 +155,6 @@ function CustomCheckBox({ color, checked, onChange }) {
     />
   )
 }
-
 
 function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
 
@@ -296,17 +290,11 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
 
     })
   }
-
-
-
   setLayers(newLayer)
-
-
-
 }
 
 export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible }) {
-  
+
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
   const [dataLoadState, setDataLoadState] = useState(0)
@@ -328,30 +316,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     return time1.valueOf()
   }
 
-  function fillcolor(d) {
-    if (d.properties > 34) {
-      return [146, 0, 29]
-    } else if (d.properties > 30) {
-      return [182, 21, 19, 255]
-    } else if (d.properties > 25) {
-      return [168, 72, 5, 255]
-    } else if (d.properties > 20) {
-      return [158, 91, 5, 255]
-    } else if (d.properties > 15) {
-      return [135, 96, 3, 255]
-    } else if (d.properties > 10) {
-      return [98, 97, 0, 255]
-    } else if (d.properties > 5) {
-      return [83, 82, 0, 255]
-    } else if (d.properties > 0) {
-      return [54, 85, 24, 255]
-    }
-    else {
-      return [54, 138, 155, 255]
-    }
-  }
-
-
   function fillcolor2(d) {
     function hslToRgb(h, s, l) {
       let c = (1 - Math.abs(2 * l - 1)) * s;
@@ -370,38 +334,15 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         Math.round(255 * (rgb1[0] + m)),
         Math.round(255 * (rgb1[1] + m)),
         Math.round(255 * (rgb1[2] + m))];
-  }
+    }
     /* console.log(hslToRgb(8,1,0.5)) */
     const maxValue = 47.3;
     const minValue = -45.3;
-    const count = 240/(maxValue-minValue);    //0.38583333    2.591792657
+    const count = 240 / (maxValue - minValue);    //0.38583333    2.591792657
     let calc = Math.ceil((d.properties + 45.3) * count)
-    
-    return hslToRgb(calc,0.9,0.5)
-    
-    /* if (d.properties > 34) {
-      return [146, 0, 29]
-    } else if (d.properties > 30) {
-      return [182, 21, 19, 255]
-    } else if (d.properties > 25) {
-      return [168, 72, 5, 255]
-    } else if (d.properties > 20) {
-      return [158, 91, 5, 255]
-    } else if (d.properties > 15) {
-      return [135, 96, 3, 255]
-    } else if (d.properties > 10) {
-      return [98, 97, 0, 255]
-    } else if (d.properties > 5) {
-      return [83, 82, 0, 255]
-    } else if (d.properties > 0) {
-      return [54, 85, 24, 255]
-    }
-    else {
-      return [54, 138, 155, 255]
-    } */
 
+    return hslToRgb(calc, 0.9, 0.5)
   }
-
 
   // index1:分類的index index:分類中檔案的index
   const OnListItemsChange = (e, index1, data, index) => {
@@ -411,21 +352,17 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setAllData(newMapData)
     let newLayer = [...layers] //複製一個layer
     newLayer.forEach((element, i) => {
-      if (element.props.name === "GPS" && data.name === "GPS" || element.props.name === "GPS" && data.name === "GPS" ) {
-        
-        let hexdata = []
+      // 3D資料
+      if (element.props.name === data.name && data.name === "GPS") {
+        let threeDimensionData = [];
         data.data.features.forEach((dl) => {
-          try {
-            hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
-          } catch (error) {
-
-          }
+          threeDimensionData.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties });
         })
         newLayer[i] = new ScenegraphLayer({
           id: data.name,
           name: data.name,
-          data: hexdata,
-          
+          data: threeDimensionData,
+
           pickable: true,
           visible: data.value,
           scenegraph: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf',
@@ -436,91 +373,95 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
           },
           sizeScale: 500,
           _lighting: 'pbr'
-        })
-        return
+        });
+        return;
       }
-      if (element.props.name == "ps_mean_v.xy.json" && data.name === "ps_mean_v.xy.json") { //3d圖層
-        setChartIsVisible(value)
-        let hexdata = []
+
+      // ps資料
+      if (element.props.name === "ps_mean_v.xy.json" && data.name === "ps_mean_v.xy.json") { //3d圖層
+        setChartIsVisible(value)  //地圖右邊的顏色條
+        let psData = []
         data.data.features.forEach((dl) => {
           try {
-            hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
+            psData.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
           } catch (error) {
 
           }
         })
-        
-      /*   newLayer[i] =
-          new ColumnLayer({
-            id: data.name,
-            name: data.name,
-            data: hexdata,
-            extruded: true,
-            pickable: true,
-            visible: data.value,
-            radius: 500,
-            coverage: 0.7,
-            getElevation: d => d.z + 45.3,
-            elevationScale: 500,
-            getPosition: d => d.COORDINATES,
-            getFillColor: fillcolor,
-            getLineColor: [0, 0, 0],
-          }) */
+        //ps檔案
+        /*   newLayer[i] =
+            new ColumnLayer({
+              id: data.name,
+              name: data.name,
+              data: hexdata,
+              extruded: true,
+              pickable: true,
+              visible: data.value,
+              radius: 500,
+              coverage: 0.7,
+              getElevation: d => d.z + 45.3,
+              elevationScale: 500,
+              getPosition: d => d.COORDINATES,
+              getFillColor: fillcolor,
+              getLineColor: [0, 0, 0],
+            }) */
 
-          /* newLayer[i] =
-          new HeatmapLayer({
-            id: data.name,
-            name: data.name,
-            data: hexdata,
-            extruded: true,
-            pickable: true,
-            visible: data.value,
-            getWeight: d => d.z,
-            getPosition: d => d.COORDINATES,
-            
-          }) */
-          newLayer[i] = new GeoJsonLayer({
-            id: data.name,
-            name: data.name,
-            data: data.data,
-            data_type:newMapData[index1].name,
-            visible: value,
-            // Styles
-            filled: true,
-            pointRadiusMinPixels: 2,
-            pointRadiusScale: 5,
-            getPointRadius: f => 5,
-            getFillColor: fillcolor2,
-            stroked: false,
-            // Interactive props
-            pickable: true,
-            autoHighlight: true,
-            onHover: onHover,
-            onClick: onClick,
-            updateTriggers: {
-              visible: data.value
-            }
-          })
+        //ps檔案
+        /* newLayer[i] =
+        new HeatmapLayer({
+          id: data.name,
+          name: data.name,
+          data: hexdata,
+          extruded: true,
+          pickable: true,
+          visible: data.value,
+          getWeight: d => d.z,
+          getPosition: d => d.COORDINATES,
           
+        }) */
+        newLayer[i] = new GeoJsonLayer({
+          id: data.name,
+          name: data.name,
+          data: data.data,
+          data_type: newMapData[index1].name,
+          visible: value,
+          // Styles
+          filled: true,
+          pointRadiusMinPixels: 2,
+          pointRadiusScale: 5,
+          getPointRadius: f => 5,
+          getFillColor: fillcolor2,
+          stroked: false,
+          // Interactive props
+          pickable: true,
+          autoHighlight: true,
+          onHover: onHover,
+          onClick: onClick,
+          updateTriggers: {
+            visible: data.value
+          }
+        })
         return;
       }
-      if (element.props.name == data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
+
+      //普通資料
+      if (element.props.name === data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
+
+        //時序資料
         if (data.time_serie) {
           let measurementMap = new Map();
-          
           data.data.features.forEach((da) => {
             let value = measurementMap.get(da.properties._measurement)
             //value.push(da)
             measurementMap.set(da._measurement, value);
           })
-
           console.log(measurementMap)
           newLayer[i] = new GeoJsonLayer({
             id: data.name,
             name: data.name,
             data: data.data,
             visible: data.value,
-            data_type:newMapData[index1].name,
+            data_type: newMapData[index1].name,
             // Styles
             filled: true,
             pointRadiusMinPixels: 2,
@@ -551,7 +492,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             id: data.name,
             name: data.name,
             data: data.data,
-            data_type:newMapData[index1].name,
+            data_type: newMapData[index1].name,
             visible: value,
             // Styles
             filled: true,
@@ -575,7 +516,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     });
     setLayers(newLayer) //修改本來地圖的layer */ 
   }
-
 
   useEffect(() => {
     LayerList({
@@ -606,7 +546,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       let newLayer = [...layers]
       list.forEach((l, index) => {
         l.files.forEach((data, idx) => {
-          if (data.name == "GPS" || data.name === "GPS") {
+          if (data.name === "GPS") {
             let hexdata = []
             data.data.features.forEach((dl) => {
               try {
@@ -621,7 +561,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
               data: hexdata,
               pickable: true,
               visible: false,
-              data_type:l.name,
+              data_type: l.name,
               scenegraph: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf',
               getPosition: d => d.COORDINATES,
               getOrientation: d => [0, Math.random() * 180, 90],
@@ -633,7 +573,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             }))
             return
           }
-          if (data.name == "ps_mean_v.xy.json") {
+          if (data.name === "ps_mean_v.xy.json") {
             let hexdata = []
             data.data.features.forEach((dl) => {
               try {
@@ -664,6 +604,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                   visible: data.value
                 }
               })
+              //ps檔案
               /* new HeatmapLayer({
                 id: data.name,
                 name: data.name,
@@ -675,6 +616,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 getPosition: d => d.COORDINATES,
 
               }) */
+              //ps檔案
               /* new ColumnLayer({
                 id: data.name,
                 name: data.name,
@@ -690,6 +632,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 getFillColor: fillcolor,
                 getLineColor: [0, 0, 0],
               }) */
+              //ps檔案
               /* new HexagonLayer({
                 id: data.name,
                 name: data.name,
@@ -706,9 +649,9 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             )
             return
           }
-          if (data.time_serie) {    
- 
-            
+          if (data.time_serie) {
+
+
             newLayer.push(
               new GeoJsonLayer({
                 id: data.name,
@@ -739,10 +682,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 }
               })
             )
-
-            
-
-            
           } else {
             newLayer.push(
               new GeoJsonLayer({
@@ -750,7 +689,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 name: data.name,
                 data: data.data,
                 visible: data.value,
-                data_type:l.name,
+                data_type: l.name,
                 // Styles
                 filled: true,
                 pointRadiusMinPixels: 2,
@@ -782,6 +721,11 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     /* fillcolor2() */
   }, [])
 
+
+  function initLayer(){
+
+  }
+
   function getLayer(data) {
     layers.forEach(element => {
       if (element.props.name === data.name) {
@@ -791,9 +735,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
   }
 
   function setCurrentLayer(data, index1, time, index) {
-    //console.log(layers)
     let newLayer = [...layers] //複製一個layer
-    let dayjs = require("dayjs")
     let newMapData = [...allData]
     newMapData[index1].files[index].value = true
     newMapData[index1].files[index].current_time = time
@@ -809,7 +751,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
           id: data.name,
           name: data.name,
           data: data.data,
-          data_type:newMapData[index1].name,
+          data_type: newMapData[index1].name,
           visible: data.value,
           // Styles
           filled: true,
@@ -840,7 +782,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         })
       }
     })
-    //console.log(time)
     setLayers(newLayer)
   }
 

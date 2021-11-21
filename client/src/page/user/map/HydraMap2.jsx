@@ -184,7 +184,7 @@ function renderTooltip({ hoverInfo }) {
   );
 }
 
-function renderInfo(clickInfo, setClickInfo) {
+function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STNO,setSTNO) {
   if (!clickInfo) {
     return null;
   }
@@ -194,12 +194,19 @@ function renderInfo(clickInfo, setClickInfo) {
     return null;
   }
 
-
   const props = object.properties;
+  
+  function GetClickSTNO(){
+    if (STNO !== props.measurement) {
+      if(clickInfo.layer.id === "地下水觀測井位置圖_雲林縣現存站" || clickInfo.layer.id === "地下水觀測井位置圖_彰化縣現存站"){
+        setSTNO(props.measurement)
+      }
+    }
+    return <div/>
+  }
 
-  function ShowButton() {
+  function ShowGroundButton() {
     const [showChart, setShowChart] = React.useState(false)
-
 
     if (clickInfo.layer.props.data_type === "Geology") {
       return (
@@ -218,11 +225,31 @@ function renderInfo(clickInfo, setClickInfo) {
     }
   }
 
+  function ShowWaterButton() {
+    if (clickInfo.layer.props.data_type === "yunlin" || clickInfo.layer.props.data_type === "changhua" ) {
+      if (clickInfo.layer.id === "地下水觀測井位置圖_雲林縣現存站" || clickInfo.layer.id === "地下水觀測井位置圖_彰化縣現存站"){
+        // react hook call function outside component
+        return (
+          <div>
+            <Button onClick={(e) => { 
+              setCurrentFunction(7);
+              //waterLevelRef.current.onSearchClick(e);
+              if(document.getElementById('seachClickTrigger') != null){
+                
+                document.getElementById('seachClickTrigger').click()
+              }
+              }} >
+              水位資料
+            </Button>
+          </div>
+        )
+      }
+    }
+  return <div/>
+
+  }
 
   const list = Object.entries(props).map(([key, value]) => {
-    if (clickInfo.layer.props.data_type === "Geology") {
-    }
-
     if (typeof value === 'object' && value !== null) {
       if (key === 'prop1') {
         const list2 = Object.entries(value).map(([key2, value2]) => {
@@ -259,7 +286,9 @@ function renderInfo(clickInfo, setClickInfo) {
         <p className={styles.tooltip_title_t1}>{clickInfo.object.properties.measurement}</p>
 
         <p className={styles.tooltip_title_t2}>{clickInfo.layer.id}</p>
-        <ShowButton />
+        <GetClickSTNO/>
+        <ShowGroundButton />
+        <ShowWaterButton />
       </div>
 
       <p className={styles.tooltip_content_2}>
@@ -270,6 +299,7 @@ function renderInfo(clickInfo, setClickInfo) {
   );
 }
 
+//右鍵選單
 function ContextMenu({ parentRef, lastClick, startCircleAnalysis, setCurrentFunction }) {
   const [isVisible, setVisibility] = useState(false);
   const [x, setX] = useState(0)
@@ -333,6 +363,7 @@ export default function HydraMap() {
   const [selectedFeatureIndexes] = React.useState([]);
   const [radius, setRadius] = useState(0)
 
+
   const [circleAnalysisMode, _setCircleAnalysisMode] = useState(() => ViewMode)
   const circleAnalysisModeRef = useRef(circleAnalysisMode);
   const setCircleAnalysisMode = data => {
@@ -345,7 +376,15 @@ export default function HydraMap() {
   const setMeasurementMode = data => {
     measurementModeRef.current = data;
     _setMeasurementMode(data);
-  };
+  };    //及時更改
+
+  const [waterLevelMode, _setWaterLevelMode] = useState()
+  const waterLevelModeRef = useRef(waterLevelMode);
+  const setWaterLevelModeRef = data => {
+    waterLevelMode.current = data;
+    _setWaterLevelMode(data);
+  }
+
 
 
   const [lastClick, _setLastClick] = useState([])
@@ -396,10 +435,12 @@ export default function HydraMap() {
   const containerRef = useRef()
   const mapRef = useRef()
   const deckRef = useRef()
+  const waterLevelRef = useRef(); //waterLevelRef.current.onSearchClick
   const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
   const { t, i18n } = useTranslation();
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const viewState2 = useRef(INITIAL_VIEW_STATE);
+  const [STNO, setSTNO] = useState()
   const [currentFunction, setCurrentFunction] = useState(1)
   const [openSheet, setOpenSheet] = useState(true)
   const [hoverInfo, setHoverInfo] = useState({});
@@ -745,7 +786,7 @@ export default function HydraMap() {
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 7}>
             <div className={styles.menu_desk_outer_layer_2}>
-              <WaterLevel allData={allData} />
+              <WaterLevel ref={waterLevelRef} STNO={STNO}/>
             </div>
           </ShowWrapper>
         </ShowWrapper>
@@ -843,7 +884,7 @@ export default function HydraMap() {
           </DeckGL>
         </div>
         <ContextMenu parentRef={containerRef} lastClick={lastClick} startCircleAnalysis={() => { setEditLayerMode(DrawCircleFromCenterMode) }} setCurrentFunction={setCurrentFunction} />
-        {renderInfo(clickInfo, setClickInfo)}
+        {renderInfo(clickInfo, setClickInfo, setCurrentFunction ,waterLevelRef,STNO,setSTNO)}
       </div>
     </>
 

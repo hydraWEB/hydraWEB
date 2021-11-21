@@ -41,17 +41,16 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
 
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
-
+    token = os.environ.get('INFLUX_TOKEN')
+    org = os.environ.get('INFLUX_ORG')
+    
     def query_city(self, bucket):
-        token = os.environ.get('INFLUX_TOKEN')
-        org = os.environ.get('INFLUX_ORG')
-
         type = self.request.query_params.get('type', None)
         data = []
         client = influxdb_client.InfluxDBClient(
             url=self.url,
-            token=token,
-            org=org
+            token=self.token,
+            org=self.org
         )
         geojson = {
             "type": "FeatureCollection",
@@ -61,7 +60,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
       
         query = f'from (bucket:"{bucket}")\
         |> range(start: 1970-01-01T00:00:00Z)'
-        result = query_api.query(query=query, org = org)
+        result = query_api.query(query=query, org = self.org)
         feature = []
 
         for table in result:
@@ -101,7 +100,8 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
 
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
-        db = client['hydraweb']
+        db = client[os.environ.get('INFLUX_DB')]
+        print(db)
         allCollection = db.collection_names()
         resultarr = []
         for col in allCollection:
@@ -155,6 +155,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
 class WaterLevelAPI(views.APIView):
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
+    token = os.environ.get('INFLUX_TOKEN')
 
     def post(self,request):     #從influx拿該站點資料
         print(request.data)
@@ -167,7 +168,7 @@ class WaterLevelAPI(views.APIView):
     def get_target_station_data(self, bucket, st_no, start_time, end_time):
         print(start_time)
         print(end_time)
-        token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg=="
+        token = self.token
         org = "hydraweb"
         url = "http://localhost:8086"
         resultArr = []

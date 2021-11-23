@@ -1,10 +1,18 @@
 .content{
- 
+ margin-bottom: 100px;
 } 
 
 .title{
   margin-bottom: 20px;
 } 
+
+.document_img{
+  max-width: 800px;
+  border-radius: 30px;
+  margin: 50px 0 50px 0;
+  align-self: center;
+  justify-content: center;
+}
 
 
 .container{
@@ -12,4 +20,6 @@
   color: white;
   margin: 0 auto;
   margin-top:50px;
+  display: flex;
+  flex-direction: column;
 }

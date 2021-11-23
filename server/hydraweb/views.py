@@ -169,7 +169,7 @@ class WaterLevelAPI(views.APIView):
         print(start_time)
         print(end_time)
         token = self.token
-        org = "hydraweb"
+        org = os.environ.get('INFLUX_ORG')
         url = "http://localhost:8086"
         resultArr = []
         data = []

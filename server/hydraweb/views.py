@@ -96,7 +96,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
 
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
-        db = client[os.environ.get('MONGO_LAYER_DB')]
+        db = client['hydraweb']
         allCollection = db.collection_names()
         resultarr = []
         for col in allCollection:

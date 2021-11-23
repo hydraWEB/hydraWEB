@@ -36,17 +36,13 @@ class LayerAPIView(views.APIView):      #資料夾
 
         return Response({"status":"created","data":result}, status=status.HTTP_200_OK)   
 
-
 class LayerListAPIView(views.APIView):      #INFLUX + MONGO
-
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
     token = os.environ.get('INFLUX_TOKEN')
     org = os.environ.get('INFLUX_ORG')
     
     def query_city(self, bucket):
-        type = self.request.query_params.get('type', None)
-        data = []
         client = influxdb_client.InfluxDBClient(
             url=self.url,
             token=self.token,
@@ -100,17 +96,13 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
 
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
-        db = client[os.environ.get('INFLUX_DB')]
-        print(db)
+        db = client[os.environ.get('MONGO_LAYER_DB')]
         allCollection = db.collection_names()
         resultarr = []
         for col in allCollection:
             collection = db.get_collection(col)
             result = collection.find()
-            i = 0
             res_json = []
-            feats = []
-            print(col)
             if col == 'ps':
                 """ for dt in result:
                     is_time_series = False
@@ -156,37 +148,35 @@ class WaterLevelAPI(views.APIView):
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
     token = os.environ.get('INFLUX_TOKEN')
+    bucket = os.environ.get('INFLUX_BUCKET')
+    org = os.environ.get('INFLUX_ORG')
 
     def post(self,request):     #從influx拿該站點資料
         print(request.data)
         st_no = request.data['st_no']
         start_time = request.data['start_time']
         end_time = request.data['end_time']
-        res = self.get_target_station_data("optimization_data",st_no,start_time,end_time)       #要改
+        res = self.get_target_station_data(st_no,start_time,end_time)       #要改
         return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
         
-    def get_target_station_data(self, bucket, st_no, start_time, end_time):
+    def get_target_station_data(self, st_no, start_time, end_time):
         print(start_time)
         print(end_time)
-        token = self.token
-        org = os.environ.get('INFLUX_ORG')
-        url = "http://localhost:8086"
         resultArr = []
-        data = []
         waterlevel = []
         time_arr = []
         client = influxdb_client.InfluxDBClient(
             url=self.url,
-            token=token,
-            org=org
+            token=self.token,
+            org=self.org
         )
         query_api = client.query_api()
         #|> range(start: 1970-01-01T00:00:00Z)\
-        query = f'from (bucket:"{bucket}")\
+        query = f'from (bucket:"{self.bucket}")\
         |> range(start: {start_time}, stop: {end_time})\
         |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
         |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998)'
-        result = query_api.query(query=query, org = org)
+        result = query_api.query(query=query, org = self.org)
         for table in result:
             for i,t in enumerate(table):
                 time_arr.append(t.values["_time"])
@@ -198,7 +188,6 @@ class WaterLevelAPI(views.APIView):
             resultArr.append(temp)
         return resultArr
     
-
 class WaterLevelAllStationAPI(views.APIView):
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"

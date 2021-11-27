@@ -41,6 +41,8 @@ i18n
                     "tags":"Tags",
                     "measurement":"measurement",
                     "waterlevel":"Water Level",
+                    "new_password":"Password",
+                    "info":"Info",
                     //環域分析
                     "radius":"Radius",
                     "center_point":"Center Point",
@@ -145,6 +147,8 @@ i18n
                     "tags":"標籤",
                     "measurement":"測量",
                     "waterlevel":"水位",
+                    "new_password":"密碼",
+                    "info":"資訊",
                     //環域分析
                     "radius":"半徑",
                     "center_point":"中心點",

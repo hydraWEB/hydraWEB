@@ -73,8 +73,6 @@ export default function Staff() {
                                   isLightOn={location.pathname === "/user/staff/login-analytics"} text={t('login_summary')}/>
                     <NormalButton link={"/user/staff/system-used-analytics"}
                                   isLightOn={location.pathname === "/user/staff/system-used-analytics"} text={t('system_function_usage')}/>
-                    <NormalButton link={"/user/staff/system-setting"}
-                                  isLightOn={location.pathname === "/user/staff/system-setting"} text={t('system_setting')}/>
                     <NormalButton link={"/user/staff/announcement-manage"}
                                   isLightOn={location.pathname === "/user/staff/announcement-manage" || location.pathname === "/user/staff/announcement-manage/new" || location.pathname === "/user/staff/announcement-manage/edit" || location.pathname === "/user/staff/announcement-manage/info" } text={t('announcement_setting')}/>
                     <NormalButton link={"/user/staff/account-manage"}

@@ -32,6 +32,7 @@ import CircleAnalysis from "./CircleAnalysis"
 import Chart from "./Chart.jsx"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevelV2"
+import Info from "./Info"
 import { FlyToInterpolator } from 'deck.gl';
 import StyleJson from './style.json'
 import CloseIcon from '@material-ui/icons/Close';
@@ -744,7 +745,7 @@ export default function HydraMap() {
                 placement='right'
                 overlay={
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('waterlevel')}
+                    {t('info')}
                   </Tooltip>
                 }>
                 <div className={styles.menu_btn} >
@@ -787,6 +788,11 @@ export default function HydraMap() {
           <ShowWrapper isShow={currentFunction === 7}>
             <div className={styles.menu_desk_outer_layer_2}>
               <WaterLevel ref={waterLevelRef} STNO={STNO}/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 8}>
+            <div className={styles.menu_desk_outer_layer}>
+              <Info/>
             </div>
           </ShowWrapper>
         </ShowWrapper>

@@ -1,3 +1,4 @@
+import collections
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
@@ -102,11 +103,18 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('INFLUX_DB')]
         print(db)
-        allCollection = db.collection_names()
-        resultarr = []
+        allCollection = db.collection_names()   #改循序
+        new_allCollection = []
+        new_allCollection.append('yunlin')
+        new_allCollection.append('changhua')
         for col in allCollection:
+            if(col != 'yunlin' and col != 'changhua'):
+                new_allCollection.append(col)
+        resultarr = []
+        for col in new_allCollection:
             collection = db.get_collection(col)
             result = collection.find()
+            new_col = []
             i = 0
             res_json = []
             feats = []

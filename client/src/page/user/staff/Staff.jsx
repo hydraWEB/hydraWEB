@@ -23,6 +23,7 @@ import AccountManageNew from "./AccountManageNew"
 import AccountManageEdit from "./AccountManageEdit"
 import AcountManageInfo from "./AcountManageInfo"
 import SystemUpdating from "./SystemUpdating"
+import AccountManageChangePassword from "./AccountManageChangePassword"
 
 
 export const Title = styled.h1(
@@ -109,6 +110,9 @@ export default function Staff() {
                     </Route>
                     <Route path="/user/staff/account-manage/edit">
                         <AccountManageEdit/>
+                    </Route>
+                    <Route path="/user/staff/account-manage/changePassword">
+                        <AccountManageChangePassword/>
                     </Route>
                     <Route path="/user/staff/account-manage/new">
                         <AccountManageNew/>

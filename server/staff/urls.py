@@ -1,8 +1,9 @@
+from django.db.models import base
 from django.urls import path,include
 from rest_framework_simplejwt.views import TokenRefreshView
 from staff.views import SystemLogViewSet, get_all_years
 from rest_framework.routers import DefaultRouter
-from staff.views import StaffAnnouncementViewSet,UserAnnouncementViewSet,AccountViewSet,SystemSettingViewSet,IPManageViewSet
+from staff.views import StaffAnnouncementViewSet,UserAnnouncementViewSet,AccountViewSet,SystemSettingViewSet,IPManageViewSet,ChangePasswordView
 
 routerUser = DefaultRouter()
 routerUser.register('announcement', UserAnnouncementViewSet, basename='bots')
@@ -11,6 +12,7 @@ routerStaff = DefaultRouter()
 routerStaff.register('system-log', SystemLogViewSet, basename='system_log')
 routerStaff.register('announcement', StaffAnnouncementViewSet, basename='bots')
 routerStaff.register('account', AccountViewSet, basename='account')
+routerStaff.register('change-password', ChangePasswordView, basename='change-password')
 routerStaff.register('system-updating', SystemSettingViewSet, basename='system_updating')
 routerStaff.register('ip', IPManageViewSet, basename='ip')
 

@@ -63,6 +63,9 @@ i18n
                     //帳號管理
                     "username":"Username",
                     "register_date":"Register Date",
+                    "change_password":"Change Password",
+                    "old_password":"Old Password",
+                    "comfirm_password":"Comfirm Password",
                     //公告管理
                     "publisher":"Publisher",
                     "create_date":"Create Date",
@@ -169,6 +172,9 @@ i18n
                     //帳號管理
                     "username":"用戶名",
                     "register_date":"註冊日期",
+                    "change_password":"修改密碼",
+                    "old_password":"舊密碼",
+                    "comfirm_password":"確認密碼",
                     //公告管理
                     "publisher":"發布者",
                     "create_date":"創建日期",

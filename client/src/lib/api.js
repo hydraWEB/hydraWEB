@@ -22,9 +22,12 @@ export const userProfile = () => userRequest_client.get("api/v1/auth/user/profil
 
 export const accountList = (data) => userRequest_client.get("api/v1/staff/account",data)
 export const accountSendNew = (data) => userRequest_client.post("api/v1/staff/account",data)
-export const accountSendEdit = (data,id) => userRequest_client.put(`api/v1/staff/account/${id}/`,data)
+export const accountSendEdit = (data,id) => userRequest_client.patch(`api/v1/staff/account/${id}/`,data)
 export const accountSendDelete = (id) => userRequest_client.delete(`api/v1/staff/account/${id}/`)
 export const accountInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/account/${id}/`,data)
+
+export const accountChangePassword = (data,id) => userRequest_client.put(`api/v1/staff/change-password/${id}/`,data)
+export const myaccountChangePassword = (data) => userRequest_client.post(`api/v1/staff/change-password/`,data)
 
 export const loginLog = (data) => userRequest_client.get("api/v1/staff/system-log",data)
 export const systemLogGetAllYear = () => userRequest_client.get("api/v1/staff/system-log/get-all-years")

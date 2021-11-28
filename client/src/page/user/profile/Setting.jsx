@@ -86,10 +86,6 @@ export default function UserData() {
                     <Form.Label>{t('phone')}</Form.Label>
                     <Form.Control type="text" placeholder="" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>{t('password')}</Form.Label>
-                    <Form.Control type="text" placeholder="" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
             </Form>
             <Button variant="primary" onClick={(e) => submitForm(e)}>{t('confirm')}</Button>
             

@@ -28,6 +28,10 @@ function TableData({ data, loadData }) {
         history.push(`/user/staff/account-manage/edit?id=${d.userid}`);
     }
 
+    function onChangePasswordClick(d){
+        history.push(`/user/staff/account-manage/changePassword?id=${d.userid}`);
+    }
+
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
@@ -59,6 +63,7 @@ function TableData({ data, loadData }) {
             <StyledTd>
                 <Button className="mr-2" variant="info" onClick={(e) => onInfoClick(d)}>{t('check')}</Button>
                 <Button className="mr-2" variant="warning" onClick={(e) => onEditClick(d)}>{t('edit')}</Button>
+                <Button className="mr-2" variant="warning" onClick={(e) => onChangePasswordClick(d)}>{t('change_password')}</Button>
                 <Button className="mr-2" variant="danger" onClick={(e) => handleOpen(d)}>{t('delete')}</Button>
             </StyledTd>
         </tr>

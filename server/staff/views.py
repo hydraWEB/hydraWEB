@@ -7,8 +7,9 @@ from authentication.models import User
 from .models import Announcement, SystemLog, SystemOperationEnum, IpSetting, SystemSetting
 from core.utils import StandardResultsSetPagination
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from .serializers import SystemLogSerialzer, StaffAnnouncementSerializer, UserAnnouncementSerializer, UserSerializer, IPManageSerializer,AdminUserSerializer,SystemSettingSerializer
+from .serializers import SystemLogSerialzer, StaffAnnouncementSerializer, UserAnnouncementSerializer, UserSerializer, IPManageSerializer,AdminUserSerializer,SystemSettingSerializer,ChangePasswordSerializer
 from rest_framework.response import Response
+from rest_framework import generics
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -144,6 +145,7 @@ class AccountViewSet(viewsets.ModelViewSet):
         serializer = AdminUserSerializer(data=a)
         serializer.is_valid(raise_exception=True)
         return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
+    
 
     def patch(self, request, pk=None, **kwargs):
         a = get_object_or_404(User, pk=pk)
@@ -221,3 +223,10 @@ class SystemSettingViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.delete(user=request.user, instance=a)
         return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
+
+    
+class ChangePasswordView(viewsets.ModelViewSet):
+
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ChangePasswordSerializer

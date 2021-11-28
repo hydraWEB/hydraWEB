@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Announcement, SystemLog, IpSetting, SystemSetting
+from django.contrib.auth.password_validation import validate_password
 from authentication.models import User
 
 class UserSerializer(serializers.Serializer):
@@ -17,13 +18,11 @@ class AdminUserSerializer(serializers.ModelSerializer):
     avatar = serializers.CharField(max_length=255)
     phone = serializers.CharField(max_length=255)
     created_at = serializers.DateTimeField(read_only=True)
-    password = serializers.CharField(max_length=255,write_only=True)
     
     def edit(self,instance, user):
         instance.edit_user(
             username=self.validated_data['username'],
             avatar=self.validated_data['avatar'],
-            password=self.validated_data['password'],
             phone=self.validated_data['phone'],
             user=user)
 
@@ -102,3 +101,36 @@ class SystemSettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemSetting
         fields = ['id','currentMode']
+        
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True, required=True)
+    old_password = serializers.CharField(write_only=True, required=True)
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'password', 'password2']
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+
+        return attrs
+
+    def validate_old_password(self, value):
+        request = self.context.get("request")
+        mail = request.data["email"]
+        
+        user = User.objects.get(email = mail)
+        if not user.check_password(value):
+            raise serializers.ValidationError({"old_password": "Old password is not correct"})
+        return value
+    
+
+    def update(self, instance, validated_data):
+        user = self.context['request'].user
+
+        instance.set_password(validated_data['password'])
+        instance.save()
+
+        return instance

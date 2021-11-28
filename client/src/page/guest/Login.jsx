@@ -111,7 +111,10 @@ export default function Login() {
                         </div>
                         <div className={styles.formLogin_right}>
                         <Form onSubmit={handleLogin}>
-                            <Title>濁水溪沖積扇水文與地層下陷監測展示平台</Title>
+                            <div className="d-flex">
+                                <img src='/logo.png' className={styles.title_img} />
+                                <Title>濁水溪沖積扇水文與地層下陷監測展示平台</Title>
+                            </div>
 
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>

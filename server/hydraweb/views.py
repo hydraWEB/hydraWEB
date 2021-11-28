@@ -9,7 +9,8 @@ from rest_framework import views
 import os 
 import pymongo
 import json
-
+from staff.models import SystemLog,SystemOperationEnum
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 
 import pprint
 
@@ -33,10 +34,11 @@ class LayerAPIView(views.APIView):      #資料夾
                 res_json.append({"name":f"{js}","data":json_data,"time_serie":is_time_series})
             result.append({"name":f"{dir}","file":res_json})
 
-
+        SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         return Response({"status":"created","data":result}, status=status.HTTP_200_OK)   
 
 class LayerListAPIView(views.APIView):      #INFLUX + MONGO
+    permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
     token = os.environ.get('INFLUX_TOKEN')
@@ -141,10 +143,11 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
                         res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
                 resultarr.append({"name": col, "file":res_json})
         
-
+        SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
 
 class WaterLevelAPI(views.APIView):
+    permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
     token = os.environ.get('INFLUX_TOKEN')

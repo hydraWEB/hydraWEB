@@ -3,7 +3,8 @@ import {
     Router,
     Switch,
     Route,
-    Link
+    Link,
+    useHistory
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faCog, faDatabase, faPrint, faMapMarker, faTint, faSignOutAlt, faSearch, faCircle, faPlusCircle, faCircleNotch, faArrowCircleDown, faICursor, faDotCircle, faExchangeAlt, faColumns, faClone, faStreetView } from '@fortawesome/free-solid-svg-icons'
@@ -29,7 +30,7 @@ export default function User(props) {
     const initialUser = useRef()
     const userState = useSelector((state) => state.user.user_data)
     const dispatch = useDispatch()
-
+    let history = useHistory();
     const { t, i18n } = useTranslation();
     const changeLanguage = lng => {
         i18n.changeLanguage(lng);
@@ -47,7 +48,9 @@ export default function User(props) {
                 setUser(initialUser)
                 dispatch(store_user_data(res.data.data.user))
             }).catch((err) => {
-
+                Cookies.remove('access')
+                setUser(null)
+                history.push("/guest/login")
             }).finally(() => {
             })
         }
@@ -57,7 +60,7 @@ export default function User(props) {
         <>
             <Navbar collapseOnSelect expand="lg" variant="dark" className={styles.navbar}>
                 <Navbar.Brand>
-                    <img src='/img/login_display.jpg' className={styles.title_img}/>
+                    <img src='/img/login_display.jpg' className={styles.title_img} />
                     <Link to="/user/hydramap" className={styles.title}>{t('platform_name')}</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -70,13 +73,18 @@ export default function User(props) {
                         <Nav.Link><Link to="/user/document" className={styles.link}>{t('overview')}</Link></Nav.Link>
 
                         <Nav.Link><Link to="/user/announcement" className={styles.link}>{t("announcement")}</Link></Nav.Link>
-                        {typeof user.current != 'undefined' &&
+                        {(typeof user != 'undefined' && user != null)&&
                             <>
-                                {user.current.is_staff &&
-                                    <Nav.Link><Link to="/user/staff/login-analytics" className={styles.link}>{t("admin")}</Link></Nav.Link>
+                                {typeof user.current != 'undefined' &&
+                                    <>
+                                        {user.current.is_staff &&
+                                            <Nav.Link><Link to="/user/staff/login-analytics" className={styles.link}>{t("admin")}</Link></Nav.Link>
+                                        }
+                                    </>
                                 }
                             </>
                         }
+
 
                         <Nav.Link><Link to="/user/profile/userdata" className={styles.link}>{t("account")}</Link></Nav.Link>
                         <NavDropdown className={styles.link} title={t("language")} id="nav-dropdown">

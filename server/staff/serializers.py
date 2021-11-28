@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Announcement, SystemLog, IpSetting, SystemSetting,SystemOperationCh
+from django.contrib.auth.password_validation import validate_password 
 from authentication.models import User
 
 class UserSerializer(serializers.Serializer):

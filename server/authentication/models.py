@@ -30,6 +30,7 @@ class UserManager(BaseUserManager):
         SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.USER_REGISTRATION)
 
         return user
+    
 
 
 # Create your models here.
@@ -113,7 +114,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         return token.decode('utf-8')
 
     
-    def edit_user(self,username,avatar,password=None,phone=None,user=None):
+    def edit_user(self,username,avatar,password=None,phone=None):
         self.username = username
         self.avatar = avatar
         self.phone = phone

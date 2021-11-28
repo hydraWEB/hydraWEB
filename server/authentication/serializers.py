@@ -99,8 +99,50 @@ class ResetPasswordSerializer(serializers.Serializer):
         return attrs
 
 class UserSerializer(serializers.ModelSerializer):
-    userid = serializers.CharField(max_length=255)
+    username = serializers.CharField(required=True,max_length=255)
+    phone = serializers.CharField(required=True,max_length=255)
+    avatar = serializers.CharField(required=True,max_length=255)
+
     class Meta:
         model = get_user_model()
         fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']
-        read_only_fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']
+        read_only_fields = ['userid', 'username', 'email', 'avatar','phone','is_staff','password']
+        
+    def save(self,user):
+        user.edit_user(
+            username=self.validated_data['username'],
+            phone=self.validated_data['phone'],
+            avatar=self.validated_data['avatar'],
+            )
+
+        
+    
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True, required=True)
+    old_password = serializers.CharField(write_only=True, required=True)
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'password', 'password2']
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Password fields didn't match."})
+
+        return attrs
+
+    def validate_old_password(self, value):
+        request = self.context.get("request")
+        mail = request.data["email"]
+        
+        user = User.objects.get(email = mail)
+        if not user.check_password(value):
+            raise serializers.ValidationError({"old_password": "Old password is not correct"})
+        return value
+    
+
+    def save(self,user):
+        user.set_password(self.validated_data['password'])
+        user.save()
+    

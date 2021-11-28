@@ -9,7 +9,7 @@ class AnnouncementManager(models.Manager):
     def create_announcement(self,title,content,user):
         a = Announcement(title=title, content=content,user=user)
         a.save(force_insert=True)
-        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.USER_REGISTRATION)
+        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.STAFF_CREATE_ANNOUNCEMENT)
         return a
 
 # Create your models here.
@@ -38,6 +38,9 @@ class SystemOperationEnum(IntEnum):
     STAFF_EDIT_ANNOUNCEMENT = 4
     STAFF_DELETE_ANNOUNCEMENT = 5
     USER_READ_HYDRAWEB_LAYER = 6
+    STAFF_CREATE_BLACKLIST = 7
+    STAFF_DELETE_BLACKLIST = 8
+    STAFF_EDIT_BLACKLIST = 9
     
 SystemOperationCh = {
     SystemOperationEnum.USER_LOGIN: "使用者登入",
@@ -46,6 +49,9 @@ SystemOperationCh = {
     SystemOperationEnum.STAFF_EDIT_ANNOUNCEMENT: "管理員編輯公告",
     SystemOperationEnum.STAFF_DELETE_ANNOUNCEMENT: "管理員刪除公告",
     SystemOperationEnum.USER_READ_HYDRAWEB_LAYER: "使用者讀取圖層",
+    SystemOperationEnum.STAFF_CREATE_BLACKLIST: "管理員新增黑名單",
+    SystemOperationEnum.STAFF_DELETE_BLACKLIST: "管理員刪除黑名單",
+    SystemOperationEnum.STAFF_EDIT_BLACKLIST: "管理員編輯黑名單",
 }
 
 class SystemRecordManager(models.Manager):
@@ -74,9 +80,11 @@ class SystemLog(TimestampedModel):
 class IpSettingManager(models.Manager):
     def create_black_list(self, ip_address, user):
         res = self.create(ip_address=ip_address, user=user)
+        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.STAFF_CREATE_BLACKLIST)
 
     def delete_black_list(self, ip_address):
         self.delete()
+        SystemLog.objects.create_log(user=None,operation=SystemOperationEnum.STAFF_DELETE_BLACKLIST)
 
     def edit_black_list(self, ip_address):
         self.ip_address = ip_address

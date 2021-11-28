@@ -125,7 +125,7 @@ export default function WaterLevel({STNO}) {
       DrawEmptyChart()
       setLoadingData(true)
       WaterLevelGetDataByStNo({
-        st_no: currStation,
+        st_no: allStation[currentStationIndex][0],
         start_time:start_datetime,
         end_time:end_datetime, 
       }).then((res) => {

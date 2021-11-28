@@ -16,25 +16,25 @@ export default function Measurement({ mode, setMode }) {
 
   function setMeasureDistanceMode() {
     if (mode === MeasureDistanceMode) {
-      setMode(ViewMode)
+      setMode(ViewMode,"measurement-layer")
     } else {
-      setMode(MeasureDistanceMode)
+      setMode(MeasureDistanceMode,"measurement-layer")
     }
   }
 
   function setMeasureAreaMode() {
     if (mode === MeasureAreaMode) {
-      setMode(ViewMode)
+      setMode(ViewMode,"measurement-layer")
     } else {
-      setMode(MeasureAreaMode)
+      setMode(MeasureAreaMode,"measurement-layer")
     }
   }
 
   function setMeasureAngleMode() {
     if (mode === MeasureAngleMode) {
-      setMode(ViewMode)
+      setMode(ViewMode,"measurement-layer")
     } else {
-      setMode(MeasureAngleMode)
+      setMode(MeasureAngleMode,"measurement-layer")
     }
   }
 

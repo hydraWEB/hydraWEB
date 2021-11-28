@@ -79,9 +79,9 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
   const [data, setData] = useState()
   function setEditLayerMode() {
     if (mode == DrawCircleFromCenterMode) {
-      setMode(ViewMode)
+      setMode(ViewMode,"circle-analysis-layer")
     } else {
-      setMode(DrawCircleFromCenterMode)
+      setMode(DrawCircleFromCenterMode,"circle-analysis-layer")
     }
   }
 

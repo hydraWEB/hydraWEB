@@ -9,6 +9,7 @@ class AnnouncementManager(models.Manager):
     def create_announcement(self,title,content,user):
         a = Announcement(title=title, content=content,user=user)
         a.save(force_insert=True)
+        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.USER_REGISTRATION)
         return a
 
 # Create your models here.
@@ -23,16 +24,29 @@ class Announcement(TimestampedModel):
         self.title = title
         self.content = content
         self.save()
+        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.STAFF_EDIT_ANNOUNCEMENT)
 
     def delete_announcement(self,user):
         self.delete()
+        SystemLog.objects.create_log(user=user,operation=SystemOperationEnum.STAFF_DELETE_ANNOUNCEMENT)
 
 
 class SystemOperationEnum(IntEnum):
     USER_LOGIN = 1
     USER_REGISTRATION = 2
+    STAFF_CREATE_ANNOUNCEMENT = 3
+    STAFF_EDIT_ANNOUNCEMENT = 4
+    STAFF_DELETE_ANNOUNCEMENT = 5
+    USER_READ_HYDRAWEB_LAYER = 6
     
-
+SystemOperationCh = {
+    SystemOperationEnum.USER_LOGIN: "使用者登入",
+    SystemOperationEnum.USER_REGISTRATION: "使用者註冊",
+    SystemOperationEnum.STAFF_CREATE_ANNOUNCEMENT: "管理員新增公告",
+    SystemOperationEnum.STAFF_EDIT_ANNOUNCEMENT: "管理員編輯公告",
+    SystemOperationEnum.STAFF_DELETE_ANNOUNCEMENT: "管理員刪除公告",
+    SystemOperationEnum.USER_READ_HYDRAWEB_LAYER: "使用者讀取圖層",
+}
 
 class SystemRecordManager(models.Manager):
     def create_log(self, user, operation):

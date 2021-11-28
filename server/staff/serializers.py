@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import Announcement, SystemLog, IpSetting, SystemSetting
-from django.contrib.auth.password_validation import validate_password
+from .models import Announcement, SystemLog, IpSetting, SystemSetting,SystemOperationCh
 from authentication.models import User
 
 class UserSerializer(serializers.Serializer):
@@ -71,10 +70,14 @@ class UserAnnouncementSerializer(serializers.ModelSerializer):
 
 class SystemLogSerialzer(serializers.ModelSerializer):
     user = UserSerializer()
+    operation = serializers.SerializerMethodField('get_operation')
 
     class Meta:
         model = SystemLog
         fields = ['id', 'user', 'operation','created_at','updated_at']
+
+    def get_operation(self,obj):
+        return SystemOperationCh[obj.operation]
 
 
 class IPManageSerializer(serializers.ModelSerializer):

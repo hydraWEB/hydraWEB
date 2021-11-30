@@ -22,10 +22,10 @@ function TableData({ data, page, loadData }) {
         setShowDelete(false)
         setDeleteData(null)
         IPSendDelete(deleteData.id).then((res) => {
-            addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t("ip_delete_success"), { appearance: 'success', autoDismiss: true });
             loadData(page)
         }).catch((err) => {
-
+            addToast(t("error"), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })

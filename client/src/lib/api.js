@@ -19,10 +19,11 @@ export const userForgotPasswdCheckToken = (data) => guestRequest_client.post("ap
 export const userForgotPasswdConfirm = (data) => guestRequest_client.post("api/v1/auth/password_reset/confirm/",data);
 
 export const userProfile = () => userRequest_client.get("api/v1/auth/user/profile");
+export const userProfileEdit = (data) => userRequest_client.put("api/v1/auth/user/profile/edit",data)
 
 export const accountList = (data) => userRequest_client.get("api/v1/staff/account",data)
 export const accountSendNew = (data) => userRequest_client.post("api/v1/staff/account",data)
-export const accountSendEdit = (data,id) => userRequest_client.patch(`api/v1/staff/account/${id}/`,data)
+export const accountSendEdit = (data,id) => userRequest_client.put(`api/v1/staff/account/${id}/`,data)
 export const accountSendDelete = (id) => userRequest_client.delete(`api/v1/staff/account/${id}/`)
 export const accountInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/account/${id}/`,data)
 
@@ -50,6 +51,7 @@ export const SystemSettingEdit = (data,id) => userRequest_client.put(`api/v1/sta
 export const IPList = (data) => userRequest_client.get("api/v1/staff/ip/",data)
 export const IPSendDelete = (id) => userRequest_client.delete(`api/v1/staff/ip/${id}/`)
 export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",data)
+
 
 
 export default userLogin

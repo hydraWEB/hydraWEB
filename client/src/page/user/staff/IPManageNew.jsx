@@ -24,10 +24,10 @@ export default function AnnouncementEdit() {
             ip_address: ipAddress,
         }
         ).then((res) => {
-            addToast('新增成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t("ip_create_success"), { appearance: 'success', autoDismiss: true });
             history.push(`/user/staff/ip-manage`)
         }).catch((err) => {
-
+            addToast(t("error"), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })

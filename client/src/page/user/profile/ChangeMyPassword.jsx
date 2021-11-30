@@ -34,9 +34,9 @@ export default function ChangeMyPassword() {
             email: email
         }, id
         ).then((res) => {
-            addToast('修改成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t('password_changed_success'), { appearance: 'success', autoDismiss: true });
         }).catch((err) => {
-
+            addToast(t('password_changed_fail'), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })

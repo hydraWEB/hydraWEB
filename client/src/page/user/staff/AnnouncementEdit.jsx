@@ -31,7 +31,7 @@ export default function AnnouncementEdit() {
                 content:content
             },id
         ).then((res) => {
-            addToast('修改成功.', { appearance: 'success',autoDismiss:true });
+            addToast(t('account_edit_success'), { appearance: 'success',autoDismiss:true });
         }).catch((err) => {
 
         }).finally(() => {

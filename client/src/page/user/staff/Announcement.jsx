@@ -33,7 +33,7 @@ function TableData({ data, page, loadData }) {
         setShowDelete(false)
         setDeleteData(null)
         AnnouncementSendDelete(deleteData.id).then((res) => {
-            addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t('announcement_delete_success'), { appearance: 'success', autoDismiss: true });
             loadData(page)
         }).catch((err) => {
 

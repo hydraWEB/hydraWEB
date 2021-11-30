@@ -30,10 +30,10 @@ export default function AnnouncementNew() {
             content: content
         }
         ).then((res) => {
-            addToast('新增成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t("announcement_create_success"), { appearance: 'success', autoDismiss: true });
             history.push(`/user/staff/announcement-manage`)
         }).catch((err) => {
-
+            addToast(t("error"), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })

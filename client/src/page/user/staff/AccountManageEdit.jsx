@@ -33,9 +33,9 @@ export default function AccountManageEdit() {
             avatar: avatar
         }, id
         ).then((res) => {
-            addToast('修改成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t("account_edit_success"), { appearance: 'success', autoDismiss: true });
         }).catch((err) => {
-
+            addToast(t("error"), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })

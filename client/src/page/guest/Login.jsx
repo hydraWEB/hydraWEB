@@ -17,6 +17,7 @@ import styles from './Login.module.scss';
 import styled from "@emotion/styled";
 import { useToasts } from "react-toast-notifications";
 import { userRequest_client } from '../../lib/api'
+import { useTranslation, Trans } from "react-i18next";
 
 const Title = styled.h2(
     props => ({
@@ -66,6 +67,7 @@ const FormLogin = styled.div(
 
 export default function Login() {
     let history = useHistory()
+    const { t, i18n } = useTranslation();
     const { user, setUser } = useContext(userContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -84,7 +86,7 @@ export default function Login() {
                 password: password
             }).then((res) => {
                 if (res.status === 200) {
-                    addToast('登入成功.', { appearance: 'success', autoDismiss: true });
+                    addToast(t('login_success'), { appearance: 'success', autoDismiss: true });
                     Cookies.set('access', res.data['access'])
                     userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${res.data['access']}`
                     initialUser.current = res.data
@@ -92,7 +94,8 @@ export default function Login() {
                     history.push("/user/hydramap")
                 }
             }).catch((err) => {
-                setText("帳號或密碼錯誤！")
+                addToast(t('login_fail'), { appearance: 'error', autoDismiss: true });
+                setText(t('login_fail'))
                 setShowWarning(true)
             }).finally(() => {
                 setLoading(false)

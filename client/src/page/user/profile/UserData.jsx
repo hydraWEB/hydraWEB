@@ -42,7 +42,7 @@ export default function UserData() {
     }, [])
 
     const handleLogout = (e) => {
-        addToast('登出成功.', { appearance: 'success',autoDismiss:true });
+        addToast(t("logout_success"), { appearance: 'success',autoDismiss:true });
         Cookies.remove('access')
         setUser(null)
         history.push('/guest/login')

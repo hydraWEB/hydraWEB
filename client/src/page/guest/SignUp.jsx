@@ -6,6 +6,7 @@ import {Alert, Breadcrumb, Button, Form} from "react-bootstrap";
 import './SignUp.module.scss';
 import {useToasts} from "react-toast-notifications";
 import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 
 const Title = styled.h2(
     props => ({
@@ -49,6 +50,7 @@ export default function SignUp() {
     let history = useHistory();
     const {user, setUser} = useContext(userContext)
     const [email, setEmail] = useState('')
+    const { t, i18n } = useTranslation();
     const [password, setPassword] = useState('')
     const [passwordCheck, setPasswordCheck] = useState('')
     const [userName, setUserName] = useState('')
@@ -71,10 +73,10 @@ export default function SignUp() {
                 username: userName,
                 phone: phone,
             }).then((res) => {
-                addToast('註冊成功.', { appearance: 'success',autoDismiss:true });
+                addToast(t('sign_up_success'), { appearance: 'success',autoDismiss:true });
                 history.push("/guest/login")
             }).catch((err) => {
-                addToast('註冊失敗.', { appearance: 'error',autoDismiss:true });
+                addToast(t('sign_up_fail'), { appearance: 'error',autoDismiss:true });
                 if (err.response.status === 400) {
                     let msg = defaultMsg
                     let data = err.response.data

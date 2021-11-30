@@ -5,7 +5,7 @@ import userLogin, {userForgotPasswd, userSignUp} from "../../lib/api";
 import {Alert, Breadcrumb, Button, Form} from "react-bootstrap";
 import {useToasts} from "react-toast-notifications";
 import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
-
+import { useTranslation, Trans } from "react-i18next";
 const Title = styled.h2(
     props => ({
             marginRight: "10px",
@@ -23,7 +23,7 @@ const FormForgotPasswd = styled.div(
 )
 
 export default function ForgotPasswd() {
-
+    const { t, i18n } = useTranslation();
     let history = useHistory();
     const [email, setEmail] = useState('')
     const [isLoading, setLoading] = useState(false)
@@ -38,10 +38,10 @@ export default function ForgotPasswd() {
             userForgotPasswd({
                 'email':email
             }).then((res)=>{
-                addToast('重設連結已經發送至信箱', { appearance: 'success',autoDismiss:true });                    setShowWarning(true)
+                addToast(t('password_reset_success'), { appearance: 'success',autoDismiss:true });                    setShowWarning(true)
                 setShowWarning(false)
             }).catch((err)=>{
-                addToast('錯誤', { appearance: 'error',autoDismiss:true });
+                addToast(t('error'), { appearance: 'error',autoDismiss:true });
                 if (err.response.status === 400) {
                     setShowWarning(true)
                     let data = err.response.data

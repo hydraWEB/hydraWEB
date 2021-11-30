@@ -5,12 +5,12 @@ import { userContext } from "../../../provider/UserProvider";
 import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import { userSignUp, accountList, accountSendNew, accountSendEdit, accountSendDelete } from "../../../lib/api";
-import { useTranslation } from "react-i18next";
 import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import Pagination from '@material-ui/lab/Pagination';
 import { useToasts } from "react-toast-notifications";
 import styles from './Staff.module.scss'
 import * as dayjs from 'dayjs'
+import { useTranslation, Trans } from "react-i18next";
 
 function TableData({ data, loadData }) {
     const { t, i18n } = useTranslation();
@@ -36,10 +36,10 @@ function TableData({ data, loadData }) {
         setShowDelete(false)
         setDeleteData(null)
         accountSendDelete(deleteData.userid).then((res) => {
-            addToast('刪除成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t("account_delete_success"), { appearance: 'success', autoDismiss: true });
             loadData(page)
         }).catch((err) => {
-
+            addToast(t("error"), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })

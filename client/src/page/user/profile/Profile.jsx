@@ -12,8 +12,8 @@ import Announcement from "../announcement/Announcement";
 import UserData from "./UserData";
 import Setting from "./Setting";
 import ChangeMyPassword from "./ChangeMyPassword";
-import {useTranslation} from "react-i18next";
 import {useToasts} from "react-toast-notifications";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function Profile() {
     let history = useHistory()

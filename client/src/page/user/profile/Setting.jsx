@@ -1,6 +1,6 @@
 import { Breadcrumb, Button, Form, Table, Modal } from "react-bootstrap";
 import React, {Suspense, useContext, useEffect, useState} from "react";
-import {userForgotPasswdCheckToken, userProfile, userSignUp} from "../../../lib/api";
+import {userForgotPasswdCheckToken, userProfile, userSignUp,userProfileEdit} from "../../../lib/api";
 import {accountInfoUser,accountSendEdit } from "../../../lib/api";
 import Cookies from 'js-cookie'
 import {userContext} from "../../../provider/UserProvider";
@@ -45,6 +45,7 @@ export default function UserData() {
             setId(res.data.data.user.userid)
             setPhone(res.data.data.user.phone)
             setUsername(res.data.data.user.username)
+            setAvatar(res.data.data.user.avatar)
         }).catch((err) => {
             setIsError(true)
         }).finally(() => {
@@ -54,18 +55,15 @@ export default function UserData() {
     }, [])
 
     const submitForm = (e) => {
-        let id = data.userid
-        console.log(id)
-        accountSendEdit({
+        userProfileEdit({
             username: username,
             phone: phone,
-            password: password,
             avatar: 1
-        }, id
+        }
         ).then((res) => {
-            addToast('修改成功.', { appearance: 'success', autoDismiss: true });
+            addToast(t('user_profile_changed_success'), { appearance: 'success', autoDismiss: true });
         }).catch((err) => {
-            addToast('修改失敗.', { appearance: 'error', autoDismiss: true });
+            addToast(t('user_profile_changed_fail'), { appearance: 'error', autoDismiss: true });
         }).finally(() => {
 
         })
@@ -85,6 +83,10 @@ export default function UserData() {
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>{t('phone')}</Form.Label>
                     <Form.Control type="text" placeholder="" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>{t('avatar')}</Form.Label>
+                    <Form.Control type="text" placeholder="" value={avatar} onChange={(e) => setAvatar(e.target.value)} />
                 </Form.Group>
             </Form>
             <Button variant="primary" onClick={(e) => submitForm(e)}>{t('confirm')}</Button>

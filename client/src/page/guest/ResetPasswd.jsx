@@ -11,6 +11,7 @@ import {Alert, Breadcrumb, Button, Form} from "react-bootstrap";
 import './SignUp.module.scss';
 import {useToasts} from "react-toast-notifications";
 import { Link, Route, Switch, useHistory, useLocation, useParams } from "react-router-dom";
+import { useTranslation, Trans } from "react-i18next";
 
 const Title = styled.h2(
     props => ({
@@ -55,6 +56,7 @@ export default function ResetPasswd({match}) {
     const token = queryParams.get("token");
     let history = useHistory();
     const {addToast} = useToasts();
+    const { t, i18n } = useTranslation();
     const [loadingCheckedToken, setLoadingCheckedToken] = useState(true)
     const [checkedToken, setCheckedToken] = useState(false)
     const [isLoading, setLoading] = useState(false)
@@ -85,10 +87,10 @@ export default function ResetPasswd({match}) {
                 password: password,
                 password_check: passwordCheck,
             }).then((res) => {
-                addToast('修改成功.請重新登入', {appearance: 'success', autoDismiss: true});
+                addToast(t('password_reset_success'), {appearance: 'success', autoDismiss: true});
                 history.push("/guest/login")
             }).catch((err) => {
-                addToast('錯誤.', {appearance: 'error', autoDismiss: true});
+                addToast(t('error'), {appearance: 'error', autoDismiss: true});
                 if (err.response.status === 400) {
                     let msg = defaultMsg
                     let data = err.response.data

@@ -102,7 +102,8 @@ class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=True,max_length=255)
     phone = serializers.CharField(required=True,max_length=255)
     avatar = serializers.CharField(required=True,max_length=255)
-
+ 
+ 
     class Meta:
         model = get_user_model()
         fields = ['userid', 'username', 'email', 'avatar','phone','is_staff']

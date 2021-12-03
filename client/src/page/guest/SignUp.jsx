@@ -113,13 +113,13 @@ export default function SignUp() {
             <Form onSubmit={handleSignUp}>
                 <Breadcrumb>
                     <Breadcrumb.Item>
-                        <Link to="/guest/login">首頁</Link>
+                        <Link to="/guest/login">{t("menu")}</Link>
                     </Breadcrumb.Item>
-                    <Breadcrumb.Item active>註冊</Breadcrumb.Item>
+                    <Breadcrumb.Item active>{t("sign_up")}</Breadcrumb.Item>
                 </Breadcrumb>
-                <Title>註冊</Title>
+                <Title>{t("sign_up")}</Title>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>電子信箱</Form.Label>
+                    <Form.Label>{t("email")}</Form.Label>
                     {errMsg.email.isShow &&
                     <Alert variant='danger'>
                         {errMsg.email.msg}
@@ -128,13 +128,13 @@ export default function SignUp() {
                     <Form.Control type="email" placeholder="Email" value={email}
                                   onChange={e => setEmail(e.target.value)}/>
                     <Form.Text className="text-muted">
-                        您的電子信箱
+                        {t("your_email")}
                     </Form.Text>
 
                 </Form.Group>
 
                 <Form.Group controlId="formUsername">
-                    <Form.Label>使用者名稱</Form.Label>
+                    <Form.Label>{t("username")}</Form.Label>
                     {errMsg.username.isShow &&
                     <Alert variant='danger'>
                         {errMsg.username.msg}
@@ -143,13 +143,13 @@ export default function SignUp() {
                     <Form.Control type="text" placeholder="User Name" value={userName}
                                   onChange={e => setUserName(e.target.value)}/>
                     <Form.Text className="text-muted">
-                        您的使用者名稱
+                        {t("your_username")}
                     </Form.Text>
 
                 </Form.Group>
 
                 <Form.Group controlId="formPhone">
-                    <Form.Label>電話</Form.Label>
+                    <Form.Label>{t("phone")}</Form.Label>
                     {errMsg.phone.isShow &&
                     <Alert variant='danger'>
                         {errMsg.phone.msg}
@@ -158,13 +158,13 @@ export default function SignUp() {
                     <Form.Control type="text" placeholder="Phone" value={phone}
                                   onChange={e => setPhone(e.target.value)}/>
                     <Form.Text className="text-muted">
-                        您的電話
+                        {t("your_phone")}
                     </Form.Text>
 
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Label>密碼</Form.Label>
+                    <Form.Label>{t("new_password")}</Form.Label>
                     {errMsg.password.isShow &&
                     <Alert variant='danger'>
                         {errMsg.password.msg}
@@ -173,13 +173,13 @@ export default function SignUp() {
                     <Form.Control type="password" placeholder="Password" value={password}
                                   onChange={e => setPassword(e.target.value)}/>
                     <Form.Text className="text-muted">
-                        您的密碼
+                        {t("your_password")}
                     </Form.Text>
 
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPasswordCheck">
-                    <Form.Label>確認密碼</Form.Label>
+                    <Form.Label>{t("confirm_password")}</Form.Label>
                     {errMsg.password_check.isShow &&
                     <Alert variant='danger'>
                         {errMsg.password_check.msg}
@@ -188,7 +188,7 @@ export default function SignUp() {
                     <Form.Control type="password" placeholder="Password" value={passwordCheck}
                                   onChange={e => setPasswordCheck(e.target.value)}/>
                     <Form.Text className="text-muted">
-                        再一次輸入
+                        {t("enter_again")}
                     </Form.Text>
 
                 </Form.Group>
@@ -196,7 +196,7 @@ export default function SignUp() {
                 <Button
                     disabled={isLoading}
                     variant="primary" type="submit">
-                    {isLoading ? '...' : '註冊'}
+                    {isLoading ? '...' : t("sign_up")}
                 </Button>
             </Form>
         </FormLogin>

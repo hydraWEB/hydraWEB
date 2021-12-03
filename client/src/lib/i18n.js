@@ -88,6 +88,7 @@ i18n
                     "login_date": "Login Date",
                     "year": "Year",
                     "month": "Month",
+                    "whole_year":"Whole Year",
                     //系統功能使用記錄
                     "system_name": "System Name",
                     "use_time": "Use Time",
@@ -137,11 +138,25 @@ i18n
                     "password_changed_fail":"Password Changed Unsuccessfully",
                     "user_profile_changed_success":"User Profile Has Been Changed Successfully",
                     "user_profile_changed_fail":"User Profile Has Been Changed Unsuccessfully",
+                    //login page
+                    "your_password":"Your Password",
+                    "login":"Login",
+                    "sign_up":"Sign Up",
+                    "forgot_your_password":"Forgot Your Password",
+                    //sign up page
+                    "menu":"Menu",
+                    "your_username":"Enter Your Username",
+                    "your_phone":"Enter Your Phone",
+                    "enter_again":"Enter Your Password Again",
+                    "confirm_password":"Confirm Your Password",
+                    //forgot passsword page
+                    "send":"Send",
                 }
             },
             zh_tw: {
                 translations: {
                     "platform_name": "濁水溪沖積扇水文與地層下陷監測展示平台",
+                    "your_email": "您的電子信箱",
                     "admin": "管理員",
                     "language": "語言切換",
                     "announcement": "公告",
@@ -216,6 +231,7 @@ i18n
                     "login_date": "登入時間",
                     "year": "年",
                     "month": "月",
+                    "whole_year":"全年度",
                     //系統功能使用記錄
                     "system_name": "系統設定",
                     "use_time": "使用時間",
@@ -265,6 +281,20 @@ i18n
                     "password_changed_fail":"密碼修改失敗",
                     "user_profile_changed_success":"使用者資料修改成功",
                     "user_profile_changed_fail":"使用者資料修改失敗",
+                    //login page
+                    "your_password":"您的密碼",
+                    "login":"登入",
+                    "sign_up":"註冊",
+                    "forgot_your_password":"忘記密碼",
+                    //sign up page
+                    "menu":"首頁",
+                    "your_username":"您的使用者名稱",
+                    "your_phone":"您的電話",
+                    "enter_again":"再一次輸入",
+                    "confirm_password":"確認密碼",
+                    "password":"密碼",
+                    //forgot passsword page
+                    "send":"送出",
                 }
             }
         },

@@ -6,13 +6,12 @@ import {
     Link
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { OverlayTrigger, Tooltip, Button, Form, Alert } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip, Button, Form, Alert, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
 import { userContext } from '../../provider/UserProvider'
 import userLogin from '../../lib/api'
 import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
-
 import styles from './Login.module.scss';
 import styled from "@emotion/styled";
 import { useToasts } from "react-toast-notifications";
@@ -76,6 +75,12 @@ export default function Login() {
     const [showWarning, setShowWarning] = useState(false)
     const { addToast } = useToasts();
     const initialUser = useRef()
+
+    const changeLanguage = lng => {
+        i18n.changeLanguage(lng);
+        Cookies.set('locale', lng)
+    };
+
     const handleLogin = (e) => {
         //history.push("/user/hydramap")
         e.preventDefault()
@@ -116,7 +121,7 @@ export default function Login() {
                         <Form onSubmit={handleLogin}>
                             <div className="d-flex">
                                 <img src='/logo.png' className={styles.title_img} />
-                                <Title>濁水溪沖積扇水文與地層下陷監測展示平台</Title>
+                                <Title>{t('platform_name')}</Title>
                             </div>
 
                             <Form.Group controlId="formBasicEmail">
@@ -124,7 +129,7 @@ export default function Login() {
                                 <Form.Control type="email" placeholder="Email" value={email}
                                     onChange={e => setEmail(e.target.value)} />
                                 <Form.Text className="text-muted">
-                                    您的電子信箱
+                                    {t("your_email")}
                                 </Form.Text>
                             </Form.Group>
 
@@ -133,7 +138,7 @@ export default function Login() {
                                 <Form.Control type="password" placeholder="Password" value={password}
                                     onChange={e => setPassword(e.target.value)} />
                                 <Form.Text className="text-muted">
-                                    您的密碼
+                                    {t("your_password")}
                                 </Form.Text>
                             </Form.Group>
 
@@ -148,18 +153,22 @@ export default function Login() {
                                 <Button
                                     disabled={isLoading}
                                     variant="primary" type="submit">
-                                    {isLoading ? '...' : '登入'}
+                                    {isLoading ? '...' : t("login")}
                                 </Button>
-                                <LinkText><Link
+                                <LinkText className ={styles.texts}><Link
                                     to={{
                                         pathname: "/guest/signup",
                                     }}
-                                >註冊</Link></LinkText>
-                                <LinkText><Link
+                                >{t("sign_up")}</Link></LinkText>
+                                <LinkText className ={styles.texts}><Link
                                     to={{
                                         pathname: "/guest/forgot-password",
                                     }}
-                                >忘記密碼</Link></LinkText>
+                                >{t("forgot_your_password")}</Link></LinkText>
+                                <NavDropdown className={styles.link} title={t("language")} id="nav-dropdown">
+                                    <NavDropdown.Item eventKey="4.1" onClick={(e) => changeLanguage("en")}>English</NavDropdown.Item>
+                                    <NavDropdown.Item eventKey="4.2" onClick={(e) => changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
+                                </NavDropdown>
                             </FlexContainer>
 
 

@@ -59,18 +59,18 @@ export default function ForgotPasswd() {
         <FormForgotPasswd>
             <Breadcrumb>
             <Breadcrumb.Item >
-                    <Link to="/guest/login">首頁</Link>
+                    <Link to="/guest/login">{t("menu")}</Link>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item active>忘記密碼</Breadcrumb.Item>
+                <Breadcrumb.Item active>{t("forgot_your_password")}</Breadcrumb.Item>
             </Breadcrumb>
             <Form onSubmit={handleSubmit}>
-                <Title>忘記密碼</Title>
+                <Title>{t("forgot_your_password")}</Title>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>電子信箱</Form.Label>
+                    <Form.Label>{t("email")}</Form.Label>
                     <Form.Control type="email" placeholder="Email" value={email}
                                   onChange={e => setEmail(e.target.value)}/>
                     <Form.Text className="text-muted">
-                        您的電子信箱
+                        {t("your_email")}
                     </Form.Text>
 
                 </Form.Group>
@@ -82,7 +82,7 @@ export default function ForgotPasswd() {
                 <Button
                     disabled={isLoading}
                     variant="primary" type="submit">
-                    {isLoading ? '...' : '送出'}
+                    {isLoading ? '...' : t("send")}
                 </Button>
             </Form>
         </FormForgotPasswd>

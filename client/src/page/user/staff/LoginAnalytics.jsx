@@ -69,7 +69,7 @@ export default function LoginAnalytics() {
             value={year}>{year.toString()}</Dropdown.Item>
     );
 
-    const months = ["全年度", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const months = [t("whole_year"), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const listItems2 = months.map((month, index) =>
         <Dropdown.Item key={month.toString()} onClick={(e) => onChangeMonth(index)}
             value={month}>{month.toString()}</Dropdown.Item>

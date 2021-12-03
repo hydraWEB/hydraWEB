@@ -99,7 +99,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
 
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
-        db = client[os.environ.get('INFLUX_DB')]
+        db = client[os.environ.get('MONGODB_DB')]
         print(db)
         allCollection = db.collection_names()   #改循序
         new_allCollection = []

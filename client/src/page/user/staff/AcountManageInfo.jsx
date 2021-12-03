@@ -28,8 +28,8 @@ export default function AcountManageInfo() {
                 .then((res) => {
                     setUsername(res.data.username)
                     setEmail(res.data.email)
-                    setId(res.data.id)
-                    setPhone(res.data.Phone)
+                    setId(res.data.userid)
+                    setPhone(res.data.phone)
                 }).catch((err) => {
 
                 }).finally(() => {

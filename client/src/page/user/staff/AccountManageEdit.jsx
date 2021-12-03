@@ -49,7 +49,7 @@ export default function AccountManageEdit() {
                     setUsername(res.data.username)
                     setEmail(res.data.email)
                     setId(res.data.id)
-                    setPhone(res.data.Phone)
+                    setPhone(res.data.phone)
                     setAvatar(res.data.avatar)
                 }).catch((err) => {
 

@@ -54,6 +54,18 @@ SystemOperationCh = {
     SystemOperationEnum.STAFF_EDIT_BLACKLIST: "管理員編輯黑名單",
 }
 
+SystemOperationEn = {
+    SystemOperationEnum.USER_LOGIN: "User Login",
+    SystemOperationEnum.USER_REGISTRATION: "User register",
+    SystemOperationEnum.STAFF_CREATE_ANNOUNCEMENT: "Admin add announcement",
+    SystemOperationEnum.STAFF_EDIT_ANNOUNCEMENT: "Admin edit announcement",
+    SystemOperationEnum.STAFF_DELETE_ANNOUNCEMENT: "Admin delete announcement",
+    SystemOperationEnum.USER_READ_HYDRAWEB_LAYER: "User load layer",
+    SystemOperationEnum.STAFF_CREATE_BLACKLIST: "Admin add ip blacklist",
+    SystemOperationEnum.STAFF_DELETE_BLACKLIST: "Admin delete ip blacklist",
+    SystemOperationEnum.STAFF_EDIT_BLACKLIST: "Admin edit ip blacklist",
+}
+
 class SystemRecordManager(models.Manager):
     def create_log(self, user, operation):
         res = self.create(user=user, operation=operation)

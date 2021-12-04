@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Announcement, SystemLog, IpSetting, SystemSetting,SystemOperationCh
+from .models import Announcement, SystemLog, IpSetting, SystemSetting,SystemOperationCh,SystemOperationEn
 from django.contrib.auth.password_validation import validate_password 
 from authentication.models import User
 
@@ -32,7 +32,7 @@ class AdminUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['userid', 'username', 'email','avatar','phone','created_at']
+        fields = ['userid', 'username', 'email','avatar','phone','created_at','password']
 
 
 class AuthUserSerializer(serializers.Serializer):
@@ -72,13 +72,23 @@ class UserAnnouncementSerializer(serializers.ModelSerializer):
 class SystemLogSerialzer(serializers.ModelSerializer):
     user = UserSerializer()
     operation = serializers.SerializerMethodField('get_operation')
+    lang = serializers.CharField(allow_null=False)
 
     class Meta:
         model = SystemLog
         fields = ['id', 'user', 'operation','created_at','updated_at']
 
+    def validate_lang(self, value):
+        if value != 'zh-tw' and value != 'en':
+            raise serializers.ValidationError({"lang": "Must be 'zh-tw' or 'en' "})
+
     def get_operation(self,obj):
-        return SystemOperationCh[obj.operation]
+        if self.validated_data('lang') == 'zh-tw':
+            return SystemOperationCh[obj.operation]
+        elif self.validated_data('lang') == 'en':
+            return SystemOperationEn[obj.operation]
+        else:
+            return SystemOperationCh[obj.operation]
 
 
 class IPManageSerializer(serializers.ModelSerializer):
@@ -129,7 +139,7 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         if not user.check_password(value):
             raise serializers.ValidationError({"old_password": "Old password is not correct"})
         return value
-
+    
 
     def update(self, instance, validated_data):
         user = self.context['request'].user
@@ -138,4 +148,3 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-    

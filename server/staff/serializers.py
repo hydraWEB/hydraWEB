@@ -72,20 +72,15 @@ class UserAnnouncementSerializer(serializers.ModelSerializer):
 class SystemLogSerialzer(serializers.ModelSerializer):
     user = UserSerializer()
     operation = serializers.SerializerMethodField('get_operation')
-    lang = serializers.CharField(allow_null=False)
 
     class Meta:
         model = SystemLog
         fields = ['id', 'user', 'operation','created_at','updated_at']
 
-    def validate_lang(self, value):
-        if value != 'zh-tw' and value != 'en':
-            raise serializers.ValidationError({"lang": "Must be 'zh-tw' or 'en' "})
-
     def get_operation(self,obj):
-        if self.validated_data('lang') == 'zh-tw':
+        if self.context['lang'] == 'zh_tw':
             return SystemOperationCh[obj.operation]
-        elif self.validated_data('lang') == 'en':
+        elif self.context['lang'] == 'en':
             return SystemOperationEn[obj.operation]
         else:
             return SystemOperationCh[obj.operation]

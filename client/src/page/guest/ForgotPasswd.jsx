@@ -59,7 +59,7 @@ export default function ForgotPasswd() {
         <FormForgotPasswd>
             <Breadcrumb>
             <Breadcrumb.Item >
-                    <Link to="/guest/login">{t("menu")}</Link>
+                    <Link to="/guest/login">{t("home")}</Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item active>{t("forgot_your_password")}</Breadcrumb.Item>
             </Breadcrumb>

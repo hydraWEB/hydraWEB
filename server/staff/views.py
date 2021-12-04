@@ -103,10 +103,9 @@ class SystemLogViewSet(viewsets.ModelViewSet):
         return queryset
 
     def list(self, request, **kwargs):
-        queryset = self.paginate_queryset(
-            self.get_queryset().order_by('-created_at'))
-        serializer = SystemLogSerialzer(queryset, many=True)
-        return self.get_paginated_response(serializer.data)
+        queryset = self.paginate_queryset(self.get_queryset().order_by('-created_at'))
+        serializer = SystemLogSerialzer(queryset, many=True, context={'lang': self.request.query_params.get('lang', None)})
+        return self.get_paginated_response(serializer.data) 
 
 
 class AccountViewSet(viewsets.ModelViewSet):

@@ -118,17 +118,17 @@ export default function ResetPasswd({match}) {
         <FormLogin>
             <Breadcrumb>
                 <Breadcrumb.Item >
-                    <Link to="/guest/login">首頁</Link>
+                    <Link to="/guest/login">{t("home")}</Link>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item active>重設密碼</Breadcrumb.Item>
+                <Breadcrumb.Item active>{t("reset_password")}</Breadcrumb.Item>
             </Breadcrumb>
-            <Title>重設密碼</Title>
+            <Title>{t("reset_password")}</Title>
             { !loadingCheckedToken &&
                 <>
                     {checkedToken &&
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Label>密碼</Form.Label>
+                            <Form.Label>{t("new_password")}</Form.Label>
                             {errMsg.password.isShow &&
                             <Alert variant='danger'>
                                 {errMsg.password.msg}
@@ -137,13 +137,13 @@ export default function ResetPasswd({match}) {
                             <Form.Control type="password" placeholder="Password" value={password}
                                           onChange={e => setPassword(e.target.value)}/>
                             <Form.Text className="text-muted">
-                                您的密碼
+                                {t("your_password")}
                             </Form.Text>
 
                         </Form.Group>
 
                         <Form.Group controlId="formBasicPasswordCheck">
-                            <Form.Label>確認密碼</Form.Label>
+                            <Form.Label>{t("confirm_password")}</Form.Label>
                             {errMsg.password_check.isShow &&
                             <Alert variant='danger'>
                                 {errMsg.password_check.msg}
@@ -152,7 +152,7 @@ export default function ResetPasswd({match}) {
                             <Form.Control type="password" placeholder="Password" value={passwordCheck}
                                           onChange={e => setPasswordCheck(e.target.value)}/>
                             <Form.Text className="text-muted">
-                                再一次輸入
+                                {t("enter_again")}
                             </Form.Text>
 
                         </Form.Group>
@@ -160,12 +160,12 @@ export default function ResetPasswd({match}) {
                         <Button
                             disabled={isLoading}
                             variant="primary" type="submit">
-                            {isLoading ? '...' : '送出'}
+                            {isLoading ? '...' : t('send')}
                         </Button>
                     </Form>
                     }
                     {!checkedToken &&
-                    <p>重置密碼Token無效</p>
+                    <p>{t("reset_password_token_is_invalid")}</p>
                     }
                 </>
 

@@ -56,14 +56,14 @@ SystemOperationCh = {
 
 SystemOperationEn = {
     SystemOperationEnum.USER_LOGIN: "User Login",
-    SystemOperationEnum.USER_REGISTRATION: "User register",
-    SystemOperationEnum.STAFF_CREATE_ANNOUNCEMENT: "Admin add announcement",
-    SystemOperationEnum.STAFF_EDIT_ANNOUNCEMENT: "Admin edit announcement",
-    SystemOperationEnum.STAFF_DELETE_ANNOUNCEMENT: "Admin delete announcement",
-    SystemOperationEnum.USER_READ_HYDRAWEB_LAYER: "User load layer",
-    SystemOperationEnum.STAFF_CREATE_BLACKLIST: "Admin add ip blacklist",
-    SystemOperationEnum.STAFF_DELETE_BLACKLIST: "Admin delete ip blacklist",
-    SystemOperationEnum.STAFF_EDIT_BLACKLIST: "Admin edit ip blacklist",
+    SystemOperationEnum.USER_REGISTRATION: "User Register",
+    SystemOperationEnum.STAFF_CREATE_ANNOUNCEMENT: "Admin Add Announcement",
+    SystemOperationEnum.STAFF_EDIT_ANNOUNCEMENT: "Admin Edit Announcement",
+    SystemOperationEnum.STAFF_DELETE_ANNOUNCEMENT: "Admin Delete Announcement",
+    SystemOperationEnum.USER_READ_HYDRAWEB_LAYER: "User Load Layer",
+    SystemOperationEnum.STAFF_CREATE_BLACKLIST: "Admin Add IP Blacklist",
+    SystemOperationEnum.STAFF_DELETE_BLACKLIST: "Admin Delete IP Blacklist",
+    SystemOperationEnum.STAFF_EDIT_BLACKLIST: "Admin Edit IP Blacklist",
 }
 
 class SystemRecordManager(models.Manager):

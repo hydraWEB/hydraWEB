@@ -113,7 +113,7 @@ export default function SignUp() {
             <Form onSubmit={handleSignUp}>
                 <Breadcrumb>
                     <Breadcrumb.Item>
-                        <Link to="/guest/login">{t("menu")}</Link>
+                        <Link to="/guest/login">{t("home")}</Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>{t("sign_up")}</Breadcrumb.Item>
                 </Breadcrumb>

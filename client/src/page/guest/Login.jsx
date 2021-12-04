@@ -6,13 +6,13 @@ import {
     Link
 } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { OverlayTrigger, Tooltip, Button, Form, Alert, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { OverlayTrigger, Tooltip, Button, Form, Alert, Navbar, Nav, NavDropdown,Spinner } from 'react-bootstrap';
 import { withRouter } from "react-router-dom";
 import { userContext } from '../../provider/UserProvider'
 import userLogin from '../../lib/api'
 import { useHistory } from "react-router-dom";
 import Cookies from 'js-cookie'
-import styles from './Login.module.scss';
+import styles from './Login.module.scss'; 
 import styled from "@emotion/styled";
 import { useToasts } from "react-toast-notifications";
 import { userRequest_client } from '../../lib/api'
@@ -85,6 +85,7 @@ export default function Login() {
         //history.push("/user/hydramap")
         e.preventDefault()
         if (!isLoading) {
+            setLoading(true)
             setShowWarning(false)
             userLogin({
                 email: email,
@@ -153,19 +154,25 @@ export default function Login() {
                                 <Button
                                     disabled={isLoading}
                                     variant="primary" type="submit">
-                                    {isLoading ? '...' : t("login")}
+                                    {isLoading ? <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                        /> : t("login")}
                                 </Button>
-                                <LinkText className ={styles.texts}><Link
+                                <LinkText><Link className ={styles.texts}
                                     to={{
                                         pathname: "/guest/signup",
                                     }}
                                 >{t("sign_up")}</Link></LinkText>
-                                <LinkText className ={styles.texts}><Link
+                                <LinkText><Link className ={styles.texts}
                                     to={{
                                         pathname: "/guest/forgot-password",
                                     }}
                                 >{t("forgot_your_password")}</Link></LinkText>
-                                <NavDropdown className={styles.link} title={t("language")} id="nav-dropdown">
+                                <NavDropdown className={styles.dropdown_texts} title={t("language")} id="nav-dropdown">
                                     <NavDropdown.Item eventKey="4.1" onClick={(e) => changeLanguage("en")}>English</NavDropdown.Item>
                                     <NavDropdown.Item eventKey="4.2" onClick={(e) => changeLanguage("zh_tw")}>繁體中文</NavDropdown.Item>
                                 </NavDropdown>

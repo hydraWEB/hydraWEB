@@ -144,13 +144,16 @@ i18n
                     "sign_up":"Sign Up",
                     "forgot_your_password":"Forgot Your Password",
                     //sign up page
-                    "menu":"Menu",
+                    "home":"Home",
                     "your_username":"Enter Your Username",
                     "your_phone":"Enter Your Phone",
                     "enter_again":"Enter Your Password Again",
                     "confirm_password":"Confirm Your Password",
                     //forgot passsword page
                     "send":"Send",
+                    //reset password page
+                    "reset_password":"Reset Password",
+                    "reset_password_token_is_invalid":"Reset Password Token Is Invalid"
                 }
             },
             zh_tw: {
@@ -287,7 +290,7 @@ i18n
                     "sign_up":"註冊",
                     "forgot_your_password":"忘記密碼",
                     //sign up page
-                    "menu":"首頁",
+                    "home":"首頁",
                     "your_username":"您的使用者名稱",
                     "your_phone":"您的電話",
                     "enter_again":"再一次輸入",
@@ -295,6 +298,9 @@ i18n
                     "password":"密碼",
                     //forgot passsword page
                     "send":"送出",
+                    //reset password page
+                    "reset_password":"重設密碼",
+                    "reset_password_token_is_invalid":"重置密碼Token無效"
                 }
             }
         },

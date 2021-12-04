@@ -20,7 +20,7 @@
   margin : 0 auto;
   background:#FAFAFA;
   border-radius: 10px;
-  max-width: 800px;
+  max-width: 850px;
   margin:"20px";
   display: flex;
   height:500px;
@@ -35,7 +35,7 @@
 }
 .formLogin_right{
   padding:40px 50px 50px 50px;
-  width:500px;
+  width:600px;
 }
 
 .title_img{
@@ -46,5 +46,10 @@
 }
 
 .texts{
-  font-size:15px
+  font-size:18px
+}
+
+.dropdown_texts{
+  font-size:18px;
+  margin-top: -2.5px;
 }

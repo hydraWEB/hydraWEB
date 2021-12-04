@@ -56,6 +56,7 @@ export default function SystemUsedAnalytics() {
         loginLog({
             params: {
                 page: page,
+                lang: i18n.language,
             }
         }
         ).then((res) => {

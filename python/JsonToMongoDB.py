@@ -3,7 +3,7 @@ import pymongo
 import json
 
 #改成自己的
-layer_data_dir = 'C:/Users/Leong/Downloads/drive-download-20211125T081056Z-001'
+layer_data_dir = 'C:/Users/Leong/Downloads/New folder'
 db_name = 'hydraweb'
 
 client = pymongo.MongoClient('mongodb://localhost:27017')
@@ -18,6 +18,7 @@ for dir in all_dir:
     if file.endswith(".json"):
       f = open(f'{layer_data_dir}/{dir}/{file}',"r",encoding="utf-8")
       json_data = json.load(f)
+      print(json_data)
       json_data['name'] = file
       col.insert_one(json_data)
       

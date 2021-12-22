@@ -10,8 +10,13 @@ from rest_framework import views
 import os 
 import pymongo
 import json
+import base64
+import fitz
+from PIL import Image
+
 from staff.models import SystemLog,SystemOperationEnum
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from django.http import FileResponse
 
 import pprint
 
@@ -100,8 +105,11 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('MONGODB_DB')]
-        print(db)
+        db_changhua = client[os.environ.get('MONGODB_DB_CHANGHUA')]  
+        db_yunlin = client[os.environ.get('MONGODB_DB_YUNLIN')]
         allCollection = db.collection_names()   #改循序
+        changhuaAllCollection = db_changhua.collection_names()
+        yunlinAllCollection = db_yunlin.collection_names()
         new_allCollection = []
         new_allCollection.append('yunlin')
         new_allCollection.append('changhua')
@@ -150,7 +158,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
                         is_time_series = False
                         res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
                 resultarr.append({"name": col, "file":res_json})
-        
+         
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
 
@@ -224,3 +232,47 @@ class WaterLevelAllStationAPI(views.APIView):
     def get(self,request):
         resultarr = self.get_all_station("ST_NO")
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)  
+    
+    
+class PDFAndPngAPI(views.APIView):
+    
+    def get(self,request):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        all_dir = os.listdir(f"{dir_path}/imgdata/")
+        pdf_dir = os.listdir(f"{dir_path}/pdf/")
+        result = []
+        for data in pdf_dir:                #get all img inside pdf
+            path = os.path.join(dir_path,"pdf",data)
+            doc = fitz.open(path)
+            for i in range(len(doc)):
+                for img in doc.getPageImageList(i):
+                    xref = img[0]
+                    pix = fitz.Pixmap(doc, xref)
+                    if pix.n < 5:       # this is GRAY or RGB
+                        pix.writePNG(path+"p%s-%s.png" % (i, xref))
+                    else:               # CMYK: convert to RGB first
+                        pix1 = fitz.Pixmap(fitz.csRGB, pix)
+                        pix1.writePNG(path+"p%s-%s.png" % (i, xref))
+                        pix1 = None
+                    pix = None
+        for data in all_dir:                #convert image to base64
+            path = os.path.join(dir_path,"imgdata",data)
+            if(data.endswith(".png")):
+                with open(path,"rb") as image_file:
+                    base64string = base64.b64encode(image_file.read())
+                    result.append(base64string)
+                
+                
+        return Response({"status":"created","data":result}, status=status.HTTP_200_OK)
+"""             img = open(path, 'rb')
+            result.append(img)
+        response = FileResponse(img)
+        return response
+        for img in all_dir:
+            path = os.path.join(dir_path+"/imgdata/",img)
+            print(path)
+            with open("server\hydraweb\imgdata\Screenshot 2021-08-09 193834.png", "rb") as f:
+                return Response({"status":"created","data":f}, status=status.HTTP_200_OK)   """
+
+        #SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
+        #return Response({"status":"created","data":result}, status=status.HTTP_200_OK)   

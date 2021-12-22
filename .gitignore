@@ -1,2 +1,4 @@
 .env
 *.json
+server/hydraweb/imgdata
+server/hydraweb/pdf

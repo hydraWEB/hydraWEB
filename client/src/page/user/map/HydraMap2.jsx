@@ -10,7 +10,8 @@ import {
   faPen,
   faRuler,
   faWater,
-  faInfo
+  faInfo,
+  faFileImage
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
@@ -29,6 +30,7 @@ import Layer from "./LayerV2.jsx"
 import Print from "./Print.jsx"
 import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
+import BackendImage from "./BackendImage"
 import Chart from "./Chart.jsx"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevelV2"
@@ -738,8 +740,23 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <div className={styles.menu_btn_bottom}>
             <MenuBtnWrapper isShow={currentFunction === 8 && openSheet == true} onClick={(e) => functionChangeToggle(8)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('image')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faFileImage} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
+            <div className={styles.menu_btn_bottom}>
+            <MenuBtnWrapper isShow={currentFunction === 9 && openSheet == true} onClick={(e) => functionChangeToggle(9)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -791,6 +808,11 @@ export default function HydraMap() {
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 8}>
+            <div className={styles.menu_desk_outer_layer_2}>
+              <BackendImage/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 9}>
             <div className={styles.menu_desk_outer_layer}>
               <Info/>
             </div>

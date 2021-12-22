@@ -44,6 +44,7 @@ export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/
 export const LayerList = (data) => userRequest_client.get(`api/v1/user/layer`,data)
 export const WaterLevelAllStations = () => userRequest_client.get(`api/v1/user/water_level/stations`)
 export const WaterLevelGetDataByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/getByID`,data)
+export const BackendImg = () => userRequest_client.get(`api/v1/user/img`)
 
 export const SystemSettingList = (data) => userRequest_client.get(`api/v1/staff/system-updating/`,data)
 export const SystemSettingEdit = (data,id) => userRequest_client.put(`api/v1/staff/system-updating/${id}/`,data)

@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Pagination from "@material-ui/lab/Pagination";
 
-import SearchFunction from './SearchFunction.jsx'
+import SearchFunction from './SearchFunction2.jsx'
 
 import {
   EditableGeoJsonLayer,
@@ -77,6 +77,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
   const [currentPageData, setCurrentPageData] = useState([])
   const [totalpage, setTotalPage] = useState(0)
   const [data, setData] = useState()
+  const [sortedResultData, setSortedResultData] = useState()
   function setEditLayerMode() {
     if (mode == DrawCircleFromCenterMode) {
       setMode(ViewMode,"circle-analysis-layer")
@@ -84,6 +85,32 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       setMode(DrawCircleFromCenterMode,"circle-analysis-layer")
     }
   }
+
+  
+
+  function sortSearchResult(data){
+    let searchName = data[0][0]
+    let sortedResultDict = {}
+    let sortedRowResult = []
+    let finalSortedResult = []
+    for (let i = 0;i<data.length;i++){
+      if (searchName === data[i][0]){
+        sortedRowResult.push(data[i][1])
+      }
+      else{
+        sortedResultDict = {
+          "resultName": searchName,
+          "data": sortedRowResult
+        }
+        finalSortedResult.push(sortedResultDict)
+        searchName = data[i][0]
+        sortedRowResult.length = 0     //clear array
+        sortedRowResult.push(data[i][1])
+      }
+    }
+    return finalSortedResult
+  }
+
 
   function filter() {
     let alldt = allData
@@ -102,17 +129,21 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
             let y = feat.data.features[f].geometry.coordinates[1]
             let rad = distance(lastClick[0], lastClick[1], x, y)
             if (rad <= radius) {
-              resultMeasurement.push(feat.data.features[f])
+              let resultArray = []
+              resultArray.push(feat.name)
+              resultArray.push(feat.data.features[f])
+              resultMeasurement.push(resultArray)
               data.push(file[dt])
             }
           }
         }
       }
+      let sortedResult = sortSearchResult(resultMeasurement)
+      setsearchResult(sortedResult)
+      currentPageDataSetting(sortedResult, 1)
+      setCurrentPage(1)
+      setData(data)
     }
-    setsearchResult(resultMeasurement)
-    currentPageDataSetting(resultMeasurement, 1)
-    setCurrentPage(1)
-    setData(data)
   }
 
 

@@ -106,6 +106,10 @@ i18n
                     "select_area": "Select Area",
                     "select_min_time": "Select Minium Time",
                     "select_max_time": "Select Maxium Time",
+                    //圖片
+                    "image": "Image",
+                    "image_loading_success":"Image Load Success",
+                    "image_loading_fail": "Image Load Fail",
                     //使用簡介
                     "tutorial": "Tutorial",
                     //計劃概述
@@ -252,6 +256,10 @@ i18n
                     "select_area": "選擇區域",
                     "select_min_time": "選擇最小時間",
                     "select_max_time": "選擇最大時間",
+                    //圖片
+                    "image": "圖片",
+                    "image_loading_success":"圖片載入成功",
+                    "image_loading_fail":"圖片載入失敗",
                     //使用簡介
                     "tutorial": "使用簡介",
                     //計劃概述

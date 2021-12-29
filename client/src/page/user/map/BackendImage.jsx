@@ -36,7 +36,7 @@ export default function Info() {
   });
 
   return (
-      <div>
+    <div>
       <h4 className={styles.func_title}>{t('image')}</h4>
       <div className={styles.function_wrapper_print}>
         {imagelist}

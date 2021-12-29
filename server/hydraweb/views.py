@@ -217,7 +217,7 @@ class WaterLevelAllStationAPI(views.APIView):
         allCollection = db.collection_names()
         resultArr = []
         for col in allCollection:
-            if(col == 'optimization_data'):
+            if(col == 'full_data'):
                 collection = db.get_collection(col)
                 result = collection.find()
                 for dt in result:
@@ -241,7 +241,7 @@ class PDFAndPngAPI(views.APIView):
         all_dir = os.listdir(f"{dir_path}/imgdata/")
         pdf_dir = os.listdir(f"{dir_path}/pdf/")
         result = []
-        for data in pdf_dir:                #get all img inside pdf
+        """ for data in pdf_dir:                #get all img inside pdf
             path = os.path.join(dir_path,"pdf",data)
             doc = fitz.open(path)
             for i in range(len(doc)):
@@ -254,7 +254,7 @@ class PDFAndPngAPI(views.APIView):
                         pix1 = fitz.Pixmap(fitz.csRGB, pix)
                         pix1.writePNG(path+"p%s-%s.png" % (i, xref))
                         pix1 = None
-                    pix = None
+                    pix = None """
         for data in all_dir:                #convert image to base64
             path = os.path.join(dir_path,"imgdata",data)
             if(data.endswith(".png")):

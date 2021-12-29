@@ -11,7 +11,8 @@ import {
   faRuler,
   faWater,
   faInfo,
-  faFileImage
+  faFileImage,
+  faMap
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
@@ -35,8 +36,15 @@ import Chart from "./Chart.jsx"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevelV2"
 import Info from "./Info"
+import SearchFunctionContent from "./SearchFunctionContent"
+import MapStyle from "./MapStyle"
 import { FlyToInterpolator } from 'deck.gl';
-import StyleJson from './style.json'
+
+import StyleJsonMonochrome from './style_monochrome.json';
+import StyleJsonStreet from './style_streets.json';
+import StyleJsonBasic from './style_basic.json';
+import StyleJsonSatellite from './style_satellite.json';
+
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
@@ -87,6 +95,13 @@ const MenuBtnWrapper = styled.div(
     {
       background: props.isShow ? '#92a4e4' : null,
       cursor: 'pointer'
+    }
+  )
+)
+const CADataWrapper = styled.div(
+  props => (
+    {
+      display: props.isShow ? 'inline-block' : 'none',
     }
   )
 )
@@ -340,10 +355,10 @@ function ContextMenu({ parentRef, lastClick, startCircleAnalysis, setCurrentFunc
   return isVisible ? <div>
     <div style={{ left: x, top: y, zIndex: 10 }} className={styles.context_menu}>
       <div className={styles.context_menu_item_container}>
-        <p className={styles.context_menu_item_text}>x：{lastClick[0]}</p>
+        <p className={styles.context_menu_item_text}>x:{lastClick[0]}</p>
       </div>
       <div className={styles.context_menu_item_container}>
-        <p className={styles.context_menu_item_text}>y：{lastClick[1]}</p>
+        <p className={styles.context_menu_item_text}>y:{lastClick[1]}</p>
       </div>
       <div className={styles.context_menu_item_container} onClick={startCircleAnalysisFunc}>
         <p className={styles.context_menu_item_text}>{t('circle_analysis')}</p>
@@ -452,6 +467,10 @@ export default function HydraMap() {
   const [chartIsVisible, setChartIsVisible] = useState(false)
   const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer])
   const [currentEditType, setCurrentEditType] = useState(0)
+  const [showCAData, setShowCAData] = useState(false) //顯示環域分析詳細的資料, CA = circle analysis
+  const [allCAData, setAllCAData] = useState([])
+  const [currentCAData, setCurrentCAData] = useState([])
+  const [currentMapStyle, setCurrentMapStyle] = useState(StyleJsonMonochrome)
 
   const zoomToLocation = (geometry) => {
     setViewState({
@@ -635,10 +654,38 @@ export default function HydraMap() {
     })
     setLayers(newLayer)
   }
-
+  
   const saveLastClick = React.useCallback(e => {
     setLastClick([e.coordinate[0], e.coordinate[1]])
   }, [])
+
+  const setShowMoreData = (CAisShow) => {
+    setShowCAData(CAisShow[0])
+    setCurrentCAData(CAisShow[1])
+  }
+  const setCAData = (allCAData) => {
+    setAllCAData(allCAData)
+  }
+
+  const setMapStyle = (style) => {
+    switch(style){
+      case 'Monochrome':
+        setCurrentMapStyle(StyleJsonMonochrome)
+        break;
+      case 'Streets':
+        setCurrentMapStyle(StyleJsonStreet)
+        break;
+      case 'Basic':
+        setCurrentMapStyle(StyleJsonBasic)
+        break;
+      case 'Satellite':
+        setCurrentMapStyle(StyleJsonSatellite)
+        break;
+      default:
+        setCurrentMapStyle(StyleJsonMonochrome)
+    }
+  }
+
 
   return (
     <>
@@ -755,8 +802,23 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <div className={styles.menu_btn_bottom}>
             <MenuBtnWrapper isShow={currentFunction === 9 && openSheet == true} onClick={(e) => functionChangeToggle(9)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('image')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faMap} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
+            <div className={styles.menu_btn_bottom}>
+            <MenuBtnWrapper isShow={currentFunction === 10 && openSheet == true} onClick={(e) => functionChangeToggle(10)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -789,7 +851,10 @@ export default function HydraMap() {
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
             <div className={styles.menu_desk_outer_layer}>
-              <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} setLayers={setLayersFunc} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} />
+              <CircleAnalysis radius={radius} setRadius={setRadius} setAllData={setAllData} allData={allData} layers={layers} 
+              setLayers={setLayersFunc} mode={circleAnalysisMode} setMode={setEditLayerMode} lastClick={lastClick} zoomTo={zoomToLocation} 
+              setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setShowMoreData={setShowMoreData} setAllCAData={setCAData}/>
+              
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 4}>
@@ -814,11 +879,22 @@ export default function HydraMap() {
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 9}>
             <div className={styles.menu_desk_outer_layer}>
+              <MapStyle SetMapStyle={setMapStyle}/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 10}>
+            <div className={styles.menu_desk_outer_layer}>
               <Info/>
             </div>
           </ShowWrapper>
         </ShowWrapper>
-
+        <ShowWrapper isShow={showCAData && currentFunction === 3 && openSheet === true}>
+          <div className={styles.menu_desk_outer_second_layer}>
+            <SearchFunctionContent data={currentCAData} zoomTo={zoomToLocation} allData={allData} setAllData={setAllData} layers={layers}
+            setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={currentCAData}/>
+          </div>
+        </ShowWrapper>
+        
       </div>
 
 
@@ -830,10 +906,10 @@ export default function HydraMap() {
           <LogLatContainer>
             <LogLatBar>
               <p className={styles.loglat}>{`EPSG 4326`}</p>
-              <p className={styles.loglat}>{t('longitude')}{`：${viewState['longitude'].toFixed(6)}`}</p>
-              <p className={styles.loglat}>{t('latitude')}{`：${viewState['latitude'].toFixed(6)}`}</p>
-              <p className={styles.loglat}>{t('zoom')}{`：${viewState['zoom'].toFixed(6)}`}</p>
-              <p className={styles.loglat}>{t('angle')}{`：${viewState['pitch'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('longitude')}{`:${viewState['longitude'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('latitude')}{`:${viewState['latitude'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('zoom')}{`:${viewState['zoom'].toFixed(6)}`}</p>
+              <p className={styles.loglat}>{t('angle')}{`:${viewState['pitch'].toFixed(6)}`}</p>
             </LogLatBar>
           </LogLatContainer>
         </div>
@@ -907,7 +983,7 @@ export default function HydraMap() {
             getCursor={getCursor}
             onClick={saveLastClick}
           >
-            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={StyleJson} preserveDrawingBuffer={true} />
+            <StaticMap ref={mapRef} mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN} reuseMaps preventStyleDiffing={true} mapStyle={currentMapStyle} preserveDrawingBuffer={true} />
             {renderTooltip({ hoverInfo })}
           </DeckGL>
         </div>

@@ -157,7 +157,10 @@ i18n
                     "send":"Send",
                     //reset password page
                     "reset_password":"Reset Password",
-                    "reset_password_token_is_invalid":"Reset Password Token Is Invalid"
+                    "reset_password_token_is_invalid":"Reset Password Token Is Invalid",
+                    //MapStyle
+                    "map_style":"Map Style",
+                    "select_map_style":"Select Map Style",
                 }
             },
             zh_tw: {
@@ -308,7 +311,10 @@ i18n
                     "send":"送出",
                     //reset password page
                     "reset_password":"重設密碼",
-                    "reset_password_token_is_invalid":"重置密碼Token無效"
+                    "reset_password_token_is_invalid":"重置密碼Token無效",
+                    //MapStyle
+                    "map_style":"地圖樣式",
+                    "select_map_style":"選擇地圖樣式",
                 }
             }
         },

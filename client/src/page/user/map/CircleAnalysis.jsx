@@ -69,7 +69,8 @@ const AccordionDetails = withStyles((theme) => ({
 
 
 
-export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo }) {
+export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, 
+  mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo, setShowMoreData, setAllCAData}) {
 
   const { t, i18n } = useTranslation()
   const [searchResult, setsearchResult] = useState([])
@@ -104,7 +105,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
         }
         finalSortedResult.push(sortedResultDict)
         searchName = data[i][0]
-        sortedRowResult.length = 0     //clear array
+        sortedRowResult = []
         sortedRowResult.push(data[i][1])
       }
     }
@@ -141,6 +142,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       let sortedResult = sortSearchResult(resultMeasurement)
       setsearchResult(sortedResult)
       currentPageDataSetting(sortedResult, 1)
+      setAllCAData(sortedResult)
       setCurrentPage(1)
       setData(data)
     }
@@ -152,7 +154,8 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       {
         d !== undefined &&
         <SearchFunction data={d} zoomTo={zoomTo} allData={allData} setAllData={setAllData} layers={layers}
-          setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={data} />
+          setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={data} 
+          setShowMoreData={setShowMoreData} allCAData={searchResult}/>
       }
     </div>
   );
@@ -181,9 +184,9 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       <div>
         <div className={styles.function_wrapper_circle_analysis}>
           <div className={styles.circleAnalysis_top}>
-            <p>{t('radius')}：{radius}km</p>
+            <p>{t('radius')}:{radius}km</p>
             {lastClick.length > 1 &&
-              <p>{t('center_point')}：{lastClick[0]}, {lastClick[1]}</p>
+              <p>{t('center_point')}:{lastClick[0]}, {lastClick[1]}</p>
 
             }
             <div className={styles.circle_analysis_btn}>

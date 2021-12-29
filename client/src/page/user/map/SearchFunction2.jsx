@@ -54,13 +54,13 @@ const Accordion = withStyles({
       borderBottom: '1px solid rgba(0, 0, 0, .125)',
       marginBottom: -1,
       minHeight: 15,
-      width: "100%",
       '&$expanded': {
         minHeight: 15,
       },
       
     },
     content: {
+      width:"100%",
       '&$expanded': {
         margin: '12px 0',
       },
@@ -74,6 +74,7 @@ const Accordion = withStyles({
       borderBottom: '1px solid rgba(0, 0, 0, .125)',
       marginBottom: -1,
       minHeight: 15,
+      width:430,
       '&$expanded': {
         minHeight: 15,
       },
@@ -94,8 +95,8 @@ const Accordion = withStyles({
   
 
 
-export default function SearchResult({data, zoomTo, allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, zoomInData}){
-    
+export default function SearchResult({data, zoomTo, allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, zoomInData, setShowMoreData, allCAData}){
+
     function InnerResult(data){
       var title = []
       function btnClicked() {
@@ -193,30 +194,18 @@ export default function SearchResult({data, zoomTo, allData, setAllData, layers,
         </div>
         )
     }
-    const resultlist = Object.entries(data.data).map(([key, value]) => {
-      return (
-        <div>
-            <InnerResult data = {value}/>
-        </div>
-      )
-    })
+    
+    function ShowCAData(){
+      setShowMoreData([true,data.data])
+    }
+    
     
     return (
-    <div>
-       <div>
-          <Accordion>
-            <AccordionSummary aria-controls="panel1d-content1" id="panel1d-header1" expandIcon={<ExpandMoreIcon />}>
-                  <div className={styles.search_div}>
-                    <Typography className="ml-3" >{data.resultName}</Typography>
-                  </div>
-                </AccordionSummary>
-            <AccordionDetails>
-                <div>
-                  {resultlist}
-                </div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-    </div>
+      <div className={styles.search_div}>
+        <Button
+          onClick={ShowCAData}
+        >{data.resultName}
+        </Button>
+      </div>
     )
   }

@@ -10,7 +10,6 @@ db_name = 'hydraweb'
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client[db_name] 
 
-all_dir = os.listdir(layer_data_dir) 
 client = pymongo.MongoClient('mongodb://localhost:27017')
 
 allCollection = db.collection_names()   #改循序

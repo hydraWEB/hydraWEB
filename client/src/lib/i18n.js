@@ -48,6 +48,9 @@ i18n
                     "center_point": "Center Point",
                     "draw_circle": "Draw Circle",
                     "cancel_draw_circle": "cancel",
+                    "all_tags": "All Tags",
+                    "tags_loading_success": "Tag Load Success",
+                    "tags_loading_fail": "Tag Load Fail",
                     //列印
                     "unit": "Unit",
                     "inch": "Inch",
@@ -201,6 +204,9 @@ i18n
                     "center_point": "中心點",
                     "draw_circle": "繪製區域",
                     "cancel_draw_circle": "取消",
+                    "all_tags": "所有標籤",
+                    "tags_loading_success": "標籤載入成功",
+                    "tags_loading_fail": "標籤載入失敗",
                     //列印
                     "unit": "單位",
                     "inch": "英吋",

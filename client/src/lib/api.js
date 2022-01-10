@@ -53,6 +53,7 @@ export const IPList = (data) => userRequest_client.get("api/v1/staff/ip/",data)
 export const IPSendDelete = (id) => userRequest_client.delete(`api/v1/staff/ip/${id}/`)
 export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",data)
 
-
+export const AllTags = () => userRequest_client.get(`api/v1/user/all_tag`)
+export const TagAndGIS = () => userRequest_client.get(`api/v1/user/tagAndGIS`)
 
 export default userLogin

@@ -102,63 +102,122 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         }
         return geojson
 
+    def query_influxdb(self, bucket):
+        client = influxdb_client.InfluxDBClient(
+            url=self.url,
+            token=self.token,
+            org=self.org
+        )
+        geojson = {
+            "type": "FeatureCollection",
+            "features": []
+        }
+        query_api = client.query_api()
+      
+        query = f'from (bucket:"{bucket}")\
+        |> range(start: 2007-02-01T00:00:00Z, stop: 2007-02-02T10:00:00Z)'
+        result = query_api.query(query=query, org = self.org)
+        print("done")
+        feature = []
+        for table in result:
+            for record in table.records:
+                ##record.values is a dict 
+                properties = {}
+                geometry = {
+                    "type" : "Point"
+                }
+                newKey = []
+                coordinates = [0,0] 
+                newValue = []
+                for key in record.values:
+                    newKey.append(key)
+                    newValue.append(record.values[key])
+                for i in range(4, len(record.values)):
+                    if(newKey[i] != "LAT" and newKey[i] != "LON" and newKey[i] != "_field" and newKey[i] != "_time"):
+                        properties[newKey[i]] = newValue[i]
+                    elif(newKey[i] == "_time"):
+                        properties['time'] = newValue[i].isoformat()
+                    elif(newKey[i] == "LON"):
+                        coordinates[0] = float(newValue[i])
+                    elif(newKey[i] == "LAT"):
+                        coordinates[1] = float(newValue[i])
+                geometry["coordinates"] = coordinates
+                ft = {
+                    "type" : "Feature",
+                    "geometry" : geometry,
+                    "properties" : properties
+                }
+                feature.append(ft)
+            
+        geojson = {
+            "type": "FeatureCollection",
+            "features": feature
+        }
+        return geojson
+    
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('MONGODB_DB')]
-        db_changhua = client[os.environ.get('MONGODB_DB_CHANGHUA')]  
-        db_yunlin = client[os.environ.get('MONGODB_DB_YUNLIN')]
-        allCollection = db.collection_names()   #改循序
-        changhuaAllCollection = db_changhua.collection_names()
-        yunlinAllCollection = db_yunlin.collection_names()
-        new_allCollection = []
-        new_allCollection.append('yunlin')
-        new_allCollection.append('changhua')
-        for col in allCollection:
-            if(col != 'yunlin' and col != 'changhua'):
-                new_allCollection.append(col)
+        databases = client.database_names()    #get all database from mongodb
+        
+        #remove unwanted database
+        databases.remove("admin")              
+        databases.remove("config")
+        databases.remove("local")
+        databases.remove("ps")      #file too large, cause rendering slow
+        databases.remove("ST_NO")
+        databases.remove("tags")
         resultarr = []
-        for col in new_allCollection:
-            collection = db.get_collection(col)
-            result = collection.find()
+        new_json = {}       #use to store mongodb data in json format
+        for db in databases:    
+            tempDB = client[db]     #connect to the database
+            tempCollection = tempDB.collection_names() 
+            is_time_series = False
             res_json = []
-            if col == 'ps':
-                """ for dt in result:
-                    is_time_series = False
-                    feat = {
+            print(db)
+            for col in tempCollection:
+                tags = []
+                collection = tempDB.get_collection(col)
+                result = collection.find()
+                features = []
+                is_time_series = False
+                for dt in result:
+                    coordinates = [dt['x'],dt['y']]
+                    try:
+                        if(dt['time_series'] == True):
+                            is_time_series = True
+                    except:
+                        is_time_series = False
+
+                    properties = {}
+                    
+                    for d in dt:
+                        try:
+                            tags = dt["tag"]
+                        except:
+                            pass
+                        if(d != "_id" and d != 'x' and d!= 'y' and d!= 'tags'): 
+                            properties[d] = dt[d]
+                    inside_json = {
                         "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates" : [dt['x'],dt['y']]
-                        },
-                        "properties": dt['z']
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": coordinates
+                            },
+                        "properties": properties
                     }
-                    feats.append(feat)
+                    features.append(inside_json)
                 new_json = {
                     "type": "FeatureCollection",
-                    "features": feats
+                    "features": features
                 }
-                res_json.append({"name": "ps_mean_v.xy.json", "data": new_json,"time_serie":is_time_series})
-                resultarr.append({"name": col, "file":res_json}) """
-            else:
-                for dt in result:
-                    is_time_series = False
-                    feat = dt['features']
-                    new_json = {
-                        "type": "FeatureCollection",
-                        "features": feat
-                    }
-                    
-                    if dt['name'].startswith("time_series_108雲林地區地層下陷水準檢測成果表"):
-                        is_time_series = True
-                        res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
-                    elif dt['name'].startswith("time_series_108彰化地區地層下陷水準檢測成果表"):
-                        is_time_series = True
-                        res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
-                    else:
-                        is_time_series = False
-                        res_json.append({"name": dt['name'], "data": new_json,"time_serie":is_time_series})
-                resultarr.append({"name": col, "file":res_json})
-         
+                res_json.append({"name": col, "data": new_json,"time_serie":is_time_series,"tag":tags})
+            #if(db == 'changhua'):
+            #    res_json.append({"name": "彰化水井台電關聯資料", "data": self.query_influxdb("changhua_taiwan_power_company_data"),"time_serie":is_time_series})
+            #if(db == "yunlin"):
+            #    res_json.append({"name": "雲林水井台電關聯資料", "data": self.query_influxdb("yunlin_taiwan_power_company_data"),"time_serie":is_time_series})
+                
+            resultarr.append({"name": db, "file":res_json})
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
 
@@ -276,3 +335,46 @@ class PDFAndPngAPI(views.APIView):
 
         #SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         #return Response({"status":"created","data":result}, status=status.HTTP_200_OK)   
+
+
+class AllTagsAPI(views.APIView):        #從mongodb拿tags資料
+            
+    def getAllTags(self):
+        client = pymongo.MongoClient('mongodb://localhost:27017')
+        db = client[os.environ.get('MONGODB_TAGS_DB')]
+        col = db.get_collection(os.environ.get('MONGODB_TAGS_COL'))    
+        result = col.find()
+        allTags = []
+        for dt in result:
+            for tag in dt['tag']:
+                allTags.append(tag)
+        finalArr = []
+        for i in set(allTags):
+            finalArr.append(i)
+        return finalArr
+    
+    def get(self,request):
+        resultarr = self.getAllTags()
+        print(resultarr)
+        return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)  
+    
+class TagsAPI(views.APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    
+    def findGISbyTag(self):
+        client = pymongo.MongoClient('mongodb://localhost:27017')
+        db = client[os.environ.get('MONGODB_TAGS_DB')]
+        col = db.get_collection(os.environ.get('MONGODB_TAGS_COL'))  
+        result = col.find()  
+        resultGIS = []
+        for dt in result:
+            tempArr = []
+            tempArr.append(dt['name'])
+            tempArr.append(dt['tag'])
+            resultGIS.append(tempArr)
+        return resultGIS
+    
+    def get(self,request):     #從influx拿該站點資料
+        resultArr = self.findGISbyTag()      #要改
+        return Response({"status":"created","data":resultArr}, status=status.HTTP_200_OK)  

@@ -12,7 +12,9 @@ import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Pagination from "@material-ui/lab/Pagination";
-
+import { AllTags, TagAndGIS } from '../../../lib/api'
+import { useToasts } from "react-toast-notifications";
+import Checkbox from '@material-ui/core/Checkbox';
 import SearchFunction from './SearchFunction2.jsx'
 
 import {
@@ -67,18 +69,58 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
+const InputWrapper = styled.div(
+  props => (
+    {
+      width: "100%",
+      borderWidth: "2x",
+      borderColor: "white",
+      borderBottom: "1px",
+      borderBottomStyle: "solid",
+      borderRadius: "0px",
+      display: 'flex',
+      backgroundColor: props.backgroundColor ? "#6465688e" : "#6465688e",
+      alignItems: 'flex-start',
+      flexFlow: '1',
+      paddingTop: '0px',
+      paddingBottom: '0px',
+      paddingLeft: "0px",
+      paddingRight: "5px",
+
+    }
+  )
+)
+
+
+const StyledLabel = styled.label(
+  props => (
+    {
+      padding: "8px 10px 0px 10px",
+      marginBottom: 0
+    }
+  )
+)
 
 
 export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, 
   mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo, setShowMoreData, setAllCAData}) {
 
   const { t, i18n } = useTranslation()
+  const { addToast } = useToasts();
   const [searchResult, setsearchResult] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [currentPageData, setCurrentPageData] = useState([])
   const [totalpage, setTotalPage] = useState(0)
   const [data, setData] = useState()
+  const [GISAndTag, setGISAndTag] = useState([])
+  const [tagFilterGIS, setTagFilterGIS] = useState()    //記錄所有要被刪除的圖層資料
   const [sortedResultData, setSortedResultData] = useState()
+  const [allGIS, setAllGIS] = useState([])
+
+
+  const [isLoading, setLoading] = useState(true)
+  const [allTags, setAllTags] = useState([])
+  const [allTagsState, setAllTagsState] = useState([])
   function setEditLayerMode() {
     if (mode == DrawCircleFromCenterMode) {
       setMode(ViewMode,"circle-analysis-layer")
@@ -87,34 +129,127 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
     }
   }
 
-  
+  useEffect(() => {
+    AllTags().then((res) => {
+      addToast(t('tags_loading_success'), { appearance: 'success', autoDismiss: true });
+      console.log(res.data.data);
+      let arr1 = [];
+      res.data.data.forEach(element => {
+        arr1.push([element,true]);
+      });
+      setAllTags(arr1);
+      console.log(arr1)
+    }).catch((err) => {
+      addToast(t('tags_loading_fail'), { appearance: 'error', autoDismiss: true });
+      console.log(err)
+    }).finally(() => {
+    })
+
+    TagAndGIS().then((res) => {
+      addToast(t('tags_loading_success'), { appearance: 'success', autoDismiss: true });
+      let arr = [];
+      setGISAndTag(res.data.data);
+      res.data.data.forEach(e => {
+        arr.push(e[0])
+      });
+      setAllGIS(arr);
+    }).catch((err) => {
+      addToast(t('tags_loading_fail'), { appearance: 'error', autoDismiss: true });
+      console.log(err)
+    }).finally(() => {
+    })
+
+  }, [])
+
 
   function sortSearchResult(data){
-    let searchName = data[0][0]
-    let sortedResultDict = {}
-    let sortedRowResult = []
-    let finalSortedResult = []
-    for (let i = 0;i<data.length;i++){
-      if (searchName === data[i][0]){
-        sortedRowResult.push(data[i][1])
-      }
-      else{
-        sortedResultDict = {
-          "resultName": searchName,
-          "data": sortedRowResult
+    if(data.length !== 0){
+      let searchName = data[0][0]
+      let sortedResultDict = {}
+      let sortedRowResult = []
+      let finalSortedResult = []
+      for (let i = 0;i<data.length;i++){
+        if (searchName === data[i][0]){
+          sortedRowResult.push(data[i][1])
         }
-        finalSortedResult.push(sortedResultDict)
-        searchName = data[i][0]
-        sortedRowResult = []
-        sortedRowResult.push(data[i][1])
+        else{
+          sortedResultDict = {
+            "resultName": searchName,
+            "data": sortedRowResult
+          }
+          finalSortedResult.push(sortedResultDict)
+          searchName = data[i][0]
+          sortedRowResult = []
+          sortedRowResult.push(data[i][1])
+        }
       }
+      return finalSortedResult
     }
-    return finalSortedResult
+    else{
+      let tempArr = []
+      return tempArr
+    }
+    
   }
 
+  function onChangeCheckItems(e){
+    let tagsToRemove = []
+    let originArr = [...allTags];
+    for (let i = 0;i<originArr.length;i++){
+      
+      if(originArr[i][0] === e.target.value){
+        if(originArr[i][1]) originArr[i][1] = false
+        else originArr[i][1] = true
+      }
+      if(!originArr[i][1]) tagsToRemove.push(originArr[i][0])
+    }
+
+    allData.forEach((element)=>{
+      
+    })
+    
+    let filteredAllGIS = []
+    
+    for (let i =0;i<tagsToRemove.length;i++){
+      for (let j =0;j<GISAndTag.length;j++){
+        for (let tag=0;tag<GISAndTag[j][1].length;tag++){
+          if(GISAndTag[j][1][tag] === tagsToRemove[i]){
+            filteredAllGIS.push(GISAndTag[j][0])
+            /* const index = filteredAllGIS.indexOf(GISAndTag[j][0])
+            if(index > -1){
+              filteredAllGIS.splice(index, 1);
+            } */
+            break
+          }
+        }
+      }
+    }
+    setTagFilterGIS(filteredAllGIS)
+    setAllTags(originArr)
+  }
+
+  function CheckItem({data}){
+    return (
+      <InputWrapper>
+        <Checkbox
+          checked={data[1]}    
+          value = {data[0]}
+          onChange={onChangeCheckItems}
+          color="default"
+        />
+        <StyledLabel>
+          <div>
+            {data[0]}
+          </div>
+        </StyledLabel>
+      </InputWrapper>
+    )
+  }
 
   function filter() {
+    
     let alldt = allData
+    
     let resultMeasurement = []
     let data = []
     let isValid = false
@@ -125,21 +260,28 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
         let file = alldt[i].files
         for (let dt = 0; dt < file.length; dt++) {
           let feat = file[dt]
-          for (let f = 0; f < feat.data.features.length; f++) {
-            let x = feat.data.features[f].geometry.coordinates[0]
-            let y = feat.data.features[f].geometry.coordinates[1]
-            let rad = distance(lastClick[0], lastClick[1], x, y)
-            if (rad <= radius) {
-              let resultArray = []
-              resultArray.push(feat.name)
-              resultArray.push(feat.data.features[f])
-              resultMeasurement.push(resultArray)
-              data.push(file[dt])
+          const index = tagFilterGIS.indexOf(feat.name)
+          if(index === -1){
+            for (let f = 0; f < feat.data.features.length; f++) {
+              let x = feat.data.features[f].geometry.coordinates[0]
+              let y = feat.data.features[f].geometry.coordinates[1]
+              let rad = distance(lastClick[0], lastClick[1], x, y)
+              if (rad <= radius) {
+                let resultArray = []
+                resultArray.push(feat.name)
+                resultArray.push(feat.data.features[f])
+                resultMeasurement.push(resultArray)
+                data.push(feat)
+              }
             }
           }
         }
       }
       let sortedResult = sortSearchResult(resultMeasurement)
+
+
+
+      
       setsearchResult(sortedResult)
       currentPageDataSetting(sortedResult, 1)
       setAllCAData(sortedResult)
@@ -148,6 +290,11 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
     }
   }
 
+  let taglist = allTags.map((d) => 
+    <div>
+      <CheckItem data ={d} key={d[0]}/>
+    </div>
+  );
 
   let resultlist = currentPageData.map((d) =>
     <div>
@@ -183,6 +330,10 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
 
       <div>
         <div className={styles.function_wrapper_circle_analysis}>
+          <div className={styles.circle_analysis_tag_top}>
+            <p>{t('all_tags')}</p>
+            {taglist}
+          </div>
           <div className={styles.circleAnalysis_top}>
             <p>{t('radius')}:{radius}km</p>
             {lastClick.length > 1 &&

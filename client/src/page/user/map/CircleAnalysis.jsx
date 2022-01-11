@@ -278,10 +278,6 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
         }
       }
       let sortedResult = sortSearchResult(resultMeasurement)
-
-
-
-      
       setsearchResult(sortedResult)
       currentPageDataSetting(sortedResult, 1)
       setAllCAData(sortedResult)
@@ -321,7 +317,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
 
   useEffect(() => {
     filter()
-  }, [radius])
+  }, [radius,allTags])
 
   return (
     <div>

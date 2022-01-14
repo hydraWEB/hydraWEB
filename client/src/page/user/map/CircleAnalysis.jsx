@@ -113,7 +113,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
   const [totalpage, setTotalPage] = useState(0)
   const [data, setData] = useState()
   const [GISAndTag, setGISAndTag] = useState([])
-  const [tagFilterGIS, setTagFilterGIS] = useState()    //記錄所有要被刪除的圖層資料
+  const [tagFilterGIS, setTagFilterGIS] = useState([])    //記錄所有要被刪除的圖層資料
   const [sortedResultData, setSortedResultData] = useState()
   const [allGIS, setAllGIS] = useState([])
 
@@ -317,7 +317,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
 
   useEffect(() => {
     filter()
-  }, [radius,allTags])
+  }, [radius,tagFilterGIS])
 
   return (
     <div>

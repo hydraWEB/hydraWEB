@@ -35,7 +35,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Popover from '@mui/material/Popover';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import { WaterLevelAllStations, WaterLevelGetDataByStNo } from '../../../lib/api'
+import { WaterLevelAllStations, WaterLevelGetDataByStNo,WaterLevelDownloadByStNo } from '../../../lib/api'
 import { useToasts } from "react-toast-notifications";
 import DatePicker from '@mui/lab/DatePicker';
 import TextField from '@mui/material/TextField';
@@ -382,6 +382,38 @@ export default function WaterLevel({STNO}) {
   const handlePopClick = (event) => {
     setOpenpop(event.currentTarget);
   }
+
+  const handleDownloadClick = (event) => {
+    if(STNO !== ""){
+      setCurrentStation(STNO)
+    }
+    let time_is_valid = timeIsValid()
+    var utc = require('dayjs/plugin/utc')
+    var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+    let minDateUnix = parseInt((minTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(minHour)*3600
+    let maxDateUnix = parseInt((maxTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(maxHour)*3600
+    let start_datetime = dayjs.unix(minDateUnix)
+    let end_datetime = dayjs.unix(maxDateUnix)
+    console.log(start_datetime)
+    console.log(end_datetime)
+    if (time_is_valid) {
+      WaterLevelDownloadByStNo({
+        st_no: allStation[currentStationIndex][0],
+        start_time:start_datetime,
+        end_time:end_datetime, 
+      }).then((res) => {
+      }).catch((err) => {
+        addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
+      }).finally(() => {
+      })
+    }
+    else {
+      alert("Minimum time must be smaller than Maximum time")
+    }
+  }
+
   const handleClose = () => {
     setOpenpop(null);
   };
@@ -477,6 +509,7 @@ export default function WaterLevel({STNO}) {
                 <Button id="seachClickTrigger" className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
                   {t('search')}
                 </Button>
+                <Button className="mt-2 ml-2" variant="contained" onClick={handleDownloadClick}>{"download"}</Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handlePopClick}>{t('help')}</Button>
                 <Popover
                   id={id}
@@ -490,6 +523,7 @@ export default function WaterLevel({STNO}) {
                 >
                   <Typography sx={{ p: 2 }}>Brush the chart to zoom.Double click to re-initialize</Typography>
                 </Popover>
+
               </div>
             </div>
            

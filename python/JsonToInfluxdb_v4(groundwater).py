@@ -12,8 +12,8 @@ url="http://localhost:8086"
 client = influxdb_client.InfluxDBClient(
    url=url,
    token=token,
-   org=org,
-   timeout= 6000000,
+   org=org, #groundwater
+   timeout= None,
    debug=True
 )
 

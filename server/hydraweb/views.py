@@ -12,6 +12,8 @@ import pymongo
 import json
 import base64
 import fitz
+import csv
+import re
 from PIL import Image
 
 from staff.models import SystemLog,SystemOperationEnum
@@ -158,7 +160,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
     def get(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('MONGODB_DB')]
-        databases = client.database_names()    #get all database from mongodb
+        databases = client.list_database_names()    #get all database from mongodb
         
         #remove unwanted database
         databases.remove("admin")              
@@ -171,7 +173,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         new_json = {}       #use to store mongodb data in json format
         for db in databases:    
             tempDB = client[db]     #connect to the database
-            tempCollection = tempDB.collection_names() 
+            tempCollection = tempDB.list_collection_names()
             is_time_series = False
             res_json = []
             print(db)
@@ -272,8 +274,9 @@ class WaterLevelAllStationAPI(views.APIView):
 
     def get_all_station(self,collection):   #從mongo拿所有的站點資料
         client = pymongo.MongoClient('mongodb://localhost:27017')
-        db = client['ST_NO']        #要改
-        allCollection = db.collection_names()
+        db = client['ST_NO']        #get database name ST_NO
+        print(db)
+        allCollection = db.list_collection_names()
         resultArr = []
         for col in allCollection:
             if(col == 'full_data'):
@@ -359,6 +362,7 @@ class AllTagsAPI(views.APIView):        #從mongodb拿tags資料
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)  
     
 class TagsAPI(views.APIView):
+    
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     
@@ -378,3 +382,58 @@ class TagsAPI(views.APIView):
     def get(self,request):     #從influx拿該站點資料
         resultArr = self.findGISbyTag()      #要改
         return Response({"status":"created","data":resultArr}, status=status.HTTP_200_OK)  
+
+
+class WaterLevelDownloadAPI(views.APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    url = "http://localhost:8086"
+    token = os.environ.get('INFLUX_TOKEN')
+    bucket = os.environ.get('INFLUX_BUCKET')
+    org = os.environ.get('INFLUX_ORG')
+
+    def post(self,request):     #從influx拿該站點資料
+        print(request.data)
+        st_no = request.data['st_no']
+        start_time = request.data['start_time']
+        end_time = request.data['end_time']
+        res = self.get_target_station_data_and_download(st_no,start_time,end_time)       #要改
+        return Response({"status":"created"}, status=status.HTTP_200_OK)  
+        
+    def get_target_station_data_and_download(self, st_no, start_time, end_time):
+        print(start_time)
+        print(end_time)
+        client = influxdb_client.InfluxDBClient(
+            url=self.url,
+            token=self.token,
+            org=self.org
+        )
+        query_api = client.query_api()
+        #|> range(start: 1970-01-01T00:00:00Z)\
+        influxdb_csv_result = query_api.query_csv(f'from (bucket:"{self.bucket}")\
+        |> range(start: {start_time}, stop: {end_time})\
+        |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
+        |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998)')
+        #開始打開.csv的檔案
+        with open(st_no+'.csv', 'w', encoding='utf-8') as f: #可以改st_no(st_no = measurement)成其他的名字
+            count = 0
+            writer = csv.writer(f)
+            to_copy_idx = []
+            content = []
+            for row in influxdb_csv_result:
+                count += 1
+                if count == 4:
+                    for i,x in enumerate(row):
+                        if(x == "_time" or x == "_value" or x == "NAME_C" or x =="ST_NO"):
+                            to_copy_idx.append(i)
+                            content.append(x)
+                    writer.writerow(content)       
+                    break
+            for row in influxdb_csv_result:
+                count += 1
+                content = []
+                if count > 4:
+                    for i,x in enumerate(row):
+                        if(i in to_copy_idx):
+                            content.append(x)
+                writer.writerow(content)

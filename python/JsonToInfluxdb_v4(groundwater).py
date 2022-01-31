@@ -1,5 +1,5 @@
 import influxdb_client
-from influxdb_client.client.write_api import SYNCHRONOUS
+from influxdb_client.client.write_api import SYNCHRONOUS, WriteOptions
 from datetime import datetime
 import json
 import os
@@ -17,7 +17,15 @@ client = influxdb_client.InfluxDBClient(
    debug=True
 )
 
-write_api = client.write_api(write_options=SYNCHRONOUS)
+write_api = client.write_api(write_options=WriteOptions(batch_size=500,
+                                                      flush_interval=10_000,
+                                                      jitter_interval=2_000,
+                                                      retry_interval=5_000,
+                                                      max_retries=5,
+                                                      max_retry_delay=30_000,
+                                                      exponential_base=2
+  
+))
 
 
 

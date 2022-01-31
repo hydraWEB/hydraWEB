@@ -404,6 +404,18 @@ export default function WaterLevel({STNO}) {
         start_time:start_datetime,
         end_time:end_datetime, 
       }).then((res) => {
+        const url = window.URL.createObjectURL(
+          new Blob([res.data]),
+        );
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute(
+          'download',
+          'FileName.csv'    //download name
+        )
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
       }).catch((err) => {
         addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
       }).finally(() => {

@@ -18,7 +18,7 @@ from PIL import Image
 
 from staff.models import SystemLog,SystemOperationEnum
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from django.http import FileResponse
+from django.http import FileResponse, HttpRequest, HttpResponse, JsonResponse
 
 import pprint
 
@@ -398,7 +398,7 @@ class WaterLevelDownloadAPI(views.APIView):
         start_time = request.data['start_time']
         end_time = request.data['end_time']
         res = self.get_target_station_data_and_download(st_no,start_time,end_time)       #要改
-        return Response({"status":"created"}, status=status.HTTP_200_OK)  
+        return res 
         
     def get_target_station_data_and_download(self, st_no, start_time, end_time):
         print(start_time)
@@ -415,25 +415,30 @@ class WaterLevelDownloadAPI(views.APIView):
         |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
         |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998)')
         #開始打開.csv的檔案
-        with open(st_no+'.csv', 'w', encoding='utf-8') as f: #可以改st_no(st_no = measurement)成其他的名字
-            count = 0
-            writer = csv.writer(f)
-            to_copy_idx = []
+        response = HttpResponse(
+            content_type='text/csv',
+        )
+        count = 0
+        writer = csv.writer(response)
+        to_copy_idx = []
+        content = []
+        for row in influxdb_csv_result:
+            count += 1
+            if count == 4:
+                for i,x in enumerate(row):
+                    if(x == "_time" or x == "_value" or x == "NAME_C" or x =="ST_NO"):
+                        to_copy_idx.append(i)
+                        content.append(x)
+                writer.writerow(content)       
+                break
+        for row in influxdb_csv_result:
+            count += 1
             content = []
-            for row in influxdb_csv_result:
-                count += 1
-                if count == 4:
-                    for i,x in enumerate(row):
-                        if(x == "_time" or x == "_value" or x == "NAME_C" or x =="ST_NO"):
-                            to_copy_idx.append(i)
-                            content.append(x)
-                    writer.writerow(content)       
-                    break
-            for row in influxdb_csv_result:
-                count += 1
-                content = []
-                if count > 4:
-                    for i,x in enumerate(row):
-                        if(i in to_copy_idx):
-                            content.append(x)
-                writer.writerow(content)
+            if count > 4:
+                for i,x in enumerate(row):
+                    if(i in to_copy_idx):
+                        content.append(x)
+            writer.writerow(content)
+        return response
+        
+    

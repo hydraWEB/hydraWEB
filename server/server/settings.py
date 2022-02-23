@@ -29,15 +29,18 @@ if os.environ.get('DEBUG') == 'True':
     DEBUG = True
 else:
     DEBUG = False
-
-ALLOWED_HOSTS = ['localhost','127.0.0.1','server']
+    
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+ALLOWED_HOSTS = ['localhost','127.0.0.1','server',"140.121.196.77"]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost',
     'http://127.0.0.1',
     'http://127.0.0.1:3000',
     'http://localhost:3000',
+    'http://140.121.196.77:30180',
 ]
 
 REST_FRAMEWORK = {
@@ -84,10 +87,11 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'staff.middleware.IpBlockMiddleware',
+    'django.middleware.common.CommonMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

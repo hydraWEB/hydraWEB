@@ -147,7 +147,6 @@ ul {
 
 .func_title{
     margin-top:0px;
-    margin-bottom: 20px;
     margin-left:20px;
     color:white;
     -webkit-user-select: none;
@@ -326,7 +325,7 @@ ul {
 
 .circle_analysis_btn{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -484,6 +483,7 @@ ul {
 }
 .water_level_dropdown{
     padding: 0 20px 10px 20px;
+    
 }
 .water_level_font_question{
     margin-right:20px;

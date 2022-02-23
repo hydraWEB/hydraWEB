@@ -157,7 +157,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         }
         return geojson
     
-    def get(self,request):
+    def post(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('MONGODB_DB')]
         databases = client.list_database_names()    #get all database from mongodb
@@ -236,6 +236,12 @@ class WaterLevelAPI(views.APIView):
         st_no = request.data['st_no']
         start_time = request.data['start_time']
         end_time = request.data['end_time']
+        #average parameter
+        avg_day = request.data['avg_day']
+        avg_hour = request.data['avg_hour']
+        avg_minute = request.data['avg_minute']
+        print(avg_day,avg_hour,avg_minute)
+        
         res = self.get_target_station_data(st_no,start_time,end_time)       #要改
         return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
         
@@ -356,7 +362,7 @@ class AllTagsAPI(views.APIView):        #從mongodb拿tags資料
             finalArr.append(i)
         return finalArr
     
-    def get(self,request):
+    def post(self,request):
         resultarr = self.getAllTags()
         print(resultarr)
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)  

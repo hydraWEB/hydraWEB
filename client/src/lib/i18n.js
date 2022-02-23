@@ -43,6 +43,7 @@ i18n
                     "waterlevel": "Water Level",
                     "new_password": "Password",
                     "info": "Info",
+                    "map_style" : "Map Style",
                     //環域分析
                     "radius": "Radius",
                     "center_point": "Center Point",
@@ -109,6 +110,8 @@ i18n
                     "select_area": "Select Area",
                     "select_min_time": "Select Minium Time",
                     "select_max_time": "Select Maxium Time",
+                    "select_avg_time": "Average Time",
+                    "download": "Download",
                     //圖片
                     "image": "Image",
                     "image_loading_success":"Image Load Success",
@@ -199,6 +202,7 @@ i18n
                     "waterlevel": "水位",
                     "new_password": "密碼",
                     "info": "資訊",
+                    "map_style" : "地圖樣式",
                     //環域分析
                     "radius": "半徑",
                     "center_point": "中心點",
@@ -265,6 +269,8 @@ i18n
                     "select_area": "選擇區域",
                     "select_min_time": "選擇最小時間",
                     "select_max_time": "選擇最大時間",
+                    "select_avg_time": "平均時間",
+                    "download": "下載",
                     //圖片
                     "image": "圖片",
                     "image_loading_success":"圖片載入成功",

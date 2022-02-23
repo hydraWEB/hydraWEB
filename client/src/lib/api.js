@@ -41,7 +41,7 @@ export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/sta
 export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}/`,data)
 
 
-export const LayerList = (data) => userRequest_client.get(`api/v1/user/layer`,data)
+export const LayerList = (data) => userRequest_client.post(`api/v1/user/layer`,data)
 export const WaterLevelAllStations = () => userRequest_client.get(`api/v1/user/water_level/stations`)
 export const WaterLevelGetDataByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/getByID`,data)
 export const WaterLevelDownloadByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/download`,data)
@@ -54,7 +54,7 @@ export const IPList = (data) => userRequest_client.get("api/v1/staff/ip/",data)
 export const IPSendDelete = (id) => userRequest_client.delete(`api/v1/staff/ip/${id}/`)
 export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",data)
 
-export const AllTags = () => userRequest_client.get(`api/v1/user/all_tag`)
+export const AllTags = () => userRequest_client.post(`api/v1/user/all_tag`)
 export const TagAndGIS = () => userRequest_client.get(`api/v1/user/tagAndGIS`)
 
 export default userLogin

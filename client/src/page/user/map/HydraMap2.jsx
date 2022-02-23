@@ -26,6 +26,7 @@ import styled from "@emotion/styled/macro";
 
 import { DeckGL } from '@deck.gl/react';
 import { StaticMap } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl'; 
 
 import Layer from "./LayerV2.jsx"
 import Print from "./Print.jsx"
@@ -73,6 +74,7 @@ import {
   MeasureAreaMode,
   MeasureAngleMode
 } from "nebula.gl";
+
 
 const FabIcon = withStyles({
   root: {
@@ -420,8 +422,8 @@ export default function HydraMap() {
       features: []
     },
     mode: circleAnalysisMode,
-    selectedFeatureIndexes,
-    onEdit: onEdit
+    selectedFeatureIndexes
+    
   });
 
   const measurementLayer = new EditableGeoJsonLayer({
@@ -471,6 +473,10 @@ export default function HydraMap() {
   const [allCAData, setAllCAData] = useState([])
   const [currentCAData, setCurrentCAData] = useState([])
   const [currentMapStyle, setCurrentMapStyle] = useState(StyleJsonMonochrome)
+  const [circleAnalysisFeatures, setCircleAnalysisFeatures] = useState({
+    type: "FeatureCollection",
+    features: []
+  })
 
   const zoomToLocation = (geometry) => {
     setViewState({
@@ -544,8 +550,7 @@ export default function HydraMap() {
     })
   }
 
-  function onEdit({ updatedData, editType, featureIndexes, editContext }) {
-
+  function onEdit({ updatedData }) {
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
       if (element.props.id == "circle-analysis-layer" && currentEditType == 0) {
@@ -564,14 +569,14 @@ export default function HydraMap() {
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
             data: updatedData,
-            mode: circleAnalysisModeRef.current,
+            mode: DrawCircleFromCenterMode,
             selectedFeatureIndexes,
             onEdit: onEdit
           });
         }
 
       }
-      if (element.props.id == "measurement-layer" && currentEditType == 1) {
+      /* if (element.props.id == "measurement-layer" && currentEditType == 1) {
         if (updatedData.features.length > 0 ) {
           setMeasurementMode(() => ViewMode)
           let d = distance(lastClickRef.current[0], lastClickRef.current[1], updatedData.features[0].geometry.coordinates[0][0][0], updatedData.features[0].geometry.coordinates[0][0][1])
@@ -592,8 +597,7 @@ export default function HydraMap() {
             onEdit: onEdit
           });
         }
-
-      }
+      } */
     })
     setLayers(newLayer)
   }
@@ -615,10 +619,15 @@ export default function HydraMap() {
             onEdit: onEdit
           });
         } else {
+          setShowCAData(false)
+          setRadius(0)
           setCircleAnalysisMode(() => ViewMode)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
-            data: element.props.data,
+            data: {
+              type: "FeatureCollection",
+              features: []
+            },
             selectedFeatureIndexes,
             mode: ViewMode,
             onEdit: onEdit
@@ -636,8 +645,7 @@ export default function HydraMap() {
               features: []
             },
             selectedFeatureIndexes,
-            mode: m,
-            onEdit: onEdit
+            mode: m
           });
         } else {
           setMeasurementMode(() => ViewMode)
@@ -808,7 +816,7 @@ export default function HydraMap() {
                 placement='right'
                 overlay={
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('image')}
+                    {t('map_style')}
                   </Tooltip>
                 }>
                 <div className={styles.menu_btn} >

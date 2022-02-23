@@ -53,14 +53,30 @@ export default function WaterLevel({STNO}) {
   const [isLoadingData, setLoadingData] = useState(false)
   const { t, i18n } = useTranslation();
 
+  const [avgDayOptions, setAvgDayOptions] = useState([])
+
   const [minHourOptions, setMinHourOptions] = useState([])
+  const [maxHourOptions, setMaxHourOptions] = useState([])
+  const [avgHourOptions, setAvgHourOptions] = useState([])
+  
+  const [minMinuteOptions, setMinMinuteOptions] = useState([])
+  const [maxMinuteOptions, setMaxMinuteOptions] = useState([])
+  const [avgMinuteOptions, setAvgMinuteOptions] = useState([])
+
   const [minDate, setMinDate] = useState()                      //該站點最小的時間
   const [maxDate, setMaxDate] = useState()                      //該站點最大的時間
+  const [avgDay, setAvgDay] = useState(0)                      //該站點平均的時間
+
   const [minTimeDatePicker, setMinTimeDatePicker] = useState()  //最小時間的value
   const [maxTimeDatePicker, setMaxTimeDatePicker] = useState()  //最大時間的value
+
   const [minHour, setMinHour] = useState(0)
-  const [maxHourOptions, setMaxHourOptions] = useState([])
   const [maxHour, setMaxHour] = useState(0)
+  const [avgHour, setAvgHour] = useState(0)
+
+  const [minMinute, setMinMinute] = useState(0)
+  const [avgMinute, setAvgMinute] = useState(0)
+  const [maxMinute, setMaxMinute] = useState(0)
 
   const { addToast } = useToasts();
 
@@ -129,6 +145,9 @@ export default function WaterLevel({STNO}) {
         st_no: allStation[currentStationIndex][0],
         start_time:start_datetime,
         end_time:end_datetime, 
+        avg_day:avgDay,
+        avg_hour:avgHour,
+        avg_minute:avgMinute
       }).then((res) => {
         setCurrentStationData(res.data.data)
       }).catch((err) => {
@@ -193,11 +212,27 @@ export default function WaterLevel({STNO}) {
     let minHour = minTime.hour();
     let maxHour = maxTime.hour();
     let hourArr = []
+    let minuteArr = []
+    let avgDayArr = []
     for (let i = 0; i < 24; i++) {
       hourArr.push(i)
     }
+    for (let i = 0;i<60;i++){
+      minuteArr.push(i)
+    }
+    for (let i = 0;i<100;i++){
+      avgDayArr.push(i)
+    }
     setMinHourOptions(hourArr)
     setMaxHourOptions(hourArr)
+    setAvgHourOptions(hourArr)
+
+    setMinMinuteOptions(minuteArr)
+    setMaxMinuteOptions(minuteArr)
+    setAvgMinuteOptions(minuteArr)
+
+    setAvgDayOptions(avgDayArr)
+    
     setMinDate(new Date(minYear, minMonth, minDay))
     setMaxDate(new Date(maxYear, maxMonth, maxDay))
     setMinTimeDatePicker(new Date(minYear, minMonth, minDay))
@@ -372,11 +407,29 @@ export default function WaterLevel({STNO}) {
   let selectStation = allStation.map((d, index) =>
     <option value={index}>{`${d[0]} ${d[1]}`}</option>
   );
+  //min,max,avg hour
   let selectMinHour = minHourOptions.map((d) =>
     <option value={d}>{d}</option>
   );
   let selectMaxHour = maxHourOptions.map((d) =>
     <option value={d}>{d}</option>
+  );
+  let selectAvgHour = avgHourOptions.map((d) =>
+  <option value={d}>{d}</option>
+  );
+  //min,max,avg minute
+  let selectMaxMinute = maxMinuteOptions.map((d) =>
+    <option value={d}>{d}</option>
+  );
+  let selectMinMinute = minMinuteOptions.map((d) =>
+  <option value={d}>{d}</option>
+  );
+  let selectAvgMinute = avgMinuteOptions.map((d) =>
+  <option value={d}>{d}</option>
+  );
+  //avg day
+  let selectAvgDay = avgDayOptions.map((d) =>
+  <option value={d}>{d}</option>
   );
 
   const handlePopClick = (event) => {
@@ -392,8 +445,8 @@ export default function WaterLevel({STNO}) {
     var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
     dayjs.extend(utc)
     dayjs.extend(timezone)
-    let minDateUnix = parseInt((minTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(minHour)*3600
-    let maxDateUnix = parseInt((maxTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(maxHour)*3600
+    let minDateUnix = parseInt((minTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(minHour)*3600 + parseInt(minMinute)*60
+    let maxDateUnix = parseInt((maxTimeDatePicker.getTime() / 1000).toFixed(0)) + parseInt(maxHour)*3600 + parseInt(maxMinute)*60
     let start_datetime = dayjs.unix(minDateUnix)
     let end_datetime = dayjs.unix(maxDateUnix)
     console.log(start_datetime)
@@ -402,7 +455,10 @@ export default function WaterLevel({STNO}) {
       WaterLevelDownloadByStNo({
         st_no: allStation[currentStationIndex][0],
         start_time:start_datetime,
-        end_time:end_datetime, 
+        end_time:end_datetime,
+        avg_day:avgDay,
+        avg_hour:avgHour,
+        avg_minute:avgMinute
       }).then((res) => {
         const url = window.URL.createObjectURL(
           new Blob([res.data]),
@@ -484,6 +540,18 @@ export default function WaterLevel({STNO}) {
                       </Select>
                     </div>
                     <span className={styles.wl_left_1_container_text}>h</span>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={minMinute}
+                        onChange={(newValue) => {
+                          setMinMinute(newValue.target.value)
+                        }}
+                      >
+                        {selectMinMinute}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>M</span>
                   </div>
                 </div>
 
@@ -514,14 +582,69 @@ export default function WaterLevel({STNO}) {
                       </Select>
                     </div>
                     <span className={styles.wl_left_1_container_text}>h</span>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={maxMinute}
+                        onChange={(newValue) => {
+                          setMaxMinute(newValue.target.value)
+                        }}
+                      >
+                        {selectMaxMinute}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>m</span>
                   </div>
+                  
                 </div>
 
+                <div className={styles.wl_left_1}>
+                  <h5>{t('select_avg_time')}</h5>
+                  <div className={styles.wl_left_1_container}>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={avgDay}
+                        onChange={(newValue) => {
+                          setAvgDay(newValue.target.value)
+                        }}
+                      >
+                        {selectAvgDay}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>d</span>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={avgHour}
+                        onChange={(newValue) => {
+                          setAvgHour(newValue.target.value)
+                        }}
+                      >
+                        {selectAvgHour}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>h</span>
+                    <div className={styles.wl_left_1_container_div}>
+                      <Select
+                        native
+                        value={avgMinute}
+                        onChange={(newValue) => {
+                          setAvgMinute(newValue.target.value)
+                        }}
+                      >
+                        {selectAvgMinute}
+                      </Select>
+                    </div>
+                    <span className={styles.wl_left_1_container_text}>m</span>
+                  </div>
+                  
+                </div>
 
                 <Button id="seachClickTrigger" className="mt-2" variant="outlined" type="submit" aria-label="search" onClick={onSearchClick} startIcon={<SearchIcon />}>
                   {t('search')}
                 </Button>
-                <Button className="mt-2 ml-2" variant="contained" onClick={handleDownloadClick}>{"download"}</Button>
+                <Button className="mt-2 ml-2" variant="contained" onClick={handleDownloadClick}>{t('download')}</Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handlePopClick}>{t('help')}</Button>
                 <Popover
                   id={id}

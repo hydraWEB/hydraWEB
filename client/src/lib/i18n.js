@@ -43,7 +43,9 @@ i18n
                     "waterlevel": "Water Level",
                     "new_password": "Password",
                     "info": "Info",
-                    "map_style" : "Map Style",
+                    "function" : "Function",
+                    "upload" : "Upload", 
+                    "time_series_data" : "Time Series Data",
                     //環域分析
                     "radius": "Radius",
                     "center_point": "Center Point",
@@ -203,6 +205,9 @@ i18n
                     "new_password": "密碼",
                     "info": "資訊",
                     "map_style" : "地圖樣式",
+                    "function" : "功能",
+                    "upload" : "上傳", 
+                    "time_series_data" : "時序資料",
                     //環域分析
                     "radius": "半徑",
                     "center_point": "中心點",
@@ -325,7 +330,6 @@ i18n
                     "reset_password":"重設密碼",
                     "reset_password_token_is_invalid":"重置密碼Token無效",
                     //MapStyle
-                    "map_style":"地圖樣式",
                     "select_map_style":"選擇地圖樣式",
                 }
             }

@@ -39,8 +39,11 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost',
     'http://127.0.0.1',
     'http://127.0.0.1:3000',
+    'http://127.0.0.1:8086',
     'http://localhost:3000',
+    'http://localhost:8086',
     'http://140.121.196.77:30180',
+    
 ]
 
 REST_FRAMEWORK = {

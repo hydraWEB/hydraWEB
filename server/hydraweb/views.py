@@ -15,6 +15,7 @@ import fitz
 import csv
 import re
 from PIL import Image
+from datetime import datetime
 
 from staff.models import SystemLog,SystemOperationEnum
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
@@ -233,6 +234,8 @@ class WaterLevelAPI(views.APIView):
 
     def post(self,request):     #從influx拿該站點資料
         print(request.data)
+        get_dt_time = datetime.now()
+        print("get data time = ", get_dt_time)
         st_no = request.data['st_no']
         start_time = request.data['start_time']
         end_time = request.data['end_time']
@@ -240,14 +243,14 @@ class WaterLevelAPI(views.APIView):
         avg_day = request.data['avg_day']
         avg_hour = request.data['avg_hour']
         avg_minute = request.data['avg_minute']
-        print(avg_day,avg_hour,avg_minute)
         
         res = self.get_target_station_data(st_no,start_time,end_time)       #要改
+        get_dt_time_fin = datetime.now()
+        print("get date end time = ", get_dt_time_fin)
+        print(get_dt_time_fin-get_dt_time)
         return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
         
     def get_target_station_data(self, st_no, start_time, end_time):
-        print(start_time)
-        print(end_time)
         resultArr = []
         waterlevel = []
         time_arr = []
@@ -285,7 +288,7 @@ class WaterLevelAllStationAPI(views.APIView):
         allCollection = db.list_collection_names()
         resultArr = []
         for col in allCollection:
-            if(col == 'full_data'):
+            if(col == 'full_data' or col == 'Pumping_Changhua' or col == 'Pumping_Yunlin'):
                 collection = db.get_collection(col)
                 result = collection.find()
                 for dt in result:
@@ -294,7 +297,8 @@ class WaterLevelAllStationAPI(views.APIView):
                     temp.append(dt["NAME_C"])
                     temp.append(dt["min_time"])
                     temp.append(dt["max_time"])
-                    resultArr.append(temp)
+                    dict_result = {"name":col, "data":temp}
+                    resultArr.append(dict_result)
         return resultArr
 
     def get(self,request):

@@ -525,6 +525,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         setDataLoadProgess(percentCompleted)
       }
     }).then((res) => {
+      console.log(res.data.data)
       addToast(t('layer_loading_success'), { appearance: 'success', autoDismiss: true });
       setDataLoadState(1)
       let list = []

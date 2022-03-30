@@ -786,7 +786,7 @@ export default function HydraMap() {
                 placement='right'
                 overlay={
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('waterlevel')}
+                    {t('time_series_data')}
                   </Tooltip>
                 }>
                 <div className={styles.menu_btn} >

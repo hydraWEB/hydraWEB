@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from corsheaders.defaults import default_headers
 from pathlib import Path
 import os
 from datetime import timedelta
@@ -30,10 +30,12 @@ if os.environ.get('DEBUG') == 'True':
 else:
     DEBUG = False
     
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-
-ALLOWED_HOSTS = ['localhost','127.0.0.1','server',"140.121.196.77"]
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "Content-Disposition",
+]
+ALLOWED_HOSTS = ['localhost','127.0.0.1','server',"140.121.196.77","localhost:3000"]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost',

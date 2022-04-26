@@ -364,6 +364,17 @@ ul {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
+.function_wrapper_upload{
+    color:white;
+    padding: 20px 20px 10px 20px;
+    border-radius: 10px;
+    margin:15px;
+    background: #457ee7aa;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    display: flex;
+    flex-direction: row;
+}
+
 .function_wrapper_waterlevel{
     color:white;
     padding: 20px 5px 5px 5px;
@@ -604,4 +615,10 @@ ul {
   }
   .info_layout_bot{
     height:30px;
+  }
+
+  .button_layout{
+    display: flex;
+    flex-direction: row;
+    color:blue;
   }

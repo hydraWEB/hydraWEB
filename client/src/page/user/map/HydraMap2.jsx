@@ -12,7 +12,8 @@ import {
   faWater,
   faInfo,
   faFileImage,
-  faMap
+  faMap,
+  faUpload
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
@@ -34,16 +35,18 @@ import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
 import BackendImage from "./BackendImage"
 import Chart from "./Chart.jsx"
+import Chart2 from "./Chart2.jsx"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevelV2"
 import Info from "./Info"
 import SearchFunctionContent from "./SearchFunctionContent"
 import MapStyle from "./MapStyle"
+import UploadFile from "./UploadFile"
 import { FlyToInterpolator } from 'deck.gl';
 
 import StyleJsonMonochrome from './style_monochrome.json';
 import StyleJsonStreet from './style_streets.json';
-import StyleJsonBasic from './style_basic.json';
+import StyleJsonBasic from './style_basic2.json';
 import StyleJsonSatellite from './style_satellite.json';
 
 import CloseIcon from '@material-ui/icons/Close';
@@ -235,6 +238,16 @@ function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STN
             地質鑽探資料
           </Button>
           <Chart showChart={showChart} setShowChart={setShowChart} chartData={props} />
+        </div>
+      )
+    }
+    else if (clickInfo.layer.props.data_type === "Layered_Trap_Drilling"){
+      return (
+        <div>
+          <Button onClick={(e) => { setShowChart(true) }} >
+            地質鑽探資料
+          </Button>
+          <Chart2 showChart={showChart} setShowChart={setShowChart} chartData={props} />
         </div>
       )
     }
@@ -456,7 +469,7 @@ export default function HydraMap() {
   const mapRef = useRef()
   const deckRef = useRef()
   const waterLevelRef = useRef(); //waterLevelRef.current.onSearchClick
-  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
+  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoieWluZ2NvbmdsZW9uZyIsImEiOiJja205ZjVva3kweHd0MnVudWR2aGtobGh6In0.35cBkDHyYExuaXfis4T1Aw';
   const { t, i18n } = useTranslation();
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const viewState2 = useRef(INITIAL_VIEW_STATE);
@@ -825,8 +838,23 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <div className={styles.menu_btn_bottom}>
             <MenuBtnWrapper isShow={currentFunction === 10 && openSheet == true} onClick={(e) => functionChangeToggle(10)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('Upload_file')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faUpload} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
+            <div className={styles.menu_btn_bottom}>
+            <MenuBtnWrapper isShow={currentFunction === 11 && openSheet == true} onClick={(e) => functionChangeToggle(11)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -891,6 +919,11 @@ export default function HydraMap() {
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 10}>
+            <div className={styles.menu_desk_outer_layer}>
+              <UploadFile/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 11}>
             <div className={styles.menu_desk_outer_layer}>
               <Info/>
             </div>

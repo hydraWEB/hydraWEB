@@ -7,7 +7,7 @@ import { GeoJsonLayer } from '@deck.gl/layers';
 import { ScenegraphLayer } from '@deck.gl/mesh-layers';
 import { ColumnLayer } from '@deck.gl/layers';
 import { HexagonLayer, HeatmapLayer } from '@deck.gl/aggregation-layers';
-import { LayerList } from '../../../lib/api'
+import { LayerList, UploadFile } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { useTranslation, Trans } from "react-i18next";
@@ -21,6 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 

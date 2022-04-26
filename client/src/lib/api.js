@@ -11,6 +11,15 @@ export let userRequest_client = axios.create({
     withCredentials: true
 });
 
+export let userUploadRequest_client = axios.create({
+    baseURL: process.env.REACT_APP_URL_PRODUCTION,
+    headers: { 
+        "Content-Type": "multipart/form-data; boundary=--------------------------404758404124230490263078" ,
+        "Content-Disposition" : "attachment; filename=test.json",
+    },
+    withCredentials: true
+});
+
 
 export const userLogin = (data) => guestRequest_client.post("api/v1/auth/login/",data);
 export const userSignUp = (data) => guestRequest_client.post("api/v1/auth/register/",data);
@@ -56,5 +65,7 @@ export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",da
 
 export const AllTags = () => userRequest_client.post(`api/v1/user/all_tag`)
 export const TagAndGIS = () => userRequest_client.get(`api/v1/user/tagAndGIS`)
+
+export const UploadFile = (data) => userUploadRequest_client.post(`api/v1/user/uploadFile`,data)
 
 export default userLogin

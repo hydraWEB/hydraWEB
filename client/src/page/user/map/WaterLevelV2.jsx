@@ -93,13 +93,16 @@ export default function WaterLevel({STNO}) {
   const org = "hydraweb"
   const bucket = "test"
 
-  function FindIndexOfSTNO(){
-    for (let i = 0;i<allStation.length;i++){
-      if(allStation[i]["data"][0] === STNO){
-        let idx = i;
-        return idx
+  function FindIndexOfSTNO(name){
+    if(name === "水位"){
+      for (let i = 0;i<combineAllStation[0].length;i++){
+        if(combineAllStation[0][i]["data"][0] === STNO){
+          let idx = i;
+          return idx
+        }
       }
     }
+    
     return 0
   }
 
@@ -183,9 +186,9 @@ export default function WaterLevel({STNO}) {
 
   useEffect(() => {
     if(allStation.length > 0 && STNO !==""){
-      let idx = FindIndexOfSTNO()
+      let idx = FindIndexOfSTNO("水位")
       FindMinMaxTime(idx,"full_data")
-      setCurrentStation(allStation[idx]["data"][0])
+      setCurrentStation(combineAllStation[0][idx]["data"][0])
       setCurrentStationIndex(idx)
     }
   },[STNO])
@@ -217,6 +220,17 @@ export default function WaterLevel({STNO}) {
       var start = dayjs()
       console.log("start")
       console.log(start)
+      var bodyToSend = ""
+      var bodyToSendAvg = ""
+      if(currentTimeSerieData === "水位"){
+        bodyToSend = `from(bucket:"full_data") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998 and r["ST_NO"] == "${combineAllStation[0][currentStationIndex]["data"][0]}")`
+      }
+      else if (currentTimeSerieData === "雲林抽水"){
+        bodyToSend = `from(bucket:"pumping_station_yunlin") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "pump" and r["_value"] > -9998 and r["_measurement"] == "${combineAllStation[1][currentStationIndex]["data"][0]}")`
+      }
+      else if (currentTimeSerieData === "彰化抽水"){
+        bodyToSend = `from(bucket:"pumping_station_changhua") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "pump" and r["_value"] > -9998 and r["_measurement"] == "${combineAllStation[2][currentStationIndex]["data"][0]}")`
+      }
       if(avgDay === 0 && avgHour === 0 && avgMinute === 0){
         setIsAverage(false)
         fetch("http://localhost:8086/api/v2/query?org=hydraweb", {
@@ -226,7 +240,7 @@ export default function WaterLevel({STNO}) {
             "Authorization":"Token 48ajON7zFsezaE5NbYJe4jbEgvYIFCcs07xeUp8xRXiMl7prTQPxeCn2i3bbafPqWibMOD63Bx51G5Y2MvKYkQ==",
             "Content-Type": "application/vnd.flux"
           }),
-          body:`from(bucket:"full_data") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998 and r["ST_NO"] == "${allStation[currentStationIndex]["data"][0]}")`
+          body: bodyToSend
         }).then(response=>response.text())
         .then(data=>{     
           var end = dayjs()
@@ -249,6 +263,15 @@ export default function WaterLevel({STNO}) {
       else {
         setIsAverage(true)
         let totalMin = avgDay*1440 + avgHour*60 + avgMinute
+        if(currentTimeSerieData === "水位"){
+          bodyToSendAvg = `from(bucket:"full_data") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998 and r["ST_NO"] == "${combineAllStation[0][currentStationIndex]["data"][0]}") |> timedMovingAverage(every: ${totalMin}m, period: ${totalMin}m)`
+        }
+        else if (currentTimeSerieData === "雲林抽水"){
+          bodyToSendAvg = `from(bucket:"pumping_station_yunlin") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "pump" and r["_value"] > -9998 and r["_measurement"] == "${combineAllStation[1][currentStationIndex]["data"][0]}") |> timedMovingAverage(every: ${totalMin}m, period: ${totalMin}m)`
+        }
+        else if (currentTimeSerieData === "彰化抽水"){
+          bodyToSendAvg = `from(bucket:"pumping_station_changhua") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "pump" and r["_value"] > -9998 and r["_measurement"] == "${combineAllStation[2][currentStationIndex]["data"][0]}") |> timedMovingAverage(every: ${totalMin}m, period: ${totalMin}m)`
+        }
         //fetch InfluxDB data with average constant
         fetch("http://localhost:8086/api/v2/query?org=hydraweb", {
           method: "POST",
@@ -257,7 +280,7 @@ export default function WaterLevel({STNO}) {
             "Authorization":"Token 48ajON7zFsezaE5NbYJe4jbEgvYIFCcs07xeUp8xRXiMl7prTQPxeCn2i3bbafPqWibMOD63Bx51G5Y2MvKYkQ==",
             "Content-Type": "application/vnd.flux"
           }),
-          body:`from(bucket:"full_data") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998 and r["ST_NO"] == "${allStation[currentStationIndex]["data"][0]}") |> timedMovingAverage(every: ${totalMin}m, period: ${totalMin}m)`
+          body:bodyToSendAvg
         }).then(response=>response.text())
         .then(data=>{     
           var end = dayjs()
@@ -269,8 +292,8 @@ export default function WaterLevel({STNO}) {
           for (let i = 1; i < lines.length-2; i++){
             let arr = []
             let splitedline = lines[i].split(",")
-            arr.push(splitedline[10].substring(0, splitedline[10].length - 2))
-            arr.push(parseFloat(splitedline[9]))
+            arr.push(splitedline[splitedline.length-1].substring(0, splitedline[splitedline.length-1].length - 2))
+            arr.push(parseFloat(splitedline[splitedline.length-2]))
             stationDataAverageArr.push(arr)
           }
           //------------------------------------------------------------------------------------------------------------
@@ -284,7 +307,7 @@ export default function WaterLevel({STNO}) {
             "Authorization":"Token 48ajON7zFsezaE5NbYJe4jbEgvYIFCcs07xeUp8xRXiMl7prTQPxeCn2i3bbafPqWibMOD63Bx51G5Y2MvKYkQ==",
             "Content-Type": "application/vnd.flux"
           }),
-          body:`from(bucket:"full_data") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998 and r["ST_NO"] == "${allStation[currentStationIndex]["data"][0]}")`
+          body:bodyToSend
         }).then(response=>response.text())
         .then(data=>{     
           var end = dayjs()
@@ -353,13 +376,13 @@ export default function WaterLevel({STNO}) {
 
   const pumping_YunlinstationSelectOnChange = (e) => {
     console.log(e.target.value)
-    FindMinMaxTime(e.target.value, "full_data")
+    FindMinMaxTime(e.target.value, "Pumping_Yunlin")
     setCurrentStation(combineAllStation[1][e.target.value]["data"][0])
     setCurrentStationIndex(e.target.value)
   }  
   const pumping_ChanghuastationSelectOnChange = (e) => {
     console.log(e.target.value)
-    FindMinMaxTime(e.target.value, "full_data")
+    FindMinMaxTime(e.target.value, "Pumping_Changhua")
     setCurrentStation(combineAllStation[2][e.target.value]["data"][0])
     setCurrentStationIndex(e.target.value)
   }
@@ -802,7 +825,6 @@ export default function WaterLevel({STNO}) {
 
   function ShowAllStation(name){   //顯示目前選擇的時序資料
     if(name.name === "水位"){
-      console.log("water")
       return (
         <div className={styles.wl_left_1}>
           <h5>{t('select_area')}</h5>

@@ -37,7 +37,7 @@ const useStyles1 = makeStyles((theme) => ({
   },
 }));
 
-function LineChart({ chartData }) {
+function LineChart2({ chartData }) {
 
   const [info, setInfo] = useState(null)
 
@@ -59,7 +59,8 @@ function LineChart({ chartData }) {
       }
     })
     title(list)
-    岩類一(list)
+    Drilling(list)
+    
   }
 
   function title(list) {
@@ -84,21 +85,13 @@ function LineChart({ chartData }) {
       .style("fill", "white")
       .attr('y', 20)
       .attr('x', 105)
-      .text("岩類一")
-
-    svg.append("text")
-      .style("fill", "white")
-      .attr('y', 20)
-      .attr('x', 215)
-      .text("岩類二")
+      .text("土壤分類")
   }
 
-
-
-  function 岩類一(list) {
+  function Drilling(list) {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
-      width = 500 - margin.left - margin.right,
-      height = 1000 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 1000 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
 
@@ -110,47 +103,47 @@ function LineChart({ chartData }) {
       .attr("transform", `translate(${margin.left},${margin.top})`)
     
 
-    let maxdept = list[list.length - 1].下限深度
-    let mindept = list[0].上限深度
-    let alldept = maxdept - mindept
+    let maxdept = list[list.length - 1].土層下部
+    let mindept = list[0].土層上部
+    let alldept = parseInt(maxdept) - parseInt(mindept)
     var calc = height / alldept
 
     var colorize3 = d3.scaleOrdinal().range(d3.schemePaired)
 
-    //上限深度
+    //土層上部
     svg.selectAll("text.depth")
       .data(list).enter().append("text")
       .attr("class", "depth")
       .attr('y', (d) => {
-        return ((d.上限深度) * calc) + 15
+        return ((d.土層上部) * calc) + 15
       })
       .attr('x', 0)
       .attr("fill", "white")
       .attr("width", 100)
-      .text((d, i) => d.上限深度)
+      .text((d, i) => d.土層上部)
 
-    //下限深度
+    //土層下部
     svg.append("text")
       .data([list[list.length - 1]])
       .style("fill", "white")
       .attr('y', height)
       .attr('x', 0)
-      .text((d, i) => d.下限深度)
+      .text((d, i) => d.土層下部)
 
 
     //岩類1圖表
     svg.selectAll('rect.rock1')
       .data(list).enter().append("rect")
       .attr('y', (d) => {
-        return d.上限深度 * calc
+        return d.土層上部 * calc
       })
       .attr('x', 100)
       .attr("height", (d) => {
-        return (d.下限深度 - d.上限深度) * calc
+        return (d.土層下部 - d.土層上部) * calc
       })
       .attr("width", 100)
       .attr('stroke', 'black')
-      .attr('fill', (d, i) => colorize3(d.岩類一));
+      .attr('fill', (d, i) => colorize3(d.土壤分類));
 
     //岩類1圖表內的字體
     svg.selectAll("text.rock1")
@@ -159,11 +152,11 @@ function LineChart({ chartData }) {
       .append("text")
       .attr("class", "hour")
       .attr('y', (d) => {
-        return d.上限深度 * calc + 20
+        return d.土層上部 * calc + 20
       })
       .attr('x', 105)
       .attr("fill", "white")
-      .text((d, i) => d.岩類一)
+      .text((d, i) => d.土壤分類)
       .on('mouseout', function () { // on mouse out hide line, circles and text
         d3.select("line")
           .style("opacity", "0");
@@ -173,34 +166,6 @@ function LineChart({ chartData }) {
           .style("opacity", "1");
       })
 
-
-    svg.selectAll('rect.rock2')
-      .data(list).enter().append("rect")
-      .attr('y', (d) => {
-        return d.上限深度 * calc
-      })
-      .attr('x', 210)
-      .attr("height", (d) => {
-        return (d.下限深度 - d.上限深度) * calc
-      })
-      .attr("width", 100)
-      .attr('stroke', 'black')
-      .attr('fill', (d, i) => colorize3(d.岩類二));
-
-
-    svg.selectAll("text.rock2")
-      .data(list)
-      .enter()
-      .append("text")
-      .attr("class", "rock2")
-      .attr('y', (d) => {
-        return d.上限深度 * calc + 20
-      })
-      .attr('x', 215)
-      .attr("fill", "white")
-      .text((d, i) => d.岩類二)
-    /* .attr("style", "font-family: arial; fill: white; writing-mode: tb") */
-
     var mouseG = svg.append("g")
 
     //answer
@@ -209,10 +174,6 @@ function LineChart({ chartData }) {
       .style("fill", "white")
       .style("opacity", "0");
 
-    mouseG.append("text")
-      .attr("class", "rock_tooltip_answer_2")
-      .style("fill", "white")
-      .style("opacity", "0");
 
     mouseG.append("text")
       .attr("class", "rock_tooltip_answer_depth")
@@ -236,8 +197,6 @@ function LineChart({ chartData }) {
           .style("opacity", "0");
         d3.select(".rock_tooltip_answer_1")
           .style("opacity", "0");
-        d3.select(".rock_tooltip_answer_2")
-          .style("opacity", "0");
         d3.select(".rock_tooltip_answer_depth")
           .style("opacity", "0");
       })
@@ -245,8 +204,6 @@ function LineChart({ chartData }) {
         d3.select(".mouse-line")
           .style("opacity", "1");
         d3.select(".rock_tooltip_answer_1")
-          .style("opacity", "1");
-        d3.select(".rock_tooltip_answer_2")
           .style("opacity", "1");
         d3.select(".rock_tooltip_answer_depth")
           .style("opacity", "1");
@@ -258,9 +215,8 @@ function LineChart({ chartData }) {
         var roundOffDepth = depth.toFixed(2)
 
         for (let i = 0; i < list.length; i++) {
-          if (roundOffDepth >= list[i].上限深度 && roundOffDepth <= list[i].下限深度) {
-            r1 = list[i].岩類一
-            r2 = list[i].岩類二
+          if (roundOffDepth >= parseInt(list[i].土層上部) && roundOffDepth <= parseInt(list[i].土層下部)) {
+            r1 = list[i].土壤分類
             console.log(list[i])
           }
         }
@@ -275,11 +231,7 @@ function LineChart({ chartData }) {
           d3.select(".rock_tooltip_answer_1")
             .attr('y', mouse[1] + 20)
             .attr('x', 350)
-            .text(`岩類一：${r1}`)
-          d3.select(".rock_tooltip_answer_2")
-            .attr('y', mouse[1] + 40)
-            .attr('x', 350)
-            .text(`岩類二：${r2}`)
+            .text(`土壤分類：${r1}`)
           d3.select(".rock_tooltip_answer_depth")
             .attr('y', mouse[1] + 60)
             .attr('x', 350)
@@ -289,11 +241,7 @@ function LineChart({ chartData }) {
           d3.select(".rock_tooltip_answer_1")
             .attr('y', mouse[1] + 20 - 70)
             .attr('x', 350)
-            .text(`岩類一：${r1}`)
-          d3.select(".rock_tooltip_answer_2")
-            .attr('y', mouse[1] + 40 - 70)
-            .attr('x', 350)
-            .text(`岩類二：${r2}`)
+            .text(`土壤分類：${r1}`)
           d3.select(".rock_tooltip_answer_depth")
             .attr('y', mouse[1] + 60 - 70)
             .attr('x', 350)
@@ -455,7 +403,7 @@ const DialogTitle2 = withStyles(styles_)((props) => {
   );
 });
 
-export default function Chart({ showChart, setShowChart, chartData }) {
+export default function Chart2({ showChart, setShowChart, chartData }) {
 
   const handleClickOpen = () => {
     setShowChart(true);
@@ -470,7 +418,7 @@ export default function Chart({ showChart, setShowChart, chartData }) {
       <Dialog onClose={handleClose} open={showChart} 
       >
         <div className={styles.chart_title}>
-          <DialogTitle2 onClose={handleClose} >地質鑽探資料</DialogTitle2>
+          <DialogTitle2 onClose={handleClose} >分層地陷井鑽探資料</DialogTitle2>
         </div>
         <div className={styles.chart_print}>
           <Button
@@ -480,7 +428,7 @@ export default function Chart({ showChart, setShowChart, chartData }) {
         </div>
 
         <DialogContent dividers={true}>
-          <LineChart chartData={chartData} />
+          <LineChart2 chartData={chartData} />
         </DialogContent>
 
       </Dialog>

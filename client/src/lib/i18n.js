@@ -127,6 +127,14 @@ i18n
                     "water_level_loading_success": "Water Level Load Success",
                     "layer_loading_fail": "Layer Load Fail",
                     "layer_loading_success": "Layer Load Success",
+                    //upload
+                    "Upload_success" : "Upload Success",
+                    "Upload_fail" : "Upload Fail",
+                    "Upload_file" : "Upload File",
+                    "convert_to_csv_and_upload" : "Convert To CSV And Upload",
+                    "convert_to_json_and_upload" : "Convert To JSON And Upload",
+                    "convert_to_geojson_and_upload" : "Convert To GEOJSON And Upload",
+                    "convert_to_shapefile_and_upload" : "Convert To Shapefile And Upload",
                     //測量
                     "measurement_draw": "Draw",
                     "distance": "Distance",
@@ -289,6 +297,14 @@ i18n
                     "water_level_loading_success": "測站載入成功",
                     "layer_loading_fail": "圖層載入失敗",
                     "layer_loading_success": "圖層載入成功",
+                    //upload
+                    "Upload_success" : "上傳成功",
+                    "Upload_fail" : "上傳失敗",
+                    "Upload_file" : "上傳檔案",
+                    "convert_to_csv_and_upload" : "轉化成CSV格式並上傳",
+                    "convert_to_json_and_upload" : "轉化成JSON格式並上傳",
+                    "convert_to_geojson_and_upload" : "轉化成GEOJSON格式並上傳",
+                    "convert_to_shapefile_and_upload" : "轉化成Shapefile格式並上傳",
                     //測量
                     "measurement_draw": "繪製",
                     "distance": "距離",

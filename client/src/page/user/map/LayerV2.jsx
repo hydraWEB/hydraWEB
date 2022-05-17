@@ -158,7 +158,7 @@ function CustomCheckBox({ color, checked, onChange }) {
 }
 
 function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
-
+  const { t, i18n } = useTranslation();
   const [timeList, setTimeList] = useState([])
   const [min, setmin] = useState(0)
   const [max, setmax] = useState(0)
@@ -202,6 +202,24 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
     setCurrentLayer(newValue)
   };
 
+  const downloadOnClick = (data) => {
+    // Create a blob with the data we want to download as a file
+    const blob = new Blob([JSON.stringify(data.data, null, 2)], { type: "application/json" })
+    // Create an anchor element and dispatch a click event on it
+    // to trigger a download
+    const a = document.createElement('a')
+    a.download = data.name
+    a.href = window.URL.createObjectURL(blob)
+    const clickEvt = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    })
+    a.dispatchEvent(clickEvt)
+    a.remove()
+    
+  }
+
   return (
     <InputWrapper backgroundColor={rgbToHex(getDotColor(data))}>
       <CustomCheckBox
@@ -234,6 +252,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
         </div>
 
       </StyledLabel>
+      <Button onClick={() => downloadOnClick(data)}>{t('download')}</Button>
     </InputWrapper>
   )
 }

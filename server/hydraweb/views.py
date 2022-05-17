@@ -1,5 +1,7 @@
 import collections
 from fileinput import filename
+from sqlite3 import converters
+from tempfile import NamedTemporaryFile
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
@@ -8,22 +10,24 @@ import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
 from rest_framework import viewsets, status
 from rest_framework import views
-import os 
+import os, io, zipfile
 import pymongo
 import json
 import base64
 import fitz
 import csv
+import shutil
 import re
 import pandas as pd
 from PIL import Image
-from datetime import datetime
+from datetime import date, datetime
 from django.core.files.base import ContentFile
 from staff.models import SystemLog,SystemOperationEnum
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.parsers import FileUploadParser, JSONParser, MultiPartParser
 from django.http import FileResponse, HttpRequest, HttpResponse, JsonResponse
 from django.core.files.storage import FileSystemStorage
+from .record_upload_file import RecordUploadFile
 from collections import OrderedDict
 
 import pprint
@@ -471,33 +475,138 @@ class WaterLevelDownloadAPI(views.APIView):
         return response
         
 class UploadFileAPI(views.APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
     parser_classes = (MultiPartParser,)
+    
+    def Record_File(self, username, filename, dir_path, counter):
+        RecordUploadFile(username, filename, dir_path, counter)
 
-    def post(self,request):     
+    def post(self,request):     #only upload
         file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
         dir_path = os.path.join(dir_path, "upload_data")
+        dir_path_temp = os.path.join(dir_path, "{}").format(request.user)
+        print("only upload")
+        if os.path.isdir(dir_path_temp)==False:
+            os.mkdir(dir_path_temp)
+        dir_path = dir_path_temp
         all_dir = os.listdir(dir_path)
         temp_filename = ""
-        print(request.user)
         if(request):
             for f in file:
+                counter=0
+                filename = os.path.join(dir_path, f.name)
+                if os.path.isfile(filename)==True:
+                    os.remove(filename)
+                    counter=1
                 #---------------create a temp edit to remove boundary------------
                 if(f.name.endswith('.json')):
                     temp_filename = "temp.json"
                 elif(f.name.endswith('.csv')):
                     temp_filename = "temp.csv"
+                elif(f.name.endswith('.xlsx')):
+                    temp_filename = "temp.xlsx"
                 elif(f.name.endswith('.shp')):
                     temp_filename = "temp.shp"
                 elif(f.name.endswith('.shx')):
                     temp_filename = "temp.shx"
                 elif(f.name.endswith('.dbf')):
                     temp_filename = "temp.dbf"
-                if(temp_filename == "temp.shp" or temp_filename == "temp.shx" or temp_filename == "temp.dbf"):
-                    print(dir_path)
+                elif(f.name.endswith('.xlsx')):
+                    temp_filename = "temp.xlsx"
+                if(temp_filename == "temp.shp" or temp_filename == "temp.shx" or temp_filename == "temp.dbf" or temp_filename == "temp.xlsx"):
                     fs = FileSystemStorage(location=dir_path)
                     fs.save(f.name, f)
                 elif(temp_filename != ""):
+                    fs = FileSystemStorage(location=dir_path)
+                    fs.save(temp_filename, f)
+                #---------------create a temp edit to remove boundary------------
+                    if temp_filename != "temp.xlsx":
+                        encode="utf-8"
+                        with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:
+                            try:
+                                readline = read.readlines()
+                            except:
+                                encode="big5"
+                                read.close()
+                        print(encode)
+                        with open(os.path.join(dir_path, temp_filename), "r", encoding='{}'.format(str(encode))) as read:   #read the temp file
+                            with open(filename, 'w', encoding='utf8') as writefile:                       #create newfile is not exist
+                                readline = read.readlines()
+                                for line in readline:
+                                    if not (line.startswith("------") or line.startswith("Content-") or line.startswith("bKit")):     #write everything except boundary
+                                        writefile.write(line)
+                                writefile.close()
+                            read.close()
+                        os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
+                self.Record_File(request.user, f.name, dir_path, counter)
+            return Response({"message":"File is recieved", "data":[]}, status=status.HTTP_200_OK) 
+        else:
+            return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
+         
+class UploadAndConvertToCSVFileAPI(views.APIView): # json  and geojson convert to csv
+    parser_classes = (MultiPartParser,)
+    
+    def recordUploadFile(self, username, filename, filepath):
+        header=['file_path','file_name','username','last_download','last_created','download_count']
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        file_dir = os.path.join(dir_path,"file_record.csv")
+        if(os.path.isfile(file_dir)):
+            with open(file_dir, 'a',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+        else:
+            with open(file_dir, 'w+',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow(header)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+    
+    def jsonTocsv(self, fileName, read_dir, write_dir):
+        read_dir_path = os.path.join(read_dir, fileName+'.json')
+        write_dir_path = os.path.join(write_dir, fileName+'.csv')
+        df = pd.read_json(read_dir_path)
+        df.to_csv(write_dir_path, index = None)
+        
+    def geojsonTocsv(self, fileName, read_dir, write_dir):
+        read_dir_path = os.path.join(read_dir, fileName+'.json')
+        write_dir_path = os.path.join(write_dir, fileName+'.csv')
+        with open (read_dir_path, 'r', encoding='utf-8') as jsonfile:
+            data=json.load(jsonfile)
+            header = ['wgs84(x)','wgs84(y)']
+            temp=list(data['features'][0]['properties'])
+            for i in range(0,len(temp)):
+                header.append(temp[i])
+            with open(write_dir_path, 'w',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow(header)
+                for i in range(0,len(data['features'])):
+                    csv_temp=[]
+                    lon = data['features'][i]['geometry']['coordinates'][0]
+                    lat = data['features'][i]['geometry']['coordinates'][1]
+                    csv_temp.append(lon)
+                    csv_temp.append(lat)
+                    for y in range(0,len(temp)):
+                        prop_data=data['features'][i]['properties']['{}'.format(temp[y])]
+                        csv_temp.append(prop_data)
+                    writer.writerow(csv_temp)
+                    
+    def post(self,request):     
+        file = request.FILES.getlist('file')
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        dir_path = os.path.join(dir_path, "upload_data")
+        all_dir = os.listdir(dir_path)
+        temp_filename = ""
+        converted_filename = []
+        if(request):
+            for f in file:
+                self.recordUploadFile(request.user, f.name, dir_path)
+                #---------------create a temp edit to remove boundary------------
+                temp_filename = "temp.json"
+                converted_filename.append(f.name.replace("json", "csv"))
+                if(temp_filename != ""):
                     filename = os.path.join(dir_path, f.name)
                     fs = FileSystemStorage(location=dir_path)
                     fs.save(temp_filename, f)
@@ -510,54 +619,46 @@ class UploadFileAPI(views.APIView):
                                     writefile.write(line)
                             writefile.close()
                         read.close()
+                check_is_geojson=0
+                with open (filename, 'r', encoding='utf-8') as jsonfile:
+                    data=json.load(jsonfile)
+                    if 'geometry' in data['features'][0].keys():
+                        check_is_geojson=1
+                    else:
+                        check_is_geojson=0
+                if check_is_geojson==0:
                     os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
-            return Response({"message":"File is recieved"}, status=status.HTTP_200_OK) 
-        else:
-            return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
-         
-class UploadAndConvertToCSVFileAPI(views.APIView):
-    parser_classes = (MultiPartParser,)
-    
-    def jsonTocsv(self, fileName, read_dir, write_dir):
-        read_dir_path = os.path.join(read_dir, fileName+'.json')
-        write_dir_path = os.path.join(write_dir, fileName+'.csv')
-        df = pd.read_json(read_dir_path)
-        df.to_csv(write_dir_path, index = None)
-          
-    def post(self,request):     
-        file = request.data.get('file', None)
-        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-        dir_path = os.path.join(dir_path, "upload_data")
-        all_dir = os.listdir(dir_path)
-        temp_filename = ""
-        if(request):
-            #---------------create a temp edit to remove boundary------------
-            if(file.name.endswith('.json')):
-                temp_filename = "temp.json"
-            if(temp_filename != ""):
-                filename = os.path.join(dir_path, file.name)
-                fs = FileSystemStorage(location=dir_path)
-                fs.save(temp_filename, file)
-            #---------------create a temp edit to remove boundary------------
-                with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:   #read the temp file
-                    with open(filename, 'w', encoding='utf-8') as writefile:                       #create newfile is not exist
-                        readline = read.readlines()
-                        for line in readline:
-                            if not (line.startswith("------") or line.startswith("Content-") or line.startswith("bKit")):     #write everything except boundary
-                                writefile.write(line)
-                        writefile.close()
-                    read.close()
-            os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
-            fname = file.name.replace(".json", "")
-            self.jsonTocsv(fname, dir_path, dir_path)
-                
-            return Response({"message":"File is recieved"}, status=status.HTTP_200_OK) 
+                    fname = f.name.replace(".json", "")
+                    self.jsonTocsv(fname, dir_path, dir_path)
+                    self.recordUploadFile(request.user, fname+".csv", dir_path)
+                else:
+                    os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
+                    fname = f.name.replace(".json", "")
+                    self.geojsonTocsv(fname, dir_path, dir_path)
+                    self.recordUploadFile(request.user, fname+".csv", dir_path)
+            return Response({"message":"File is recieved", "data":converted_filename}, status=status.HTTP_200_OK) 
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
         
 class UploadAndConvertToJSONFileAPI(views.APIView):
     parser_classes = (MultiPartParser,)
-        
+    
+    def recordUploadFile(self, username, filename, filepath):
+        header=['file_path','file_name','username','last_download','last_created','download_count']
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        file_dir = os.path.join(dir_path,"file_record.csv")
+        if(os.path.isfile(file_dir)):
+            with open(file_dir, 'a',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+        else:
+            with open(file_dir, 'w+',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow(header)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+
     def csvTojson(self, fileName, read_dir, write_dir):
         read_dir_path = os.path.join(read_dir, fileName+'.csv')
         write_dir_path = os.path.join(write_dir, fileName+'.json')
@@ -565,38 +666,58 @@ class UploadAndConvertToJSONFileAPI(views.APIView):
         df.to_json(write_dir_path)
                   
     def post(self,request):     
-        file = request.data.get('file', None)
+        file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
         dir_path = os.path.join(dir_path, "upload_data")
         all_dir = os.listdir(dir_path)
         temp_filename = ""
+        converted_filename = []
         if(request):
-            #---------------create a temp edit to remove boundary------------
-            if(file.name.endswith('.csv')):
-                temp_filename = "temp.csv"
-            if(temp_filename != ""):
-                filename = os.path.join(dir_path, file.name)
-                fs = FileSystemStorage(location=dir_path)
-                fs.save(temp_filename, file)
-            #---------------create a temp edit to remove boundary------------
-                with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:   #read the temp file
-                    with open(filename, 'w', encoding='utf-8') as writefile:                       #create newfile is not exist
-                        readline = read.readlines()
-                        for line in readline:
-                            if not (line.startswith("------") or line.startswith("Content-") or line.startswith("bKit")):     #write everything except boundary
-                                writefile.write(line)
-                        writefile.close()
-                    read.close()
-            os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
-            fname = file.name.replace(".csv", "")
-            self.csvTojson(fname, dir_path, dir_path)
-                
-            return Response({"message":"File is recieved"}, status=status.HTTP_200_OK) 
+            for f in file:
+                self.recordUploadFile(request.user, f.name, dir_path)
+                #---------------create a temp edit to remove boundary------------
+                if(f.name.endswith('.csv')):
+                    temp_filename = "temp.csv"
+                    converted_filename.append(f.name.replace("csv", "json"))
+                if(temp_filename != ""):
+                    filename = os.path.join(dir_path, f.name)
+                    fs = FileSystemStorage(location=dir_path)
+                    fs.save(temp_filename, f)
+                #---------------create a temp edit to remove boundary------------
+                    with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:   #read the temp file
+                        with open(filename, 'w', encoding='utf-8') as writefile:                       #create newfile is not exist
+                            readline = read.readlines()
+                            for line in readline:
+                                if not (line.startswith("------") or line.startswith("Content-") or line.startswith("bKit")):     #write everything except boundary
+                                    writefile.write(line)
+                            writefile.close()
+                        read.close()
+                os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
+                fname = f.name.replace(".csv", "")
+                self.csvTojson(fname, dir_path, dir_path)
+                self.recordUploadFile(request.user, fname+".json", dir_path)
+            return Response({"message":"File is recieved", "data":converted_filename}, status=status.HTTP_200_OK) 
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
                             
 class UploadAndConvertToGEOJSONFileAPI(views.APIView):
     parser_classes = (MultiPartParser,)
+    
+    def recordUploadFile(self, username, filename, filepath):
+        header=['file_path','file_name','username','last_download','last_created','download_count']
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        file_dir = os.path.join(dir_path,"file_record.csv")
+        if(os.path.isfile(file_dir)):
+            with open(file_dir, 'a',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+        else:
+            with open(file_dir, 'w+',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow(header)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
         
     def csvTogeojson(self, fileName, read_dir, write_dir):
         li = []
@@ -643,45 +764,66 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView):
             f.write(json.dumps(geojson, sort_keys=False, indent=4))
               
     def post(self,request):     
-        file = request.data.get('file', None)
+        file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
         dir_path = os.path.join(dir_path, "upload_data")
         all_dir = os.listdir(dir_path)
         temp_filename = ""
+        converted_filename = []
         if(request):
-            #---------------create a temp edit to remove boundary------------
-            if(file.name.endswith('.csv')):
-                temp_filename = "temp.csv"
-            elif(file.name.endswith('.shp')):
-                temp_filename = "temp.shp"
-            if(temp_filename != ""):
-                filename = os.path.join(dir_path, file.name)
-                fs = FileSystemStorage(location=dir_path)
-                fs.save(temp_filename, file)
-            #---------------create a temp edit to remove boundary------------
-                with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:   #read the temp file
-                    with open(filename, 'w', encoding='utf-8') as writefile:                       #create newfile is not exist
-                        readline = read.readlines()
-                        for line in readline:
-                            if not (line.startswith("------") or line.startswith("Content-") or line.startswith("bKit")):     #write everything except boundary
-                                writefile.write(line)
-                        writefile.close()
-                    read.close()
-            os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
-            
-            if(file.name.endswith('.shp')):
-                fname = file.name.replace(".shp", "")
-                print("do something")
-            elif(file.name.endswith('.csv')):
-                fname = file.name.replace(".csv", "")
-                self.csvTogeojson(fname, dir_path, dir_path)
-                
-            return Response({"message":"File is recieved"}, status=status.HTTP_200_OK) 
+            for f in file:
+                self.recordUploadFile(request.user, f.name, dir_path)
+                #---------------create a temp edit to remove boundary------------
+                if(f.name.endswith('.csv')):
+                    temp_filename = "temp.csv"
+                    converted_filename.append(f.name.replace(".csv", ".json"))
+                elif(f.name.endswith('.shp')):
+                    temp_filename = "temp.shp"
+                    converted_filename.append(f.name.replace(".shp", ".json"))
+                if(temp_filename != ""):
+                    filename = os.path.join(dir_path, f.name)
+                    fs = FileSystemStorage(location=dir_path)
+                    fs.save(temp_filename, f)
+                #---------------create a temp edit to remove boundary------------
+                    with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:   #read the temp file
+                        with open(filename, 'w', encoding='utf-8') as writefile:                       #create newfile is not exist
+                            readline = read.readlines()
+                            for line in readline:
+                                if not (line.startswith("------") or line.startswith("Content-") or line.startswith("bKit")):     #write everything except boundary
+                                    writefile.write(line)
+                            writefile.close()
+                        read.close()
+                os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
+                if(f.name.endswith('.shp')):
+                    fname = f.name.replace(".shp", "")
+                    self.recordUploadFile(request.user, fname+'.json', dir_path)
+                    print("do something")
+                elif(f.name.endswith('.csv')):
+                    fname = f.name.replace(".csv", "")
+                    self.csvTogeojson(fname, dir_path, dir_path)
+                    self.recordUploadFile(request.user, fname+'.json', dir_path)
+            return Response({"message":"File is recieved", "data":converted_filename}, status=status.HTTP_200_OK) 
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
         
 class UploadAndConvertToSHPFileAPI(views.APIView):
     parser_classes = (MultiPartParser,)
+    
+    def recordUploadFile(self, username, filename, filepath):
+        header=['file_path','file_name','username','last_download','last_created','download_count']
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        file_dir = os.path.join(dir_path,"file_record.csv")
+        if(os.path.isfile(file_dir)):
+            with open(file_dir, 'a',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+        else:
+            with open(file_dir, 'w+',encoding="UTF-8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow(header)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
     
     def geojsonToSHP(self, fileName, read_dir, write_dir):
         return 0
@@ -692,8 +834,10 @@ class UploadAndConvertToSHPFileAPI(views.APIView):
         dir_path = os.path.join(dir_path, "upload_data")
         all_dir = os.listdir(dir_path)
         temp_filename = ""
+        converted_filename = ""
         if(request):
             for f in file:
+                self.recordUploadFile(request.user, f.name, dir_path)
             #---------------create a temp edit to remove boundary------------
                 if(f.name.endswith('.csv')):
                     temp_filename = "temp.csv"
@@ -714,10 +858,132 @@ class UploadAndConvertToSHPFileAPI(views.APIView):
                         read.close()
                     os.remove(os.path.join(dir_path, temp_filename))    #delete the temp file
                 fname = f.name.replace(".json", "")
-                self.geojsonToSHP(fname, dir_path, dir_path)
-                
+            self.geojsonToSHP(fname, dir_path, dir_path)
+            self.recordUploadFile(request.user, fname+".shp", dir_path)
+            self.recordUploadFile(request.user, fname+".shx", dir_path)
+            self.recordUploadFile(request.user, fname+".dbf", dir_path)
             return Response({"message":"File is recieved"}, status=status.HTTP_200_OK) 
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
+    
+class DownloadFileListAPI(views.APIView):
+    
+    renderer_classes = (JSONRenderer,)       
+    
+    def post(self,request):     #從資料夾拿文件名稱
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        record_file_dir = os.path.join(dir_path,"file_record.csv")
+        file_path = []
+        file_name = []
+        resultArr = []
+        op = open(record_file_dir, 'r')
+        dt = csv.DictReader(op)
+        username = request.user
+        print(str(username))
+        for r in dt:
+            temp = []
+            if(r['username'] == str(username)):
+                temp.append(r['file_name'])
+                temp.append(r['download_count'])
+                resultArr.append(temp)
         
-                                  
+        return Response({"status":"created","data":resultArr}, status=status.HTTP_200_OK)  
+
+class DownloadFileAPI(views.APIView):       #下載被選中的檔案
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    
+    def updateDownloadFile(self, filename):
+        header=['file_path','file_name','username','last_download','last_created','download_count']
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        file_dir = os.path.join(dir_path,"file_record.csv")
+        op = open(file_dir, 'r')
+        dt = csv.DictReader(op)
+        up_dt = []
+        for r in dt:
+            if(r['file_name'] == filename): #download count +1 if found the file name
+                row = {'file_path' : r['file_path'],
+                   'file_name': r['file_name'],
+                   'username': r['username'],
+                   'last_download': datetime.date(datetime.now()),
+                   'last_created': r['last_created'],
+                   'download_count': int(r['download_count'])+1
+                }
+                up_dt.append(row)
+            else:
+                row = {'file_path' : r['file_path'],
+                   'file_name': r['file_name'],
+                   'username': r['username'],
+                   'last_download': r['last_download'],
+                   'last_created': r['last_created'],
+                   'download_count': r['download_count']
+                }
+                up_dt.append(row)
+        op.close()
+        op = open("file_record.csv","w", newline='')
+        data =csv.DictWriter(op, delimiter=',', fieldnames=header)
+        data.writerow(dict((heads, heads) for heads in header))
+        data.writerows(up_dt)
+        op.close()
+    
+    def zipFile(self, filepath, filename):
+        print("hi")
+        dir_path = os.path.join(filepath, filename)
+        filenames = [dir_path+".shp", dir_path+".shx", dir_path+".dbf"]
+        zip_subdir = filename
+        zip_filename = "%s.zip" % zip_subdir
+        zf = zipfile.ZipFile(filename+'.zip', 'w')
+        for fpath in filenames:
+            zf.write(fpath)
+        zf.close()
+        resp = HttpResponse(os.path.join(filepath,filename+".zip"), content_type = "application/x-zip-compressed", status=status.HTTP_200_OK)
+        os.remove
+        return resp
+    
+    def zipFile2(self, filepath, filename):
+        print("hi")
+        dir_path = os.path.join(filepath, filename)
+        filenames = [dir_path+".shp"]
+        with zipfile.ZipFile(os.path.join(filepath,filename+'.zip'), mode ='w') as archive:
+            for fname in filenames:
+                archive.write(fname)
+        response = open(os.path.join(filepath,filename+".zip"), 'rb')
+        resp = HttpResponse(response, content_type = "application/x-zip-compressed", status=status.HTTP_200_OK)
+        return resp          
+    
+    def getContentType(self, filename):
+        ctDict = {
+            "json" : "application/json",
+            "csv" : "text/csv",
+            "shp" : "application/octet-stream",
+            "shx" : "x-gis/x-shapefile",
+            "dbf" : "application/octet-stream",
+            "zip" : "application/x-zip-compressed",
+            "xlsx" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        }
+        if(filename.endswith("json")): return ctDict['json']
+        elif(filename.endswith("csv")): return ctDict['csv']
+        elif(filename.endswith("shp")): return ctDict['shp']
+        elif(filename.endswith("shx")): return ctDict['shx']
+        elif(filename.endswith("dbf")): return ctDict['dbf']
+        elif(filename.endswith("xlsx")): return ctDict['xlsx']
+        
+    def post(self,request):     
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        dir_path = os.path.join(dir_path, "upload_data")
+        dir_path_temp = os.path.join(dir_path, "{}").format(request.user)
+        dir_path = dir_path_temp
+        file_dir = os.path.join(dir_path, request.data['data'])
+        self.updateDownloadFile(request.data['data'])
+        contentType = self.getContentType(request.data['data'])
+        if(request.data['data'].endswith('xlsx')):
+            with open(file_dir, "rb") as excel:
+                return HttpResponse(excel.read(), content_type=contentType, status=status.HTTP_200_OK)
+        elif(request.data['data'].endswith('shp')):
+            resp = self.zipFile2(dir_path, request.data['data'].replace('.shp',""))
+            return resp
+        else:
+            response = FileResponse(open(file_dir, 'rb'))
+            return HttpResponse(response, content_type=contentType, status=status.HTTP_200_OK)
+        
+        

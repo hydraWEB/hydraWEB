@@ -15,7 +15,7 @@ import Cookies from 'js-cookie'
 import styles from './Login.module.scss'; 
 import styled from "@emotion/styled";
 import { useToasts } from "react-toast-notifications";
-import { userRequest_client } from '../../lib/api'
+import { userRequest_client, userDownloadRequest_client } from '../../lib/api'
 import { useTranslation, Trans } from "react-i18next";
 
 const Title = styled.h2(
@@ -95,6 +95,7 @@ export default function Login() {
                     addToast(t('login_success'), { appearance: 'success', autoDismiss: true });
                     Cookies.set('access', res.data['access'])
                     userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${res.data['access']}`
+                    userDownloadRequest_client.defaults.headers.common['Authorization'] = `Bearer ${res.data['access']}`
                     initialUser.current = res.data
                     setUser(initialUser)
                     history.push("/user/hydramap")

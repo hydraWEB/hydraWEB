@@ -2,20 +2,24 @@ import styled from "@emotion/styled/macro";
 import NormalButton from "../../../component/NormalButton";
 import styles from './HydraMap.module.scss';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { UploadFile } from '../../../lib/api'
+import { UploadOriginalFile, DownloadFileList, DownloadFile, DownloadBufferFile } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { useTranslation, Trans } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
 import TooltipMaterial from '@material-ui/core/Tooltip';
+import Cookies from 'js-cookie'
 import { withStyles } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import fileDownload from 'js-file-download'
 import Button from '@material-ui/core/Button';
+import fs from 'fs';
 import SearchIcon from '@material-ui/icons/Search';
+import axios from "axios";
 
 const Accordion = withStyles({
   root: {
@@ -98,8 +102,13 @@ export default function UploadFIle() {
   const { addToast } = useToasts();
   const [uploadFile, setUploadFile] = useState()
 	const [isShow, setIsShow] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [dataLoadState, setDataLoadState] = useState(0)
+  const [downloadFileList, setDownloadFileList] = useState([])
 
   const uploadOnChange = (e) => {
+    setDataLoadState(0)
+    setProgress(0)
     if(e.target.files.length !== 0){
       let tempArr = []
       for (let i = 0;i<e.target.files.length; i++){
@@ -122,6 +131,9 @@ export default function UploadFIle() {
       else if(ft.endsWith('.dbf')){
         setFileType("shapefile")
       }
+      else if(ft.endsWith('.xlsx')){
+        setFileType("xlsx")
+      }
       else{
         setFileType("unknow")
       }
@@ -129,11 +141,12 @@ export default function UploadFIle() {
   }
 
   const onFileUploadClick = (value) => {
+    setDataLoadState(1)
+    setProgress(0)
     let formData = new FormData();
     for (let i = 0; i< uploadFile.length; i++){
       formData.append("file", uploadFile[i])
     }
-    //formData.append("file",uploadFile);
     var htmllink = ""
     if(value === 'original'){
       htmllink = 'http://127.0.0.1:8000/api/v1/user/uploadFile/original'
@@ -147,17 +160,26 @@ export default function UploadFIle() {
     else if (value === 'shp'){
       htmllink = 'http://127.0.0.1:8000/api/v1/user/uploadFile/convertSHP'
     }
-    fetch(htmllink, {
-      method: 'POST',
-      headers: {
-        "Content-Disposition" : `attachment; filename=${uploadFile[0].name}`,
+    axios({
+      withCredentials: true,
+      method: "post",
+      url: htmllink,
+      headers: { 
+        "Content-Type": "multipart/form-data",
+        'Authorization': `Bearer ${Cookies.get('access')}`
       },
-      body: formData,
+      data: formData,
+      onUploadProgress: (p) => {
+        setProgress(Math.round(p.loaded * 100 / p.total))
+      }
     }).then((res) => {
-      console.log(res.data)
       addToast(t('Upload_success'), { appearance: 'success', autoDismiss: true });
+      DownloadFileList().then((res) => {
+        setDownloadFileList(res.data.data)
+      }).catch((err) => {
+      }).finally(() => {
+      })
     }).catch((err) => {
-      console.log(err)
       addToast(t('Upload_fail'), { appearance: 'error', autoDismiss: true });
     }).finally(() => {
     })
@@ -204,6 +226,15 @@ export default function UploadFIle() {
 				</div>
 			)
 		}
+    else if(fileType === "xlsx"){
+			return (
+				<div className={styles.function_wrapper_upload}>
+					<Button type="submit" onClick={() => onFileUploadClick("original")}>
+         		{t('upload')}
+					</Button>
+				</div>
+			)
+		}
 		else{
 			return (
 				<div></div>
@@ -211,7 +242,80 @@ export default function UploadFIle() {
 		}
 	}
 
+  const downloadFile = ({ data, fileName, fileType }) => {
+    // Create a blob with the data we want to download as a file
+    const blob = new Blob([data], { type: fileType })
+    // Create an anchor element and dispatch a click event on it
+    // to trigger a download
+    const a = document.createElement('a')
+    a.download = fileName
+    a.href = window.URL.createObjectURL(blob)
+    const clickEvt = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    })
+    a.dispatchEvent(clickEvt)
+    a.remove()
+  }
 
+  const downloadOnClick = (val) => {
+    if(val.endsWith('xlsx')){
+      DownloadBufferFile({
+        data:val
+      }).then((res) => {
+        downloadFile({data: res.data, fileName:val, fileType:res.headers['content-type']})
+      })
+    }
+    else if(val.endsWith('shp')){
+      DownloadBufferFile({
+        data:val
+      }).then((res) => {
+        downloadFile({data: res.data, fileName:"test.zip", fileType:res.headers['content-type']})
+      })
+    }
+    else{
+      DownloadFile({
+        data:val
+      }).then((res) => {
+        if(res.headers['content-type'] === 'application/json'){
+          downloadFile({data: JSON.stringify(res.data, null, 2), fileName:val, fileType:res.headers['content-type']})
+        }
+        /* else if(res.headers['content-type'] === 'application/x-zip-compressed'){
+          var blob = new Blob([str2bytes(res.data)], {type: "application/zip"});
+          const a = document.createElement('a')
+          a.download = "test.zip"
+          a.href = window.URL.createObjectURL(blob)
+          const clickEvt = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+          })
+          a.dispatchEvent(clickEvt)
+          a.remove()
+        } */
+        else{
+          downloadFile({data: res.data, fileName:val, fileType:res.headers['content-type']})
+        }
+      }).catch((err) => {
+      }).finally(() => {
+      })
+    }
+  }
+
+  let BtnList = downloadFileList.map((d, index1) =>
+    <div className={styles.search_tag_text}>
+      {d[0]} 下載次數:{d[1]}
+      <Button onClick={() => downloadOnClick(d[0])}>{t('download')}</Button>
+    </div>
+  );
+  useEffect(() => {
+    DownloadFileList().then((res) => {
+      setDownloadFileList(res.data.data)
+    }).catch((err) => {
+    }).finally(() => {
+    })
+  }, [])
 
   return (
     <div>
@@ -222,6 +326,15 @@ export default function UploadFIle() {
 			<div>
 				<ShowButton/>
 			</div>
+      <div className={styles.loading}>
+        {dataLoadState === 1 &&
+          <LinearProgress variant="determinate" value={progress} />
+        }
+      </div>
+      <h4 className={styles.func_title}>{t('download_file')}</h4>
+      <div>
+          {BtnList}
+      </div>
     </div>
   )
 

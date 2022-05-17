@@ -135,6 +135,7 @@ i18n
                     "convert_to_json_and_upload" : "Convert To JSON And Upload",
                     "convert_to_geojson_and_upload" : "Convert To GEOJSON And Upload",
                     "convert_to_shapefile_and_upload" : "Convert To Shapefile And Upload",
+                    "download_file":"Download File",
                     //測量
                     "measurement_draw": "Draw",
                     "distance": "Distance",
@@ -305,6 +306,7 @@ i18n
                     "convert_to_json_and_upload" : "轉化成JSON格式並上傳",
                     "convert_to_geojson_and_upload" : "轉化成GEOJSON格式並上傳",
                     "convert_to_shapefile_and_upload" : "轉化成Shapefile格式並上傳",
+                    "download_file":"下載文件",
                     //測量
                     "measurement_draw": "繪製",
                     "distance": "距離",

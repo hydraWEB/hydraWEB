@@ -35,6 +35,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "Content-Disposition",
 ]
+
 ALLOWED_HOSTS = ['localhost','127.0.0.1','server',"140.121.196.77","localhost:3000"]
 
 CORS_ORIGIN_WHITELIST = [

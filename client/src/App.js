@@ -9,7 +9,7 @@ import Guest from './page/guest/Guest';
 import User from './page/user/User';
 
 import Cookies from 'js-cookie'
-import { userProfile, userRequest_client } from "./lib/api";
+import { userProfile, userRequest_client, userDownloadRequest_client } from "./lib/api";
 import { useTranslation, Trans } from "react-i18next";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ToastProvider, useToasts } from 'react-toast-notifications'
@@ -24,6 +24,7 @@ export default function App(props) {
 
     if (Cookies.get('access')) {
         userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
+        userDownloadRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
     }
 
 

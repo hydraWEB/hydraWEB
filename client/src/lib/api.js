@@ -14,9 +14,15 @@ export let userRequest_client = axios.create({
 export let userUploadRequest_client = axios.create({
     baseURL: process.env.REACT_APP_URL_PRODUCTION,
     headers: { 
-        "Content-Type": "multipart/form-data; boundary=--------------------------404758404124230490263078" ,
-        "Content-Disposition" : "attachment; filename=test.json",
+        "Content-Type": "multipart/form-data"
     },
+    withCredentials: true
+});
+
+export let userDownloadRequest_client = axios.create({
+    baseURL: process.env.REACT_APP_URL_PRODUCTION,
+    headers: { "Content-Type": "application/json" },
+    responseType: 'arraybuffer',
     withCredentials: true
 });
 
@@ -66,6 +72,9 @@ export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",da
 export const AllTags = () => userRequest_client.post(`api/v1/user/all_tag`)
 export const TagAndGIS = () => userRequest_client.get(`api/v1/user/tagAndGIS`)
 
-export const UploadFile = (data) => userUploadRequest_client.post(`api/v1/user/uploadFile`,data)
+export const UploadOriginalFile = (data) => userUploadRequest_client.post(`api/v1/user/uploadFile/original`,data)
+export const DownloadFileList = () => userRequest_client.post(`api/v1/user/DownloadFileList`)
+export const DownloadFile = (data) => userRequest_client.post(`api/v1/user/downloadFile`,data)
+export const DownloadBufferFile = (data) => userDownloadRequest_client.post(`api/v1/user/downloadFile`,data)
 
 export default userLogin

@@ -6,3 +6,4 @@
 __pycache__/
 .vs/
 **/upload_data/
+**.csv

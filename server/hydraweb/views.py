@@ -929,24 +929,10 @@ class DownloadFileAPI(views.APIView):       #下載被選中的檔案
     def zipFile(self, filepath, filename):
         print("hi")
         dir_path = os.path.join(filepath, filename)
-        filenames = [dir_path+".shp", dir_path+".shx", dir_path+".dbf"]
-        zip_subdir = filename
-        zip_filename = "%s.zip" % zip_subdir
-        zf = zipfile.ZipFile(filename+'.zip', 'w')
-        for fpath in filenames:
-            zf.write(fpath)
-        zf.close()
-        resp = HttpResponse(os.path.join(filepath,filename+".zip"), content_type = "application/x-zip-compressed", status=status.HTTP_200_OK)
-        os.remove
-        return resp
-    
-    def zipFile2(self, filepath, filename):
-        print("hi")
-        dir_path = os.path.join(filepath, filename)
         filenames = [dir_path+".shp"]
         with zipfile.ZipFile(os.path.join(filepath,filename+'.zip'), mode ='w') as archive:
             for fname in filenames:
-                archive.write(fname)
+                archive.write(fname, os.path.basename(fname))
         response = open(os.path.join(filepath,filename+".zip"), 'rb')
         resp = HttpResponse(response, content_type = "application/x-zip-compressed", status=status.HTTP_200_OK)
         return resp          
@@ -979,9 +965,7 @@ class DownloadFileAPI(views.APIView):       #下載被選中的檔案
         if(request.data['data'].endswith('xlsx')):
             with open(file_dir, "rb") as excel:
                 return HttpResponse(excel.read(), content_type=contentType, status=status.HTTP_200_OK)
-        elif(request.data['data'].endswith('shp')):
-            resp = self.zipFile2(dir_path, request.data['data'].replace('.shp',""))
-            return resp
+        
         else:
             response = FileResponse(open(file_dir, 'rb'))
             return HttpResponse(response, content_type=contentType, status=status.HTTP_200_OK)

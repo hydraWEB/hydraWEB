@@ -267,13 +267,6 @@ export default function UploadFIle() {
         downloadFile({data: res.data, fileName:val, fileType:res.headers['content-type']})
       })
     }
-    else if(val.endsWith('shp')){
-      DownloadBufferFile({
-        data:val
-      }).then((res) => {
-        downloadFile({data: res.data, fileName:"test.zip", fileType:res.headers['content-type']})
-      })
-    }
     else{
       DownloadFile({
         data:val

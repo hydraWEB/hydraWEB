@@ -105,6 +105,35 @@ export default function UploadFIle() {
   const [progress, setProgress] = useState(0)
   const [dataLoadState, setDataLoadState] = useState(0)
   const [downloadFileList, setDownloadFileList] = useState([])
+  const [jsonFileArray, setJsonFileArray] = useState([])
+  const [shpFileArray, setShpFileArray] = useState([])
+  const [xlsxFileArray, setXlsxFileArray] = useState([])
+  const [csvFileArray, setCsvFileArray] = useState([])
+
+  function splitDownloadFileList(data) {
+    let jsonarr = []
+    let shparr = []
+    let xlsxarr = []
+    let csvarr = []
+    for(let i = 0; i<data.length;i++){
+      if(data[i][0].endsWith('xlsx')){
+        xlsxarr.push(data[i])
+      }
+      else if(data[i][0].endsWith('shp')){
+        shparr.push(data[i])
+      }
+      else if(data[i][0].endsWith('json')){
+        jsonarr.push(data[i])
+      }
+      else{
+        csvarr.push(data[i])
+      }
+    }
+    setJsonFileArray(jsonarr)
+    setShpFileArray(shparr)
+    setXlsxFileArray(xlsxarr)
+    setCsvFileArray(csvarr)
+  }
 
   const uploadOnChange = (e) => {
     setDataLoadState(0)
@@ -175,6 +204,7 @@ export default function UploadFIle() {
     }).then((res) => {
       addToast(t('Upload_success'), { appearance: 'success', autoDismiss: true });
       DownloadFileList().then((res) => {
+        splitDownloadFileList(res.data.data)
         setDownloadFileList(res.data.data)
       }).catch((err) => {
       }).finally(() => {
@@ -267,6 +297,14 @@ export default function UploadFIle() {
         downloadFile({data: res.data, fileName:val, fileType:res.headers['content-type']})
       })
     }
+    else if(val.endsWith('shp')){
+      let filename = val.replace("shp","zip")
+      DownloadBufferFile({
+        data:val
+      }).then((res) => {
+        downloadFile({data: res.data, fileName: val, fileType: res.headers['content-type']})
+      })
+    }
     else{
       DownloadFile({
         data:val
@@ -296,14 +334,31 @@ export default function UploadFIle() {
     }
   }
 
-  let BtnList = downloadFileList.map((d, index1) =>
-    <div className={styles.search_tag_text}>
-      {d[0]} 下載次數:{d[1]}
-      <Button onClick={() => downloadOnClick(d[0])}>{t('download')}</Button>
+  let BtnList = [["JSON",jsonFileArray], ["CSV",csvFileArray], ["XLSX",xlsxFileArray], ["SHP",shpFileArray]].map((data) =>
+    <div>
+      <Accordion square defaultExpanded>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" expandIcon={<ExpandMoreIcon />}>
+          <Typography>{data[0]}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <div className={styles.flex_column}>
+            {
+              data[1].map((d, index) =>
+                <div className={styles.search_tag_text}>
+                  {d[0]} 下載次數:{d[1]}
+                  <Button onClick={() => downloadOnClick(d[0])}>{t('download')}</Button>
+                </div>
+              )
+            }
+          </div>
+        </AccordionDetails>
+      </Accordion>
     </div>
   );
+
   useEffect(() => {
     DownloadFileList().then((res) => {
+      splitDownloadFileList(res.data.data)
       setDownloadFileList(res.data.data)
     }).catch((err) => {
     }).finally(() => {
@@ -326,7 +381,7 @@ export default function UploadFIle() {
       </div>
       <h4 className={styles.func_title}>{t('download_file')}</h4>
       <div>
-          {BtnList}
+        {BtnList}
       </div>
     </div>
   )

@@ -46,6 +46,7 @@ i18n
                     "function" : "Function",
                     "upload" : "Upload", 
                     "time_series_data" : "Time Series Data",
+                    "gnss" : "GNSS",
                     //環域分析
                     "radius": "Radius",
                     "center_point": "Center Point",
@@ -136,6 +137,8 @@ i18n
                     "convert_to_geojson_and_upload" : "Convert To GEOJSON And Upload",
                     "convert_to_shapefile_and_upload" : "Convert To Shapefile And Upload",
                     "download_file":"Download File",
+                    "downloading":"Downloading",
+                    "download_complete":"Download Complete",
                     //測量
                     "measurement_draw": "Draw",
                     "distance": "Distance",
@@ -178,6 +181,8 @@ i18n
                     //MapStyle
                     "map_style":"Map Style",
                     "select_map_style":"Select Map Style",
+                    //GNSS
+                    "execute": "Execute"
                 }
             },
             zh_tw: {
@@ -217,6 +222,7 @@ i18n
                     "function" : "功能",
                     "upload" : "上傳", 
                     "time_series_data" : "時序資料",
+                    "gnss" : "全球衛星導航系統",
                     //環域分析
                     "radius": "半徑",
                     "center_point": "中心點",
@@ -307,6 +313,8 @@ i18n
                     "convert_to_geojson_and_upload" : "轉化成GEOJSON格式並上傳",
                     "convert_to_shapefile_and_upload" : "轉化成Shapefile格式並上傳",
                     "download_file":"下載文件",
+                    "downloading":"下載中",
+                    "download_complete":"下載成功",
                     //測量
                     "measurement_draw": "繪製",
                     "distance": "距離",
@@ -349,6 +357,8 @@ i18n
                     "reset_password_token_is_invalid":"重置密碼Token無效",
                     //MapStyle
                     "select_map_style":"選擇地圖樣式",
+                    //GNSS
+                    "execute": "執行"
                 }
             }
         },

@@ -15,6 +15,7 @@ import pymongo
 import json
 import base64
 import fitz
+import time
 import csv
 import shutil
 import re
@@ -70,7 +71,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         for file in all_dir:
             if(file.endswith(".json")):
                 file_path = os.path.join(dir_path,file)
-                f = open(file_path,"r",encoding="utf-8")
+                f = open(file_path,"r",encoding="utf8")
                 json_read = json.load(f)
                 json_data.append({"name": file, "data": json_read,"time_serie":False,"tag":[]})
         return json_data
@@ -142,7 +143,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         query = f'from (bucket:"{bucket}")\
         |> range(start: 2007-02-01T00:00:00Z, stop: 2007-02-02T10:00:00Z)'
         result = query_api.query(query=query, org = self.org)
-        print("done")
+        #print("done")
         feature = []
         for table in result:
             for record in table.records:
@@ -184,7 +185,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('MONGODB_DB')]
         databases = client.list_database_names()    #get all database from mongodb
-        
+        start=time.time()
         #remove unwanted database
         databases.remove("admin")              
         databases.remove("config")
@@ -192,60 +193,160 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         databases.remove("ps")      #file too large, cause rendering slow
         databases.remove("ST_NO")
         databases.remove("tags")
+        databases.remove("GPS")
+        databases.remove("Geology")
+        databases.remove("changhua")
+        databases.remove("yunlin")
+        #databases.remove("user_data")
         databases.remove("users_space")
+        print(databases)
         resultarr = []
         new_json = {}       #use to store mongodb data in json format
+        total_prop=[]
         for db in databases:    
             tempDB = client[db]     #connect to the database
             tempCollection = tempDB.list_collection_names()
             is_time_series = False
             res_json = []
-            print(db)
-            for col in tempCollection:
-                tags = []
-                collection = tempDB.get_collection(col)
+            if(db == "ps"):
+                collection = tempDB.get_collection("ps")
                 result = collection.find()
                 features = []
-                is_time_series = False
+                tags = []
                 for dt in result:
-                    coordinates = [dt['x'],dt['y']]
-                    try:
-                        if(dt['time_series'] == True):
-                            is_time_series = True
-                    except:
-                        is_time_series = False
-
-                    properties = {}
-                    
-                    for d in dt:
-                        try:
-                            tags = dt["tag"]
-                        except:
-                            pass
-                        if(d != "_id" and d != 'x' and d!= 'y' and d!= 'tags'): 
-                            properties[d] = dt[d]
                     inside_json = {
                         "type": "Feature",
                             "geometry": {
                                 "type": "Point",
-                                "coordinates": coordinates
+                                "coordinates": [dt['x'], dt['y']]
                             },
-                        "properties": properties
+                        "properties": {"z":dt['z']}
                     }
                     features.append(inside_json)
                 new_json = {
-                    "type": "FeatureCollection",
-                    "features": features
+                        "type": "FeatureCollection",
+                        "features": features
                 }
-                res_json.append({"name": col, "data": new_json,"time_serie":is_time_series,"tag":tags})
+                res_json.append({"name": "ps", "data": new_json,"time_serie":is_time_series,"tag":tags})
+            else:
+            #print(db)
+                for col in tempCollection:
+                    tags = []
+                    collection = tempDB.get_collection(col)
+                    result = collection.find()
+                    features = []
+                    is_time_series = False
+                    for dt in result:
+                        if str(dt['geometry'])==str('Point'):
+                            coordinates = [dt['x'],dt['y']]
+                            try:
+                                if(dt['time_series'] == True):
+                                    is_time_series = True
+                            except:
+                                is_time_series = False
+
+                            properties = {}
+                        
+                            for d in dt:
+                                try:
+                                    tags = dt["tag"]
+                                except:
+                                    pass
+                                if(d != "_id" and d != 'x' and d!= 'y' and d!= 'tags'): 
+                                    properties[d] = dt[d]
+                                if(d.find("prop")==0): #這部分在確認
+                                    if len(total_prop)==0:
+                                        total_prop.append(str(db))
+                                    else:
+                                        counter=0
+                                        for i in range(0,len(total_prop)):
+                                            if str(total_prop[i])==str(db):
+                                                counter=0
+                                                break
+                                            else:
+                                                counter=1
+                                        if counter==1:
+                                            total_prop.append(str(db)) 
+                            inside_json = {
+                                "type": "Feature",
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": coordinates
+                                    },
+                                "properties": properties
+                            }
+                            features.append(inside_json)
+                        elif str(dt['geometry'])==str('Polygon'):
+                            coordinates = dt["coordinates"]
+                            try:
+                                if(dt['time_series'] == True):
+                                    is_time_series = True
+                            except:
+                                is_time_series = False
+                            properties = {}
+                        
+                            for d in dt:
+                                try:
+                                    tags = dt["tag"]
+                                except:
+                                    pass
+                                if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                    properties[d] = dt[d]
+                            inside_json = {
+                                "type": "Feature",
+                                    "geometry": {
+                                        "type": "Polygon",
+                                        "coordinates": [coordinates]
+                                    },
+                                "properties": properties
+                            }
+                            
+                            features.append(inside_json)
+                        elif str(dt['geometry'])==str('LineString'):
+                            coordinates = dt["coordinates"]
+                            try:
+                                if(dt['time_series'] == True):
+                                    is_time_series = True
+                            except:
+                                is_time_series = False
+                            properties = {}
+                        
+                            for d in dt:
+                                try:
+                                    tags = dt["tag"]
+                                except:
+                                    pass
+                                if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                    properties[d] = dt[d]
+                            inside_json = {
+                                "type": "Feature",
+                                    "geometry": {
+                                        "type": "LineString",
+                                        "coordinates": coordinates
+                                    },
+                                "properties": properties
+                            }
+                            features.append(inside_json)
+                    new_json = {
+                        "type": "FeatureCollection",
+                        "features": features
+                    }
+                    
+                    res_json.append({"name": col, "data": new_json,"time_serie":is_time_series,"tag":tags})
             #if(db == 'changhua'):
             #    res_json.append({"name": "彰化水井台電關聯資料", "data": self.query_influxdb("changhua_taiwan_power_company_data"),"time_serie":is_time_series})
             #if(db == "yunlin"):
             #    res_json.append({"name": "雲林水井台電關聯資料", "data": self.query_influxdb("yunlin_taiwan_power_company_data"),"time_serie":is_time_series})
                 
             resultarr.append({"name": db, "file":res_json})
-        #resultarr.append({"name":"Upload", "file":self.query_file()})
+        
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
+        end = time.time()
+        end = end-start
+        end = round(end,4)
+        print(end)
+        #print(total_prop)
+        #resultarr.append({"name":"Upload", "file":self.query_file()})
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
 
 class WaterLevelAPI(views.APIView):
@@ -970,4 +1071,45 @@ class DownloadFileAPI(views.APIView):       #下載被選中的檔案
             response = FileResponse(open(file_dir, 'rb'))
             return HttpResponse(response, content_type=contentType, status=status.HTTP_200_OK)
         
+class DownloadMapDataAPI(views.APIView):
+    
+    def findMapData(name):
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        search_dir = os.path.join(dir_path, "map_data")
+        list_dir = os.listdir(search_dir)
+        for dir in list_dir:
+            for file in os.listdir(os.path.join(search_dir, dir)):
+                if(name in file):
+                    return(os.path.join(dir_path, "map_data", dir, file))
+        return None      
         
+    
+    def post(self, request):
+        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+        file_dir = ""
+        if(request.data['data'] == "ps"):
+            file_dir = os.path.join(dir_path, "map_data", "ps", "ps_mean_v.xy.json")
+        elif(request.data['data'] == "彰化水準測量檢測成果表"):
+            file_dir = os.path.join(dir_path, "map_data", "changhua", "彰化水準測量檢測成果表.json")
+        elif(request.data['data'] == "time_series_108彰化地區地層下陷水準檢測成果表"):
+            file_dir = os.path.join(dir_path, "map_data", "changhua", "time_series_108彰化地區地層下陷水準檢測成果表.json")
+        elif(request.data['data'] == "雲林水準測量檢測成果表"):
+            file_dir = os.path.join(dir_path, "map_data", "yunlin", "雲林水準測量檢測成果表.json")
+        elif(request.data['data'] == "time_series_108雲林水準測量檢測成果表"):
+            file_dir = os.path.join(dir_path, "map_data", "yunlin", "time_series_108雲林地區地層下陷水準檢測成果表.json")
+        print(file_dir)
+        response = FileResponse(open(file_dir, 'rb'))
+        print(response)
+        return HttpResponse(response, content_type="application/json", status=status.HTTP_200_OK)
+
+class GnssFunction(views.APIView):        #從mongodb拿tags資料
+    renderer_classes = (JSONRenderer,)     
+    
+    def post(self,request):
+        #do something
+        print("activate gnss")
+        
+        with open("C:/Users/Leong/Desktop/container/gnss.txt", "r") as gnss:
+            resultarr = gnss.read()
+        return Response({"status":"created", "data":resultarr}, status=status.HTTP_200_OK)
+    

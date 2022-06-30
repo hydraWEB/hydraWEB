@@ -76,5 +76,8 @@ export const UploadOriginalFile = (data) => userUploadRequest_client.post(`api/v
 export const DownloadFileList = () => userRequest_client.post(`api/v1/user/DownloadFileList`)
 export const DownloadFile = (data) => userRequest_client.post(`api/v1/user/downloadFile`,data)
 export const DownloadBufferFile = (data) => userDownloadRequest_client.post(`api/v1/user/downloadFile`,data)
+export const DownloadMapData = (data) => userDownloadRequest_client.post(`api/v1/user/downloadMapData`,data)
+
+export const GnssFunction = () => userRequest_client.post(`api/v1/user/GnssFunction`)
 
 export default userLogin

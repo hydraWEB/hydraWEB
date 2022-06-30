@@ -505,21 +505,37 @@ export default function WaterLevel({STNO}) {
       .attr('class', 'focus')
       .style('display', 'none');
 
+    const focusDate = svg.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
+
     focus.append('circle')
       .attr("r", 7.5);
 
     focus.append("text")
       .attr("x", 15)
       .attr("dy", ".31em");
-    
+
+    focusDate.append("text")
+      .attr("x", 15)
+      .attr("dy", ".31em");
+      
     const focus2 = svg.append('g')
       .attr('class', 'focus2')
+      .style('display', 'none');
+
+    const focusDate2 = svg.append('g')
+      .attr('class', 'focus')
       .style('display', 'none');
 
     focus2.append('circle')
       .attr("r", 7.5);
 
     focus2.append("text")
+      .attr("x", 15)
+      .attr("dy", ".31em");
+
+    focusDate2.append("text")
       .attr("x", 15)
       .attr("dy", ".31em");
 
@@ -619,14 +635,18 @@ export default function WaterLevel({STNO}) {
     // If user double click, reinitialize the chart
     svg.on('mouseover', () => {
       focus.style('display', null);
+      focusDate.style('display', null);
       if(isAverage){
         focus2.style('display', null)
+        focusDate2.style('display', null)
       }
       
     })
       .on('mouseout', () => {
         focus.style("display", "none");
+        focusDate.style('display', "none");
         focus2.style("display", "none");
+        focusDate2.style('display', "none");
       })
       .on('mousemove', e => { // mouse moving over canvas
 
@@ -636,46 +656,66 @@ export default function WaterLevel({STNO}) {
         let calc = w / length
         let calc2 = w / length2
         var mouse = d3.pointer(e)
+        var bisectDate = d3.bisector(function(d) {return d.x}).left;
+        let nearest_x_idx = bisectDate(dataset, x.invert(mouse[0]))
+
         let x_location = Math.floor((mouse[0] + 0.20454709231853485) / calc)
         let x_location2 = Math.floor((mouse[0] + 0.20454709231853485) / calc2)
         if (x_location === length) x_location -= 1;
         if (x_location2 === length2) x_location2 -= 1;
         if (dataset[x_location] !== undefined) {
-          focus.attr("transform", "translate(" + x(dataset[x_location]['x']) + "," + y(dataset[x_location]['y']) + ")");
-          focus.select("text").text(function () { return dataset[x_location]["y"] });
-          if (x_location > (length * 0.95)) {
+          focus.attr("transform", "translate(" + x(dataset[nearest_x_idx]['x']) + "," + y(dataset[nearest_x_idx]['y']) + ")");
+          focusDate.attr("transform", "translate(" + x(dataset[nearest_x_idx]['x']) + "," + y(dataset[nearest_x_idx]['y']) + ")");
+          focus.select("text").text(function () { return dataset[nearest_x_idx]["y"] });
+          focusDate.select("text").text(function () { return dataset[nearest_x_idx]["x"] });
+          if (x_location > (length * 0.75)) {
             focus.select("text")
               .attr("stroke", "green")
               .attr("x", -50)
               .attr("y", -20);
+            focusDate.select("text")
+              .attr("stroke", "green")
+              .attr("x", -390)
+              .attr("y", -40);
           }
           else {
             focus.select("text")
               .attr("stroke", "green")
               .attr("x", 0)
               .attr("y", -20);
+            focusDate.select("text")
+              .attr("stroke", "green")
+              .attr("x", 0)
+              .attr("y", -40);
           }
         }
         if (dataset2[x_location2] !== undefined && isAverage) {
-          focus2.attr("transform", "translate(" + x(dataset2[x_location2]['x']) + "," + y(dataset2[x_location2]['y']) + ")");
-          focus2.select("text").text(function () { return dataset2[x_location2]["y"] });
-          if (x_location2 > (length2 * 0.95)) {
+          let nearest_x_idx2 = bisectDate(dataset2, x.invert(mouse[0]))
+          focus2.attr("transform", "translate(" + x(dataset2[nearest_x_idx2]['x']) + "," + y(dataset2[nearest_x_idx2]['y']) + ")");
+          focusDate2.attr("transform", "translate(" + x(dataset2[nearest_x_idx2]['x']) + "," + y(dataset2[nearest_x_idx2]['y']) + ")");
+          focus2.select("text").text(function () { return dataset2[nearest_x_idx2]["y"] });
+          focusDate2.select("text").text(function () { return dataset2[nearest_x_idx2]["x"] });
+          if (x_location2 > (length2 * 0.75)) {
             focus2.select("text")
               .attr("stroke", "red")
               .attr("x", -50)
-              .attr("y", -50);
+              .attr("y", 40);
+            focusDate2.select("text")
+              .attr("stroke", "red")
+              .attr("x", -390)
+              .attr("y", 20);
           }
           else {
             focus2.select("text")
               .attr("stroke", "red")
               .attr("x", 0)
-              .attr("y", -50);
+              .attr("y", 40);
+            focusDate2.select("text")
+              .attr("stroke", "red")
+              .attr("x", 0)
+              .attr("y", 20);
           }
         }
-
-
-        //focus.select(".x-hover-line").attr("y2", mouse[0]);
-        //focus.select(".y-hover-line").attr("x2", mouse[1]);
       });
 
     svg.on("dblclick", function () {

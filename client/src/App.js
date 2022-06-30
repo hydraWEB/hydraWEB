@@ -13,6 +13,7 @@ import { userProfile, userRequest_client, userDownloadRequest_client } from "./l
 import { useTranslation, Trans } from "react-i18next";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ToastProvider, useToasts } from 'react-toast-notifications'
+import toast, { Toaster } from 'react-hot-toast';
 import Hydramap from "./page/user/map/HydraMap2";
 
 export default function App(props) {
@@ -63,6 +64,7 @@ export default function App(props) {
     return (
         <>
             <UserProvider initialUser={initialUser}>
+                <Toaster position="bottom-right"/>
                 <ToastProvider placement={"bottom-right"}>
                     <ThemeProvider theme={darkTheme}>
                         <div className={'root-container'}>

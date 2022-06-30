@@ -2,7 +2,7 @@ from django.urls import path,include
 from .views import (LayerAPIView, LayerListAPIView, WaterLevelAllStationAPI,WaterLevelAPI,PDFAndPngAPI,
                     TagsAPI,AllTagsAPI,WaterLevelDownloadAPI,UploadFileAPI,UploadAndConvertToCSVFileAPI, 
                     UploadAndConvertToJSONFileAPI, UploadAndConvertToGEOJSONFileAPI, 
-                    UploadAndConvertToSHPFileAPI,DownloadFileListAPI, DownloadFileAPI)
+                    UploadAndConvertToSHPFileAPI,DownloadFileListAPI, DownloadFileAPI, GnssFunction, DownloadMapDataAPI)
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -20,4 +20,6 @@ urlpatterns = [
     path('user/uploadFile/convertSHP', UploadAndConvertToSHPFileAPI.as_view(), name="uploadFileSHP"),
     path('user/DownloadFileList', DownloadFileListAPI.as_view(), name="downloadFileList"),
     path('user/downloadFile', DownloadFileAPI.as_view(), name="downloadFile"),
+    path('user/downloadMapData', DownloadMapDataAPI.as_view(), name="downloadMapData"),
+    path('user/GnssFunction', GnssFunction.as_view(), name="gnssFunction")
 ]

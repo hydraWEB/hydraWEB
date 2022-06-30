@@ -7,11 +7,12 @@ import { GeoJsonLayer } from '@deck.gl/layers';
 import { ScenegraphLayer } from '@deck.gl/mesh-layers';
 import { ColumnLayer } from '@deck.gl/layers';
 import { HexagonLayer, HeatmapLayer } from '@deck.gl/aggregation-layers';
-import { LayerList, UploadFile } from '../../../lib/api'
+import { LayerList, UploadFile, DownloadMapData } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { useTranslation, Trans } from "react-i18next";
 import { useToasts } from "react-toast-notifications";
+import toast, { Toaster } from 'react-hot-toast';
 import TooltipMaterial from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
@@ -24,6 +25,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
+import axios from "axios";
 
 const Accordion = withStyles({
   root: {
@@ -163,6 +165,8 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
   const [min, setmin] = useState(0)
   const [max, setmax] = useState(0)
   const [currentSliderValue, setCurrentSliderValue] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const [isLoadingData, setLoadingData] = useState(false);
 
   function findminmax(arr) {
     setmin(arr[0].value)
@@ -202,22 +206,50 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
     setCurrentLayer(newValue)
   };
 
+  function downloadFile(data){
+    setProgress(0)
+    if(data.name !== "ps" && data.name !== "time_series_108彰化地區地層下陷水準檢測成果表" 
+    && data.name !== "彰化水準測量檢測成果表" && data.name !== "time_series_108雲林地區地層下陷水準檢測成果表"
+    && data.name !== "雲林水準測量檢測成果表"){
+      // Create a blob with the data we want to download as a file
+      const blob = new Blob([JSON.stringify(data.data, null, 2)], { type: "application/json" })
+      // Create an anchor element and dispatch a click event on it
+      // to trigger a download
+      const a = document.createElement('a')
+      a.download = data.name
+      a.href = window.URL.createObjectURL(blob)
+      const clickEvt = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      })
+      a.dispatchEvent(clickEvt)
+      a.remove()
+    }
+    else{
+      setLoadingData(true)
+      DownloadMapData({
+        data: data.name,
+      }).then((res) => {
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', data.name+'.json'); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+      }).finally(() => {
+        
+        setLoadingData(false)
+      })
+    }
+  }
+
   const downloadOnClick = (data) => {
-    // Create a blob with the data we want to download as a file
-    const blob = new Blob([JSON.stringify(data.data, null, 2)], { type: "application/json" })
-    // Create an anchor element and dispatch a click event on it
-    // to trigger a download
-    const a = document.createElement('a')
-    a.download = data.name
-    a.href = window.URL.createObjectURL(blob)
-    const clickEvt = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-    })
-    a.dispatchEvent(clickEvt)
-    a.remove()
     
+    //const toastid = toast.loading(t('downloading'))
+    downloadFile(data)
+    
+    //toast.success(t('download_complete'), {id:toastid})
   }
 
   return (
@@ -250,9 +282,18 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
         }
         <div className={styles.info_btn}>
         </div>
-
       </StyledLabel>
-      <Button onClick={() => downloadOnClick(data)}>{t('download')}</Button>
+      <div className={styles.progress_button}>
+        <Button className={styles.download_button} onClick={() => downloadOnClick(data)}>{t('download')}</Button>
+      </div>
+      {isLoadingData &&
+        <div>
+          <img
+            className={styles.loading_image_3}
+            src="/img/loading.svg"
+          />
+        </div>
+      }
     </InputWrapper>
   )
 }
@@ -295,6 +336,8 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
             pointRadiusScale: 5,
             getPointRadius: f => 5,
             getFillColor: getDotColor(data[k]),
+            lineWidthMinPixels: 3,
+            getLineColor: getDotColor(data[k]),
             stroked: false,
             // Interactive props
             pickable: true,
@@ -313,7 +356,7 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
   setLayers(newLayer)
 }
 
-export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible }) {
+export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible, setChartMin, setChartMax }) {
 
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
@@ -334,6 +377,20 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     const dayjs = require("dayjs")
     let time1 = dayjs(d.properties.time)
     return time1.valueOf()
+  }
+
+  function findMinMax(allData) {
+    let min = 999999
+    let max = -99999
+    for (let i = 0; i < allData.length; i++){
+      if(parseFloat(allData[i].properties['h(m)']) > max){
+        max = parseFloat(allData[i].properties['h(m)'])
+      }
+      if(parseFloat(allData[i].properties['h(m)']) < min){
+        min = parseFloat(allData[i].properties['h(m)'])
+      }
+    }
+    return [max, min]
   }
 
   function fillcolor2(d) {
@@ -359,9 +416,49 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     const maxValue = 47.3;
     const minValue = -45.3;
     const count = 240 / (maxValue - minValue);    //0.38583333    2.591792657
-    let calc = Math.ceil((d.properties + 45.3) * count)
+    let calc = Math.ceil((d.properties['z'] + 45.3) * count)
 
     return hslToRgb(calc, 0.9, 0.5)
+  }
+
+  function fillcolorGNSS(d, allData) {
+    
+
+    function hslToRgb(h, s, l) {
+      let c = (1 - Math.abs(2 * l - 1)) * s;
+      let hp = h / 60.0;
+      let x = c * (1 - Math.abs((hp % 2) - 1));
+      let rgb1;
+      if (isNaN(h)) rgb1 = [0, 0, 0];
+      else if (hp <= 1) rgb1 = [c, x, 0];
+      else if (hp <= 2) rgb1 = [x, c, 0];
+      else if (hp <= 3) rgb1 = [0, c, x];
+      else if (hp <= 4) rgb1 = [0, x, c];
+      else if (hp <= 5) rgb1 = [x, 0, c];
+      else if (hp <= 6) rgb1 = [c, 0, x];
+      let m = l - c * 0.5;
+      return [
+        Math.round(255 * (rgb1[0] + m)),
+        Math.round(255 * (rgb1[1] + m)),
+        Math.round(255 * (rgb1[2] + m))];
+    }
+    /* console.log(hslToRgb(8,1,0.5)) */
+    let minmax = []
+    minmax = findMinMax(allData.data.features)
+    const maxValue = minmax[0];
+    const minValue = minmax[1];
+    const count = 240 / (maxValue - minValue);    //240(hue)是彩虹顏色的最大值
+    let calc = Math.ceil((parseFloat(d.properties['h(m)']) + Math.abs(minValue)) * count)
+
+    return hslToRgb(calc, 0.9, 0.5)
+  }
+
+  function checkIsGNSS(name) {
+    if(name === "REF210010" || name === "PPP0010BDES" || name === "APR210010" || name === "PPP210010" || name === "APR0010ANES" 
+    || name === "COOVEL" || name === "BIGSTEEL" || name === "PPP0010ANES" || name === "APR0010BDES" || name === "GCC210010"){
+      return true
+    }
+    return false
   }
 
   // index1:分類的index index:分類中檔案的index
@@ -398,8 +495,10 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       }
 
       // ps資料
-      if (element.props.name === "ps_mean_v.xy.json" && data.name === "ps_mean_v.xy.json") { //3d圖層
+      if (element.props.name === "ps" && data.name === "ps") { //3d圖層
         setChartIsVisible(value)  //地圖右邊的顏色條
+        setChartMin(-45.3)
+        setChartMax(47.3)
         let psData = []
         data.data.features.forEach((dl) => {
           try {
@@ -408,37 +507,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
 
           }
         })
-        //ps檔案
-        /*   newLayer[i] =
-            new ColumnLayer({
-              id: data.name,
-              name: data.name,
-              data: hexdata,
-              extruded: true,
-              pickable: true,
-              visible: data.value,
-              radius: 500,
-              coverage: 0.7,
-              getElevation: d => d.z + 45.3,
-              elevationScale: 500,
-              getPosition: d => d.COORDINATES,
-              getFillColor: fillcolor,
-              getLineColor: [0, 0, 0],
-            }) */
-
-        //ps檔案
-        /* newLayer[i] =
-        new HeatmapLayer({
-          id: data.name,
-          name: data.name,
-          data: hexdata,
-          extruded: true,
-          pickable: true,
-          visible: data.value,
-          getWeight: d => d.z,
-          getPosition: d => d.COORDINATES,
-          
-        }) */
+        
         newLayer[i] = new GeoJsonLayer({
           id: data.name,
           name: data.name,
@@ -464,9 +533,40 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         return;
       }
 
+      if(element.props.name === data.name && checkIsGNSS(data.name)){
+        let minmax = []
+        minmax = findMinMax(data.data.features)
+        setChartIsVisible(value)  //地圖右邊的顏色條
+        setChartMin(minmax[1])
+        setChartMax(minmax[0])
+        newLayer[i] = new GeoJsonLayer({
+          id: data.name,
+          name: data.name,
+          data: data.data,
+          data_type: newMapData[index1].name,
+          visible: value,
+          // Styles
+          filled: true,
+          pointRadiusMinPixels: 2,
+          pointRadiusScale: 5,
+          getPointRadius: f => 5,
+          getFillColor: fillcolorGNSS,
+          stroked: false,
+          // Interactive props
+          pickable: true,
+          autoHighlight: true,
+          onHover: onHover,
+          onClick: onClick,
+          updateTriggers: {
+            visible: data.value
+          }
+        })
+        return;
+      }
+
       //普通資料
       if (element.props.name === data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
-
+        
         //時序資料
         if (data.time_serie) {
           let measurementMap = new Map();
@@ -488,6 +588,8 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             pointRadiusScale: 5,
             getPointRadius: f => 5,
             getFillColor: getDotColor(data),
+            lineWidthMinPixels: 3,
+            getLineColor: getDotColor(data),
             stroked: false,
             // Interactive props
             pickable: true,
@@ -507,7 +609,8 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             }
 
           })
-        } else {
+        } 
+        else {
           newLayer[i] = new GeoJsonLayer({
             id: data.name,
             name: data.name,
@@ -520,6 +623,8 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             pointRadiusScale: 5,
             getPointRadius: f => 5,
             getFillColor: getDotColor(data),
+            lineWidthMinPixels: 3,
+            getLineColor: getDotColor(data),
             stroked: false,
             // Interactive props
             pickable: true,
@@ -594,7 +699,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
             }))
             return
           }
-          if (data.name === "ps_mean_v.xy.json") {
+          if (data.name === "ps") {
             let hexdata = []
             data.data.features.forEach((dl) => {
               try {
@@ -625,54 +730,36 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                   visible: data.value
                 }
               })
-              //ps檔案
-              /* new HeatmapLayer({
+            )
+            return
+          }
+          else if(checkIsGNSS(data.name)){
+            newLayer.push(
+              new GeoJsonLayer({
                 id: data.name,
                 name: data.name,
-                data: hexdata,
-                extruded: true,
+                data: data.data,
+                visible: data.value,
+                // Styles
+                filled: true,
+                pointRadiusMinPixels: 2,
+                pointRadiusScale: 5,
+                getPointRadius: f => 5,
+                getFillColor: fillcolorGNSS,
+                stroked: false,
+                // Interactive props
                 pickable: true,
-                visible: data.value,
-                getWeight: d => d.z,
-                getPosition: d => d.COORDINATES,
-
-              }) */
-              //ps檔案
-              /* new ColumnLayer({
-                id: data.name,
-                name: data.name,
-                data: hexdata,
-                extruded: true,
-                pickable: true,
-                visible: data.value,
-                radius: 500,
-                coverage: 0.7,
-                getElevation: d => d.z,
-                elevationScale: 500,
-                getPosition: d => d.COORDINATES,
-                getFillColor: fillcolor,
-                getLineColor: [0, 0, 0],
-              }) */
-              //ps檔案
-              /* new HexagonLayer({
-                id: data.name,
-                name: data.name,
-                visible: false,
-                data: hexdata,
-                elevationScale: 4,
-                visible: data.value,
-                extruded: true,
-                getPosition: d => d.COORDINATES,
-                getElevation: d => d.z,
-                radius: 200,
-                coverage: 0.7
-              }) */
+                autoHighlight: true,
+                onHover: onHover,
+                onClick: onClick,
+                updateTriggers: {
+                  visible: data.value
+                }
+              })
             )
             return
           }
           if (data.time_serie) {
-
-
             newLayer.push(
               new GeoJsonLayer({
                 id: data.name,
@@ -704,6 +791,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
               })
             )
           } else {
+            console.log(data)
             newLayer.push(
               new GeoJsonLayer({
                 id: data.name,
@@ -716,7 +804,9 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
                 pointRadiusMinPixels: 2,
                 pointRadiusScale: 5,
                 getPointRadius: f => 5,
+                lineWidthMinPixels: 3,
                 getFillColor: getDotColor(data),
+                getLineColor: getDotColor(data),
                 // Interactive props
                 pickable: true,
                 autoHighlight: true,
@@ -780,6 +870,8 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
           pointRadiusScale: 5,
           getPointRadius: f => 5,
           getFillColor: getDotColor(data),
+          lineWidthMinPixels: 3,
+          getLineColor: getDotColor(data),
           stroked: false,
           // Interactive props
           pickable: true,

@@ -13,7 +13,8 @@ import {
   faInfo,
   faFileImage,
   faMap,
-  faUpload
+  faUpload,
+  faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
@@ -42,6 +43,7 @@ import Info from "./Info"
 import SearchFunctionContent from "./SearchFunctionContent"
 import MapStyle from "./MapStyle"
 import UploadFile from "./UploadFile"
+import GNSS from "./GNSS"
 import { FlyToInterpolator } from 'deck.gl';
 
 import StyleJsonMonochrome from './style_monochrome.json';
@@ -480,6 +482,8 @@ export default function HydraMap() {
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
   const [chartIsVisible, setChartIsVisible] = useState(false)
+  const [chartMin, setChartMin] = useState(0)
+  const [chartMax, setChartMax] = useState(0)
   const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer])
   const [currentEditType, setCurrentEditType] = useState(0)
   const [showCAData, setShowCAData] = useState(false) //顯示環域分析詳細的資料, CA = circle analysis
@@ -853,6 +857,21 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 12 && openSheet == true} onClick={(e) => functionChangeToggle(12)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('gnss')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faGlobe} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
             <div className={styles.menu_btn_bottom}>
             <MenuBtnWrapper isShow={currentFunction === 11 && openSheet == true} onClick={(e) => functionChangeToggle(11)}>
               <OverlayTrigger
@@ -882,7 +901,7 @@ export default function HydraMap() {
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <div className={styles.menu_desk_outer_layer}>
-              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} />
+              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} setChartMin={setChartMin} setChartMax={setChartMax}/>
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
@@ -921,6 +940,11 @@ export default function HydraMap() {
           <ShowWrapper isShow={currentFunction === 10}>
             <div className={styles.menu_desk_outer_layer}>
               <UploadFile/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 12}>
+            <div className={styles.menu_desk_outer_layer}>
+              <GNSS/>
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 11}>
@@ -996,8 +1020,8 @@ export default function HydraMap() {
               <div>
                 <img className={styles.ps_chart} src='/img/chart.png' alt="chart" />
                 <div className={styles.ps_chart_right_container} >
-                  <p className={styles.ps_chart_right_container_text1}>47.3</p>
-                  <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+                  <p className={styles.ps_chart_right_container_text1}>{chartMax}</p>
+                  <p className={styles.ps_chart_right_container_text2}>{chartMin}</p>
                 </div>
               </div>
             }

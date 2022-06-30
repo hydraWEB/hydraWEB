@@ -517,7 +517,7 @@ ul {
 }
 .ps_chart_right_container{
     margin-left:5px;
-    margin-top:-400px;
+    margin-top:-418px;
 }
 
 .ps_chart_right_container_text1{
@@ -551,6 +551,12 @@ ul {
     margin-left: 5px;
     width:50px;
     height:50px;
+}
+
+.loading_image_3{
+    margin-left: 5px;
+    width:25px;
+    height:25px;
 }
 .wl_left_1{
     margin-bottom: 10px;
@@ -621,4 +627,38 @@ ul {
     display: flex;
     flex-direction: row;
     color:blue;
+  }
+
+  .progress_button {
+    text-align: center;
+  }
+  .download_button{
+    position: relative;
+    width: 100px;
+  }
+  .download_button2 {
+    position: relative;
+    width: 150px;
+    border-radius: 25px;
+    border: 0;
+    padding: 10px 40px;
+    font-family: 'Lobster';
+    font-size: 21px;
+    box-sizing: content-box;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width .9s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0px 5px 10px rgba(33, 33, 33, .25), inset 0 5px 10px rgba(33, 33, 33, .25);
+  }
+  .percentage {
+    display: block;
+    color: #70C542;
+    font-size: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: all .6s cubic-bezier(0.4, 0.0, 0.2, 1);
   }

@@ -43,6 +43,10 @@ i18n
                     "waterlevel": "Water Level",
                     "new_password": "Password",
                     "info": "Info",
+                    "function" : "Function",
+                    "upload" : "Upload", 
+                    "time_series_data" : "Time Series Data",
+                    "gnss" : "GNSS",
                     //環域分析
                     "radius": "Radius",
                     "center_point": "Center Point",
@@ -109,6 +113,8 @@ i18n
                     "select_area": "Select Area",
                     "select_min_time": "Select Minium Time",
                     "select_max_time": "Select Maxium Time",
+                    "select_avg_time": "Average Time",
+                    "download": "Download",
                     //圖片
                     "image": "Image",
                     "image_loading_success":"Image Load Success",
@@ -122,6 +128,17 @@ i18n
                     "water_level_loading_success": "Water Level Load Success",
                     "layer_loading_fail": "Layer Load Fail",
                     "layer_loading_success": "Layer Load Success",
+                    //upload
+                    "Upload_success" : "Upload Success",
+                    "Upload_fail" : "Upload Fail",
+                    "Upload_file" : "Upload File",
+                    "convert_to_csv_and_upload" : "Convert To CSV And Upload",
+                    "convert_to_json_and_upload" : "Convert To JSON And Upload",
+                    "convert_to_geojson_and_upload" : "Convert To GEOJSON And Upload",
+                    "convert_to_shapefile_and_upload" : "Convert To Shapefile And Upload",
+                    "download_file":"Download File",
+                    "downloading":"Downloading",
+                    "download_complete":"Download Complete",
                     //測量
                     "measurement_draw": "Draw",
                     "distance": "Distance",
@@ -164,6 +181,8 @@ i18n
                     //MapStyle
                     "map_style":"Map Style",
                     "select_map_style":"Select Map Style",
+                    //GNSS
+                    "execute": "Execute"
                 }
             },
             zh_tw: {
@@ -199,6 +218,11 @@ i18n
                     "waterlevel": "水位",
                     "new_password": "密碼",
                     "info": "資訊",
+                    "map_style" : "地圖樣式",
+                    "function" : "功能",
+                    "upload" : "上傳", 
+                    "time_series_data" : "時序資料",
+                    "gnss" : "全球衛星導航系統",
                     //環域分析
                     "radius": "半徑",
                     "center_point": "中心點",
@@ -265,6 +289,8 @@ i18n
                     "select_area": "選擇區域",
                     "select_min_time": "選擇最小時間",
                     "select_max_time": "選擇最大時間",
+                    "select_avg_time": "平均時間",
+                    "download": "下載",
                     //圖片
                     "image": "圖片",
                     "image_loading_success":"圖片載入成功",
@@ -278,6 +304,17 @@ i18n
                     "water_level_loading_success": "測站載入成功",
                     "layer_loading_fail": "圖層載入失敗",
                     "layer_loading_success": "圖層載入成功",
+                    //upload
+                    "Upload_success" : "上傳成功",
+                    "Upload_fail" : "上傳失敗",
+                    "Upload_file" : "上傳檔案",
+                    "convert_to_csv_and_upload" : "轉化成CSV格式並上傳",
+                    "convert_to_json_and_upload" : "轉化成JSON格式並上傳",
+                    "convert_to_geojson_and_upload" : "轉化成GEOJSON格式並上傳",
+                    "convert_to_shapefile_and_upload" : "轉化成Shapefile格式並上傳",
+                    "download_file":"下載文件",
+                    "downloading":"下載中",
+                    "download_complete":"下載成功",
                     //測量
                     "measurement_draw": "繪製",
                     "distance": "距離",
@@ -319,8 +356,9 @@ i18n
                     "reset_password":"重設密碼",
                     "reset_password_token_is_invalid":"重置密碼Token無效",
                     //MapStyle
-                    "map_style":"地圖樣式",
                     "select_map_style":"選擇地圖樣式",
+                    //GNSS
+                    "execute": "執行"
                 }
             }
         },

@@ -122,11 +122,12 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
   const [allTags, setAllTags] = useState([])
   const [allTagsState, setAllTagsState] = useState([])
   function setEditLayerMode() {
-    if (mode == DrawCircleFromCenterMode) {
-      setMode(ViewMode,"circle-analysis-layer")
-    } else {
-      setMode(DrawCircleFromCenterMode,"circle-analysis-layer")
-    }
+    
+    setMode(DrawCircleFromCenterMode,"circle-analysis-layer")
+    
+  }
+  function setViewLayerMode() {
+    setMode(ViewMode,"circle-analysis-layer")
   }
 
   useEffect(() => {
@@ -284,6 +285,14 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       setCurrentPage(1)
       setData(data)
     }
+    else{
+      let sortedResult = []
+      setsearchResult(sortedResult)
+      currentPageDataSetting(sortedResult, 1)
+      setAllCAData(sortedResult)
+      setCurrentPage(1)
+      setData(data)
+    }
   }
 
   let taglist = allTags.map((d) => 
@@ -334,13 +343,19 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
             <p>{t('radius')}:{radius}km</p>
             {lastClick.length > 1 &&
               <p>{t('center_point')}:{lastClick[0]}, {lastClick[1]}</p>
-
             }
             <div className={styles.circle_analysis_btn}>
               <Button
                 onClick={(e) => setEditLayerMode()}
-                variant={mode == DrawCircleFromCenterMode ? "contained" : "outlined"}        >
-                {mode == DrawCircleFromCenterMode ? t('cancel_draw_circle') : t('draw_circle')}
+                variant={mode === DrawCircleFromCenterMode ? "contained" : "outlined"}        
+              >
+                {t('draw_circle')}
+              </Button>
+              <Button
+                onClick={(e) => setViewLayerMode()}
+                variant={mode === ViewMode ? "contained" : "outlined"}
+              >
+                {t('cancel_draw_circle')}
               </Button>
             </div>
           </div>

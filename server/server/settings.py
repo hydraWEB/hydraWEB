@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from corsheaders.defaults import default_headers
 from pathlib import Path
 import os
 from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,15 +31,25 @@ if os.environ.get('DEBUG') == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','server']
+ALLOWED_HOSTS = ['140.121.196.77:30180', '140.121.196.77', '192.168.10.100', '127.0.0.1:8000', 'localhost', '127.0.0.1']
+#CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost',
-    'http://127.0.0.1',
-    'http://127.0.0.1:3000',
-    'http://localhost:3000',
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "Content-Disposition",
 ]
+#CORS_ALLOW_ORIGINS = [
+#    'localhost:8000',
+#    'localhost',
+#    'http://localhost:3000',
+#    'http://140.121.196.77:30180',
+#    'http://140.121.196.77',
+#    'http://127.0.0.1:3000',
+#    'http://localhost:8000'
+#]
+
+
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -180,3 +191,6 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

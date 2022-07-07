@@ -41,12 +41,6 @@ function LineChart({ chartData }) {
 
   const [info, setInfo] = useState(null)
 
-  const [currentTooltopData, setCurrentTooltipData] = useState({
-    rock1: 0,
-    rock2: 0,
-    depth: 0
-  })
-
   useEffect(() => {
     drawChart();
   }, [chartData]);
@@ -114,7 +108,7 @@ function LineChart({ chartData }) {
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`)
-
+    
 
     let maxdept = list[list.length - 1].下限深度
     let mindept = list[0].上限深度

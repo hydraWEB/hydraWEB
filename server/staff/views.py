@@ -11,7 +11,8 @@ from .serializers import SystemLogSerialzer, StaffAnnouncementSerializer, UserAn
 from rest_framework.response import Response
 from rest_framework import generics
 from django.shortcuts import get_object_or_404
-
+import pymongo
+import json
 # Create your views here.
 
 
@@ -114,6 +115,23 @@ class AccountViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminUser,)
 
     serializer_class = AdminUserSerializer
+    
+    def userSpaceInMongo(self, users):
+        client = pymongo.MongoClient('mongodb://localhost:27017')
+        db = client["users_space"]
+        tempCollection = db.list_collection_names()
+        usernames = []
+        emails = []
+        dict = {}
+        for key in users:
+            usernames.append(key["username"])
+            emails.append(key['email'])
+        for i,value in enumerate(usernames):
+            if value not in tempCollection:
+                mycol = db[value]
+                x = mycol.insert_one(dict)
+        
+            
 
     def get_queryset(self):
         queryset = self.queryset
@@ -137,12 +155,14 @@ class AccountViewSet(viewsets.ModelViewSet):
             self.get_queryset().order_by('-created_at'))
         serializer = AdminUserSerializer(queryset, many=True)
         
+        self.userSpaceInMongo(serializer.data)
         return self.get_paginated_response(serializer.data)
 
     def retrive(self, request, pk=None, **kwargs):
         a = get_object_or_404(User, pk=pk)
         serializer = AdminUserSerializer(data=a)
         serializer.is_valid(raise_exception=True)
+        
         return Response({"status": "ok", "data": serializer.data}, status=status.HTTP_200_OK)
     
 

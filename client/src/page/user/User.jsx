@@ -48,9 +48,8 @@ export default function User(props) {
                 setUser(initialUser)
                 dispatch(store_user_data(res.data.data.user))
             }).catch((err) => {
-                Cookies.remove('access')
-                setUser(null)
-                history.push("/guest/login")
+                
+                
             }).finally(() => {
             })
         }

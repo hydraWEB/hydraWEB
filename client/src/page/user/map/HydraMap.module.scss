@@ -147,7 +147,6 @@ ul {
 
 .func_title{
     margin-top:0px;
-    margin-bottom: 20px;
     margin-left:20px;
     color:white;
     -webkit-user-select: none;
@@ -326,7 +325,7 @@ ul {
 
 .circle_analysis_btn{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: row;
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -365,6 +364,17 @@ ul {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
+.function_wrapper_upload{
+    color:white;
+    padding: 20px 20px 10px 20px;
+    border-radius: 10px;
+    margin:15px;
+    background: #457ee7aa;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    display: flex;
+    flex-direction: row;
+}
+
 .function_wrapper_waterlevel{
     color:white;
     padding: 20px 5px 5px 5px;
@@ -372,6 +382,10 @@ ul {
     background: #457ee7aa;
     margin:10px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.backend_img_button{
+    color: #457ee7aa;
 }
 
 .search_tag{
@@ -484,6 +498,7 @@ ul {
 }
 .water_level_dropdown{
     padding: 0 20px 10px 20px;
+    
 }
 .water_level_font_question{
     margin-right:20px;
@@ -502,7 +517,7 @@ ul {
 }
 .ps_chart_right_container{
     margin-left:5px;
-    margin-top:-400px;
+    margin-top:-418px;
 }
 
 .ps_chart_right_container_text1{
@@ -537,6 +552,13 @@ ul {
     width:50px;
     height:50px;
 }
+
+.loading_image_3{
+    margin-left: 5px;
+    width:25px;
+    height:25px;
+}
+
 .wl_left_1{
     margin-bottom: 10px;
     background-color: rgba(54, 65, 70, 0.164);
@@ -559,3 +581,51 @@ ul {
      margin-right:10px;   
  }
 
+ .circle {
+    display: flex;
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+  }
+
+  .square_green {
+    width: 60px;
+    height: 5px;
+    background-color: green;
+  }
+  .square_red {
+    width: 60px;
+    height: 5px;
+    background-color: red;
+  }
+  .info_layout{
+    padding-top: 20px;
+    float: left;
+    width: 68%;
+    margin-left: 2%;
+    overflow-x: auto;
+  }
+  .info_layout_left{
+    padding-top:10px;
+    float:left;
+    width: 70px;
+    overflow:auto;
+  }
+  .info_layout_right{
+    float:left;
+    width: 30%;
+    overflow:auto;
+  }
+  .info_layout_top{
+    height:30px;
+  }
+  .info_layout_bot{
+    height:30px;
+  }
+
+  .button_layout{
+    display: flex;
+    flex-direction: row;
+    color:blue;
+  }

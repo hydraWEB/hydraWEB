@@ -9,10 +9,11 @@ import Guest from './page/guest/Guest';
 import User from './page/user/User';
 
 import Cookies from 'js-cookie'
-import { userProfile, userRequest_client } from "./lib/api";
+import { userProfile, userRequest_client, userDownloadRequest_client } from "./lib/api";
 import { useTranslation, Trans } from "react-i18next";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ToastProvider, useToasts } from 'react-toast-notifications'
+import toast, { Toaster } from 'react-hot-toast';
 import Hydramap from "./page/user/map/HydraMap2";
 
 export default function App(props) {
@@ -24,6 +25,7 @@ export default function App(props) {
 
     if (Cookies.get('access')) {
         userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
+        userDownloadRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
     }
 
 
@@ -62,6 +64,7 @@ export default function App(props) {
     return (
         <>
             <UserProvider initialUser={initialUser}>
+                <Toaster position="bottom-right"/>
                 <ToastProvider placement={"bottom-right"}>
                     <ThemeProvider theme={darkTheme}>
                         <div className={'root-container'}>

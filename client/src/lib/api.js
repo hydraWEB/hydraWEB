@@ -11,6 +11,21 @@ export let userRequest_client = axios.create({
     withCredentials: true
 });
 
+export let userUploadRequest_client = axios.create({
+    baseURL: process.env.REACT_APP_URL_PRODUCTION,
+    headers: { 
+        "Content-Type": "multipart/form-data"
+    },
+    withCredentials: true
+});
+
+export let userDownloadRequest_client = axios.create({
+    baseURL: process.env.REACT_APP_URL_PRODUCTION,
+    headers: { "Content-Type": "application/json" },
+    responseType: 'arraybuffer',
+    withCredentials: true
+});
+
 
 export const userLogin = (data) => guestRequest_client.post("api/v1/auth/login/",data);
 export const userSignUp = (data) => guestRequest_client.post("api/v1/auth/register/",data);
@@ -18,7 +33,7 @@ export const userForgotPasswd = (data) => guestRequest_client.post("api/v1/auth/
 export const userForgotPasswdCheckToken = (data) => guestRequest_client.post("api/v1/auth/password_reset/validate_token/",data);
 export const userForgotPasswdConfirm = (data) => guestRequest_client.post("api/v1/auth/password_reset/confirm/",data);
 
-export const userProfile = () => userRequest_client.get("api/v1/auth/user/profile");
+export const userProfile = () => userRequest_client.post("api/v1/auth/user/profile");
 export const userProfileEdit = (data) => userRequest_client.put("api/v1/auth/user/profile/edit",data)
 
 export const accountList = (data) => userRequest_client.get("api/v1/staff/account",data)
@@ -41,7 +56,7 @@ export const AnnouncementListUser = (data) => userRequest_client.get("api/v1/sta
 export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/staff/announcement/${id}/`,data)
 
 
-export const LayerList = (data) => userRequest_client.get(`api/v1/user/layer`,data)
+export const LayerList = (data) => userRequest_client.post(`api/v1/user/layer`,data)
 export const WaterLevelAllStations = () => userRequest_client.get(`api/v1/user/water_level/stations`)
 export const WaterLevelGetDataByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/getByID`,data)
 export const WaterLevelDownloadByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/download`,data)
@@ -54,7 +69,15 @@ export const IPList = (data) => userRequest_client.get("api/v1/staff/ip/",data)
 export const IPSendDelete = (id) => userRequest_client.delete(`api/v1/staff/ip/${id}/`)
 export const IPSendNew = (data) => userRequest_client.post("api/v1/staff/ip/",data)
 
-export const AllTags = () => userRequest_client.get(`api/v1/user/all_tag`)
+export const AllTags = () => userRequest_client.post(`api/v1/user/all_tag`)
 export const TagAndGIS = () => userRequest_client.get(`api/v1/user/tagAndGIS`)
+
+export const UploadOriginalFile = (data) => userUploadRequest_client.post(`api/v1/user/uploadFile/original`,data)
+export const DownloadFileList = () => userRequest_client.post(`api/v1/user/DownloadFileList`)
+export const DownloadFile = (data) => userRequest_client.post(`api/v1/user/downloadFile`,data)
+export const DownloadBufferFile = (data) => userDownloadRequest_client.post(`api/v1/user/downloadFile`,data)
+export const DownloadMapData = (data) => userDownloadRequest_client.post(`api/v1/user/downloadMapData`,data)
+
+export const GnssFunction = () => userRequest_client.post(`api/v1/user/GnssFunction`)
 
 export default userLogin

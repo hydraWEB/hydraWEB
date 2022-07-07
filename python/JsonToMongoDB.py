@@ -12,14 +12,13 @@ all_dir = os.listdir(layer_data_dir)
 
 result = []
 for dir in all_dir:
-  col = db[f"{dir}"]
-  file_list = os.listdir(f"{layer_data_dir}/{dir}")
-  for file in file_list:
-    if file.endswith(".json"):
-      f = open(f'{layer_data_dir}/{dir}/{file}',"r",encoding="utf-8")
-      json_data = json.load(f)
-      print(json_data)
-      json_data['name'] = file
-      col.insert_one(json_data)
-      
+    col = db[f"{dir}"]
+    file_list = os.listdir(f"{layer_data_dir}/{dir}")
+    for file in file_list:
+        if file.endswith(".json"):
+            f = open(f'{layer_data_dir}/{dir}/{file}',"r",encoding="utf-8")
+            json_data = json.load(f)
+            print(json_data)
+            json_data['name'] = file
+            col.insert_one(json_data)
 client.close()

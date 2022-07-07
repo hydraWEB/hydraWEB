@@ -12,7 +12,9 @@ import {
   faWater,
   faInfo,
   faFileImage,
-  faMap
+  faMap,
+  faUpload,
+  faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 import {
   Container,
@@ -26,6 +28,7 @@ import styled from "@emotion/styled/macro";
 
 import { DeckGL } from '@deck.gl/react';
 import { StaticMap } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl'; 
 
 import Layer from "./LayerV2.jsx"
 import Print from "./Print.jsx"
@@ -33,10 +36,13 @@ import Search from "./Search"
 import CircleAnalysis from "./CircleAnalysis"
 import BackendImage from "./BackendImage"
 import Chart from "./Chart.jsx"
+import Chart2 from "./Chart2.jsx"
 import Measurement from "./Measurement"
 import WaterLevel from "./WaterLevelV2"
 import Info from "./Info"
 import SearchFunctionContent from "./SearchFunctionContent"
+import UploadFile from "./UploadFile"
+import GNSS from "./GNSS"
 import MapStyle from "./MapStyle"
 import { FlyToInterpolator } from 'deck.gl';
 
@@ -73,6 +79,8 @@ import {
   MeasureAreaMode,
   MeasureAngleMode
 } from "nebula.gl";
+//eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default
 
 const FabIcon = withStyles({
   root: {
@@ -236,12 +244,23 @@ function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STN
         </div>
       )
     }
+    else if (clickInfo.layer.props.data_type === "Layered_Trap_Drilling" || clickInfo.layer.props.data_type === "timtom@gmail_com"){
+      return (
+        <div>
+          <Button onClick={(e) => { setShowChart(true) }} >
+            分層地陷井鑽探資料
+          </Button>
+          <Chart2 showChart={showChart} setShowChart={setShowChart} chartData={props} />
+        </div>
+      )
+    }
     else {
       return (
         <div></div>
       )
     }
   }
+
 
   function ShowWaterButton() {
     if (clickInfo.layer.props.data_type === "yunlin" || clickInfo.layer.props.data_type === "changhua" ) {
@@ -420,8 +439,8 @@ export default function HydraMap() {
       features: []
     },
     mode: circleAnalysisMode,
-    selectedFeatureIndexes,
-    onEdit: onEdit
+    selectedFeatureIndexes
+    
   });
 
   const measurementLayer = new EditableGeoJsonLayer({
@@ -454,7 +473,7 @@ export default function HydraMap() {
   const mapRef = useRef()
   const deckRef = useRef()
   const waterLevelRef = useRef(); //waterLevelRef.current.onSearchClick
-  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZmxleG9sayIsImEiOiJja2tvMTIxaDMxNW9vMm5wcnIyMTJ4eGxlIn0.S6Ruq1ZmlrVQNUQ0xsdE9g';
+  const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoieWluZ2NvbmdsZW9uZyIsImEiOiJja205ZjVva3kweHd0MnVudWR2aGtobGh6In0.35cBkDHyYExuaXfis4T1Aw';
   const { t, i18n } = useTranslation();
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const viewState2 = useRef(INITIAL_VIEW_STATE);
@@ -465,12 +484,18 @@ export default function HydraMap() {
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
   const [chartIsVisible, setChartIsVisible] = useState(false)
+  const [chartMin, setChartMin] = useState(0)
+  const [chartMax, setChartMax] = useState(0)
   const [layers, setLayers] = useState([circleAnalysisLayer, measurementLayer])
   const [currentEditType, setCurrentEditType] = useState(0)
   const [showCAData, setShowCAData] = useState(false) //顯示環域分析詳細的資料, CA = circle analysis
   const [allCAData, setAllCAData] = useState([])
   const [currentCAData, setCurrentCAData] = useState([])
   const [currentMapStyle, setCurrentMapStyle] = useState(StyleJsonMonochrome)
+  const [circleAnalysisFeatures, setCircleAnalysisFeatures] = useState({
+    type: "FeatureCollection",
+    features: []
+  })
 
   const zoomToLocation = (geometry) => {
     setViewState({
@@ -544,8 +569,7 @@ export default function HydraMap() {
     })
   }
 
-  function onEdit({ updatedData, editType, featureIndexes, editContext }) {
-
+  function onEdit({ updatedData }) {
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
       if (element.props.id == "circle-analysis-layer" && currentEditType == 0) {
@@ -564,14 +588,14 @@ export default function HydraMap() {
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
             data: updatedData,
-            mode: circleAnalysisModeRef.current,
+            mode: DrawCircleFromCenterMode,
             selectedFeatureIndexes,
             onEdit: onEdit
           });
         }
 
       }
-      if (element.props.id == "measurement-layer" && currentEditType == 1) {
+      /* if (element.props.id == "measurement-layer" && currentEditType == 1) {
         if (updatedData.features.length > 0 ) {
           setMeasurementMode(() => ViewMode)
           let d = distance(lastClickRef.current[0], lastClickRef.current[1], updatedData.features[0].geometry.coordinates[0][0][0], updatedData.features[0].geometry.coordinates[0][0][1])
@@ -592,8 +616,7 @@ export default function HydraMap() {
             onEdit: onEdit
           });
         }
-
-      }
+      } */
     })
     setLayers(newLayer)
   }
@@ -615,10 +638,15 @@ export default function HydraMap() {
             onEdit: onEdit
           });
         } else {
+          setShowCAData(false)
+          setRadius(0)
           setCircleAnalysisMode(() => ViewMode)
           newLayer[i] = new EditableGeoJsonLayer({
             id: "circle-analysis-layer",
-            data: element.props.data,
+            data: {
+              type: "FeatureCollection",
+              features: []
+            },
             selectedFeatureIndexes,
             mode: ViewMode,
             onEdit: onEdit
@@ -636,8 +664,7 @@ export default function HydraMap() {
               features: []
             },
             selectedFeatureIndexes,
-            mode: m,
-            onEdit: onEdit
+            mode: m
           });
         } else {
           setMeasurementMode(() => ViewMode)
@@ -778,7 +805,7 @@ export default function HydraMap() {
                 placement='right'
                 overlay={
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('waterlevel')}
+                    {t('time_series_data')}
                   </Tooltip>
                 }>
                 <div className={styles.menu_btn} >
@@ -808,7 +835,7 @@ export default function HydraMap() {
                 placement='right'
                 overlay={
                   <Tooltip id='tooltip-right' className={styles.tooltip}>
-                    {t('image')}
+                    {t('map_style')}
                   </Tooltip>
                 }>
                 <div className={styles.menu_btn} >
@@ -817,8 +844,38 @@ export default function HydraMap() {
                 </div>
               </OverlayTrigger>
             </MenuBtnWrapper>
-            <div className={styles.menu_btn_bottom}>
             <MenuBtnWrapper isShow={currentFunction === 10 && openSheet == true} onClick={(e) => functionChangeToggle(10)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('Upload_file')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faUpload} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
+            <MenuBtnWrapper isShow={currentFunction === 12 && openSheet == true} onClick={(e) => functionChangeToggle(12)}>
+              <OverlayTrigger
+                key='right'
+                placement='right'
+                overlay={
+                  <Tooltip id='tooltip-right' className={styles.tooltip}>
+                    {t('gnss')}
+                  </Tooltip>
+                }>
+                <div className={styles.menu_btn} >
+                  <FontAwesomeIcon
+                    icon={faGlobe} size="lg" color="gray" />
+                </div>
+              </OverlayTrigger>
+            </MenuBtnWrapper>
+            <div className={styles.menu_btn_bottom}>
+            <MenuBtnWrapper isShow={currentFunction === 11 && openSheet == true} onClick={(e) => functionChangeToggle(11)}>
               <OverlayTrigger
                 key='right'
                 placement='right'
@@ -846,7 +903,7 @@ export default function HydraMap() {
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <div className={styles.menu_desk_outer_layer}>
-              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} />
+              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} setChartMin={setChartMin} setChartMax={setChartMax}/>
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
@@ -883,6 +940,16 @@ export default function HydraMap() {
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 10}>
+            <div className={styles.menu_desk_outer_layer}>
+              <UploadFile/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 12}>
+            <div className={styles.menu_desk_outer_layer}>
+              <GNSS/>
+            </div>
+          </ShowWrapper>
+          <ShowWrapper isShow={currentFunction === 11}>
             <div className={styles.menu_desk_outer_layer}>
               <Info/>
             </div>
@@ -955,8 +1022,8 @@ export default function HydraMap() {
               <div>
                 <img className={styles.ps_chart} src='/img/chart.png' alt="chart" />
                 <div className={styles.ps_chart_right_container} >
-                  <p className={styles.ps_chart_right_container_text1}>47.3</p>
-                  <p className={styles.ps_chart_right_container_text2}>-45.3</p>
+                  <p className={styles.ps_chart_right_container_text1}>{chartMax}</p>
+                  <p className={styles.ps_chart_right_container_text2}>{chartMin}</p>
                 </div>
               </div>
             }

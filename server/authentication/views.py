@@ -18,25 +18,24 @@ class MyObtainTokenPairView(TokenObtainPairView):
 class ResetPasswordView(ResetPasswordConfirm):
     permission_classes = (AllowAny,)
     serializer_class = ResetPasswordSerializer
-  
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
 class ProfileAPIView(views.APIView):
-     permission_classes = (IsAuthenticated,)
-     renderer_classes = (JSONRenderer,)
-     serializer_class = UserSerializer
-     def get(self, request):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    serializer_class = UserSerializer
+    def post(self, request):
         current_user = request.user
         return Response({"status":"ok","data":{"user":UserSerializer(current_user).data} }, status=status.HTTP_200_OK) 
 
 class EditProfileAPIView(views.APIView):
-     permission_classes = (IsAuthenticated,)
-     renderer_classes = (JSONRenderer,)
-     serializer_class = UserSerializer
-     def put(self, request):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    serializer_class = UserSerializer
+    def put(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(request.user)

@@ -7,7 +7,7 @@ import { GeoJsonLayer } from '@deck.gl/layers';
 import { ScenegraphLayer } from '@deck.gl/mesh-layers';
 import { ColumnLayer } from '@deck.gl/layers';
 import { HexagonLayer, HeatmapLayer } from '@deck.gl/aggregation-layers';
-import { LayerList, UploadFile, DownloadMapData } from '../../../lib/api'
+import { LayerList, UploadFile, DownloadMapData, ChoushuiLayerList, PartLayerList, AccordionNameList } from '../../../lib/api'
 import React, { useEffect, useState, useRef } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { useTranslation, Trans } from "react-i18next";
@@ -356,12 +356,14 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
   setLayers(newLayer)
 }
 
-export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible, setChartMin, setChartMax }) {
+export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible, setChartMin, setChartMax, swapData, setSwapData }) {
 
   const { t, i18n } = useTranslation();
   const [originData, setOriginData] = useState([]) //原本的不會修改到的data
   const [dataLoadState, setDataLoadState] = useState(0)
   const [dataLoadStateProgess, setDataLoadProgess] = useState(0)
+  const [mode, setMode] = useState(0)
+  const [isPartData , setIsPartData] = useState(false)
   const { addToast } = useToasts();
 
   const onHover = (data) => {
@@ -564,6 +566,39 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
         return;
       }
 
+      // 地下水觀測井位置圖資料
+      if (element.props.name === data.name && data.name=== "地下水觀測井位置圖_彰化縣現存站") { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
+        newLayer[i] = new GeoJsonLayer({
+          id: data.name,
+          name: data.name,
+          data: data.data,
+          data_type: newMapData[index1].name,
+          visible: value,
+          pointType: "circle+text",
+          // Styles
+          filled: true,
+          pointRadiusMinPixels: 2,
+          pointRadiusScale: 5,
+          getPointRadius: f => 5,
+          getText: f => f.properties['NAME_C'],
+          getTextSize: 12,
+          getFillColor: getDotColor(data),
+          stroked: false,
+          lineWidthMinPixels: 3,
+          getLineColor: getDotColor(data),
+          textCharacterSet: " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~國聖東芳洛津顏厝和美4線西全興花壇橋文昌員林青山溪湖田中好修崙雅社頭趙甲香二尾合漢寶苑潭墘港竹塘柑園新州僑義下過榮光虎溫草復石榴螺九隆宏北崁腳古坑嘉舊庄觸口坪頂後六豐莿桐安化海洋南子元長箔蔡明德客金水大溝瓊埔宜梧土庫烏塗拯民秀辰5內重永定忠孝",
+          // Interactive props
+          pickable: true,
+          autoHighlight: true,
+          onHover: onHover,
+          onClick: onClick,
+          updateTriggers: {
+            visible: data.value
+          }
+        })
+        return;
+      }
+
       //普通資料
       if (element.props.name === data.name) { //如果data和layer的name是一樣的話根據checkbox的值顯示圖層
         
@@ -642,201 +677,6 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setLayers(newLayer) //修改本來地圖的layer */ 
   }
 
-  useEffect(() => {
-    LayerList({
-      onDownloadProgress: (progressEvent) => {
-        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-
-        setDataLoadProgess(percentCompleted)
-      }
-    }).then((res) => {
-      console.log(res.data.data)
-      addToast(t('layer_loading_success'), { appearance: 'success', autoDismiss: true });
-      setDataLoadState(1)
-      let list = []
-      res.data.data.forEach((element, idx) => {
-        let files = element.file
-        files.forEach((element2, idx) => {
-          files[idx].value = false //不會先顯示圖層
-          files[idx].current_time = 0 //不會先顯示圖層
-        })
-
-        list.push({
-          "id": idx,
-          "name": element.name,
-          "files": files,
-        })
-      })
-      setAllData(list)
-      setOriginData(list)
-      let newLayer = [...layers]
-      list.forEach((l, index) => {
-        l.files.forEach((data, idx) => {
-          if (data.name === "GPS") {
-            let hexdata = []
-            data.data.features.forEach((dl) => {
-              try {
-                hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
-              } catch (error) {
-
-              }
-            })
-            newLayer.push(new ScenegraphLayer({
-              id: data.name,
-              name: data.name,
-              data: hexdata,
-              pickable: true,
-              visible: false,
-              data_type: l.name,
-              scenegraph: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf',
-              getPosition: d => d.COORDINATES,
-              getOrientation: d => [0, Math.random() * 180, 90],
-              _animations: {
-                '*': { speed: 5 }
-              },
-              sizeScale: 500,
-              _lighting: 'pbr'
-            }))
-            return
-          }
-          if (data.name === "ps") {
-            let hexdata = []
-            data.data.features.forEach((dl) => {
-              try {
-                hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
-              } catch (error) {
-
-              }
-            })
-            newLayer.push(
-              new GeoJsonLayer({
-                id: data.name,
-                name: data.name,
-                data: data.data,
-                visible: data.value,
-                // Styles
-                filled: true,
-                pointRadiusMinPixels: 2,
-                pointRadiusScale: 5,
-                getPointRadius: f => 5,
-                getFillColor: fillcolor2,
-                stroked: false,
-                // Interactive props
-                pickable: true,
-                autoHighlight: true,
-                onHover: onHover,
-                onClick: onClick,
-                updateTriggers: {
-                  visible: data.value
-                }
-              })
-            )
-            return
-          }
-          else if(checkIsGNSS(data.name)){
-            newLayer.push(
-              new GeoJsonLayer({
-                id: data.name,
-                name: data.name,
-                data: data.data,
-                visible: data.value,
-                // Styles
-                filled: true,
-                pointRadiusMinPixels: 2,
-                pointRadiusScale: 5,
-                getPointRadius: f => 5,
-                getFillColor: fillcolorGNSS,
-                stroked: false,
-                // Interactive props
-                pickable: true,
-                autoHighlight: true,
-                onHover: onHover,
-                onClick: onClick,
-                updateTriggers: {
-                  visible: data.value
-                }
-              })
-            )
-            return
-          }
-          if (data.time_serie) {
-            newLayer.push(
-              new GeoJsonLayer({
-                id: data.name,
-                name: data.name,
-                data: data.data,
-                visible: data.value,
-                // Styles
-                filled: true,
-                pointRadiusMinPixels: 2,
-                pointRadiusScale: 5,
-                getPointRadius: f => 5,
-                getFillColor: getDotColor(data),
-                // Interactive props
-                pickable: true,
-                autoHighlight: true,
-                onHover: onHover,
-                filterEnabled: false,
-                getFilterValue: getFilterValue,
-                filterTransformSize: true,
-                filterTransformColor: true,
-                filterRange: [0, 0],
-                // Define extensions
-                extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
-                onClick: onClick,
-                updateTriggers: {
-                  getFilterValue: getFilterValue,
-                  visible: data.value,
-                }
-              })
-            )
-          } else {
-            console.log(data)
-            newLayer.push(
-              new GeoJsonLayer({
-                id: data.name,
-                name: data.name,
-                data: data.data,
-                visible: data.value,
-                data_type: l.name,
-                // Styles
-                filled: true,
-                pointRadiusMinPixels: 2,
-                pointRadiusScale: 5,
-                getPointRadius: f => 5,
-                lineWidthMinPixels: 3,
-                getFillColor: getDotColor(data),
-                getLineColor: getDotColor(data),
-                // Interactive props
-                pickable: true,
-                autoHighlight: true,
-                onHover: onHover,
-                onClick: onClick,
-                updateTriggers: {
-                  visible: data.value,
-                }
-              }))
-          }
-
-
-        })
-      })
-      setLayers(newLayer)
-
-    }).catch((err) => {
-      setDataLoadState(2)
-      addToast(t('layer_loading_fail'), { appearance: 'error', autoDismiss: true });
-    }).finally(() => {
-
-    })
-    /* fillcolor2() */
-  }, [])
-
-
-  function initLayer(){
-
-  }
-
   function getLayer(data) {
     layers.forEach(element => {
       if (element.props.name === data.name) {
@@ -898,9 +738,265 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setLayers(newLayer)
   }
 
+  function setIntialLayer(list){
+    let newLayer = [...layers]
+    list.forEach((l, index) => {
+      l.files.forEach((data, idx) => {
+        if (data.name === "GPS") {
+          let hexdata = []
+          data.data.features.forEach((dl) => {
+            try {
+              hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
+            } catch (error) {
+
+            }
+          })
+          newLayer.push(new ScenegraphLayer({
+            id: data.name,
+            name: data.name,
+            data: hexdata,
+            pickable: true,
+            visible: false,
+            data_type: l.name,
+            scenegraph: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf',
+            getPosition: d => d.COORDINATES,
+            getOrientation: d => [0, Math.random() * 180, 90],
+            _animations: {
+              '*': { speed: 5 }
+            },
+            sizeScale: 500,
+            _lighting: 'pbr'
+          }))
+          return
+        }
+        if (data.name === "ps") {
+          let hexdata = []
+          data.data.features.forEach((dl) => {
+            try {
+              hexdata.push({ COORDINATES: [dl.geometry.coordinates[0], dl.geometry.coordinates[1]], z: dl.properties })
+            } catch (error) {
+
+            }
+          })
+          newLayer.push(
+            new GeoJsonLayer({
+              id: data.name,
+              name: data.name,
+              data: data.data,
+              visible: data.value,
+              // Styles
+              filled: true,
+              pointRadiusMinPixels: 2,
+              pointRadiusScale: 5,
+              getPointRadius: f => 5,
+              getFillColor: fillcolor2,
+              stroked: false,
+              // Interactive props
+              pickable: true,
+              autoHighlight: true,
+              onHover: onHover,
+              onClick: onClick,
+              updateTriggers: {
+                visible: data.value
+              }
+            })
+          )
+          return
+        }
+        else if(checkIsGNSS(data.name)){
+          newLayer.push(
+            new GeoJsonLayer({
+              id: data.name,
+              name: data.name,
+              data: data.data,
+              visible: data.value,
+              // Styles
+              filled: true,
+              pointRadiusMinPixels: 2,
+              pointRadiusScale: 5,
+              getPointRadius: f => 5,
+              getFillColor: fillcolorGNSS,
+              stroked: false,
+              // Interactive props
+              pickable: true,
+              autoHighlight: true,
+              onHover: onHover,
+              onClick: onClick,
+              updateTriggers: {
+                visible: data.value
+              }
+            })
+          )
+          return
+        }
+        if (data.time_serie) {
+          newLayer.push(
+            new GeoJsonLayer({
+              id: data.name,
+              name: data.name,
+              data: data.data,
+              visible: data.value,
+              // Styles
+              filled: true,
+              pointRadiusMinPixels: 2,
+              pointRadiusScale: 5,
+              getPointRadius: f => 5,
+              getFillColor: getDotColor(data),
+              // Interactive props
+              pickable: true,
+              autoHighlight: true,
+              onHover: onHover,
+              filterEnabled: false,
+              getFilterValue: getFilterValue,
+              filterTransformSize: true,
+              filterTransformColor: true,
+              filterRange: [0, 0],
+              // Define extensions
+              extensions: [new DataFilterExtension({ filterSize: 1, countItems: true })],
+              onClick: onClick,
+              updateTriggers: {
+                getFilterValue: getFilterValue,
+                visible: data.value,
+              }
+            })
+          )
+        } else {
+          console.log(data)
+          newLayer.push(
+            new GeoJsonLayer({
+              id: data.name,
+              name: data.name,
+              data: data.data,
+              visible: data.value,
+              data_type: l.name,
+              // Styles
+              filled: true,
+              pointRadiusMinPixels: 2,
+              pointRadiusScale: 5,
+              getPointRadius: f => 5,
+              lineWidthMinPixels: 3,
+              getFillColor: getDotColor(data),
+              getLineColor: getDotColor(data),
+              // Interactive props
+              pickable: true,
+              autoHighlight: true,
+              onHover: onHover,
+              onClick: onClick,
+              updateTriggers: {
+                visible: data.value,
+              }
+            }))
+        }
+
+
+      })
+    })
+    return newLayer
+  }
+
+  function setChoushuiEditLayer(){
+    setIsPartData(true)
+    let list = []
+    setMode(1)
+    if(swapData.length === 0){
+      setDataLoadState(0)
+      ChoushuiLayerList({
+        onDownloadProgress: (progressEvent) => {
+          let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          setDataLoadProgess(percentCompleted)
+        }
+      }).then((res) => {
+        addToast(t('layer_loading_success'), { appearance: 'success', autoDismiss: true });
+        setDataLoadState(1)
+        res.data.data.forEach((element, idx) => {
+          list.push({
+            "id": idx,
+            "name": element,
+            "files": [],
+          })
+        })
+        setSwapData(allData)
+        setAllData(list)
+  /*       setOriginData(list) */
+      }).catch((err) => {
+        setDataLoadState(2)
+        addToast(t('layer_loading_fail'), { appearance: 'error', autoDismiss: true });
+      }).finally(() => {})
+    }
+    else{
+      list = [...swapData]
+      setSwapData(allData)
+      setAllData(list)
+    }
+    
+  }
+
+  function setFullLayer(){
+    setMode(0)
+    setIsPartData(false)
+    let list = [...swapData]
+    setSwapData(allData)
+    setAllData(list)
+/*  setOriginData(list) */
+
+  }
+
+  function accordionOnClick(name){
+    let list = [...allData]
+    for(let i = 0; i< list.length;i++){
+      if(list[i].name === name){
+        if(list[i].files.length === 0){
+          let dataname = name
+          if(isPartData){
+            dataname = name + "_part"
+          }
+          PartLayerList({
+            database : dataname
+          }).then((res) => {
+            res.data.data.forEach((element, idx) => {
+              let files = element.file
+              files.forEach((element2, idx) => {
+                files[idx].value = false //不會先顯示圖層
+                files[idx].current_time = 0 //不會先顯示圖層
+              })
+              for(let i = 0; i<list.length; i++){
+                if(list[i].name === name){
+                  list[i].files = files
+                  break
+                }
+              }
+            })
+            setAllData(list)
+            setLayers(setIntialLayer(list))
+          })
+        }
+        break
+      }
+    }
+  }
+
+  useEffect(() => {
+    AccordionNameList().then((res) => {
+      let list = []
+      res.data.data.forEach((element, idx) => {
+        list.push({
+          "id": idx,
+          "name": element,
+          "files": [],
+        })
+      })
+      setAllData(list)
+      setDataLoadState(1)
+    }).catch((err) => {
+    }).finally(() => {
+      
+    })
+    
+  },[])
+
   let BtnList = allData.map((d, index1) =>
     <div>
-      <Accordion square defaultExpanded>
+      <Accordion square defaultExpanded={false} onClick={() => accordionOnClick(d.name)}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" expandIcon={<ExpandMoreIcon />}>
           <Typography>{d.name}</Typography>
         </AccordionSummary>
@@ -927,6 +1023,20 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
           <LinearProgress variant="determinate" value={dataLoadStateProgess} />
         </div>
       }
+      <div className={styles.circle_analysis_btn}>
+        <Button
+          onClick={(e) => setFullLayer()}
+          variant={mode === 0 ? "contained" : "outlined"}        
+        >
+          {t('full_data')}
+        </Button>
+        <Button
+          onClick={(e) => setChoushuiEditLayer()}
+          variant={mode === 1 ? "contained" : "outlined"}
+        >
+          {t('part_data')}
+        </Button>
+      </div>
       {
         dataLoadState == 1 &&
         <div >

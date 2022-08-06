@@ -136,7 +136,7 @@ function SearchTextField(props) {
 export default function Search({ allData, setAllData, layers, setLayers, zoomTo, setHoverInfo, setClickInfo }) {
   const { t, i18n } = useTranslation();
   const [cursor, setCursor] = useState("crosshair");
-  const [text, setText] = useState("Changhua_0")
+  const [text, setText] = useState("")
   const [filteredMeasurement, setFilteredMeasurement] = useState()
   const [searchResult, setsearchResult] = useState([])
   const [data, setData] = useState()
@@ -309,7 +309,7 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       <div className={styles.search_bar}>
         <SearchTextField
           label={t('search_by_tag')}
-          defaultValue="Changhua_0"
+          defaultValue=""
           variant="filled"
           id="Search"
           onChange={sendText}

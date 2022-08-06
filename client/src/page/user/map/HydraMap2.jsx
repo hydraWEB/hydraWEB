@@ -209,7 +209,7 @@ function renderTooltip({ hoverInfo }) {
   );
 }
 
-function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STNO,setSTNO) {
+function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STNO,setSTNO, setButtonClickedFlag) {
   if (!clickInfo) {
     return null;
   }
@@ -222,12 +222,16 @@ function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STN
   const props = object.properties;
   
   function GetClickSTNO(){
-    if (STNO !== props.measurement) {
+    console.log(props.ST_NO)
+    console.log(props.measurement)
+    if (STNO !== props.ST_NO) {
       if(clickInfo.layer.id === "地下水觀測井位置圖_雲林縣現存站" || clickInfo.layer.id === "地下水觀測井位置圖_彰化縣現存站"){
-        setSTNO(props.measurement)
+        setSTNO(props.ST_NO)
       }
     }
-    return <div/>
+    return (
+      <div></div>
+    )
   }
 
   function ShowGroundButton() {
@@ -267,6 +271,7 @@ function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STN
         return (
           <div>
             <Button onClick={(e) => { 
+              setButtonClickedFlag(true)
               setCurrentFunction(7);
               //waterLevelRef.current.onSearchClick(e);
               if(document.getElementById('seachClickTrigger') != null){
@@ -476,11 +481,13 @@ export default function HydraMap() {
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const viewState2 = useRef(INITIAL_VIEW_STATE);
   const [STNO, setSTNO] = useState()
+  const [buttonClickedFlag, setButtonClickedFlag] = useState(false)
   const [currentFunction, setCurrentFunction] = useState(1)
   const [openSheet, setOpenSheet] = useState(true)
   const [hoverInfo, setHoverInfo] = useState({});
   const [clickInfo, setClickInfo] = useState(null);
   const [allData, setAllData] = useState([]) //地圖顯示Data
+  const [swapData, setSwapData] = useState([])
   const [chartIsVisible, setChartIsVisible] = useState(false)
   const [chartMin, setChartMin] = useState(0)
   const [chartMax, setChartMax] = useState(0)
@@ -901,7 +908,7 @@ export default function HydraMap() {
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 1}>
             <div className={styles.menu_desk_outer_layer}>
-              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} setChartMin={setChartMin} setChartMax={setChartMax}/>
+              <Layer allData={allData} setAllData={setAllData} layers={layers} setLayers={setLayersFunc} setHoverInfo={setHoverInfoFunc} setClickInfo={setClickInfoFunc} setChartIsVisible={setChartIsVisible} setChartMin={setChartMin} setChartMax={setChartMax} swapData={swapData} setSwapData={setSwapData}/>
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 3}>
@@ -923,9 +930,11 @@ export default function HydraMap() {
             </div>
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 7}>
+            {currentFunction === 7 &&
             <div className={styles.menu_desk_outer_layer_2}>
-              <WaterLevel ref={waterLevelRef} STNO={STNO}/>
+              <WaterLevel ref={waterLevelRef} STNO={STNO} buttonClickedFlag={buttonClickedFlag} setButtonClickedFlag={setButtonClickedFlag}/>
             </div>
+            }
           </ShowWrapper>
           <ShowWrapper isShow={currentFunction === 8}>
             <div className={styles.menu_desk_outer_layer_2}>
@@ -957,7 +966,7 @@ export default function HydraMap() {
           <div className={styles.menu_desk_outer_second_layer}>
             <SearchFunctionContent data={currentCAData} zoomTo={zoomToLocation} allData={allData} setAllData={setAllData} layers={layers}
             setLayers={setLayers} setHoverInfo={setHoverInfo} setClickInfo={setClickInfo} zoomInData={currentCAData}/>
-          </div>
+          </div> 
         </ShowWrapper>
         
       </div>
@@ -1053,7 +1062,7 @@ export default function HydraMap() {
           </DeckGL>
         </div>
         <ContextMenu parentRef={containerRef} lastClick={lastClick} startCircleAnalysis={() => { setEditLayerMode(DrawCircleFromCenterMode) }} setCurrentFunction={setCurrentFunction} />
-        {renderInfo(clickInfo, setClickInfo, setCurrentFunction ,waterLevelRef,STNO,setSTNO)}
+        {renderInfo(clickInfo, setClickInfo, setCurrentFunction ,waterLevelRef,STNO,setSTNO, setButtonClickedFlag)}
       </div>
     </>
 

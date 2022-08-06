@@ -2,7 +2,8 @@ from django.urls import path,include
 from .views import (LayerAPIView, LayerListAPIView, WaterLevelAllStationAPI,WaterLevelAPI,PDFAndPngAPI,
                     TagsAPI,AllTagsAPI,WaterLevelDownloadAPI,UploadFileAPI,UploadAndConvertToCSVFileAPI, 
                     UploadAndConvertToJSONFileAPI, UploadAndConvertToGEOJSONFileAPI, 
-                    UploadAndConvertToSHPFileAPI,DownloadFileListAPI, DownloadFileAPI, GnssFunction, DownloadMapDataAPI)
+                    UploadAndConvertToSHPFileAPI,DownloadFileListAPI, DownloadFileAPI, GnssFunction, DownloadMapDataAPI,
+                    Choushui_editLineLayerListAPIView, UploadGNSSAPI, GNSSTextBoxAPI, PartLayerListAPIView, AllAccordionName)
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -21,5 +22,10 @@ urlpatterns = [
     path('user/DownloadFileList', DownloadFileListAPI.as_view(), name="downloadFileList"),
     path('user/downloadFile', DownloadFileAPI.as_view(), name="downloadFile"),
     path('user/downloadMapData', DownloadMapDataAPI.as_view(), name="downloadMapData"),
-    path('user/GnssFunction', GnssFunction.as_view(), name="gnssFunction")
+    path('user/GnssFunction', GnssFunction.as_view(), name="gnssFunction"),
+    path('user/choushuiEditLayer', Choushui_editLineLayerListAPIView.as_view(), name="choushuiEditLayer"),
+    path('user/uploadGNSS', UploadGNSSAPI.as_view(), name="uploadGNSS"),
+    path('user/GNSSTextBox', GNSSTextBoxAPI.as_view(), name="GNSSTextBox"),
+    path('user/partLayer', PartLayerListAPIView.as_view(), name="partLayer"),
+    path('user/accordionName', AllAccordionName.as_view(), name="accordionName"),
 ]

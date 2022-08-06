@@ -39,11 +39,12 @@ import { WaterLevelAllStations, WaterLevelGetDataByStNo,WaterLevelDownloadByStNo
 import { useToasts } from "react-toast-notifications";
 import DatePicker from '@mui/lab/DatePicker';
 import TextField from '@mui/material/TextField';
+import * as savesvg from 'save-svg-as-png';
 import * as dayjs from 'dayjs'
 
 import axios from 'axios';
 
-export default function WaterLevel({STNO}) {
+export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFlag}) {
 
   const [allStation, setAllStation] = useState([])
   const [combineAllStation, setCombineAllStation] = useState([])
@@ -160,7 +161,8 @@ export default function WaterLevel({STNO}) {
     WaterLevelAllStations().then((res) => {
       addToast(t('water_level_loading_success'), { appearance: 'success', autoDismiss: true });
       setAllStation(res.data.data)
-      SplitAllStation(res.data.data)
+      console.log(res.data.data)
+      setCombineAllStation(res.data.data)
       setCurrentTimeSerieData("水位")   //initialize
     }).catch((err) => {
       addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
@@ -171,27 +173,33 @@ export default function WaterLevel({STNO}) {
 
   useEffect(() => {
     if(allStation.length > 0){
-      FindMinMaxTime(0,"full_data")
-      /* for(let i = 0; i < allStation.length; i++){
-        if(allStation[i]["name"] === "full_data"){
-          setCurrentStation(allStation[i]["data"][0])
-          setCurrentStationIndex(i)
-          break
-        }
-      } */
-      setCurrentStation(combineAllStation[0][0]['data'][0])
-      setCurrentStationIndex(0)
+      if(STNO === ""){
+        FindMinMaxTime(0,"full_data")
+        /* for(let i = 0; i < allStation.length; i++){
+          if(allStation[i]["name"] === "full_data"){
+            setCurrentStation(allStation[i]["data"][0])
+            setCurrentStationIndex(i)
+            break
+          }
+        } */
+        setCurrentStation(combineAllStation[0][0]['data'][0])
+        setCurrentStationIndex(0)
+      }
+      else{
+        let idx = FindIndexOfSTNO("水位")
+        FindMinMaxTime(idx,"full_data")
+        setCurrentStation(combineAllStation[0][idx]["data"][0])
+        setCurrentStationIndex(idx)
+      }
     }
   }, [combineAllStation])
 
   useEffect(() => {
-    if(allStation.length > 0 && STNO !==""){
-      let idx = FindIndexOfSTNO("水位")
-      FindMinMaxTime(idx,"full_data")
-      setCurrentStation(combineAllStation[0][idx]["data"][0])
-      setCurrentStationIndex(idx)
+    if(STNO !== "" && STNO !== undefined && buttonClickedFlag && !isLoadingStation){
+      document.getElementById('seachClickTrigger').click()
+      setButtonClickedFlag(false)
     }
-  },[STNO])
+  }, [isLoadingStation])
 
   const onSearchClick = (e) => {
     setIsInitialize(false)
@@ -233,11 +241,11 @@ export default function WaterLevel({STNO}) {
       }
       if(avgDay === 0 && avgHour === 0 && avgMinute === 0){
         setIsAverage(false)
-        fetch("http://localhost:8086/api/v2/query?org=hydraweb", {
+        fetch("http://140.121.196.77:30180/influxdb", {
           method: "POST",
           headers: new Headers({
             "Accept":"application/vnd.flux",
-            "Authorization":"Token 48ajON7zFsezaE5NbYJe4jbEgvYIFCcs07xeUp8xRXiMl7prTQPxeCn2i3bbafPqWibMOD63Bx51G5Y2MvKYkQ==",
+            "Authorization":"Token b0W9OqcWgFhiGqhvqoWi6w4FvfeFlJWgwLuWZc_yo70ZtEMntCppgnVpTKnngr836R68rJBmSaLc_2JWrK5iBA==",
             "Content-Type": "application/vnd.flux"
           }),
           body: bodyToSend
@@ -475,9 +483,11 @@ export default function WaterLevel({STNO}) {
       .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
+      .style('background-color', 'white')
       .append("g")
       .attr("transform",
         `translate(${margin.left}, ${margin.top})`);
+
 
     let dataset = null
     let dataset2 = []
@@ -500,6 +510,11 @@ export default function WaterLevel({STNO}) {
       }));
     }
     
+    svg.append("text")
+      .attr("class", "y label")
+      .attr("text-anchor", "end")
+      .attr("x", width)
+      .attr("y", height - 6)
 
     const focus = svg.append('g')
       .attr('class', 'focus')
@@ -731,6 +746,11 @@ export default function WaterLevel({STNO}) {
         )
     });
 
+    d3.select('#saveButton').on('click', function () {
+      //savesvg.saveSvgAsPng(svg.node(), "plot.png");
+      savesvg.saveSvgAsPng(d3.select('#LineChart > svg').node(), "plot.png");
+    });
+
   }
 
   let selectTimeSerie = allTimeSeriesData.map((d, index) =>
@@ -912,7 +932,6 @@ export default function WaterLevel({STNO}) {
       )
     }
     else{
-      console.log("why?")
       return (
         <div></div>
       )
@@ -1077,6 +1096,7 @@ export default function WaterLevel({STNO}) {
                   {t('search')}
                 </Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handleDownloadClick}>{t('download')}</Button>
+                <Button className="mt-2 ml-2" variant="contained" id='saveButton'>列印</Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handlePopClick}>{t('help')}</Button>
                 <Popover
                   id={id}

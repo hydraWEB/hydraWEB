@@ -217,7 +217,6 @@ function LineChart2({ chartData }) {
         for (let i = 0; i < list.length; i++) {
           if (roundOffDepth >= parseInt(list[i].土層上部) && roundOffDepth <= parseInt(list[i].土層下部)) {
             r1 = list[i].土壤分類
-            console.log(list[i])
           }
         }
 
@@ -252,7 +251,7 @@ function LineChart2({ chartData }) {
       });
 
 
-    d3.select('#saveButton').on('click', function () {
+    d3.select('#saveButtonChart2').on('click', function () {
       var svgString2 = getSVGString(d3.select('#title > svg').node());
       var svgString = getSVGString(d3.select('#chart_container > svg').node());
       svgString2Image(svgString, svgString2, width, height, 'png', save); // passes Blob and filesize String to the callback
@@ -422,7 +421,7 @@ export default function Chart2({ showChart, setShowChart, chartData }) {
         </div>
         <div className={styles.chart_print}>
           <Button
-            id='saveButton'
+            id='saveButtonChart2'
             onClick={OnClick}
           >列印</Button>
         </div>

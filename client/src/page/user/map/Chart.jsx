@@ -12,6 +12,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as d3 from 'd3';
+import * as savesvg from 'save-svg-as-png';
 import List from '@material-ui/core/List';
 import Avatar from '@material-ui/core/Avatar';
 import ListItem from '@material-ui/core/ListItem';
@@ -213,7 +214,6 @@ function LineChart({ chartData }) {
       .attr("class", "rock_tooltip_answer_2")
       .style("fill", "white")
       .style("opacity", "0");
-
     mouseG.append("text")
       .attr("class", "rock_tooltip_answer_depth")
       .style("fill", "white")
@@ -261,7 +261,6 @@ function LineChart({ chartData }) {
           if (roundOffDepth >= list[i].上限深度 && roundOffDepth <= list[i].下限深度) {
             r1 = list[i].岩類一
             r2 = list[i].岩類二
-            console.log(list[i])
           }
         }
 
@@ -303,8 +302,7 @@ function LineChart({ chartData }) {
 
       });
 
-
-    d3.select('#saveButton').on('click', function () {
+    d3.select('#saveButtonChart').on('click', function () {
       var svgString2 = getSVGString(d3.select('#title > svg').node());
       var svgString = getSVGString(d3.select('#chart_container > svg').node());
       svgString2Image(svgString, svgString2, width, height, 'png', save); // passes Blob and filesize String to the callback
@@ -474,8 +472,7 @@ export default function Chart({ showChart, setShowChart, chartData }) {
         </div>
         <div className={styles.chart_print}>
           <Button
-            id='saveButton'
-            onClick={OnClick}
+            id='saveButtonChart'
           >列印</Button>
         </div>
 

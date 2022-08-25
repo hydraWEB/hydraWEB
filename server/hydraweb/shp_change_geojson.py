@@ -2,7 +2,7 @@ import geopandas as gpd
 import shapely.geometry
 import json
 import twd97
-from geojson import Feature, Point, FeatureCollection, LineString, Polygon
+from geojson import Feature, Point, FeatureCollection, LineString, Polygon, MultiPolygon, MultiPoint, MultiLineString
 import os
 import pysftp
 import sys
@@ -84,6 +84,10 @@ def ShpToGeojson(filename, read_location, write_location):
     temp=list(gdf_Rail)
     point=0
     polygon=0
+    LineString=0
+    MultiLine=0
+    MultiPoint=0
+    MultiPolygon=0
     for i in range(0,counter):
         record={}
         my_point=0
@@ -117,6 +121,84 @@ def ShpToGeojson(filename, read_location, write_location):
                             poly.append(tuple(p_temp))
                         full_poly.append(poly)
                         my_point = Polygon(full_poly)
+                    elif str(gdf_Rail.iloc[i]['{}'.format(temp[y])].geom_type)==str('LineString'):
+                        LineString=1
+                        temp1=gdf_Rail.iloc[i]['geometry']
+                        map1=shapely.geometry.mapping(temp1)
+                        line=[]
+                        full_line=[]
+                        for i in range(0,len(map1['coordinates'])):
+    
+                            temp1, temp2 = map1['coordinates'][i][0], map1['coordinates'][i][1]
+                            TW_X, TW_Y = twd97.towgs84(temp1, temp2)
+                            p_temp=[]
+                            p_temp.append(TW_Y)
+                            p_temp.append(TW_X)
+                            line.append(tuple(p_temp))
+                        my_point = LineString(line)
+                    elif str(gdf_Rail.iloc[i]['{}'.format(temp[y])].geom_type)==str('MultiPoint'):
+                        MultiPoint=1
+                        temp1=gdf_Rail.iloc[i]['geometry']
+                        map1=shapely.geometry.mapping(temp1)
+                        point=[]
+                        for i in range(0,len(map1['coordinates'])):
+        
+                            temp1, temp2 = map1['coordinates'][i][0], map1['coordinates'][i][1]
+                            if temp1>180 and temp2>90: 
+                                TW_X, TW_Y = twd97.towgs84(temp1, temp2)
+                            else:
+                                TW_Y=temp1
+                                TW_X=temp2
+                            print(temp1)
+                    
+                            point.append([TW_Y,TW_X])
+                        my_point = MultiPoint(point)
+                    elif str(gdf_Rail.iloc[i]['{}'.format(temp[y])].geom_type)==str('MultiPolygon'):
+                        MultiPolygon=1
+                        temp1=gdf_Rail.iloc[i]['geometry']
+                        map1=shapely.geometry.mapping(temp1)
+                        full_poly1=[]
+                        for i in range(0,len(map1['coordinates'])):
+                            poly=[]
+                            full_poly=[]
+                            for y in range(0,len(map1['coordinates'][i][0])):
+        
+                                temp1, temp2 = map1['coordinates'][i][0][y][0], map1['coordinates'][i][0][y][1]
+                                if temp1>180 and temp2>90: 
+                                    TW_X, TW_Y = twd97.towgs84(temp1, temp2)
+                                    print(1)
+                                else:
+                                    TW_Y=temp1
+                                    TW_X=temp2
+                                p_temp=[]
+                                p_temp.append(TW_Y)
+                                p_temp.append(TW_X)
+                                poly.append(p_temp)
+                            full_poly.append(poly)
+                            full_poly1.append(full_poly)
+                        my_point = MultiPolygon(full_poly1)
+                    elif str(gdf_Rail.iloc[i]['{}'.format(temp[y])].geom_type)==str('MultiLineString'):
+                        MultiLine=1
+                        temp1=gdf_Rail.iloc[i]['geometry']
+                        map1=shapely.geometry.mapping(temp1)
+                        full_line=[]
+                        for i in range(0,len(map1['coordinates'])):
+                            line=[]
+                            for y in range(0,len(map1['coordinates'][i])):
+                        
+                                temp1, temp2 = map1['coordinates'][i][y][0], map1['coordinates'][i][y][1]
+                                if temp1>180 and temp2>90: 
+                                    TW_X, TW_Y = twd97.towgs84(temp1, temp2)
+                                    print(1)
+                                else:
+                                    TW_Y=temp1
+                                    TW_X=temp2
+                                p_temp=[]
+                                p_temp.append(TW_Y)
+                                p_temp.append(TW_X)
+                                line.append(p_temp)
+                            full_line.append(line)
+                        my_point = MultiLineString(full_line)
                 else:
                     counter=1
             else:
@@ -149,7 +231,31 @@ def ShpToGeojson(filename, read_location, write_location):
         polygon_file.append(fname)
         file1.append(file_temp)
         total_name.append(fname)
-        total_file.append(file_temp)   
+        total_file.append(file_temp)
+    elif LineString==1:
+        file_temp='{}/{}.json'.format(write_location,fname)
+        polygon_file.append(fname)
+        file1.append(file_temp)
+        total_name.append(fname)
+        total_file.append(file_temp)
+    elif MultiLine==1:
+        file_temp='{}/{}.json'.format(write_location,fname)
+        polygon_file.append(fname)
+        file1.append(file_temp)
+        total_name.append(fname)
+        total_file.append(file_temp)
+    elif MultiPoint==1:
+        file_temp='{}/{}.json'.format(write_location,fname)
+        polygon_file.append(fname)
+        file1.append(file_temp)
+        total_name.append(fname)
+        total_file.append(file_temp)
+    elif MultiPolygon==1:
+        file_temp='{}/{}.json'.format(write_location,fname)
+        polygon_file.append(fname)
+        file1.append(file_temp)
+        total_name.append(fname)
+        total_file.append(file_temp)
     """ header=['file_path','file_name']
     with open('/root/data_storage/{}/file_record.csv'.format(args.username), 'w',encoding="UTF-8") as out_file:
         writer = csv.writer(out_file)

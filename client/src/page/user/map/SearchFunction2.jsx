@@ -74,7 +74,6 @@ const Accordion = withStyles({
       borderBottom: '1px solid rgba(0, 0, 0, .125)',
       marginBottom: -1,
       minHeight: 15,
-      width:430,
       '&$expanded': {
         minHeight: 15,
       },

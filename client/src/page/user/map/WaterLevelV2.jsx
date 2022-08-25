@@ -35,6 +35,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Popover from '@mui/material/Popover';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import * as savesvg from 'save-svg-as-png';
 import { WaterLevelAllStations, WaterLevelGetDataByStNo,WaterLevelDownloadByStNo } from '../../../lib/api'
 import { useToasts } from "react-toast-notifications";
 import DatePicker from '@mui/lab/DatePicker';
@@ -43,7 +44,7 @@ import * as dayjs from 'dayjs'
 
 import axios from 'axios';
 
-export default function WaterLevel({STNO}) {
+export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFlag}) {
 
   const [allStation, setAllStation] = useState([])
   const [combineAllStation, setCombineAllStation] = useState([])
@@ -106,53 +107,6 @@ export default function WaterLevel({STNO}) {
     return 0
   }
 
-  function SplitAllStation(data){
-    var begin_changhua = 0, begin_yunlin = 0, begin_water = 0
-    var end_changhua = -1, end_yunlin = -1, end_water = -1
-    if(data[0]['name'] === 'full_data') {
-      begin_water = 0
-    }
-    else if(data[0]['name'] === 'Pumping_Changhua') {
-      begin_changhua = 0
-    }
-    else if(data[0]['name'] === 'Pumping_Yunlin') {
-      begin_yunlin = 0
-    }
-    for (let i = 1; i < data.length; i++){
-      if(data[i]['name'] === 'full_data' && data[i-1]['name'] !== 'full_data'){
-        begin_water = i
-      }
-      else if(data[i]['name'] === 'Pumping_Changhua' && data[i-1]['name'] !== 'Pumping_Changhua'){
-        begin_changhua = i
-      }
-      else if(data[i]['name'] === 'Pumping_Yunlin' && data[i-1]['name'] !== 'Pumping_Yunlin'){
-        begin_yunlin = i
-      }
-      if(data[i-1]['name'] === 'full_data' && data[i]["name"] !== "full_data"){
-        end_water = i-1
-      }
-      else if(data[i-1]['name'] === 'Pumping_Changhua' && data[i]["name"] !== "Pumping_Changhua"){
-        end_changhua = i-1
-      }
-      else if(data[i-1]['name'] === 'Pumping_Yunlin' && data[i]["name"] !== "Pumping_Yunlin"){
-        end_yunlin = i-1
-      }
-    }
-    if (end_water === -1){
-      end_water = data.length
-    }
-    else if (end_changhua === -1){
-      end_changhua = data.length
-    }
-    else{
-      end_yunlin = data.length
-    }
-    var combineAllData = []
-    combineAllData.push(data.slice(begin_water,end_water+1))
-    combineAllData.push(data.slice(begin_yunlin,end_yunlin+1))
-    combineAllData.push(data.slice(begin_changhua,end_changhua+1))
-    setCombineAllStation(combineAllData)
-  }
  
   let dayjs = require("dayjs")
 
@@ -160,7 +114,7 @@ export default function WaterLevel({STNO}) {
     WaterLevelAllStations().then((res) => {
       addToast(t('water_level_loading_success'), { appearance: 'success', autoDismiss: true });
       setAllStation(res.data.data)
-      SplitAllStation(res.data.data)
+      setCombineAllStation(res.data.data)
       setCurrentTimeSerieData("水位")   //initialize
     }).catch((err) => {
       addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
@@ -171,27 +125,34 @@ export default function WaterLevel({STNO}) {
 
   useEffect(() => {
     if(allStation.length > 0){
-      FindMinMaxTime(0,"full_data")
-      /* for(let i = 0; i < allStation.length; i++){
-        if(allStation[i]["name"] === "full_data"){
-          setCurrentStation(allStation[i]["data"][0])
-          setCurrentStationIndex(i)
-          break
-        }
-      } */
-      setCurrentStation(combineAllStation[0][0]['data'][0])
-      setCurrentStationIndex(0)
+      if(STNO === ""){
+        FindMinMaxTime(0,"full_data")
+        /* for(let i = 0; i < allStation.length; i++){
+          if(allStation[i]["name"] === "full_data"){
+            setCurrentStation(allStation[i]["data"][0])
+            setCurrentStationIndex(i)
+            break
+          }
+        } */
+        setCurrentStation(combineAllStation[0][0]['data'][0])
+        setCurrentStationIndex(0)
+      }
+      else{
+        let idx = FindIndexOfSTNO("水位")
+        FindMinMaxTime(idx,"full_data")
+        setCurrentStation(combineAllStation[0][idx]["data"][0])
+        setCurrentStationIndex(idx)
+      }
+      
     }
   }, [combineAllStation])
 
   useEffect(() => {
-    if(allStation.length > 0 && STNO !==""){
-      let idx = FindIndexOfSTNO("水位")
-      FindMinMaxTime(idx,"full_data")
-      setCurrentStation(combineAllStation[0][idx]["data"][0])
-      setCurrentStationIndex(idx)
+    if(STNO !== "" && STNO !== undefined && buttonClickedFlag && !isLoadingStation){
+      document.getElementById('seachClickTrigger').click()
+      setButtonClickedFlag(false)
     }
-  },[STNO])
+  }, [isLoadingStation])
 
   const onSearchClick = (e) => {
     setIsInitialize(false)
@@ -495,6 +456,7 @@ export default function WaterLevel({STNO}) {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
+      .style('background-color', 'white')
       .attr("transform",
         `translate(${margin.left}, ${margin.top})`);
 
@@ -782,6 +744,12 @@ export default function WaterLevel({STNO}) {
       }
     });
 
+    d3.select('#saveButton').on('click', function () {
+      //savesvg.saveSvgAsPng(svg.node(), "plot.png");
+      savesvg.saveSvgAsPng(d3.select('#LineChart > svg').node(), combineAllStation[0][currentStationIndex]["data"][0]+".png", {backgroundColor: "#FFFFFF"});
+    });
+
+
   }
 
   let selectTimeSerie = allTimeSeriesData.map((d, index) =>
@@ -975,7 +943,6 @@ export default function WaterLevel({STNO}) {
       )
     }
     else{
-      console.log("why?")
       return (
         <div></div>
       )
@@ -1140,6 +1107,7 @@ export default function WaterLevel({STNO}) {
                   {t('search')}
                 </Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handleDownloadClick}>{t('download')}</Button>
+                <Button className="mt-2 ml-2" variant="contained" id='saveButton'>列印</Button>
                 <Button className="mt-2 ml-2" variant="contained" onClick={handlePopClick}>{t('help')}</Button>
                 <Popover
                   id={id}

@@ -107,12 +107,13 @@ export default function UploadFIle() {
   const [shpFileArray, setShpFileArray] = useState([])
   const [xlsxFileArray, setXlsxFileArray] = useState([])
   const [csvFileArray, setCsvFileArray] = useState([])
-
+  const [crdFileArray, setCrdFileArray] = useState([])
   function splitDownloadFileList(data) {
     let jsonarr = []
     let shparr = []
     let xlsxarr = []
     let csvarr = []
+    let crdarr=[]
     for(let i = 0; i<data.length;i++){
       if(data[i][0].endsWith('xlsx')){
         xlsxarr.push(data[i])
@@ -123,14 +124,18 @@ export default function UploadFIle() {
       else if(data[i][0].endsWith('json')){
         jsonarr.push(data[i])
       }
-      else{
+      else if(data[i][0].endsWith('csv')){
         csvarr.push(data[i])
+      }
+      else{
+        crdarr.push(data[i])
       }
     }
     setJsonFileArray(jsonarr)
     setShpFileArray(shparr)
     setXlsxFileArray(xlsxarr)
     setCsvFileArray(csvarr)
+    setCrdFileArray(crdarr)
   }
 
   const uploadOnChange = (e) => {
@@ -349,7 +354,7 @@ export default function UploadFIle() {
     }
   }
 
-  let BtnList = [["JSON",jsonFileArray], ["CSV",csvFileArray], ["XLSX",xlsxFileArray], ["SHP",shpFileArray]].map((data) =>
+  let BtnList = [["JSON",jsonFileArray], ["CSV",csvFileArray], ["XLSX",xlsxFileArray], ["SHP",shpFileArray], ["CRD",crdFileArray]].map((data) =>
     <div>
       <Accordion square defaultExpanded>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" expandIcon={<ExpandMoreIcon />}>

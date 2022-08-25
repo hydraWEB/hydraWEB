@@ -10,6 +10,18 @@ databases.remove("local")
 databases.remove("ps")      #file too large, cause rendering slow
 databases.remove("ST_NO")
 databases.remove("tags")
+databases.remove("Choshui_River")
+databases.remove("GNSS_station")
+
+databases.remove("Geology")
+databases.remove("Layered_Trap_Drilling")
+databases.remove("shp_point")
+databases.remove("shp_polygon")
+databases.remove("timtom@gmail_com")
+databases.remove("user_data")
+databases.remove("users_space")
+databases.remove("victorblacktea@gmail_com")
+
 
 tag_db = client['tags']
 tag_col = tag_db["tags"]

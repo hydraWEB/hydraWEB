@@ -57,6 +57,8 @@ export const AnnouncementInfoUser = (data,id) => userRequest_client.get(`api/v1/
 
 
 export const LayerList = (data) => userRequest_client.post(`api/v1/user/layer`,data)
+export const ChoushuiLayerList = (data) => userRequest_client.post(`api/v1/user/choushuiEditLayer`,data)
+export const PartLayerList = (data) => userRequest_client.post(`api/v1/user/partLayer`,data)
 export const WaterLevelAllStations = () => userRequest_client.get(`api/v1/user/water_level/stations`)
 export const WaterLevelGetDataByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/getByID`,data)
 export const WaterLevelDownloadByStNo = (data) => userRequest_client.post(`api/v1/user/water_level/download`,data)
@@ -78,6 +80,8 @@ export const DownloadFile = (data) => userRequest_client.post(`api/v1/user/downl
 export const DownloadBufferFile = (data) => userDownloadRequest_client.post(`api/v1/user/downloadFile`,data)
 export const DownloadMapData = (data) => userDownloadRequest_client.post(`api/v1/user/downloadMapData`,data)
 
-export const GnssFunction = () => userRequest_client.post(`api/v1/user/GnssFunction`)
+export const GnssFunction = (data) => userRequest_client.post(`api/v1/user/GnssFunction`,data)
+export const GNSSList = () => userRequest_client.post(`api/v1/user/GNSSList`)
+export const GnssTextBox = (data) => userRequest_client.post(`api/v1/user/GNSSTextBox`,data)
 
 export default userLogin

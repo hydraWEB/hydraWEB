@@ -47,6 +47,8 @@ i18n
                     "upload" : "Upload", 
                     "time_series_data" : "Time Series Data",
                     "gnss" : "GNSS",
+                    "full_data": "Full Data",
+                    "part_data" : "Part Data",
                     //環域分析
                     "radius": "Radius",
                     "center_point": "Center Point",
@@ -182,7 +184,9 @@ i18n
                     "map_style":"Map Style",
                     "select_map_style":"Select Map Style",
                     //GNSS
-                    "execute": "Execute"
+                    "execute": "Execute",
+                    "enter_text": "Enter Text",
+                    "send_and_execute" : "Send And Execute"
                 }
             },
             zh_tw: {
@@ -223,6 +227,8 @@ i18n
                     "upload" : "上傳", 
                     "time_series_data" : "時序資料",
                     "gnss" : "全球衛星導航系統",
+                    "full_data": "所有資料",
+                    "part_data" : "部分資料",
                     //環域分析
                     "radius": "半徑",
                     "center_point": "中心點",
@@ -358,7 +364,9 @@ i18n
                     //MapStyle
                     "select_map_style":"選擇地圖樣式",
                     //GNSS
-                    "execute": "執行"
+                    "execute": "執行",
+                    "enter_text": "輸入文字",
+                    "send_and_execute" : "送出與執行"
                 }
             }
         },

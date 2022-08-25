@@ -34,10 +34,12 @@ from insert_mogno import insertjsonToMongo
 from xlsx_to_geojson import xlsxTOGeojson
 from GNSS_crd_translate import GnsscrdToCsv
 from Gnss_csv_translate import GnsscsvToJson
+from checkChoushi_editLine import CheckChoushi
 import time
 import pandas as pd
 import twd97
 import pprint
+import pymysql
 '''
 class LayerAPIView(views.APIView):      #資料夾
 
@@ -69,278 +71,61 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
     token = os.environ.get('INFLUX_TOKEN')
     org = os.environ.get('INFLUX_ORG')
     
-    def query_file(self):
-        dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-        dir_path = os.path.join(dir_path, "upload_data")
-        all_dir = os.listdir(dir_path)
-        json_data = []
-        for file in all_dir:
-            if(file.endswith(".json")):
-                file_path = os.path.join(dir_path,file)
-                f = open(file_path,"r",encoding="utf8")
-                json_read = json.load(f)
-                json_data.append({"name": file, "data": json_read,"time_serie":False,"tag":[]})
-        return json_data
-    
-    def query_city(self, bucket):
-        client = influxdb_client.InfluxDBClient(
-            url=self.url,
-            token=self.token,
-            org=self.org
-        )
-        geojson = {
-            "type": "FeatureCollection",
-            "features": []
-        }
-        query_api = client.query_api()
-      
-        query = f'from (bucket:"{bucket}")\
-        |> range(start: 1970-01-01T00:00:00Z)'
-        result = query_api.query(query=query, org = self.org)
-        feature = []
-
-        for table in result:
-            for record in table.records:
-                ##record.values is a dict 
-                properties = {}
-                geometry = {
-                    "type" : "Point"
-                }
-                newKey = []
-                coordinates = [0,0] 
-                newValue = []
-                for key in record.values:
-                    newKey.append(key)
-                    newValue.append(record.values[key])
-                for i in range(4, len(record.values)):
-                    if(newKey[i] != "lat" and newKey[i] != "lon" and newKey[i] != "_field" and newKey[i] != "_time"):
-                        properties[newKey[i]] = newValue[i]
-                    elif(newKey[i] == "_time"):
-                        properties['time'] = newValue[i].isoformat()
-                    elif(newKey[i] == "lon"):
-                        coordinates[0] = float(newValue[i])
-                    elif(newKey[i] == "lat"):
-                        coordinates[1] = float(newValue[i])
-                geometry["coordinates"] = coordinates
-                ft = {
-                    "type" : "Feature",
-                    "geometry" : geometry,
-                    "properties" : properties
-                }
-                feature.append(ft)
-        geojson = {
-            "type": "FeatureCollection",
-            "features": feature
-        }
-        return geojson
-
-    def query_influxdb(self, bucket):
-        client = influxdb_client.InfluxDBClient(
-            url=self.url,
-            token=self.token,
-            org=self.org
-        )
-        geojson = {
-            "type": "FeatureCollection",
-            "features": []
-        }
-        query_api = client.query_api()
-      
-        query = f'from (bucket:"{bucket}")\
-        |> range(start: 2007-02-01T00:00:00Z, stop: 2007-02-02T10:00:00Z)'
-        result = query_api.query(query=query, org = self.org)
-        #print("done")
-        feature = []
-        for table in result:
-            for record in table.records:
-                ##record.values is a dict 
-                properties = {}
-                geometry = {
-                    "type" : "Point"
-                }
-                newKey = []
-                coordinates = [0,0] 
-                newValue = []
-                for key in record.values:
-                    newKey.append(key)
-                    newValue.append(record.values[key])
-                for i in range(4, len(record.values)):
-                    if(newKey[i] != "LAT" and newKey[i] != "LON" and newKey[i] != "_field" and newKey[i] != "_time"):
-                        properties[newKey[i]] = newValue[i]
-                    elif(newKey[i] == "_time"):
-                        properties['time'] = newValue[i].isoformat()
-                    elif(newKey[i] == "LON"):
-                        coordinates[0] = float(newValue[i])
-                    elif(newKey[i] == "LAT"):
-                        coordinates[1] = float(newValue[i])
-                geometry["coordinates"] = coordinates
-                ft = {
-                    "type" : "Feature",
-                    "geometry" : geometry,
-                    "properties" : properties
-                }
-                feature.append(ft)
-            
-        geojson = {
-            "type": "FeatureCollection",
-            "features": feature
-        }
-        return geojson
-    
     def post(self,request):
         client = pymongo.MongoClient('mongodb://localhost:27017')
         db = client[os.environ.get('MONGODB_DB')]
         databases = client.list_database_names()    #get all database from mongodb
         start=time.time()
         #remove unwanted database
+        db = pymysql.connect(
+            host='localhost',
+            port=3306,
+            charset='utf8',
+            user='root',
+            passwd='recast203',
+            db='hydraweb'
+        )
+        
+        cursor = db.cursor()
+        sql = "select email from authentication_user"
+        cursor.execute(sql)
+        result=cursor.fetchall()
+        user=[]
+        for i in range(0,len(result)):
+            if result[i][0].find(str(request.user))<0:
+                user.append(result[i][0])
+        print(user)
+        user1=[]
+        for i in range(0,len(user)):
+            temp=user[i]
+            word_temp=""
+            for y in range(0,len(temp)):
+                if temp[y]!='.':
+                    word_temp=word_temp+temp[y]
+                else:
+                    word_temp=word_temp+'_'
+            user1.append(word_temp)
         databases.remove("admin")              
         databases.remove("config")
         databases.remove("local")
-        #databases.remove("ps")      #file too large, cause rendering slow
+        databases.remove("ps")      #file too large, cause rendering slow
+        databases.remove("ps_part")
         databases.remove("ST_NO")
         databases.remove("tags")
         databases.remove("user_data")
         databases.remove("users_space")
-        resultarr = []
-        new_json = {}       #use to store mongodb data in json format
-        total_prop=[]
-        for db in databases:    
-            tempDB = client[db]     #connect to the database
-            tempCollection = tempDB.list_collection_names()
-            is_time_series = False
-            res_json = []
-            if(db == "ps"):
-                collection = tempDB.get_collection("ps")
-                result = collection.find()
-                features = []
-                tags = []
-                for dt in result:
-                    inside_json = {
-                        "type": "Feature",
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [dt['x'], dt['y']]
-                            },
-                        "properties": {"z":dt['z']}
-                    }
-                    features.append(inside_json)
-                new_json = {
-                        "type": "FeatureCollection",
-                        "features": features
-                }
-                res_json.append({"name": "ps", "data": new_json,"time_serie":is_time_series,"tag":tags})
-            else:
-            #print(db)
-                for col in tempCollection:
-                    tags = []
-                    collection = tempDB.get_collection(col)
-                    result = collection.find()
-                    features = []
-                    is_time_series = False
-                    for dt in result:
-                        if str(dt['geometry'])==str('Point'):
-                            coordinates = [dt['x'],dt['y']]
-                            try:
-                                if(dt['time_series'] == True):
-                                    is_time_series = True
-                            except:
-                                is_time_series = False
-
-                            properties = {}
-                        
-                            for d in dt:
-                                try:
-                                    tags = dt["tag"]
-                                except:
-                                    pass
-                                if(d != "_id" and d != 'x' and d!= 'y' and d!= 'tags'): 
-                                    properties[d] = dt[d]
-                                if(d.find("prop")==0): #這部分在確認
-                                    if len(total_prop)==0:
-                                        total_prop.append(str(db))
-                                    else:
-                                        counter=0
-                                        for i in range(0,len(total_prop)):
-                                            if str(total_prop[i])==str(db):
-                                                counter=0
-                                                break
-                                            else:
-                                                counter=1
-                                        if counter==1:
-                                            total_prop.append(str(db)) 
-                            inside_json = {
-                                "type": "Feature",
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": coordinates
-                                    },
-                                "properties": properties
-                            }
-                            features.append(inside_json)
-                        elif str(dt['geometry'])==str('Polygon'):
-                            coordinates = dt["coordinates"]
-                            try:
-                                if(dt['time_series'] == True):
-                                    is_time_series = True
-                            except:
-                                is_time_series = False
-                            properties = {}
-                        
-                            for d in dt:
-                                try:
-                                    tags = dt["tag"]
-                                except:
-                                    pass
-                                if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
-                                    properties[d] = dt[d]
-                            inside_json = {
-                                "type": "Feature",
-                                    "geometry": {
-                                        "type": "Polygon",
-                                        "coordinates": [coordinates]
-                                    },
-                                "properties": properties
-                            }
-                            
-                            features.append(inside_json)
-                        elif str(dt['geometry'])==str('LineString'):
-                            coordinates = dt["coordinates"]
-                            try:
-                                if(dt['time_series'] == True):
-                                    is_time_series = True
-                            except:
-                                is_time_series = False
-                            properties = {}
-                        
-                            for d in dt:
-                                try:
-                                    tags = dt["tag"]
-                                except:
-                                    pass
-                                if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
-                                    properties[d] = dt[d]
-                            inside_json = {
-                                "type": "Feature",
-                                    "geometry": {
-                                        "type": "LineString",
-                                        "coordinates": coordinates
-                                    },
-                                "properties": properties
-                            }
-                            features.append(inside_json)
-                    new_json = {
-                        "type": "FeatureCollection",
-                        "features": features
-                    }
-                    
-                    res_json.append({"name": col, "data": new_json,"time_serie":is_time_series,"tag":tags})
-            #if(db == 'changhua'):
-            #    res_json.append({"name": "彰化水井台電關聯資料", "data": self.query_influxdb("changhua_taiwan_power_company_data"),"time_serie":is_time_series})
-            #if(db == "yunlin"):
-            #    res_json.append({"name": "雲林水井台電關聯資料", "data": self.query_influxdb("yunlin_taiwan_power_company_data"),"time_serie":is_time_series})
-                
-            resultarr.append({"name": db, "file":res_json})
-        
+        resultDatabases = []
+        for dt in databases:
+            temp=""
+            temp=str(dt)
+            counter=0
+            if temp.find("part")<0:
+                for i in range(0,len(user1)):
+                    if temp==str(user1[i]):
+                        counter=1
+                        break
+                if counter==0:
+                    resultDatabases.append(dt)
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         end = time.time()
         end = end-start
@@ -348,101 +133,309 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         print(end)
         #print(total_prop)
         #resultarr.append({"name":"Upload", "file":self.query_file()})
-        return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
-
-class WaterLevelAPI(views.APIView): #放到前端去處理了
+        return Response({"status":"created","data":resultDatabases}, status=status.HTTP_200_OK)   
+    
+class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_editLine裡的圖層資料
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
-    url = "http://localhost:8086"
-    token = os.environ.get('INFLUX_TOKEN')
-    bucket = os.environ.get('INFLUX_BUCKET')
-    org = os.environ.get('INFLUX_ORG')
-
-    def post(self,request):     #從influx拿該站點資料
-        #print(request.data)
-        st_no = request.data['st_no']
-        start_time = request.data['start_time']
-        end_time = request.data['end_time']
-        #average parameter
-        avg_day = request.data['avg_day']
-        avg_hour = request.data['avg_hour']
-        avg_minute = request.data['avg_minute']
-        res = self.get_target_station_data(st_no,start_time,end_time,avg_day,avg_hour,avg_minute)       #要改
-        
-        
-        return Response({"status":"created","data":res}, status=status.HTTP_200_OK)  
-        
-    def get_target_station_data(self, st_no, start_time, end_time, avg_day, avg_hour, avg_minute):
-        print("WaterLevelAPI")
-        print(self.bucket)
-        get_dt_time = datetime.now()
-        print("get data time = ", get_dt_time)
-        resultArr = []
-        waterlevel = []
-        time_arr = []
-        client = influxdb_client.InfluxDBClient(
-            url=self.url,
-            token=self.token,
-            org=self.org
-        )
-        query_api = client.query_api()
+    
+    def post(self,request):
+        client = pymongo.MongoClient('mongodb://localhost:27017')
+        db = client[os.environ.get('MONGODB_DB')]
+        databases = client.list_database_names()    #get all database from mongodb
         start=time.time()
-        if int(avg_day) == 0 and int(avg_hour) == 0 and int(avg_minute) == 0:
-            print(self.bucket)
-            #|> range(start: 1970-01-01T00:00:00Z)\
-            query = f'from (bucket:"{self.bucket}")\
-            |> range(start: {start_time}, stop: {end_time})\
-            |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
-            |> filter(fn: (r) => r._field == "Water_Level"'
-            result = query_api.query(query=query, org = self.org)
-            get_dt_time_mid = datetime.now()
-            print("get date mid time = ", get_dt_time_mid)
-            print("after query before sorting cost time = ", get_dt_time_mid-get_dt_time)
-            for table in result:
-                for i,t in enumerate(table):
-                    time_arr.append(t.values["_time"])
-                    waterlevel.append(t.values["_value"])
-            for i in range(0,len(time_arr)):
-                temp = []
-                temp.append(time_arr[i])
-                temp.append(waterlevel[i])
-                resultArr.append(temp)
-            get_dt_time_fin = datetime.now()
-            print("get date total time = ", get_dt_time_fin)
-            print("after sorting time cost = ",get_dt_time_fin - get_dt_time_mid)
-        elif int(avg_day) != 0 or int(avg_hour) != 0 or int(avg_minute) != 0:
-            avg_day=int(avg_day)*3600
-            avg_hour=int(avg_hour)*60
-            temp=0
-            temp=temp+int(avg_day)
-            temp=temp+int(avg_hour)
-            temp=temp+int(avg_minute)
-            p = {
-                 "_every": datetime.timedelta(minutes=temp)
-             }
-            
-            query = f'from (bucket:"{self.bucket}")\
-            |> range(start: {start_time}, stop: {end_time})\
-            |> filter(fn: (r) => r["ST_NO"] == "{st_no}")\
-            |> filter(fn: (r) => r._field == "Water_Level" and r["_value"] > -9998)\
-            |> timedMovingAverage(every: _every,period: _every)'
-            result = query_api.query(query=query,params=p, org = self.org)
-            for table in result:
-                for i,t in enumerate(table):
-                    time_arr.append(t.values["_time"])
-                    waterlevel.append(t.values["_value"])
-            for i in range(0,len(time_arr)):
-                temp = []
-                temp.append(time_arr[i])
-                temp.append(waterlevel[i])
-                resultArr.append(temp)
-        client.close()
+        #remove unwanted database
+        db = pymysql.connect(
+            host='localhost',
+            port=3306,
+            charset='utf8',
+            user='root',
+            passwd='recast203',
+            db='hydraweb'
+        )
+        
+        cursor = db.cursor()
+        sql = "select email from authentication_user"
+        cursor.execute(sql)
+        result=cursor.fetchall()
+        user=[]
+        for i in range(0,len(result)):
+            if result[i][0].find(str(request.user))<0:
+                user.append(result[i][0])
+        print(user)
+        user1=[]
+        for i in range(0,len(user)):
+            temp=user[i]
+            word_temp=""
+            for y in range(0,len(temp)):
+                if temp[y]!='.':
+                    word_temp=word_temp+temp[y]
+                else:
+                    word_temp=word_temp+'_'
+            user1.append(word_temp)
+        databases.remove("admin")              
+        databases.remove("config")
+        databases.remove("local")
+        databases.remove("ps_part")      #file too large, cause rendering slow
+        databases.remove("timtom@gmail_com")
+        databases.remove("ps")
+        databases.remove("ST_NO")
+        databases.remove("tags")
+        databases.remove("user_data")
+        databases.remove("users_space")
+        resultDatabases = []
+        for dt in databases:
+            temp=""
+            temp=str(dt)
+            counter=0
+            if temp.find("part")>0:
+                for i in range(0,len(user1)):
+                    tempDB = dt.replace("_part", "")
+                    if tempDB==str(user1[i]):
+                        counter=1
+                        break
+                if counter==0:
+                    tempDB = dt.replace("_part", "")
+                    resultDatabases.append(tempDB)
+        SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         end = time.time()
         end = end-start
         end = round(end,4)
         print(end)
-        
-        return resultArr
+        return Response({"status":"created","data":resultDatabases}, status=status.HTTP_200_OK)   
+    
+class PartLayerListAPIView(views.APIView):  #只回傳被選擇的資料庫
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    url = "http://localhost:8086"
+    token = os.environ.get('INFLUX_TOKEN')
+    org = os.environ.get('INFLUX_ORG')
+    
+    def post(self, request):
+        client = pymongo.MongoClient('mongodb://localhost:27017')
+        start=time.time()
+        resultarr = []
+        new_json = {}
+        total_prop = []
+        dbs = request.data["database"]
+        if(len(dbs) == 0):
+            SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
+            return Response({"status":"created","data":[]}, status=status.HTTP_200_OK)
+        else:
+            for db in dbs:
+                tempDB = client[db]     #connect to the database
+                tempCollection = tempDB.list_collection_names()
+                is_time_series = False
+                res_json = []
+                if(db == "ps_part" or db == "ps"):
+                    collection = tempDB.get_collection("ps")
+                    result = collection.find()
+                    features = []
+                    tags = []
+                    for dt in result:
+                        inside_json = {
+                            "type": "Feature",
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [dt['x'], dt['y']]
+                                },
+                            "properties": dt['z']
+                        }
+                        features.append(inside_json)
+                    new_json = {
+                            "type": "FeatureCollection",
+                            "features": features
+                    }
+                    res_json.append({"name": "ps", "data": new_json,"time_serie":is_time_series,"tag":tags})
+                else:
+                    for col in tempCollection:
+                        tags = []
+                        collection = tempDB.get_collection(col)
+                        result = collection.find()
+                        features = []
+                        is_time_series = False
+                        for dt in result:
+                            if str(dt['geometry'])==str('Point'):
+                                coordinates = [dt['x'],dt['y']]
+                                try:
+                                    if(dt['time_series'] == True):
+                                        is_time_series = True
+                                except:
+                                    is_time_series = False
+
+                                properties = {}
+                            
+                                for d in dt:
+                                    try:
+                                        tags = dt["tag"]
+                                    except:
+                                        pass
+                                    if(d != "_id" and d != 'x' and d!= 'y' and d!= 'tags'): 
+                                        properties[d] = dt[d]
+                                    if(d.find("prop")==0): #這部分在確認
+                                        if len(total_prop)==0:
+                                            total_prop.append(str(db))
+                                        else:
+                                            counter=0
+                                            for i in range(0,len(total_prop)):
+                                                if str(total_prop[i])==str(db):
+                                                    counter=0
+                                                    break
+                                                else:
+                                                    counter=1
+                                            if counter==1:
+                                                total_prop.append(str(db)) 
+                                inside_json = {
+                                    "type": "Feature",
+                                        "geometry": {
+                                            "type": "Point",
+                                            "coordinates": coordinates
+                                        },
+                                    "properties": properties
+                                }
+                                features.append(inside_json)
+                            elif str(dt['geometry'])==str('MultiPoint'):
+                                coordinates = dt["coordinates"]
+                                try:
+                                    if(dt['time_series'] == True):
+                                        is_time_series = True
+                                except:
+                                    is_time_series = False
+                                properties = {}
+                            
+                                for d in dt:
+                                    try:
+                                        tags = dt["tag"]
+                                    except:
+                                        pass
+                                    if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                        properties[d] = dt[d]
+                                inside_json = {
+                                    "type": "Feature",
+                                        "geometry": {
+                                            "type": "MultiPoint",
+                                            "coordinates": coordinates
+                                        },
+                                    "properties": properties
+                                }
+                                
+                                features.append(inside_json)
+                            elif str(dt['geometry'])==str('Polygon'):
+                                coordinates = dt["coordinates"]
+                                try:
+                                    if(dt['time_series'] == True):
+                                        is_time_series = True
+                                except:
+                                    is_time_series = False
+                                properties = {}
+                            
+                                for d in dt:
+                                    try:
+                                        tags = dt["tag"]
+                                    except:
+                                        pass
+                                    if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                        properties[d] = dt[d]
+                                inside_json = {
+                                    "type": "Feature",
+                                        "geometry": {
+                                            "type": "Polygon",
+                                            "coordinates": [coordinates]
+                                        },
+                                    "properties": properties
+                                }
+                                
+                                features.append(inside_json)
+                            elif str(dt['geometry'])==str('MultiPolygon'):
+                                coordinates = dt["coordinates"]
+                                try:
+                                    if(dt['time_series'] == True):
+                                        is_time_series = True
+                                except:
+                                    is_time_series = False
+                                properties = {}
+                            
+                                for d in dt:
+                                    try:
+                                        tags = dt["tag"]
+                                    except:
+                                        pass
+                                    if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                        properties[d] = dt[d]
+                                inside_json = {
+                                    "type": "Feature",
+                                        "geometry": {
+                                            "type": "MultiPolygon",
+                                            "coordinates": coordinates
+                                        },
+                                    "properties": properties
+                                }
+                                
+                                features.append(inside_json)
+                            elif str(dt['geometry'])==str('LineString'):
+                                coordinates = dt["coordinates"]
+                                try:
+                                    if(dt['time_series'] == True):
+                                        is_time_series = True
+                                except:
+                                    is_time_series = False
+                                properties = {}
+                            
+                                for d in dt:
+                                    try:
+                                        tags = dt["tag"]
+                                    except:
+                                        pass
+                                    if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                        properties[d] = dt[d]
+                                inside_json = {
+                                    "type": "Feature",
+                                        "geometry": {
+                                            "type": "LineString",
+                                            "coordinates": coordinates
+                                        },
+                                    "properties": properties
+                                }
+                                features.append(inside_json)
+                            elif str(dt['geometry'])==str('MultiLineString'):
+                                coordinates = dt["coordinates"]
+                                try:
+                                    if(dt['time_series'] == True):
+                                        is_time_series = True
+                                except:
+                                    is_time_series = False
+                                properties = {}
+                            
+                                for d in dt:
+                                    try:
+                                        tags = dt["tag"]
+                                    except:
+                                        pass
+                                    if(d != "_id" and d != 'coordinates' and d!= 'geometry' and d!= 'tags'): 
+                                        properties[d] = dt[d]
+                                inside_json = {
+                                    "type": "Feature",
+                                        "geometry": {
+                                            "type": "MultiLineString",
+                                            "coordinates": coordinates
+                                        },
+                                    "properties": properties
+                                }
+                                features.append(inside_json)
+                        new_json = {
+                            "type": "FeatureCollection",
+                            "features": features
+                        }
+                        
+                        res_json.append({"name": col, "data": new_json,"time_serie":is_time_series,"tag":tags})
+                database_name = db.replace("_part", "")
+                resultarr.append({"name": database_name, "file":res_json})
+        SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
+        end = time.time()
+        end = end-start
+        end = round(end,4)
+        print(end)
+        return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
     
 class WaterLevelAllStationAPI(views.APIView):
     renderer_classes = (JSONRenderer,)
@@ -453,19 +446,33 @@ class WaterLevelAllStationAPI(views.APIView):
         db = client['ST_NO']        #get database name ST_NO
         allCollection = db.list_collection_names()
         resultArr = []
+        full_data_arr = []
+        pumping_changhua_arr = []
+        pumping_yunlin_arr = []
         for col in allCollection:
             if(col == 'full_data' or col == 'Pumping_Changhua' or col == 'Pumping_Yunlin'):
                 collection = db.get_collection(col)
+                arr = []
                 result = collection.find()
                 for dt in result:
-                    temp  = []
+                    dict_result = {}
+                    temp = []
                     temp.append(dt["ST_NO"])
                     temp.append(dt["NAME_C"])
                     temp.append(dt["min_time"])
                     temp.append(dt["max_time"])
                     dict_result = {"name":col, "data":temp}
-                    resultArr.append(dict_result)
-        return resultArr
+                    arr.append(dict_result)
+                if(col == "full_data"):
+                    full_data_arr = arr
+                elif(col == "Pumping_Changhua"):
+                    pumping_changhua_arr = arr
+                elif(col == "Pumping_Yunlin"):
+                    pumping_yunlin_arr = arr
+        newfulldatalist = sorted(full_data_arr, key=lambda d: d['data'][0])
+        newchanghualist = sorted(pumping_changhua_arr, key=lambda d: d['data'][0])
+        newyunlinlist = sorted(pumping_yunlin_arr, key=lambda d: d['data'][0])
+        return [newfulldatalist,newyunlinlist,newchanghualist]
 
     def get(self,request):
         resultarr = self.get_all_station("ST_NO")
@@ -684,7 +691,8 @@ class UploadFileAPI(views.APIView):
         RecordUploadFile(username, filename, dir_path, counter)
     def insert_Mongo(self, username, filename, dir_path): #check ok
         insertjsonToMongo(username, filename, dir_path)
-                
+    def checkChoushi_editLine(self, username):
+        CheckChoushi(username)
     def post(self,request):     #only upload
         file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -754,6 +762,7 @@ class UploadFileAPI(views.APIView):
                             check_is_geojson=0
                 if check_is_geojson==1:
                     self.insert_Mongo(request.user, f.name, dir_path)
+                    self.checkChoushi_editLine(request.user)
             return Response({"message":"File is recieved", "data":[]}, status=status.HTTP_200_OK) 
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
@@ -794,7 +803,8 @@ class UploadAndConvertToCSVFileAPI(views.APIView): # json  and geojson convert t
                     writer.writerow(csv_temp)
     def insert_Mongo(self, username, filename, dir_path): #check ok
         insertjsonToMongo(username, filename, dir_path)
-        
+    def checkChoushi_editLine(self, username):
+        CheckChoushi(username)
     def post(self,request):     
         file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -856,6 +866,7 @@ class UploadAndConvertToCSVFileAPI(views.APIView): # json  and geojson convert t
                     self.Record_File(request.user, fname+".csv", dir_path, counter) 
                 else:
                     self.insert_Mongo(request.user, f.name, dir_path)
+                    self.checkChoushi_editLine(request.user)
                     fname = f.name.replace(".json", "")
                     self.geojsonTocsv(fname, dir_path, dir_path)
                     counter=0
@@ -983,7 +994,8 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile conve
         
     def insert_Mongo(self, username, filename, dir_path): #check ok
         insertjsonToMongo(username, filename, dir_path)
-        
+    def checkChoushi_editLine(self, username):
+        CheckChoushi(username)   
     def post(self,request):     
         file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -1053,16 +1065,19 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile conve
                     self.csvTogeojson(fname, dir_path, dir_path)
                     self.Record_File(request.user, fname+'.json', dir_path, counter)
                     self.insert_Mongo(request.user, fname+'.json', dir_path)
+                    self.checkChoushi_editLine(request.user)
                 elif(f.name.endswith('.xlsx')):
                     fname = f.name.replace(".xlsx", "")
                     self.xlsxTogeojson(fname, dir_path, dir_path)
                     self.Record_File(request.user, fname+'.json', dir_path, counter)
                     self.insert_Mongo(request.user, fname+'.json', dir_path)
+                    self.checkChoushi_editLine(request.user)
             if check_shp==1:
                 fname = shp_name.replace(".shp", "")
                 self.Shp_geojson(shp_name, dir_path, dir_path)
                 self.Record_File(request.user, fname+'.json', dir_path, counter) 
                 self.insert_Mongo(request.user, fname+'.json', dir_path)
+                self.checkChoushi_editLine(request.user)
             return Response({"message":"File is recieved", "data":converted_filename}, status=status.HTTP_200_OK)
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
@@ -1076,7 +1091,8 @@ class UploadAndConvertToSHPFileAPI(views.APIView): # json convert to shapefile
         insertjsonToMongo(username, filename, dir_path)
     def geojsonToSHP(self, fileName, read_dir, write_dir): #check ok
         GeojsonToShp2(fileName,read_dir,write_dir)
-              
+    def checkChoushi_editLine(self, username):
+        CheckChoushi(username)           
     def post(self,request):
         file = request.FILES.getlist('file')
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -1126,7 +1142,7 @@ class UploadAndConvertToSHPFileAPI(views.APIView): # json convert to shapefile
                 self.Record_File(request.user, fname+".shp", dir_path, counter)
                 self.Record_File(request.user, fname+".shx", dir_path, counter)
                 self.Record_File(request.user, fname+".dbf", dir_path, counter)
-                
+                self.checkChoushi_editLine(request.user)
             return Response({"message":"File is recieved", "data":converted_filename}, status=status.HTTP_200_OK)
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
@@ -1239,7 +1255,8 @@ class DownloadFileAPI(views.APIView):       #下載被選中的檔案
             "shx" : "x-gis/x-shapefile",
             "dbf" : "application/octet-stream",
             "zip" : "application/x-zip-compressed",
-            "xlsx" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "xlsx" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "crd" : "application/crd"
         }
         if(filename.endswith("json")): return ctDict['json']
         elif(filename.endswith("csv")): return ctDict['csv']
@@ -1247,6 +1264,7 @@ class DownloadFileAPI(views.APIView):       #下載被選中的檔案
         elif(filename.endswith("shx")): return ctDict['shx']
         elif(filename.endswith("dbf")): return ctDict['dbf']
         elif(filename.endswith("xlsx")): return ctDict['xlsx']
+        elif(filename.endswith("crd")): return ctDict['crd']
         
     def post(self,request):     
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -1302,20 +1320,71 @@ class DownloadMapDataAPI(views.APIView):
 
 class GnssFunction(views.APIView):
     
-    def gnsscrd_to_csv(self):
-        GnsscrdToCsv()
-    def gnsscsv_to_geojson(self):
-        GnsscsvToJson()
+    def gnsscrd_to_csv(self,username):
+        GnsscrdToCsv(username)
+    def gnsscsv_to_geojson(self,username):
+        GnsscsvToJson(username)
     def post(self, request):
         #do something
         print("activate gnss")
         if os.path.exists("/root/GNSS_Search_Data/gnss.txt"):
             os.remove("/root/GNSS_Search_Data/gnss.txt")
-        cmd = "/root/GNSS_Search_Data/file.sh"
-        os.system(cmd)
-        self.gnsscrd_to_csv()
-        self.gnsscsv_to_geojson()
+        #cmd = "/root/GNSS_Search_Data/file.sh"
+        #os.system(cmd)
         print("gnss_ok")
+        with open ('/root/GNSS_Search_Data/run.sh', 'w') as rsh:
+            rsh.writelines('#!/bin/bash\n')
+            rsh.writelines('source ~/BERN52/GPS/EXE/LOADGPS.setvar\n')
+            rsh.writelines('perl -I ~/BERN52/BPE/ -I ~/BERN52/GPS/EXE/ /root/GPSUSER52/SCRIPT/rnx2snx_pcs.pl {} >> /root/GNSS_Search_Data/gnss.txt\n'.format(str(request.data['text'])))
+        cmd = "chmod +777 /root/GNSS_Search_Data/run.sh"
+        os.system(cmd)
+        cmd1 = "/root/GNSS_Search_Data/run.sh"
+        os.system(cmd1)
+        self.gnsscrd_to_csv(request.user)
+        self.gnsscsv_to_geojson(request.user)
         with open("/root/GNSS_Search_Data/gnss.txt", "r") as gnss:
             resultarr = gnss.read()
+        #cmd = "python3 /var/www/html/app-deploy/HydraWeb/python/checkChoushi_editLine_GNSS.py"
+        #os.system(cmd)
         return Response({"status":"created", "data":resultarr}, status=status.HTTP_200_OK)
+
+class GNSSListAPIView(views.APIView):  #只傳送在choushui_editLine裡的圖層資料
+    
+    def post(self,request):
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        dir_path2 = os.path.dirname(dir_path)
+        result = [os.path.splitext(filename)[0] for filename in os.listdir(os.path.join(dir_path2, "map_data", "GNSS_station"))]
+        result2 = [os.path.splitext(filename)[0] for filename in os.listdir(os.path.join(dir_path2, "map_data", "GNSS_Full_station"))]
+        final_result = result + result2
+        SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
+        return Response({"status":"created","data":final_result}, status=status.HTTP_200_OK)   
+    
+class UploadGNSSAPI(views.APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
+    parser_classes = (MultiPartParser,)
+
+    def post(self,request):     
+        file = request.FILES.getlist('file')
+        dir_path = "/root/GPSDATA/DATAPOOL/RINEX/PPP"
+        read_files = os.listdir(dir_path)
+        if len(read_files)>0:
+            tmp="rm -r /root/GPSDATA/DATAPOOL/RINEX/PPP/*"
+            os.system(tmp)
+        if(request):
+            print(file)
+            for f in file:
+                print(f)
+                counter=0
+                filename = os.path.join(dir_path, f.name)
+                if os.path.isfile(filename)==True:
+                    os.remove(filename)
+                    counter=1
+                if(f.name.endswith('.21O')):
+                    fs = FileSystemStorage(location=dir_path)
+                    fs.save(filename, f)
+                    print(filename)
+            return Response({"message":"File is recieved", "data":[]}, status=status.HTTP_200_OK) 
+        else:
+            return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
+        

@@ -5,7 +5,44 @@ import string
 import csv
 import math
 import numpy
-
+from datetime import datetime
+def RecordUploadFile(username, filename, filepath, counter):
+    header=['file_path','file_name','username','last_download','last_created','download_count']
+    dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    file_dir = os.path.join(dir_path,"file_record.csv")
+    if(os.path.isfile(file_dir)):
+        if counter==0:
+            with open(file_dir, 'a',encoding="utf8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+                out_file.close()
+        elif counter==1:
+            file = []
+            with open(file_dir, "r", newline='', encoding="UTF-8") as csvfile:
+                csvReader = csv.DictReader(csvfile) 
+                for row in csvReader:
+                   #add this python dict to json array
+                   file.append(row)
+            os.remove(file_dir)
+            download_count=0
+            with open(file_dir, 'w+',encoding="utf8") as out_file:
+                writer = csv.writer(out_file)
+                writer.writerow(header)
+                for record in file:
+                    if str(record['file_name'])!=str(filename):
+                        writer.writerow([record['file_path'],record['file_name'],record['username'],record['last_download'],record['last_created'],record['download_count']])
+                        print(record)
+                    else:
+                        download_count=int(record['download_count'])
+                writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), download_count])
+                
+    else:
+        with open(file_dir, 'w+',encoding="utf8") as out_file:
+            writer = csv.writer(out_file)
+            writer.writerow(header)
+            writer.writerow([filepath,filename,username,'',datetime.date(datetime.now()), 0])
+            out_file.close()
+            
 def decdeg2dms(dd):
     is_positive = dd >= 0
     dd = abs(dd)
@@ -64,10 +101,10 @@ def XYZTOGEODETIC(x,y,z):
     #lon = decdeg2dms(lon)
     
     return lat, lon, h
-def GnsscrdToCsv():
+def GnsscrdToCsv(username):
     file=[]
     file_name=[]
-    cmd="find /root/GPSDATA/CAMPAIGN52/MOST/STA -name '*.CRD' -mmin -30"
+    cmd="find /root/GPSDATA/CAMPAIGN52/MOST/STA -name 'PPP2*.CRD'"
     result=os.popen(cmd).read()
 
     temp=""
@@ -82,12 +119,33 @@ def GnsscrdToCsv():
         temp=file[i].replace("/root/GPSDATA/CAMPAIGN52/MOST/STA/","")
         file_name.append(temp)
     path="/root/GPSDATA/CAMPAIGN52/MOST/STA/"
-    path1="/root/GNSS_Search_Data/CRD_TO_CSV/"
+    path1="/root/platform_gnss_csv/"
+    path1=path1+str(username)
+    path1=path1+"/"
+    upload_path="/var/www/html/app-deploy/HydraWeb/server/upload_data/"
+    upload_path=upload_path+str(username)
+    u_path=upload_path
+    upload_path=upload_path+"/"
+    if os.path.isdir(path1)==False:
+        os.mkdir(path1)
+    if os.path.isdir(upload_path)==False:
+        os.mkdir(upload_path)
     for i in range(0,len(file_name)):
+        utemp=path
+        utemp=utemp+str(file_name[i])
+        upload_path1=upload_path
+        upload_path1=upload_path1+str(file_name[i])
+        counter=0
+        if os.path.isfile(upload_path1)==True:
+            os.remove(upload_path1)
+            counter=1
+        cmd = "cp {} {}".format(str(utemp),str(upload_path))
+        os.system(cmd)
+        RecordUploadFile(username, file_name[i], u_path, counter)
         with open(path+file_name[i],'r')as f:
             rows = f.readlines()
             sum=0
-            header=["NUM","STATION","NAME","Lat(度)","Lon(度)","h(m)","FLAG"]
+            header=["NUM","STATION","NAME","Lat(度)","Lon(度)","h(m)","FLAG","Time"]
             with open(path1+file_name[i].replace('CRD','csv'),'w')as out:
                 writer = csv.writer(out)
                 writer.writerow(header)
@@ -130,7 +188,20 @@ def GnsscrdToCsv():
             
                     # 轉換完的 x,y,z 取代 list 3後面的值
                     list1[3:6] = XYZTOGEODETIC(x,y,z)
-                    writer.writerow(list1)
+                    list1[3:6] = XYZTOGEODETIC(x,y,z)
+                    if list1[-1]==str("PPP"):
+                        for row in islice(rows, 2, None): # 抓時間段
+                            # 刪除\n
+                            row = row[:-1]
+            
+                            #日期轉換 2021-01-01 11:59:45 to 2021-01-01T11:59:45Z
+                            row = row.replace("LOCAL GEODETIC DATUM: IGS14             EPOCH: ","")
+                            t=row
+                            temp1 = datetime.strptime(t, "%Y-%m-%d %H:%M:%S")
+                            temp2 = datetime.strftime(temp1, '%Y-%m-%dT%H:%M:%SZ')
+                            list1.append(temp2)
+                            break
+                        writer.writerow(list1)
                     sum+=1
             
                     #print("list = ",list1)

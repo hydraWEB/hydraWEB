@@ -4,9 +4,10 @@ import twd97
 from geojson import Feature, Point, FeatureCollection
 import os
 import pymongo
-def GnsscsvToJson():
+from datetime import datetime
+def GnsscsvToJson(username):
     
-    cmd="find /root/GNSS_Search_Data/CRD_TO_CSV/ -name '*.csv' -mmin -20"
+    cmd="find /root/platform_gnss_csv/{}/ -name '*.csv'".format(str(username))
     result=os.popen(cmd).read()
     file=[]
     temp=""
@@ -19,7 +20,7 @@ def GnsscsvToJson():
     csv1=[]
     gnss_csv=[]
     for i in range(0,len(file)):
-        temp=file[i].replace("/root/GNSS_Search_Data/CRD_TO_CSV/","")
+        temp=file[i].replace("/root/platform_gnss_csv/{}/".format(str(username)),"")
         csv1.append(temp)
     for i in range(0,len(csv1)):
         word_temp=""
@@ -36,7 +37,7 @@ def GnsscsvToJson():
         total=[]
 
         #read csv file
-        with open('/root/GNSS_Search_Data/CRD_TO_CSV/{}'.format(csv1[i]), newline='') as csvfile:
+        with open('/root/platform_gnss_csv/{}/{}'.format(str(username),csv1[i]), newline='') as csvfile:
             csvReader = csv.DictReader(csvfile) 
         
             #convert each csv row into python dict
@@ -56,12 +57,12 @@ def GnsscsvToJson():
                 'geometry': my_point,
                 'properties': record,
             })   
-        with open('/root/GNSS_Search_Data/csv_to_json/{}.json'.format(gnss_csv[i]), 'w', encoding='utf-8') as jsonf: 
+        with open('/root/platform_gnss_csv/{}/{}.json'.format(str(username),gnss_csv[i]), 'w', encoding='utf-8') as jsonf: 
             jsonString = json.dumps(geojson, ensure_ascii=False,indent=4)
             jsonf.write(jsonString)
     json_file=[]
 
-    entries = os.listdir('/root/GNSS_Search_Data/csv_to_json/')
+    entries = os.listdir("/root/platform_gnss_csv/{}/".format(str(username)))
 
     for i in range (0,len(entries)):
         temp=""
@@ -69,29 +70,52 @@ def GnsscsvToJson():
             temp=temp+entries[i][y]
         if temp=='.json':
             json_file.append(entries[i])
-    db_name = 'GNSS_station'
+    print(json_file)
+    temp=str(username)
+    word_temp=""
+    for i in range(0,len(temp)):
+        if temp[i]!='.':
+            word_temp=word_temp+temp[i]
+        else:
+            word_temp=word_temp+'_'
+    username1=word_temp
+    db_name = '{}_GNSS'.format(str(username1))
     client = pymongo.MongoClient('mongodb://localhost:27017')
     db = client[db_name]
     dir_path="/root/GNSS_Search_Data/csv_to_json/"
     for i in range(0,len(json_file)):
-        read_path = os.path.join(dir_path,"{}").format(str(json_file[i]))
-        fname = json_file[i].replace(".json", "")
-        col = db["{}".format(str(fname))]
+        name=json_file[i]
+        #print(name)
+        name=name.replace(".json","")
+        col = db['{}'.format(name)]
         cur = col.find()
         results = list(cur)
         if len(results)!=0:
             col.delete_many({})
+        read_path = '/root/platform_gnss_csv/{}/{}.json'.format(str(username),str(name))
         with open(read_path,"r",encoding="utf-8") as jsonfile:
             data = json.load(jsonfile)
+            timeless_dict = {}
             for dt in data['features']:
-                results={}
-                if str(dt["geometry"]["coordinates"][0])!='' and str(dt["geometry"]["coordinates"][0])!='':
-                    results["x"] = dt["geometry"]["coordinates"][0]
-                    results["y"] = dt["geometry"]["coordinates"][1]
-                    results['time_series'] = 'false'
-                    results["geometry"] = dt["geometry"]["type"]
-                    prop = dt["properties"]
-                    results.update(prop)
+                date_arr = []
+                coord = dt["geometry"]["coordinates"]
+                geo = dt["geometry"]["type"]
+                timeless_dict["x"] = coord[0]
+                timeless_dict["y"] = coord[1]
+                timeless_dict["geometry"] = geo
+                timeless_dict["time_series"] = True
+                #print(timeless_dict)
+                for tag in dt["properties"]:
+                    if tag!="Time":
+                        timeless_dict[tag] = dt["properties"][tag]
+                    else:
+                        temp2=datetime.strptime(dt["properties"][tag], '%Y-%m-%dT%H:%M:%SZ')
+                        temp3=datetime.strftime(temp2, '%Y-%m-%dT%H:%M:%SZ')
+                        
+                        date_arr.append({"time": temp3})
+                for d in date_arr:
+                    results = {**timeless_dict, **d}
+                    #print(results)
                     col.insert_one(results)
         map_path="/var/www/html/app-deploy/HydraWeb/server/map_data"
         map_path = os.path.join(map_path,"{}").format(str(db_name))

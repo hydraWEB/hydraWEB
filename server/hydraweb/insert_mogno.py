@@ -29,29 +29,54 @@ def insertjsonToMongo(username, filename, dir_path):
         data = json.load(jsonfile)
         for dt in data['features']:
             results={}
-            if str(dt["geometry"]["type"])=="Point":
-                if str(dt["geometry"]["coordinates"][0])!='' and str(dt["geometry"]["coordinates"][1])!='':
-                    results["x"] = dt["geometry"]["coordinates"][0]
-                    results["y"] = dt["geometry"]["coordinates"][1]
+            try:
+                if str(dt["geometry"]["type"])=="Point":
+                    if str(dt["geometry"]["coordinates"][0])!='' and str(dt["geometry"]["coordinates"][1])!='':
+                        results["x"] = dt["geometry"]["coordinates"][0]
+                        results["y"] = dt["geometry"]["coordinates"][1]
+                        results['time_series'] = 'false'
+                        results["geometry"] = dt["geometry"]["type"]
+                        prop = dt["properties"]
+                        results.update(prop)
+                        col.insert_one(results)
+                elif dt["geometry"]!=0  and str(dt["geometry"]["type"])=="Polygon":
+                    results["coordinates"] = dt["geometry"]["coordinates"][0]
+                    results['time_series'] = 'false'
+                    results["geometry"] = dt["geometry"]["type"]
+                    prop = dt["properties"]
+                    results.update(prop)   
+                    col.insert_one(results)
+                elif dt["geometry"]!=0  and str(dt["geometry"]["type"])=="LineString":
+                    results["coordinates"] = dt["geometry"]["coordinates"]
+                    results['time_series'] = 'false'
+                    results["geometry"] = dt["geometry"]["type"]
+                    prop = dt["properties"]
+                    results.update(prop)   
+                    col.insert_one(results)
+                elif str(dt["geometry"]["type"])=="MultiPoint":
+                    results["coordinates"] = dt["geometry"]["coordinates"]
+                    results['time_series'] = 'false'
+                    results["geometry"] = dt["geometry"]["type"]
+                    #results["tag"]=["雲林","非時序"]
+                    prop = dt["properties"]
+                    results.update(prop)
+                    col.insert_one(results)
+                elif dt["geometry"]!=0  and str(dt["geometry"]["type"])=="MultiPolygon":
+                    results["coordinates"] = dt["geometry"]["coordinates"]
                     results['time_series'] = 'false'
                     results["geometry"] = dt["geometry"]["type"]
                     prop = dt["properties"]
                     results.update(prop)
                     col.insert_one(results)
-            elif dt["geometry"]!=0  and str(dt["geometry"]["type"])=="Polygon":
-                results["coordinates"] = dt["geometry"]["coordinates"][0]
-                results['time_series'] = 'false'
-                results["geometry"] = dt["geometry"]["type"]
-                prop = dt["properties"]
-                results.update(prop)   
-                col.insert_one(results)
-            elif dt["geometry"]!=0  and str(dt["geometry"]["type"])=="LineString":
-                results["coordinates"] = dt["geometry"]["coordinates"]
-                results['time_series'] = 'false'
-                results["geometry"] = dt["geometry"]["type"]
-                prop = dt["properties"]
-                results.update(prop)   
-                col.insert_one(results)
+                elif dt["geometry"]!=0  and str(dt["geometry"]["type"])=="MultiLineString":
+                    results["coordinates"] = dt["geometry"]["coordinates"]
+                    results['time_series'] = 'false'
+                    results["geometry"] = dt["geometry"]["type"]
+                    prop = dt["properties"]
+                    results.update(prop)
+                    col.insert_one(results)
+            except:
+                print(1)
     map_path="/var/www/html/app-deploy/HydraWeb/server/map_data"
     map_path = os.path.join(map_path,"{}").format(str(username))
     if os.path.exists(map_path)!=True:

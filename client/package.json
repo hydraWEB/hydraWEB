@@ -53,6 +53,7 @@
     "react-scripts": "^5.0.0",
     "react-toast-notifications": "^2.4.4",
     "redux": "^4.1.1",
+    "save-svg-as-png": "^1.4.17",
     "stream-json": "^1.7.2",
     "web-vitals": "^0.2.4",
     "worker-loader": "^3.0.8"

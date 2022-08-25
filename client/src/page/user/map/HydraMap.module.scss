@@ -564,68 +564,105 @@ ul {
     background-color: rgba(54, 65, 70, 0.164);
     padding: 15px 15px 5px 15px;
     border-radius: 5px;
- }
- .wl_left_1_container{
+}
+.wl_left_1_container{
     padding: 5px;
     display: flex;
     flex-direction: row;
- }
+}
 
- .wl_left_1_container_div{
+.wl_left_1_container_div{
     align-self: center;
 }
 
- .wl_left_1_container_text{
+.wl_left_1_container_text{
      align-self: center;
      margin-left:10px;
      margin-right:10px;   
- }
+}
 
- .circle {
+.circle {
     display: flex;
     width: 10px;
     height: 10px;
     background-color: green;
     border-radius: 50%;
-  }
+}
 
-  .square_green {
+.square_green {
     width: 60px;
     height: 5px;
     background-color: green;
-  }
-  .square_red {
+}
+.square_red {
     width: 60px;
     height: 5px;
     background-color: red;
-  }
-  .info_layout{
+}
+.info_layout{
     padding-top: 20px;
     float: left;
     width: 68%;
     margin-left: 2%;
     overflow-x: auto;
-  }
-  .info_layout_left{
+}
+.info_layout_left{
     padding-top:10px;
     float:left;
     width: 70px;
     overflow:auto;
-  }
-  .info_layout_right{
+}
+.info_layout_right{
     float:left;
     width: 30%;
     overflow:auto;
-  }
-  .info_layout_top{
+}
+.info_layout_top{
     height:30px;
-  }
-  .info_layout_bot{
+}
+.info_layout_bot{
     height:30px;
-  }
+}
 
-  .button_layout{
+.button_layout{
     display: flex;
     flex-direction: row;
     color:blue;
-  }
+}
+  
+.layerNameCheckBox {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color:#FAFAFA;
+}
+
+.layerNameCheckBoxWrapper {
+    border-radius: 10px;
+    padding: 15px 10px 15px 10px;
+    margin:15px;
+    background: #457ee7aa;
+}
+
+.layerNameTextWrapper {
+    background: #457ee7aa;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.layerNameTextWrapper::-webkit-scrollbar {
+    -webkit-box-shadow: inset 0 0 6px rgba(241, 241, 241, 0.3);
+    background-color: #8d9ecc;
+}
+  //捲軸寬度
+.layerNameTextWrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #e2dfdfaa;
+}
+  //捲軸本體顏色
+.layerNameTextWrapper::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(161, 166, 173);
+}

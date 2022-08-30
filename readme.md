@@ -27,3 +27,8 @@
 1. ```cd server```
 2. ```pipenv install```
 3. ```python3 manage.py runserver```
+
+## 如果地圖無法顯示
+
+1. npm unistall react-scripts
+2. npm install --save react-scripts@4.0.3

@@ -57,7 +57,7 @@ export const StyledTable = styled.div(
         marginBottom:"20px"
     })
 )
-
+//管理者功能的框架
 export default function Staff() {
     let history = useHistory()
     const location = useLocation()
@@ -82,6 +82,7 @@ export default function Staff() {
                 </div>
             </div>
             <div className={styles.profile_container}>
+                {/*路徑對應的功能*/}
                 <Switch>
                     <Route path="/user/staff/login-analytics">
                         <LoginAnalytics/>

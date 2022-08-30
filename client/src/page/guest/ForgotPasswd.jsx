@@ -21,7 +21,7 @@ const FormForgotPasswd = styled.div(
         paddingRight:"50px"
     })
 )
-
+//忘記密碼功能
 export default function ForgotPasswd() {
     const { t, i18n } = useTranslation();
     let history = useHistory();
@@ -30,7 +30,7 @@ export default function ForgotPasswd() {
     const { addToast } = useToasts();
     const [text, setText] = useState("")
     const [showWarning, setShowWarning] = useState(false)
-
+    //點擊送出按鈕後的函式
     const handleSubmit = (e) => {
         e.preventDefault()
         if(!isLoading){

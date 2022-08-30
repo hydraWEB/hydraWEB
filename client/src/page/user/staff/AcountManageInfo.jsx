@@ -10,7 +10,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
 import { useTranslation, Trans } from "react-i18next";
-
+//查看使用者帳號的功能
 export default function AcountManageInfo() {
     const { t, i18n } = useTranslation()
     let query = useQuery();
@@ -20,7 +20,7 @@ export default function AcountManageInfo() {
     const [email, setEmail] = useState("")
     const [id, setId] = useState("")
     const [phone, setPhone] = useState("")
-
+    //每當query變化時執行裡面的函式
     useEffect(() => {
         if (typeof query.get("id") !== 'undefined' && query.get("id") != null) {
             let id = query.get("id")

@@ -13,7 +13,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+//查看公告功能
 export default function AnnouncementInfo() {
     const { t, i18n } = useTranslation()
     let query = useQuery();
@@ -21,7 +21,7 @@ export default function AnnouncementInfo() {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
-
+    //query變化時執行裡面的程式
     useEffect(() => {
         if (typeof query.get("id") !== 'undefined' && query.get("id") != null) {
             let id = query.get("id")

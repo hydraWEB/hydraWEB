@@ -75,14 +75,13 @@ export default function Login() {
     const [showWarning, setShowWarning] = useState(false)
     const { addToast } = useToasts();
     const initialUser = useRef()
-
+    //轉換語言功能的函式
     const changeLanguage = lng => {
         i18n.changeLanguage(lng);
         Cookies.set('locale', lng)
     };
-
+    //點擊登入按鈕後，處理登入權限的功能
     const handleLogin = (e) => {
-        //history.push("/user/hydramap")
         e.preventDefault()
         if (!isLoading) {
             setLoading(true)

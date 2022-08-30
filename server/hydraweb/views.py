@@ -34,6 +34,7 @@ from insert_mogno import insertjsonToMongo
 from xlsx_to_geojson import xlsxTOGeojson
 from GNSS_crd_translate import GnsscrdToCsv
 from Gnss_csv_translate import GnsscsvToJson
+from upload_crd_geojson import UploadCRDToJson
 from checkChoushi_editLine import CheckChoushi
 import time
 import pandas as pd
@@ -64,7 +65,7 @@ class LayerAPIView(views.APIView):      #資料夾
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         return Response({"status":"created","data":result}, status=status.HTTP_200_OK)   
 '''
-class LayerListAPIView(views.APIView):      #INFLUX + MONGO
+class LayerListAPIView(views.APIView):      #INFLUX + MONGO 傳到LayerV2.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
@@ -135,7 +136,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO
         #resultarr.append({"name":"Upload", "file":self.query_file()})
         return Response({"status":"created","data":resultDatabases}, status=status.HTTP_200_OK)   
     
-class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_editLine裡的圖層資料
+class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_editLine裡的圖層資料  傳到LayerV2.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     
@@ -204,7 +205,7 @@ class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_e
         print(end)
         return Response({"status":"created","data":resultDatabases}, status=status.HTTP_200_OK)   
     
-class PartLayerListAPIView(views.APIView):  #只回傳被選擇的資料庫
+class PartLayerListAPIView(views.APIView):  #只回傳被選擇的資料庫 傳到LayerV2.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
@@ -437,7 +438,7 @@ class PartLayerListAPIView(views.APIView):  #只回傳被選擇的資料庫
         print(end)
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)   
     
-class WaterLevelAllStationAPI(views.APIView):
+class WaterLevelAllStationAPI(views.APIView): #抓Mongodb 的 ST_NO databases 傳到WaterLevelV2.jsx
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
 
@@ -479,7 +480,7 @@ class WaterLevelAllStationAPI(views.APIView):
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)  
     
     
-class PDFAndPngAPI(views.APIView):
+class PDFAndPngAPI(views.APIView): #傳到BackendImage.jsx
     
     def get(self,request):
         dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -523,7 +524,7 @@ class PDFAndPngAPI(views.APIView):
         #return Response({"status":"created","data":result}, status=status.HTTP_200_OK)   
 
 
-class AllTagsAPI(views.APIView):        #從mongodb拿tags資料
+class AllTagsAPI(views.APIView):        #從mongodb拿tags資料for 環域分析所有圖標 傳到CircleAnalysis.jsx
             
     def getAllTags(self):
         client = pymongo.MongoClient('mongodb://localhost:27017')
@@ -544,7 +545,7 @@ class AllTagsAPI(views.APIView):        #從mongodb拿tags資料
         print(resultarr)
         return Response({"status":"created","data":resultarr}, status=status.HTTP_200_OK)  
     
-class TagsAPI(views.APIView):
+class TagsAPI(views.APIView): #抓哪個圖層的單個圖標,例如彰化,雲林,time_series 傳到CircleAnalysis.jsx
     
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
@@ -567,7 +568,7 @@ class TagsAPI(views.APIView):
         return Response({"status":"created","data":resultArr}, status=status.HTTP_200_OK)  
 
 
-class WaterLevelDownloadAPI(views.APIView):
+class WaterLevelDownloadAPI(views.APIView): #單純下載時序性資料for influxdb  傳到WaterLevelV2.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     url = "http://localhost:8086"
@@ -682,7 +683,7 @@ class WaterLevelDownloadAPI(views.APIView):
         print("download time:{}".format(end))
         return response
         
-class UploadFileAPI(views.APIView):
+class UploadFileAPI(views.APIView): #傳到Upload.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     parser_classes = (MultiPartParser,)
@@ -723,16 +724,18 @@ class UploadFileAPI(views.APIView):
                     temp_filename = "temp.shx"
                 elif(f.name.endswith('.dbf')):
                     temp_filename = "temp.dbf"
+                elif(f.name.endswith('.CRD')):
+                    temp_filename = "temp.CRD"
                 elif(f.name.endswith('.prj')):
                     temp_filename = "temp.prj"
-                if(temp_filename == "temp.shp" or temp_filename == "temp.shx" or temp_filename == "temp.dbf" or temp_filename == "temp.prj" or temp_filename == "temp.xlsx"):
+                if(temp_filename == "temp.shp" or temp_filename == "temp.shx" or temp_filename == "temp.dbf" or temp_filename == "temp.prj" or temp_filename == "temp.xlsx" or temp_filename == "temp.CRD"):
                     fs = FileSystemStorage(location=dir_path)
                     fs.save(f.name, f)
                 elif(temp_filename != ""):
                     fs = FileSystemStorage(location=dir_path)
                     fs.save(temp_filename, f)
                 #---------------create a temp edit to remove boundary------------
-                    if temp_filename != "temp.shp" or temp_filename != "temp.shx" or temp_filename != "temp.dbf" or temp_filename != "temp.prj" or temp_filename != "temp.xlsx":
+                    if temp_filename != "temp.shp" or temp_filename != "temp.shx" or temp_filename != "temp.dbf" or temp_filename != "temp.prj" or temp_filename != "temp.xlsx" or temp_filename != "temp.CRD":
                         encode="utf-8"
                         with open(os.path.join(dir_path, temp_filename), "r", encoding='utf-8') as read:
                             try:
@@ -767,7 +770,7 @@ class UploadFileAPI(views.APIView):
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
          
-class UploadAndConvertToCSVFileAPI(views.APIView): # json  and geojson convert to csv
+class UploadAndConvertToCSVFileAPI(views.APIView): # json  and geojson convert to csv #傳到Upload.jsx
     parser_classes = (MultiPartParser,)
     
     def Record_File(self, username, filename, dir_path, counter):
@@ -878,7 +881,7 @@ class UploadAndConvertToCSVFileAPI(views.APIView): # json  and geojson convert t
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
         
-class UploadAndConvertToJSONFileAPI(views.APIView): # xlsx and csv convert to json
+class UploadAndConvertToJSONFileAPI(views.APIView): # xlsx and csv convert to json #傳到Upload.jsx
     parser_classes = (MultiPartParser,)
     
     def Record_File(self, username, filename, dir_path, counter):
@@ -980,7 +983,7 @@ class UploadAndConvertToJSONFileAPI(views.APIView): # xlsx and csv convert to js
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
                             
-class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile convert to geojson
+class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv CRD, and shapefile convert to geojson #傳到Upload.jsx
     parser_classes = (MultiPartParser,)
     def Record_File(self, username, filename, dir_path, counter): #check ok
         RecordUploadFile(username, filename, dir_path, counter)
@@ -991,7 +994,8 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile conve
         csvTOGeojson(fileName, read_dir, write_dir)
     def xlsxTogeojson(self, fileName, read_dir, write_dir): #check ok.
         xlsxTOGeojson(fileName, read_dir, write_dir)
-        
+    def UploadcrdTojson(self, username, fileName, read_dir, write_dir):
+        UploadCRDToJson(username, fileName, read_dir, write_dir)
     def insert_Mongo(self, username, filename, dir_path): #check ok
         insertjsonToMongo(username, filename, dir_path)
     def checkChoushi_editLine(self, username):
@@ -1034,7 +1038,9 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile conve
                     temp_filename = "temp.dbf"
                 elif(f.name.endswith('.prj')):
                     temp_filename = "temp.prj"
-                if(temp_filename == "temp.shp" or temp_filename == "temp.shx" or temp_filename == "temp.dbf" or temp_filename == "temp.prj" or temp_filename == "temp.xlsx"):
+                elif(f.name.endswith('.CRD')):
+                    temp_filename = "temp.CRD"
+                if(temp_filename == "temp.shp" or temp_filename == "temp.shx" or temp_filename == "temp.dbf" or temp_filename == "temp.prj" or temp_filename == "temp.xlsx" or temp_filename == "temp.CRD"):
                     fs = FileSystemStorage(location=dir_path)
                     fs.save(f.name, f)
                 elif(temp_filename != ""):
@@ -1072,6 +1078,11 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile conve
                     self.Record_File(request.user, fname+'.json', dir_path, counter)
                     self.insert_Mongo(request.user, fname+'.json', dir_path)
                     self.checkChoushi_editLine(request.user)
+                elif(f.name.endswith('.CRD')):
+                    fname = f.name.replace(".CRD", "")
+                    self.UploadcrdTojson(request.user, fname, dir_path, dir_path)
+                    self.Record_File(request.user, fname+'.json', dir_path, counter)
+                    self.checkChoushi_editLine(request.user)
             if check_shp==1:
                 fname = shp_name.replace(".shp", "")
                 self.Shp_geojson(shp_name, dir_path, dir_path)
@@ -1082,7 +1093,7 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv and shapefile conve
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
         
-class UploadAndConvertToSHPFileAPI(views.APIView): # json convert to shapefile
+class UploadAndConvertToSHPFileAPI(views.APIView): # json convert to shapefile #傳到Upload.jsx
     parser_classes = (MultiPartParser,)
     
     def Record_File(self, username, filename, dir_path, counter):
@@ -1147,7 +1158,7 @@ class UploadAndConvertToSHPFileAPI(views.APIView): # json convert to shapefile
         else:
             return Response({"message":"File is missing"}, status=status.HTTP_400_BAD_REQUEST)
                    
-class DownloadFileListAPI(views.APIView):
+class DownloadFileListAPI(views.APIView): #傳到Upload.jsx
     
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
@@ -1167,7 +1178,7 @@ class DownloadFileListAPI(views.APIView):
         resultArr = self.findAllFile()      
         return Response({"status":"created","data":resultArr}, status=status.HTTP_200_OK)  
 
-class DownloadFileListAPI(views.APIView):
+class DownloadFileListAPI(views.APIView): #傳到Upload.jsx
     
     renderer_classes = (JSONRenderer,)       
     
@@ -1192,7 +1203,7 @@ class DownloadFileListAPI(views.APIView):
         return Response({"status":"created","data":resultArr}, status=status.HTTP_200_OK)  
 
 
-class DownloadFileAPI(views.APIView):       #下載被選中的檔案
+class DownloadFileAPI(views.APIView):       #下載被選中的檔案 #傳到Upload.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     
@@ -1287,7 +1298,7 @@ class DownloadFileAPI(views.APIView):       #下載被選中的檔案
             response = FileResponse(open(file_dir, 'rb'))
             return HttpResponse(response, content_type=contentType, status=status.HTTP_200_OK)
 
-class DownloadMapDataAPI(views.APIView):
+class DownloadMapDataAPI(views.APIView): #下載特定的巨量檔案 #傳到LayerV2.jsx
     
     def findMapData(name):
         dir_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -1318,7 +1329,7 @@ class DownloadMapDataAPI(views.APIView):
         print(response)
         return HttpResponse(response, content_type="application/json", status=status.HTTP_200_OK)
 
-class GnssFunction(views.APIView):
+class GnssFunction(views.APIView):#傳到GNSS.jsx
     
     def gnsscrd_to_csv(self,username):
         GnsscrdToCsv(username)
@@ -1359,7 +1370,7 @@ class GNSSListAPIView(views.APIView):  #只傳送在choushui_editLine裡的圖�
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         return Response({"status":"created","data":final_result}, status=status.HTTP_200_OK)   
     
-class UploadGNSSAPI(views.APIView):
+class UploadGNSSAPI(views.APIView):#傳到GNSS.jsx
     permission_classes = (IsAuthenticated,)
     renderer_classes = (JSONRenderer,)
     parser_classes = (MultiPartParser,)

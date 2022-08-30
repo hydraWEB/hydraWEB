@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import {useToasts} from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
 import styles from "./Profile.module.scss"
-
+//個人資料功能
 export default function UserData() {
     const { t, i18n } = useTranslation()
     let defaultData = {
@@ -28,7 +28,7 @@ export default function UserData() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [data, setData] = useState(defaultData)
     const { addToast } = useToasts();
-
+    //初始化執行一次裡面的程式
     useEffect(() => {
         userProfile().then((res) => {
             setIsLoaded(true)
@@ -40,7 +40,7 @@ export default function UserData() {
             setLoading(false)
         })
     }, [])
-
+    //點擊登出按鈕後執行的函式
     const handleLogout = (e) => {
         addToast(t("logout_success"), { appearance: 'success',autoDismiss:true });
         Cookies.remove('access')

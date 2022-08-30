@@ -9,7 +9,7 @@ import { useToasts } from "react-toast-notifications";
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
 
-
+//照片功能
 export default function Info() {
   const { t, i18n } = useTranslation();
   const [allImage, setAllImage] = useState([]);
@@ -21,7 +21,7 @@ export default function Info() {
   const onUploadClick = (e) => {
     
   }
-
+  //每當img有變化時執行裡面的程式
   useEffect(() => {
     if(img.length === 0) {
       setPreview(undefined)
@@ -47,7 +47,7 @@ export default function Info() {
       </div>
     )
   });
-
+  //每當上傳照片有變化時執行的函式
   const uploadImageOnChange = (e) => {
     console.log(e)
     console.log(e.target.files[0])

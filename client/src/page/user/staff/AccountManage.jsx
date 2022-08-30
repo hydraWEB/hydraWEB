@@ -11,7 +11,7 @@ import { useToasts } from "react-toast-notifications";
 import styles from './Staff.module.scss'
 import * as dayjs from 'dayjs'
 import { useTranslation, Trans } from "react-i18next";
-
+//顯示表格的界面
 function TableData({ data, loadData }) {
     const { t, i18n } = useTranslation();
     const [showDelete, setShowDelete] = useState(false);
@@ -20,18 +20,19 @@ function TableData({ data, loadData }) {
     const [page, setPage] = useState(1);
     let history = useHistory();
     let dayjs = require("dayjs")
+    //點擊查看按鈕後執行的函式
     function onInfoClick(d) {
         history.push(`/user/staff/account-manage/info?id=${d.userid}`);
     }
-
+    //點擊修改按鈕後執行的函式
     function onEditClick(d) {
         history.push(`/user/staff/account-manage/edit?id=${d.userid}`);
     }
-
+    //點擊修改密碼按鈕後執行的函式
     function onChangePasswordClick(d){
         history.push(`/user/staff/account-manage/changePassword?id=${d.userid}`);
     }
-
+    //點擊刪除按鈕後執行的函式
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
@@ -44,12 +45,12 @@ function TableData({ data, loadData }) {
 
         })
     }
-
+    //打開點擊刪除按鈕後跳出的視窗的函式
     function handleOpen(d) {
         setDeleteData(d)
         setShowDelete(true)
     }
-
+    //關閉點擊刪除按鈕後跳出的視窗的函式
     function handleClose() {
         setShowDelete(false)
         setDeleteData(null)
@@ -108,7 +109,7 @@ function TableData({ data, loadData }) {
         </>
     )
 }
-
+//帳號管理功能
 export default function AccountManage() {
     const location = useLocation()
     const { user, setUser } = useContext(userContext)
@@ -116,7 +117,7 @@ export default function AccountManage() {
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
-
+    //從後端取得資料
     const loadData = () => {
         accountList({
             params: {
@@ -132,6 +133,7 @@ export default function AccountManage() {
 
         })
     }
+    //初始化時執行一次裡面的程式
     useEffect(() => {
         loadData()
     }, [])

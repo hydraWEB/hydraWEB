@@ -10,7 +10,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import useQuery from "../../../lib/hook";
 import { useToasts } from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
-
+//修改密碼的功能
 export default function AccountManageChangePassword() {
     const { t, i18n } = useTranslation()
     let query = useQuery();
@@ -22,7 +22,7 @@ export default function AccountManageChangePassword() {
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword1, setNewPassword1] = useState("")
     const [newPassword2, setNewPassword2] = useState("")
-
+    //點擊確認按鈕後執行的函式
     const submitForm = (e) => {
         let id = query.get("id")
         accountChangePassword({
@@ -39,7 +39,7 @@ export default function AccountManageChangePassword() {
 
         })
     }
-    
+    //初始化時執行裡面的程式
     useEffect(() => {
         if (typeof query.get("id") !== 'undefined' && query.get("id") != null) {
             let id = query.get("id")

@@ -43,7 +43,7 @@ import TextField from '@mui/material/TextField';
 import * as dayjs from 'dayjs'
 
 import axios from 'axios';
-
+//時序資料功能的函式
 export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFlag}) {
 
   const [allStation, setAllStation] = useState([])
@@ -93,7 +93,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
   const token = "IGFIcuExdgqGPVxjtBDo2hUpoeh7r7FXGO-hMrSRd4U0EwB9A2F2Cp2yUf2NvIk2Ndm7UN4tYFvUMHvXkiwLQg=="
   const org = "hydraweb"
   const bucket = "test"
-
+  //透過站點名稱尋找存取的陣列裡的位置的函式
   function FindIndexOfSTNO(name){
     if(name === "水位"){
       for (let i = 0;i<combineAllStation[0].length;i++){
@@ -109,7 +109,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
 
  
   let dayjs = require("dayjs")
-
+  //初始化時執行一次裡面的程式，通過後端取得資料
   useEffect(() => {
     WaterLevelAllStations().then((res) => {
       addToast(t('water_level_loading_success'), { appearance: 'success', autoDismiss: true });
@@ -122,9 +122,11 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
       setLoadingStation(false);
     })
   }, [])
-
+  //每當combineAllStation有變化時執行裡面的函式
   useEffect(() => {
     if(allStation.length > 0){
+      //不是透過點擊資訊欄裡的水位資料按鈕跳轉到時序資料功能裡就執行下面的程式
+      //預設陣列的第一筆資料
       if(STNO === ""){
         FindMinMaxTime(0,"full_data")
         /* for(let i = 0; i < allStation.length; i++){
@@ -137,6 +139,8 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
         setCurrentStation(combineAllStation[0][0]['data'][0])
         setCurrentStationIndex(0)
       }
+      //是透過點擊資訊欄裡的水位資料按鈕跳轉到時序資料功能裡就執行下面的程式
+      //預設成站點名稱的資料
       else{
         let idx = FindIndexOfSTNO("水位")
         FindMinMaxTime(idx,"full_data")
@@ -146,14 +150,16 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
       
     }
   }, [combineAllStation])
-
+  //每當isLoadingStation有變化時執行下面的函式
   useEffect(() => {
+    //是透過點擊資訊欄裡的水位資料按鈕跳轉到時序資料功能裡就執行下面的程式
+    //點擊搜尋按鈕
     if(STNO !== "" && STNO !== undefined && buttonClickedFlag && !isLoadingStation){
       document.getElementById('seachClickTrigger').click()
       setButtonClickedFlag(false)
     }
   }, [isLoadingStation])
-
+  //點擊搜尋按鈕執行的函式
   const onSearchClick = (e) => {
     setIsInitialize(false)
     if(STNO != ""){
@@ -173,6 +179,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     let end_datetime = dayjs.unix(maxDateUnix)
     console.log(start_datetime)
     console.log(end_datetime)
+    //如果時間沒問題執行下面的程式
     if (time_is_valid) {
       let stationDataArr = []
       let stationDataAverageArr = []
@@ -192,6 +199,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
       else if (currentTimeSerieData === "彰化抽水"){
         bodyToSend = `from(bucket:"pumping_station_changhua") |> range(start: ${minDateUnix}, stop: ${maxDateUnix}) |> filter(fn: (r) => r._field == "pump" and r["_value"] > -9998 and r["_measurement"] == "${combineAllStation[2][currentStationIndex]["data"][0]}")`
       }
+      //如果沒有設定到平均時間就執行下面的程式
       if(avgDay === 0 && avgHour === 0 && avgMinute === 0){
         setIsAverage(false)
         fetch("http://140.121.196.77:30180/influxdb", {
@@ -209,6 +217,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
           console.log(end)
           console.log(end-start)
           var lines = data.split("\n")
+          //只選出需要的資料
           for (let i = 1; i < lines.length; i++){
             let arr = []
             let splitedline = lines[i].split(",")
@@ -221,6 +230,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
           setLoadingData(false)
         })
       }
+      //如果有設定到平均時間就執行下面的程式
       else {
         setIsAverage(true)
         let totalMin = avgDay*1440 + avgHour*60 + avgMinute
@@ -249,7 +259,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
           console.log(end)
           console.log(end-start)
           var lines = data.split("\n")
-          // ------------------------------------need to fix later -----------------------------------------------------
+          //只選出需要的資料
           for (let i = 1; i < lines.length-2; i++){
             let arr = []
             let splitedline = lines[i].split(",")
@@ -257,7 +267,6 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
             arr.push(parseFloat(splitedline[splitedline.length-2]))
             stationDataAverageArr.push(arr)
           }
-          //------------------------------------------------------------------------------------------------------------
           setCurrentStationAverageData(stationDataAverageArr)
         })
         //fetch InfluxDB data without average constant
@@ -276,6 +285,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
           console.log(end)
           console.log(end-start)
           var lines = data.split("\n")
+          //只選出需要的資料
           for (let i = 1; i < lines.length; i++){
             let arr = []
             let splitedline = lines[i].split(",")
@@ -288,27 +298,12 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
           setLoadingData(false)
         })
       }
-      
-      /* WaterLevelGetDataByStNo({
-        st_no: allStation[currentStationIndex][0],
-        start_time:start_datetime,
-        end_time:end_datetime, 
-        avg_day:avgDay,
-        avg_hour:avgHour,
-        avg_minute:avgMinute
-      }).then((res) => {
-        setCurrentStationData(res.data.data)
-      }).catch((err) => {
-        addToast(t('water_level_loading_fail'), { appearance: 'error', autoDismiss: true });
-      }).finally(() => {
-        setLoadingData(false)
-      }) */
     }
     else {
       alert("Minimum time must be smaller than Maximum time")
     }
   }
-
+  //每當currentStationData或currentStationAverageData有變化時執行下面的程式
   useEffect(() => {
     if(isAverage){
       if(currentStationData !== null && currentStationAverageData !== null){
@@ -322,32 +317,33 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     }
     
   }, [currentStationData, currentStationAverageData])
-
+  //繪製空的圖表，用來覆蓋掉之前的圖表
   function DrawEmptyChart() {
     d3.select("#LineChart").html("");
     const svg = d3.select("#LineChart")
   }
-
+  //每當選擇水位站點有變化時執行的函式
   const waterstationSelectOnChange = (e) => {
     console.log(e.target.value)
     FindMinMaxTime(e.target.value, "full_data")
     setCurrentStation(combineAllStation[0][e.target.value]["data"][0])
     setCurrentStationIndex(e.target.value)
   }
-
+  //每當選擇雲林抽水站點有變化時執行的函式
   const pumping_YunlinstationSelectOnChange = (e) => {
     console.log(e.target.value)
     FindMinMaxTime(e.target.value, "Pumping_Yunlin")
     setCurrentStation(combineAllStation[1][e.target.value]["data"][0])
     setCurrentStationIndex(e.target.value)
-  }  
+  } 
+  //每當選擇彰化抽水站點有變化時執行的函式 
   const pumping_ChanghuastationSelectOnChange = (e) => {
     console.log(e.target.value)
     FindMinMaxTime(e.target.value, "Pumping_Changhua")
     setCurrentStation(combineAllStation[2][e.target.value]["data"][0])
     setCurrentStationIndex(e.target.value)
   }
-
+  //每當選擇水位、雲林抽水或彰化抽水變化時執行的函式
   const timeSerieSelectOnChange = (e) => {
     console.log(e.target.value)
     setCurrentTimeSerieData(e.target.value)
@@ -357,7 +353,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     else if (e.target.value === "水位") val = "full_data"
     FindMinMaxTime(currentStationIndex, val)
   }
-
+  //檢查選擇的時間是否正確
   function timeIsValid() {
 
     let minDateUnix = parseInt((minTimeDatePicker.getTime() / 1000).toFixed(0))
@@ -374,7 +370,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     }
     return true
   }
-
+  //修改influx回傳回來的資料，將<9998的資料改成NaN
   function filterInfluxData(data){
     let newarr = []
     if(data === null) return newarr
@@ -388,7 +384,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     }
     return newarr
   }
-
+  //找出該該陣列裡index的最大最小的時間
   function FindMinMaxTime(index,name) {
     var utc = require('dayjs/plugin/utc')
     var timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
@@ -443,7 +439,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     setMinTimeDatePicker(new Date(minYear, minMonth, minDay))
     setMaxTimeDatePicker(new Date(maxYear, maxMonth, maxDay))
   }
-
+  //繪製圖表，使用d3.js繪製
   function DrawChart() {
     d3.select("#LineChart").html("");
     const margin = { top: 30, right: 0, bottom: 30, left: 55 },
@@ -715,7 +711,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
         //focus.select(".x-hover-line").attr("y2", mouse[0]);
         //focus.select(".y-hover-line").attr("x2", mouse[1]);
       });
-
+    //點擊滑鼠兩下恢復成原來的圖表
     svg.on("dblclick", function () {
       if(!isAverage){
         x.domain(d3.extent(dataset, function (d) { return d.x; }))
@@ -743,7 +739,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
           )
       }
     });
-
+    //下載按鈕
     d3.select('#saveButton').on('click', function () {
       //savesvg.saveSvgAsPng(svg.node(), "plot.png");
       savesvg.saveSvgAsPng(d3.select('#LineChart > svg').node(), combineAllStation[0][currentStationIndex]["data"][0]+".png", {backgroundColor: "#FFFFFF"});
@@ -795,11 +791,11 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
   let selectAvgDay = avgDayOptions.map((d) =>
   <option value={d}>{d}</option>
   );
-
+  //點擊幫助按鈕後執行的函式
   const handlePopClick = (event) => {
     setOpenpop(event.currentTarget);
   }
-
+  //點擊下載按鈕後執行的函式
   const handleDownloadClick = (event) => {
     if(STNO !== ""){
       setCurrentStation(STNO)
@@ -856,7 +852,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
       alert("Minimum time must be smaller than Maximum time")
     }
   }
-
+  //顯示圖表上面的資訊
   function ShowInfo() {
     if (!isAverage){
       return (
@@ -892,10 +888,9 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
       )
     }
   }
-
+  //判斷是水位、雲林抽水或彰化抽水並顯示相應的資料
   function ShowAllStation(name){   //顯示目前選擇的時序資料
     if(name.name === "水位"){
-      console.log("water")
       return (
         <div className={styles.wl_left_1}>
           <h5>{t('select_area')}</h5>
@@ -910,7 +905,6 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
       )
     }
     else if (name.name === "雲林抽水"){
-      console.log("hello")
       return (
         <div>
           <div className={styles.wl_left_1}>
@@ -949,7 +943,7 @@ export default function WaterLevel({STNO, buttonClickedFlag, setButtonClickedFla
     }
   }
 
-
+  //關閉幫助按鈕的視窗
   const handleClose = () => {
     setOpenpop(null);
   };

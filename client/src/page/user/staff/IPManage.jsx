@@ -11,13 +11,13 @@ import Pagination from '@material-ui/lab/Pagination';
 import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./Staff";
 import { useToasts } from "react-toast-notifications";
 import styles from './Staff.module.scss'
-
+//顯示表格的界面
 function TableData({ data, page, loadData }) {
     const { t, i18n } = useTranslation()
     const [showDelete, setShowDelete] = useState(false);
     const [deleteData, setDeleteData] = useState(null);
     const { addToast } = useToasts();
-
+    //點擊刪除按鈕後執行的函式
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
@@ -30,11 +30,12 @@ function TableData({ data, page, loadData }) {
 
         })
     }
-
+    //控制打開點擊刪除按鈕後打開的視窗
     function handleOpen(d) {
         setDeleteData(d)
         setShowDelete(true)
     }
+    //控制關閉點擊刪除按鈕後打開的視窗
     function handleClose() {
         setShowDelete(false)
         setDeleteData(null)
@@ -85,7 +86,7 @@ function TableData({ data, page, loadData }) {
         </>
     )
 }
-
+//ip管理功能
 export default function IPManage() {
     const { t, i18n } = useTranslation()
     let history = useHistory()
@@ -95,7 +96,7 @@ export default function IPManage() {
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
     const { user, setUser } = useContext(userContext)
-
+    //衝後端取得資料
     const loadData = (page) => {
         IPList({
             params: {
@@ -111,10 +112,11 @@ export default function IPManage() {
 
         })
     }
+    //頁面變化時執行的函式
     const onChangePage = (e, page) => {
         history.replace(`/user/staff/ip-manage?p=${page}`)
     }
-
+    //每當query變化時執行裡面的程式
     useEffect(() => {
         if (typeof query.get("p") !== 'undefined' && query.get("p") != null) {
             setPage(parseInt(query.get("p")))
@@ -122,7 +124,7 @@ export default function IPManage() {
             setPage(1)
         }
     }, [query])
-
+    //每當page變化時執行裡面的程式
     useEffect(() => {
         loadData(page)
     }, [page])

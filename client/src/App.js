@@ -22,7 +22,7 @@ export default function App(props) {
     let history = useHistory();
     const location = useLocation();
     const { t, i18n } = useTranslation();
-
+    //如果有登入的權限，給予在api.js使用到的userRequest_client和userDownloadRequest_client權限
     if (Cookies.get('access')) {
         userRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`
         userDownloadRequest_client.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('access')}`

@@ -14,7 +14,7 @@ import { FlexColumnContainer, StyledTable, StyledTd, StyledTh, Title } from "./S
 import useQuery from "../../../lib/hook";
 import { useTranslation, Trans } from "react-i18next";
 
-
+//顯示表格的界面
 function TableData({ data }) {
     const { t, i18n } = useTranslation()
     const idItems = data.map((d, index) =>
@@ -43,7 +43,7 @@ function TableData({ data }) {
 
     )
 }
-
+//登入統計功能
 export default function LoginAnalytics() {
 
     let history = useHistory()
@@ -77,7 +77,7 @@ export default function LoginAnalytics() {
 
     const [data, setData] = useState([])
 
-
+    //衝後端取得登入資料
     const loadData = (p) => {
         let currentPage = page
         if ((typeof p !== 'undefined')) {
@@ -101,7 +101,7 @@ export default function LoginAnalytics() {
 
         })
     }
-
+    //初始化執行一次裡面的程式
     useEffect(() => {
         systemLogGetAllYear().then((res) => {
             setYears(res.data.data)

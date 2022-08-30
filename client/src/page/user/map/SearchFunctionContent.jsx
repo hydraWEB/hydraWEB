@@ -94,33 +94,33 @@ const Accordion = withStyles({
   }))(MuiAccordionDetails);
   
 
-
+//searchFunction.jsx所用到的函式
 export default function SearchFunctionContent({data,zoomTo, allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, zoomInData}){
   
   const [currentPage, setCurrentPage] = useState(1)
   const [currentPageData, setCurrentPageData] = useState([])
   const [totalpage, setTotalPage] = useState(0)
 
-
+  //將結果分割成10筆一頁
   function currentPageDataSetting(resultMeasurement, page) {
     let totalPage = Math.ceil(resultMeasurement.length / 10)
     let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
     setCurrentPageData(pageData)
     setTotalPage(totalPage)
   }
-
+  //當頁面變化時執行的函式
   const onChangePage = (e, page) => {
     currentPageDataSetting(data, page)
     setCurrentPage(page)
   }
-
+  //當data變化時執行的函式
   useEffect(() => {
     currentPageDataSetting(data,1)
     setCurrentPage(1)
   },[data])
 
 
-
+  //顯示詳細資料的函式
   function InnerResult(data){
       var title = []
       function btnClicked() {

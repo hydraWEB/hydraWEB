@@ -9,7 +9,7 @@ import {useToasts} from "react-toast-notifications";
 import useQuery from "../../../lib/hook";
 import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
 import {  Title } from "./Staff";
-
+//沒用到
 export default function SystemSetting() {
     
     const { t, i18n } = useTranslation()

@@ -37,16 +37,16 @@ const useStyles1 = makeStyles((theme) => ({
     maxWidth: "100%"
   },
 }));
-
+//包含所有繪製圖表的函式
 function LineChart({ chartData }) {
 
   const [info, setInfo] = useState(null)
-
+  //每當chartData有變化時執行裡面的程式
   useEffect(() => {
     drawChart();
   }, [chartData]);
 
-
+  //繪製圖表的函式，使用d3.js 繪製圖表
   function drawChart() {
     let d = chartData
     // set the dimensions and margins of the graph
@@ -62,7 +62,7 @@ function LineChart({ chartData }) {
     title(list)
     岩類一(list)
   }
-
+  //顯示圖表上面的標題字串
   function title(list) {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
       width = 500 - margin.left - margin.right,
@@ -95,14 +95,14 @@ function LineChart({ chartData }) {
   }
 
 
-
+  //顯示深度和岩類的圖表
   function 岩類一(list) {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
       width = 500 - margin.left - margin.right,
       height = 1000 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-
+    //選擇chart_container並給予屬性
     var svg = d3.select("#chart_container")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -174,7 +174,7 @@ function LineChart({ chartData }) {
           .style("opacity", "1");
       })
 
-
+    //岩類2圖表
     svg.selectAll('rect.rock2')
       .data(list).enter().append("rect")
       .attr('y', (d) => {
@@ -188,7 +188,7 @@ function LineChart({ chartData }) {
       .attr('stroke', 'black')
       .attr('fill', (d, i) => colorize3(d.岩類二));
 
-
+    //岩類1圖表內的字體
     svg.selectAll("text.rock2")
       .data(list)
       .enter()
@@ -301,7 +301,7 @@ function LineChart({ chartData }) {
 
 
       });
-
+    //點擊下載的程式
     d3.select('#saveButtonChart').on('click', function () {
       var svgString2 = getSVGString(d3.select('#title > svg').node());
       var svgString = getSVGString(d3.select('#chart_container > svg').node());
@@ -452,7 +452,7 @@ const DialogTitle2 = withStyles(styles_)((props) => {
     </MuiDialogTitle>
   );
 });
-
+//顯示地質鑽探資料的圖表
 export default function Chart({ showChart, setShowChart, chartData }) {
 
   const handleClickOpen = () => {

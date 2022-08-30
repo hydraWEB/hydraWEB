@@ -108,6 +108,8 @@ export default function UploadFIle() {
   const [xlsxFileArray, setXlsxFileArray] = useState([])
   const [csvFileArray, setCsvFileArray] = useState([])
   const [crdFileArray, setCrdFileArray] = useState([])
+
+  //將所有後端回傳的資料根據格式分割
   function splitDownloadFileList(data) {
     let jsonarr = []
     let shparr = []
@@ -138,6 +140,7 @@ export default function UploadFIle() {
     setCrdFileArray(crdarr)
   }
 
+  //輸入檔案改變時觸發
   const uploadOnChange = (e) => {
     setDataLoadState(0)
     setProgress(0)
@@ -169,12 +172,15 @@ export default function UploadFIle() {
       else if(ft.endsWith('.prj')){
         setFileType("shapefile")
       }
+      else if(ft.endsWith('.CRD')){
+        setFileType("CRD")
+      }
       else{
         setFileType("unknow")
       }
     }
   }
-
+  //點擊上傳按鈕時觸發
   const onFileUploadClick = (value) => {
     setDataLoadState(1)
     setProgress(0)
@@ -226,7 +232,7 @@ export default function UploadFIle() {
     }).finally(() => {
     })
   }
-
+  //根據輸入的檔案格式顯示按鈕
   function ShowButton(){
     if(fileType === "json"){
       return (
@@ -285,6 +291,18 @@ export default function UploadFIle() {
           </div>
         )
       }
+      else if(fileType === "CRD"){
+        return (
+          <div className={styles.function_wrapper_upload}>
+            <Button type="submit" onClick={() => onFileUploadClick("original")}>
+              {t('upload')}
+            </Button>
+            <Button className="mt-2" type="submit" onClick={() => onFileUploadClick("geojson")}>
+              {t('convert_to_geojson_and_upload')}
+            </Button>
+          </div>
+        )
+      }
       else{
         return (
           <div></div>
@@ -292,6 +310,7 @@ export default function UploadFIle() {
       }
   }
 
+  //下載檔案
   const downloadFile = ({ data, fileName, fileType }) => {
     // Create a blob with the data we want to download as a file
     const blob = new Blob([data], { type: fileType })
@@ -308,7 +327,7 @@ export default function UploadFIle() {
     a.dispatchEvent(clickEvt)
     a.remove()
   }
-
+  //點擊下載按鈕時觸發
   const downloadOnClick = (val) => {
     if(val.endsWith('xlsx')){
       DownloadBufferFile({
@@ -375,8 +394,8 @@ export default function UploadFIle() {
       </Accordion>
     </div>
   );
-
-  useEffect(() => {   //run once only
+  //初始化時執行，之後就不再執行
+  useEffect(() => {   
     DownloadFileList().then((res) => {
       splitDownloadFileList(res.data.data)
       setDownloadFileList(res.data.data)

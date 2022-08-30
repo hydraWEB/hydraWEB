@@ -101,7 +101,7 @@ const StyledLabel = styled.label(
   )
 )
 
-
+//環域分析功能
 export default function CircleAnalysis({ radius, setRadius, setAllData, allData, layers, setLayers, 
   mode, setMode, lastClick, zoomTo, setHoverInfo, setClickInfo, setShowMoreData, setAllCAData}) {
 
@@ -121,15 +121,17 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
   const [isLoading, setLoading] = useState(true)
   const [allTags, setAllTags] = useState([])
   const [allTagsState, setAllTagsState] = useState([])
+  //設定成繪製圓圈
   function setEditLayerMode() {
     
     setMode(DrawCircleFromCenterMode,"circle-analysis-layer")
     
   }
+  //設定成取消繪製圓圈
   function setViewLayerMode() {
     setMode(ViewMode,"circle-analysis-layer")
   }
-
+  //初始化時執行裡面的程式一次，取得所有的標籤和與標籤對應的圖層名稱
   useEffect(() => {
     AllTags().then((res) => {
       addToast(t('tags_loading_success'), { appearance: 'success', autoDismiss: true });
@@ -162,7 +164,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
 
   }, [])
 
-
+  //將搜尋過濾成唯一
   function sortSearchResult(data){
     if(data.length !== 0){
       let searchName = data[0][0]
@@ -192,7 +194,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
     }
     
   }
-
+  //當checkbox變化時執行的函式
   function onChangeCheckItems(e){
     let tagsToRemove = []
     let originArr = [...allTags];
@@ -228,7 +230,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
     setTagFilterGIS(filteredAllGIS)
     setAllTags(originArr)
   }
-
+  //checkbox的設定
   function CheckItem({data}){
     return (
       <InputWrapper>
@@ -246,7 +248,7 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       </InputWrapper>
     )
   }
-
+  //找出符合要搜尋的圖層資料
   function filter() {
     
     let alldt = allData
@@ -311,19 +313,19 @@ export default function CircleAnalysis({ radius, setRadius, setAllData, allData,
       }
     </div>
   );
-
+  //將結果分成10筆一頁
   function currentPageDataSetting(resultMeasurement, page) {
     let totalPage = Math.ceil(resultMeasurement.length / 10)
     let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
     setCurrentPageData(pageData)
     setTotalPage(totalPage)
   }
-
+  //當頁面變化時執行的函式
   const onChangePage = (e, page) => {
     currentPageDataSetting(searchResult, page)
     setCurrentPage(page)
   }
-
+  //當radius或tagFilterGIS有變化時執行裡面的程式
   useEffect(() => {
     filter()
   }, [radius,tagFilterGIS])

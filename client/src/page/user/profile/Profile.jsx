@@ -14,7 +14,7 @@ import Setting from "./Setting";
 import ChangeMyPassword from "./ChangeMyPassword";
 import {useToasts} from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
-
+//個人賬號的框架
 export default function Profile() {
     let history = useHistory()
     const location = useLocation()
@@ -24,7 +24,7 @@ export default function Profile() {
     const [changePasswordLink, setChangePasswordLink] = useState("")
     const { addToast } = useToasts();
 
-    
+    //初始化執行一次裡面的程式
     useEffect(() => {
         var userid = ""
         userProfile().then((res) => {

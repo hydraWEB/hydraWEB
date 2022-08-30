@@ -150,11 +150,11 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
     setCursor('crosshair')
   }
    */
-
+  //textbox變化時呼叫的函式
   const sendText = (t) => {
     setText(t.target.value)
   }
-
+  //過濾並找出符合資料的圖層
   function filter() {
     let alldt = allData
     let resultMeasurement = []
@@ -235,23 +235,23 @@ export default function Search({ allData, setAllData, layers, setLayers, zoomTo,
       }
     </div>
   );
-
+  //標籤變化時呼叫的函式
   const handleChange = (e) =>{
     setcurrentTag(e.target.value)
   }
-
+  //分割結果成10筆一頁
   function currentPageDataSetting(resultMeasurement, page) {
     let totalPage = Math.ceil(resultMeasurement.length / 10)
     let pageData = resultMeasurement.slice((page - 1) * 10, page * 10 - 1)
     setCurrentPageData(pageData)
     setTotalPage(totalPage)
   }
-  
+  //頁面變化是呼叫的函式
   const onChangePage = (e, page) => {
     currentPageDataSetting(searchResult, page)
     setCurrentPage(page)
   }
-
+  //allData變化時呼叫的函式
   useEffect(() => {
     let alltags = []
     let allMeasurement = []

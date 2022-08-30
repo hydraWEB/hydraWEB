@@ -11,14 +11,14 @@ import useQuery from "../../../lib/hook";
 import styles from "../User.module.scss";
 import { useToasts } from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
-
-export default function AnnouncementEdit() {
+//新增Ip功能
+export default function IpManageNew() {
     const { t, i18n } = useTranslation()
     let query = useQuery();
     let history = useHistory()
     const { addToast } = useToasts();
     const [ipAddress, setIpAddress] = useState([])
-
+    //點擊送出按鈕執行的函式
     const submitForm = (e) => {
         IPSendNew({
             ip_address: ipAddress,

@@ -25,7 +25,7 @@ export default function ChangeMyPassword() {
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword1, setNewPassword1] = useState("")
     const [newPassword2, setNewPassword2] = useState("")
-
+    //點擊確認按鈕後執行的函式
     const submitForm = (e) => {
         accountChangePassword({
             old_password: oldPassword,
@@ -41,7 +41,7 @@ export default function ChangeMyPassword() {
 
         })
     }
-    
+    //初始化執行一次裡面的程式
     useEffect(() => {
         userProfile().then((res) => {
             setIsLoaded(true)

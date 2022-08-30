@@ -7,7 +7,7 @@ import {Link, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import styled from "@emotion/styled";
 import { useTranslation, Trans } from "react-i18next";
 import Button from '@material-ui/core/Button';
-
+//沒用到
 export default function SystemSetting() {
     const { t, i18n } = useTranslation()
     let history = useHistory()

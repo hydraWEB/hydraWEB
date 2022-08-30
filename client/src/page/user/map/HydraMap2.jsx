@@ -79,6 +79,7 @@ import {
   MeasureAreaMode,
   MeasureAngleMode
 } from "nebula.gl";
+//加入這行讓npm run build時不會去改變mapbox，並使地圖可以顯示出來
 //eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default
 
@@ -143,7 +144,7 @@ export const LogLatBar = styled.div(
   )
 )
 
-
+//計算兩點之間的距離
 export function distance(lon1, lat1, lon2, lat2) {
   if ((lat1 == lat2) && (lon1 == lon2)) {
     return 0;
@@ -164,7 +165,7 @@ export function distance(lon1, lat1, lon2, lat2) {
     return dist;
   }
 }
-
+//顯示指著地圖的點的資訊欄
 function renderTooltip({ hoverInfo }) {
   const { object, x, y } = hoverInfo;
 
@@ -209,7 +210,7 @@ function renderTooltip({ hoverInfo }) {
     </div>
   );
 }
-
+//顯示右下角的資訊欄
 function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STNO,setSTNO,setButtonClickedFlag) {
   if (!clickInfo) {
     return null;
@@ -232,7 +233,7 @@ function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STN
     }
     return <div/>
   }
-
+  //顯示地質鑽探資料或分層地陷井鑽探資料的按鈕
   function ShowGroundButton() {
     const [showChart, setShowChart] = React.useState(false)
 
@@ -263,7 +264,7 @@ function renderInfo(clickInfo, setClickInfo,setCurrentFunction,waterLevelRef,STN
     }
   }
 
-
+  //顯示水位資料的按鈕
   function ShowWaterButton() {
     if (clickInfo.layer.id.includes("地下水觀測井位置圖")){
       // react hook call function outside component
@@ -386,7 +387,7 @@ function ContextMenu({ parentRef, lastClick, startCircleAnalysis, setCurrentFunc
     </div>
   </div> : null
 }
-
+//所有功能的框架
 export default function HydraMap() {
 
   const INITIAL_VIEW_STATE = {
@@ -499,7 +500,7 @@ export default function HydraMap() {
     type: "FeatureCollection",
     features: []
   })
-
+  //移動到坐標點
   const zoomToLocation = (geometry) => {
     setViewState({
       longitude: geometry.coordinates[0],
@@ -511,11 +512,11 @@ export default function HydraMap() {
       transitionInterpolator: new FlyToInterpolator({ speed: 2000 })
     })
   }
-
+  //設定圖層
   const setLayersFunc = (layer) => {
     setLayers(layer)
   }
-
+  //判斷是否打開功能的頁面
   const functionChangeToggle = ((funcID) => {
     if (openSheet && currentFunction == funcID) {
       setOpenSheet(false)
@@ -524,7 +525,7 @@ export default function HydraMap() {
     }
     setCurrentFunction(funcID)
   })
-
+  //移動地圖時執行的函式
   const onViewStateChange = React.useCallback(({ viewState }) => {
     setViewState(viewState);
   }, []);
@@ -533,11 +534,11 @@ export default function HydraMap() {
     viewState2.current = nextViewState
   }
 
-
+  //顯示指著地圖的點的資訊欄的函式
   const setHoverInfoFunc = (data) => {
     setHoverInfo(data)
   }
-
+  //顯示右下角的資訊欄的函式
   const setClickInfoFunc = (data) => {
     /*     setViewState(
           {
@@ -560,7 +561,7 @@ export default function HydraMap() {
     }
   }
 
-
+  //取得滑鼠的位置的函式
   function getCursor() {
     layers.forEach((element, i) => {
       if (element.props.id === "circle-analysis-layer") {
@@ -571,7 +572,7 @@ export default function HydraMap() {
       }
     })
   }
-
+  //環域分析功能的圓圈在變化時執行的函式
   function onEdit({ updatedData }) {
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
@@ -623,7 +624,7 @@ export default function HydraMap() {
     })
     setLayers(newLayer)
   }
-
+  //環域分析功能一開始點選繪製區域或結束繪製區域時執行的函式
   const setEditLayerMode = (m,name) => {
     let newLayer = [...layers]
     newLayer.forEach((element, i) => {
@@ -684,19 +685,20 @@ export default function HydraMap() {
     })
     setLayers(newLayer)
   }
-  
+  //記錄上次點擊的坐標
   const saveLastClick = React.useCallback(e => {
     setLastClick([e.coordinate[0], e.coordinate[1]])
   }, [])
-
+  //顯示環域分析功能的頁面
   const setShowMoreData = (CAisShow) => {
     setShowCAData(CAisShow[0])
     setCurrentCAData(CAisShow[1])
   }
+  //沒用到
   const setCAData = (allCAData) => {
     setAllCAData(allCAData)
   }
-
+  //設定地圖的樣式
   const setMapStyle = (style) => {
     switch(style){
       case 'Monochrome':
@@ -720,6 +722,7 @@ export default function HydraMap() {
   return (
     <>
       <div className={styles.top_level_nav}>
+        {/*設定頁面開關和號碼*/}
         <nav className={styles.top_level_nav_wrapper}>
             <MenuBtnWrapper isShow={currentFunction === 0 && openSheet == true} onClick={(e) => functionChangeToggle(0)}>
               <OverlayTrigger
@@ -897,7 +900,7 @@ export default function HydraMap() {
 
         </nav>
 
-                
+        {/*設定號碼對應的功能*/}
         <ShowWrapper isShow={openSheet}>
           <ShowWrapper isShow={currentFunction === 0}>
             <div className={styles.menu_desk_outer_layer}>
@@ -975,6 +978,7 @@ export default function HydraMap() {
 
       <div className={styles.fragment}>
         <div>
+          {/*右上角的資訊欄*/}
           <LogLatContainer>
             <LogLatBar>
               <p className={styles.loglat}>{`EPSG 4326`}</p>

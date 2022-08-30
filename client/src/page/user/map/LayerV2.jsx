@@ -108,7 +108,7 @@ const StyledLabel = styled.label(
     }
   )
 )
-
+//將字串轉化成hash
 const hashCode = (str) => { // java String#hashCode
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
@@ -116,7 +116,7 @@ const hashCode = (str) => { // java String#hashCode
   }
   return hash;
 }
-
+//將字串轉成rgb
 export const getDotColor = d => {
   let a = hashCode(d.name)
 
@@ -133,7 +133,7 @@ function componentToHex(c) {
   var hex = c.toString(16);
   return hex.length == 1 ? "0" + hex : hex;
 }
-
+//將rgb轉成hex
 function rgbToHex(value) {
   return "#" + componentToHex(value[0]) + componentToHex(value[1]) + componentToHex(value[2]);
 }
@@ -146,7 +146,7 @@ const checkBoxStyle = makeStyles({
     }
   })
 });
-
+//checkbox的設定
 function CustomCheckBox({ color, checked, onChange }) {
   const classes1 = checkBoxStyle({ color: color });
   return (
@@ -158,7 +158,7 @@ function CustomCheckBox({ color, checked, onChange }) {
     />
   )
 }
-
+//檢查資料是否有變化
 function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }) {
   const { t, i18n } = useTranslation();
   const [timeList, setTimeList] = useState([])
@@ -166,12 +166,12 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
   const [max, setmax] = useState(0)
   const [currentSliderValue, setCurrentSliderValue] = useState(0)
   const [isLoadingData, setLoadingData] = useState(false);
-
+  //尋找最大和最小時間
   function findminmax(arr) {
     setmin(arr[0].value)
     setmax(arr[arr.length - 1].value)
   }
-
+  //每當data有變化，執行裡面的程式
   useEffect(() => {
     let dayjs = require("dayjs")
     let newTimeList = []
@@ -193,19 +193,20 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
       setCurrentSliderValue(data.current_time)
     }
   }, [data])
-
+  //修改時間的格式成YYYY/MM/DD
   function valueLabelFormat(value) {
     let dayjs = require("dayjs")
     return dayjs(value).format('YYYY/MM/DD')
   }
 
-
+  //當滑條改變時觸發
   const handleChange = (event, newValue) => {
     setCurrentSliderValue(newValue)
     setCurrentLayer(newValue)
   };
-
+  //下載檔案
   function downloadFile(data){
+    //較大的檔案時後端處理後回傳資料並下載
     if(data.name !== "ps" && data.name !== "time_series_108彰化地區地層下陷水準檢測成果表" 
     && data.name !== "彰化水準測量檢測成果表" && data.name !== "time_series_108雲林地區地層下陷水準檢測成果表"
     && data.name !== "雲林水準測量檢測成果表"){
@@ -224,6 +225,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
       a.dispatchEvent(clickEvt)
       a.remove()
     }
+    //其他較小的資料直接在前端處理並下載
     else{
       setLoadingData(true)
       DownloadMapData({
@@ -240,7 +242,7 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
       })
     }
   }
-
+  //點擊下載按鈕時觸發
   const downloadOnClick = (data) => {
     //const toastid = toast.loading(t('downloading'))
     downloadFile(data)
@@ -292,12 +294,14 @@ function CheckItem({ data, currentLayer, setCurrentLayer, onChange, originData }
     </InputWrapper>
   )
 }
-
+//搜尋後點擊查看的函式
 export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, geometry, data) {
+  //點擊地圖的點時觸發
   const onClick = (data) => {
     console.log(data)
     setClickInfo(data)
   }
+  //指著地圖的點時觸發
   const onHover = (data) => {
     setHoverInfo(data)
   }
@@ -350,7 +354,7 @@ export function zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, set
   }
   setLayers(newLayer)
 }
-
+//設定圖層套疊的函式
 export default function Layer({ allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, setChartIsVisible, setChartMin, setChartMax, swapData, setSwapData }) {
 
   const { t, i18n } = useTranslation();
@@ -364,21 +368,22 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
   const [timeSeriesMinMax, setTimeSeriesMinMax] = useState([])
   const { addToast } = useToasts();
 
+  //指著地圖的點時觸發
   const onHover = (data) => {
     setHoverInfo(data)
   }
-
+  //點擊地圖的點時觸發
   const onClick = (data) => {
     console.log(data)
     setClickInfo(data)
   }
-
+  //取得時序資料的時間
   const getFilterValue = (d) => {
     const dayjs = require("dayjs")
     let time1 = dayjs(d.properties.time)
     return time1.valueOf()
   }
-
+  //取得一筆時序資料的最大最小時間
   function findTimeSeriesMinMaxIndex(name, timeSeriesMinMax) {
     for (let i = 0; i< timeSeriesMinMax.length;i++){
       if(timeSeriesMinMax[i].name === name){
@@ -387,7 +392,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     }
     return -1
   }
-
+  //取得所有時序資料的最大最小時間
   function findMinMax(allData) {
     let min = 999999
     let max = -99999
@@ -401,7 +406,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     }
     return [max, min]
   }
-
+  //顯示ps的彩虹的地圖顏色
   function fillcolor2(d) {
     function hslToRgb(h, s, l) {
       let c = (1 - Math.abs(2 * l - 1)) * s;
@@ -429,35 +434,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
 
     return hslToRgb(calc, 0.9, 0.5)
   }
-
-  function fillcolor3(d) {
-    function hslToRgb(h, s, l) {
-      let c = (1 - Math.abs(2 * l - 1)) * s;
-      let hp = h / 60.0;
-      let x = c * (1 - Math.abs((hp % 2) - 1));
-      let rgb1;
-      if (isNaN(h)) rgb1 = [0, 0, 0];
-      else if (hp <= 1) rgb1 = [c, x, 0];
-      else if (hp <= 2) rgb1 = [x, c, 0];
-      else if (hp <= 3) rgb1 = [0, c, x];
-      else if (hp <= 4) rgb1 = [0, x, c];
-      else if (hp <= 5) rgb1 = [x, 0, c];
-      else if (hp <= 6) rgb1 = [c, 0, x];
-      let m = l - c * 0.5;
-      return [
-        Math.round(255 * (rgb1[0] + m)),
-        Math.round(255 * (rgb1[1] + m)),
-        Math.round(255 * (rgb1[2] + m))];
-    }
-    /* console.log(hslToRgb(8,1,0.5)) */
-    const maxValue = 432.0097;
-    const minValue = 23.8456;
-    const count = 240 / (maxValue - minValue); 
-    let calc = Math.ceil((parseFloat(d.properties['h(m)']) + Math.abs(minValue)) * count)
-
-    return hslToRgb(calc, 0.9, 0.5)
-  }
-
+  //顯示GNSS的彩虹的地圖顏色
   function fillcolorGNSS(d, idx, timeSeriesMinMax) {
     
     function hslToRgb(h, s, l) {
@@ -486,7 +463,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
 
     return hslToRgb(calc, 0.9, 0.5)
   }
-
+  //檢查名字是否為GNSS
   function checkIsGNSS(name) {
     let isFound = false
     if(name.includes("PPP2")) {
@@ -502,7 +479,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       return isFound
     }
   }
-
+  //取得與相同的資料
   function getLayer(data) {
     layers.forEach(element => {
       if (element.props.name === data.name) {
@@ -510,7 +487,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       }
     })
   }
-
+  //將後端回傳的geojson格式轉換成deck.gl的格式
   function setIntialLayer(list, timeSeriesMinMax){
     let newLayer = [...layers]
     list.forEach((l, index) => {
@@ -743,7 +720,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     })
     return newLayer
   }
-
+  //當點擊checkbox時呼叫的函式將被點擊的圖層顯示在地圖上
   function setCurrentLayer(data, index1, time, index) {
     let newLayer = [...layers] //複製一個layer
     let newMapData = [...allData]
@@ -842,7 +819,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     })
     setLayers(newLayer)
   }
-
+  //點擊部分資料呼叫的函式，取得部分資料庫的名稱
   function setChoushuiEditLayer(){
     ChoushuiLayerList().then((res) => {
       setDataLoadState(1)
@@ -861,7 +838,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setSwapData(allData)
     setAllData(temp)
   }
-
+  //點擊所有資料呼叫的函式，取得非部分資料庫的名稱
   function setFullLayer(){
     LayerList().then((res) => {
       let resultArr = []
@@ -878,7 +855,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setSwapData(allData)
     setAllData(temp)
   }
-
+  //點擊送出按鈕呼叫的函式
   function LayerNameOnClick(){
     let names = []
     let allDataArr = []
@@ -931,7 +908,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
       setTimeSeriesMinMax(timeseriesMinMax)
     })
   }
-
+  //資料庫名稱變化時呼叫的函式
   function onChangeCheckItems(e){
     let newArr = [...databaseName]
     for (let i = 0;i<newArr.length;i++){
@@ -1200,7 +1177,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     setLayers(newLayer) //修改本來地圖的layer */ 
   }
 
-
+  //當初始化時執行一次下面的程式
   useEffect(() => {
     setMode(0)
     GNSSList().then((res) => {
@@ -1209,7 +1186,7 @@ export default function Layer({ allData, setAllData, layers, setLayers, setHover
     }).finally(() => {
     })
   }, [])
-
+  //當gnssList變化時執行下面的程式
   useEffect(() => {     //run when gnssList is changed
     LayerList().then((res) => {
       let resultArr = []

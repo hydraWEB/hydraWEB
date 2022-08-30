@@ -27,16 +27,16 @@ export default function Print({ map, deck }) {
   const { t, i18n } = useTranslation();
   const [unit, setUnit] = useState("inch")
   const [format, setForamt] = useState("PNG")
-
+  //單位變化時呼叫的函式
   const onChangeUnit = (e) => {
     setUnit(e.target.value);
   }
-
+  //格式變化時呼叫的函式
   const onChangeFormat = (e) => {
     setForamt(e.target.value);
   }
 
-  //這只能印出點
+  //列印並下載圖片成jpg
   const createPrintMap1 = () => {
     const fileName = "Map";
 
@@ -60,7 +60,7 @@ export default function Print({ map, deck }) {
       saveAs(blob, fileName);
     });
   };
-
+  //列印並下載圖片成pdf
   const createPDFPrintMap = () => {
     const mapboxCanvas = map.current.getMap().getCanvas(
       document.querySelector(".mapboxgl-canvas")
@@ -85,7 +85,7 @@ export default function Print({ map, deck }) {
     pdf.addImage(imgData, 'JPEG', 0, 0,merge.width, merge.height);
     pdf.save("download.pdf");
   }
-
+  //點擊列印按鈕後呼叫的函式
   const onBtnClick = () => {
     if(format === "PNG"){
       createPrintMap1()

@@ -93,7 +93,7 @@ const Accordion = withStyles({
   }))(MuiAccordionDetails);
   
 
-
+//環域分析使用到的搜尋函式
 export default function SearchResult({data, zoomTo, allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, zoomInData, setShowMoreData, allCAData}){
 
     function InnerResult(data){
@@ -193,7 +193,7 @@ export default function SearchResult({data, zoomTo, allData, setAllData, layers,
         </div>
         )
     }
-    
+    //顯示詳細資料的函式
     function ShowCAData(){
       setShowMoreData([true,data.data])
     }

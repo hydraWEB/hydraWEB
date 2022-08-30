@@ -11,7 +11,7 @@ import useQuery from "../../../lib/hook";
 import { Breadcrumb, Button, Form, Table } from "react-bootstrap";
 import styles from './Staff.module.scss'
 
-
+//顯示表格的界面
 function TableData({ data }) {
     const { t, i18n } = useTranslation()
     const idItems = data.map((d, index) =>
@@ -42,7 +42,7 @@ function TableData({ data }) {
 
     )
 }
-
+//系統功能使用記錄功能
 export default function SystemUsedAnalytics() {
     let history = useHistory()
     let query = useQuery();
@@ -52,6 +52,7 @@ export default function SystemUsedAnalytics() {
     const [page, setPage] = useState(1)
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
+    //從後端取得資料
     const loadData = (page) => {
         loginLog({
             params: {
@@ -68,12 +69,13 @@ export default function SystemUsedAnalytics() {
 
         })
     }
+    //頁面變化時執行的函式
     const onChangePage = (e, page) => {
         history.replace(`/user/staff/system-used-analytics?p=${page}`)
     }
 
 
-
+    //query變化時執行裡面的函式
     useEffect(() => {
         if (typeof query.get("p") !== 'undefined' && query.get("p") != null) {
             setPage(parseInt(query.get("p")))
@@ -81,7 +83,7 @@ export default function SystemUsedAnalytics() {
             setPage(1)
         }
     }, [query])
-
+    //page變化時執行裡面的函式
     useEffect(() => {
         loadData(page)
     }, [page])

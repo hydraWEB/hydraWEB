@@ -53,7 +53,9 @@ file_path,file_name,username,last_download,last_created,download_count
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,地下水觀測井位置圖_彰化縣現存站.csv,11057028@email.ntou.edu.tw,2022-08-23,2022-08-20,2
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,DI_20201.csv,11057028@email.ntou.edu.tw,2022-08-23,2022-08-20,1
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,RA_20201.csv,11057028@email.ntou.edu.tw,2022-08-23,2022-08-20,1
-/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210010.CRD,timtom@gmail.com,,2022-08-20,1
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,1mb.csv,11057028@email.ntou.edu.tw,,2022-08-23,0
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,5mb.csv,11057028@email.ntou.edu.tw,,2022-08-23,0
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,10mb.csv,11057028@email.ntou.edu.tw,,2022-08-23,0
+/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210020.CRD,timtom@gmail.com,,2022-08-25,0
+/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210020.json,timtom@gmail.com,,2022-08-25,0
+/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210010.CRD,timtom@gmail.com,,2022-08-26,3

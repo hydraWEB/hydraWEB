@@ -34,7 +34,7 @@ const ImgContainer = styled.div(
         justifyContent:"center"
     })
 )
-
+//從新設定密碼的功能
 export default function ResetPasswd({match}) {
 
     let defaultMsg = {
@@ -63,7 +63,7 @@ export default function ResetPasswd({match}) {
     const [password, setPassword] = useState('')
     const [passwordCheck, setPasswordCheck] = useState('')
     const [errMsg, setErrMsg] = useState(defaultMsg)
-
+    //初始化時執行一次裡面的程式
     useEffect(() => {
         userForgotPasswdCheckToken(
             {
@@ -77,7 +77,7 @@ export default function ResetPasswd({match}) {
             setLoadingCheckedToken(false)
         })
     }, [])
-
+    //點擊送出後執行的函式
     const handleSubmit = (e) => {
         e.preventDefault()
         if (!isLoading) {

@@ -73,13 +73,15 @@ const Accordion = withStyles({
   }))(MuiAccordionDetails);
   
 
-
+//搜尋功能用到的函式
 export default function SearchResult({data, zoomTo, allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, zoomInData}){
     var title = []
+    //點擊按鈕時觸發的函式
     function btnClicked() {
       zoomIn(allData, setAllData, layers, setLayers, setHoverInfo, setClickInfo, data.geometry, zoomInData)
       zoomTo(data.geometry)
     }
+    //顯示圖層資訊
     const xyCord = Object.entries(data.geometry).map(([key, value]) => {
       if (typeof value === 'object' && value !== null) {
         const list2 = Object.entries(value).map(([key2, value2]) => {

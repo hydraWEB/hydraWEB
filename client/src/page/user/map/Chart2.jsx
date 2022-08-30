@@ -37,16 +37,16 @@ const useStyles1 = makeStyles((theme) => ({
     maxWidth: "100%"
   },
 }));
-
+//包含所有繪製圖表的函式
 function LineChart2({ chartData }) {
 
   const [info, setInfo] = useState(null)
-
+  //每當chartData有變化時執行裡面的程式
   useEffect(() => {
     drawChart();
   }, [chartData]);
 
-
+  //繪製圖表的函式，使用d3.js 繪製圖表
   function drawChart() {
     let d = chartData
     // set the dimensions and margins of the graph
@@ -63,7 +63,7 @@ function LineChart2({ chartData }) {
     Drilling(list)
     
   }
-
+  //顯示圖表上面的標題字串
   function title(list) {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
       width = 500 - margin.left - margin.right,
@@ -88,7 +88,7 @@ function LineChart2({ chartData }) {
       .attr('x', 105)
       .text("土壤分類")
   }
-
+  //顯示深度和土壤分類的圖表
   function Drilling(list) {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 },
     width = 500 - margin.left - margin.right,
@@ -250,7 +250,7 @@ function LineChart2({ chartData }) {
 
 
     });
-
+  //點擊下載的程式
   d3.select('#saveButtonChart2').on('click', function () {
     var svgString2 = getSVGString(d3.select('#title > svg').node());
     var svgString = getSVGString(d3.select('#chart_container > svg').node());
@@ -401,7 +401,7 @@ const DialogTitle2 = withStyles(styles_)((props) => {
     </MuiDialogTitle>
   );
 });
-
+//顯示分層地陷井鑽探資料的圖表
 export default function Chart2({ showChart, setShowChart, chartData }) {
 
   const handleClickOpen = () => {

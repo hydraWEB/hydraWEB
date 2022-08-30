@@ -10,7 +10,7 @@ import {useToasts} from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
 import useQuery from "../../../lib/hook";
 import styles from "./Profile.module.scss"
-
+//設定功能
 export default function UserData() {
     const { t, i18n } = useTranslation()
     let defaultData = {
@@ -36,7 +36,7 @@ export default function UserData() {
     const [phone, setPhone] = useState("")
     const [avatar, setAvatar] = useState("")
     const [password, setPassword] = useState("")
-
+    //初始化時執行一次裡面的程式
     useEffect(() => {
         userProfile().then((res) => {
             setIsLoaded(true)
@@ -53,7 +53,7 @@ export default function UserData() {
         })
         
     }, [])
-
+    //點擊確認按鈕後執行的函式
     const submitForm = (e) => {
         userProfileEdit({
             username: username,

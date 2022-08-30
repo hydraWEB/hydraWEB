@@ -13,7 +13,7 @@ import {
 
 export default function Measurement({ mode, setMode }) {
   const { t, i18n } = useTranslation();
-
+  //設定成測量距離的模式
   function setMeasureDistanceMode() {
     if (mode === MeasureDistanceMode) {
       setMode(ViewMode,"measurement-layer")
@@ -21,7 +21,7 @@ export default function Measurement({ mode, setMode }) {
       setMode(MeasureDistanceMode,"measurement-layer")
     }
   }
-
+  //設定成測量面積的模式
   function setMeasureAreaMode() {
     if (mode === MeasureAreaMode) {
       setMode(ViewMode,"measurement-layer")
@@ -29,7 +29,7 @@ export default function Measurement({ mode, setMode }) {
       setMode(MeasureAreaMode,"measurement-layer")
     }
   }
-
+  //設定成測量角度的模式
   function setMeasureAngleMode() {
     if (mode === MeasureAngleMode) {
       setMode(ViewMode,"measurement-layer")

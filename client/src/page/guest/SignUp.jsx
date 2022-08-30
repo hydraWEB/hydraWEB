@@ -21,7 +21,7 @@ const FormLogin = styled.div(
         margin:"0 auto",
     })
 )
-
+//註冊功能
 export default function SignUp() {
 
     let defaultMsg = {
@@ -60,7 +60,7 @@ export default function SignUp() {
     const { addToast } = useToasts();
 
 
-
+    //點擊註冊按鈕後執行的函式
     const handleSignUp = (e) => {
         e.preventDefault()
         if(!isLoading){

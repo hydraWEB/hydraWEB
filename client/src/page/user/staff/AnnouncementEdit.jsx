@@ -14,7 +14,7 @@ import { useTranslation, Trans } from "react-i18next";
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+//修改公告功能
 export default function AnnouncementEdit() {
     const { t, i18n } = useTranslation()
     let query = useQuery();
@@ -23,7 +23,7 @@ export default function AnnouncementEdit() {
 
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
-
+    //點擊送出按鈕後執行的函式
     const submitForm = (e) => {
         let id =  query.get("id")
         AnnouncementSendEdit({
@@ -38,7 +38,7 @@ export default function AnnouncementEdit() {
 
         })
     }
-
+    //初始化時執行一次裡面的程式
     useEffect(() => {
         if (typeof query.get("id")!=='undefined' && query.get("id") != null) {
             let id =  query.get("id")

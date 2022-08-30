@@ -13,7 +13,7 @@ import { useToasts } from "react-toast-notifications";
 import { useTranslation, Trans } from "react-i18next";
 import styles from './Staff.module.scss'
 import * as dayjs from 'dayjs'
-
+//顯示表格的界面
 function TableData({ data, page, loadData }) {
     const { t, i18n } = useTranslation()
     let history = useHistory();
@@ -21,14 +21,15 @@ function TableData({ data, page, loadData }) {
     const [deleteData, setDeleteData] = useState(null);
     const { addToast } = useToasts();
     let dayjs = require("dayjs")
+    //點擊查看後執行的函式
     function onInfoClick(d) {
         history.push(`/user/staff/announcement-manage/info?id=${d.id}`);
     }
-
+    //點擊修改後執行的函式
     function onEditClick(d) {
         history.push(`/user/staff/announcement-manage/edit?id=${d.id}`);
     }
-
+    //點擊刪除後執行的函式
     function onDeleteClick() {
         setShowDelete(false)
         setDeleteData(null)
@@ -41,17 +42,17 @@ function TableData({ data, page, loadData }) {
 
         })
     }
-
+    //開打點擊刪除後的視窗
     function handleOpen(d) {
         setDeleteData(d)
         setShowDelete(true)
     }
-
+    //關閉點擊刪除後的視窗
     function handleClose() {
         setShowDelete(false)
         setDeleteData(null)
     }
-
+    //一行資料的設定
     const idItems = data.map((d, index) =>
         <tr>
             <StyledTd>{d.id}</StyledTd>
@@ -110,7 +111,7 @@ function TableData({ data, page, loadData }) {
         </>
     )
 }
-
+//公告功能的框架
 export default function Announcement() {
     let query = useQuery();
     let history = useHistory()
@@ -120,7 +121,7 @@ export default function Announcement() {
     const [totalpage, setTotalPage] = useState(0)
     const [data, setData] = useState([])
     const { t, i18n } = useTranslation()
-
+    //從後端取得資料
     const loadData = (page) => {
         AnnouncementList({
             params: {
@@ -136,11 +137,11 @@ export default function Announcement() {
 
         })
     }
-
+    //頁面變化時執行的函式
     const onChangePage = (e, page) => {
         history.replace(`/user/staff/announcement-manage?p=${page}`)
     }
-
+    //query變化時執行裡面的程式
     useEffect(() => {
         if (typeof query.get("p") !== 'undefined' && query.get("p") != null) {
             setCurrentPage(parseInt(query.get("p")))
@@ -148,7 +149,7 @@ export default function Announcement() {
             setCurrentPage(1)
         }
     }, [query])
-
+    //currentPage變化時執行裡面的程式
     useEffect(() => {
         loadData(currentPage)
     }, [currentPage])

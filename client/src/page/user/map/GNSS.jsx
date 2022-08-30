@@ -95,7 +95,7 @@ const StyledLabel = styled.label(
 
 
 
-
+//GNSS功能
 export default function GNSS(){
 
     const { t, i18n } = useTranslation();
@@ -106,7 +106,7 @@ export default function GNSS(){
     const { addToast } = useToasts();
     const [progress, setProgress] = useState(0);
     const [dataLoadState, setDataLoadState] = useState(0);
-
+    //將字串分行處理
     function fixText (text) {
       let res = []
       let t = ""
@@ -119,14 +119,13 @@ export default function GNSS(){
           t = t + text[i]
         }
       }
-      console.log(res)
       return res
     }
 
     let showText = text.map((d) =>
       <p>{d}</p>
     );
-
+    //點擊上傳按鈕後執行的函式
     const onUploadBtnClick = () => {
       setDataLoadState(1)
       setProgress(0)
@@ -153,7 +152,7 @@ export default function GNSS(){
       }).finally(() => {
       })
     }
-
+    //每當選擇檔案有變化時執行的函式
     const uploadOnChange = (e) => {
       setProgress(0)
       setDataLoadState(0)
@@ -165,7 +164,7 @@ export default function GNSS(){
         setUploadFiles(tempArr)
       }
     }
-
+    //點擊送出與執行的按鈕時執行的函式
     const onButtonClick = () => {
       setLoadingData(true)
       GnssFunction({

@@ -1082,7 +1082,9 @@ class UploadAndConvertToGEOJSONFileAPI(views.APIView): # csv CRD, and shapefile 
                     fname = f.name.replace(".CRD", "")
                     self.UploadcrdTojson(request.user, fname, dir_path, dir_path)
                     self.Record_File(request.user, fname+'.json', dir_path, counter)
-                    self.checkChoushi_editLine(request.user)
+                    temp=str(request.user)
+                    temp=temp+"_GNSS"
+                    self.checkChoushi_editLine(temp)
             if check_shp==1:
                 fname = shp_name.replace(".shp", "")
                 self.Shp_geojson(shp_name, dir_path, dir_path)

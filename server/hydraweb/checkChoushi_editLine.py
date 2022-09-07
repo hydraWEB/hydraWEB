@@ -1,5 +1,6 @@
 import json
 import os
+import pymongo
 from shapely.geometry import Point, LineString, Polygon
 def CheckChoushi(username):
     poly = Polygon([
@@ -11675,6 +11676,8 @@ def CheckChoushi(username):
     #write path
     write_path = os.path.join(dir_path, "server", "choushi_editLine_map_data")
     #check is inside
+    username_part=str(username)
+    username_part=username_part+"_part"
     for f in read_files:
         with open(os.path.join(read_path,f), encoding="utf-8") as read_json:
             print(f)
@@ -11692,10 +11695,63 @@ def CheckChoushi(username):
                 "type": "FeatureCollection",
                 "features": feat
             }
-            write_file = os.path.join(write_path, username)
-            write_file = os.path.join(write_file, "_part")
+            write_file = os.path.join(write_path, username_part)
             if not(os.path.exists(write_file)):
                 os.makedirs(write_file)
-            with open(os.path.join(write_file,f), "w", encoding="utf-8") as jsonf:
-                jsonString = json.dumps(write_json, ensure_ascii=False,indent=4)
+            if len(write_json["features"])>0:
+                with open(os.path.join(write_file,f), "w", encoding="utf-8") as jsonf:
+                    jsonString = json.dumps(write_json, ensure_ascii=False,indent=4)
+                    jsonf.write(jsonString)
+                    
+    read_path_part = os.path.join("/var/www/html/app-deploy/HydraWeb/server/choushi_editLine_map_data/","{}".format(str(username_part)))
+    print("read_path_part:{}".format(read_path_part))
+    files=os.listdir(read_path_part)
+    db_name = str(username)
+    client = pymongo.MongoClient('mongodb://localhost:27017')
+    db = client[db_name]
+    write_path_part= os.path.join("/var/www/html/app-deploy/HydraWeb/server/Map_data_part/","{}".format(str(username_part)))
+    if not(os.path.exists(write_path_part)):
+        os.makedirs(write_path_part)
+    for y in range(0,len(files)):
+        name=files[y]
+        print(name)
+        if name!=".ipynb_checkpoints":
+            name=name.replace(".json","")
+            col = db['{}'.format(name)]
+            cur = col.find()
+            results = list(cur)
+            json1=[]
+            for z in range(0,len(results)):
+                record={}
+                temp=list(results[z])
+                for a in range(1,len(temp)):
+                    record["{}".format(str(temp[a]))]=results[z]["{}".format(str(temp[a]))]
+                f_t1=float(record['x'])
+                f_t2=float(record['y'])
+                coord = Point((f_t1,f_t2))
+                if(coord.within(poly)):
+                    json1.append(record)
+            #print(json1[0])
+                    
+            with open(os.path.join(write_path_part,files[y]), "w", encoding="utf-8") as jsonf:
+                jsonString = json.dumps(json1, ensure_ascii=False,indent=4)
                 jsonf.write(jsonString)
+                
+    read_path_part1 = os.path.join("/var/www/html/app-deploy/HydraWeb/server/Map_data_part","{}".format(str(username_part)))
+    files=os.listdir(read_path_part1)
+    db_name = str(username_part)
+    client = pymongo.MongoClient('mongodb://localhost:27017')
+    db = client[db_name]
+    for y in range(0,len(files)):
+        name=files[y]
+        print(name)
+        name=name.replace(".json","")
+        col = db['{}'.format(name)]
+        cur = col.find()
+        results = list(cur)
+        if len(results)!=0:
+            col.delete_many({})
+        with open ("/var/www/html/app-deploy/HydraWeb/server/Map_data_part/{}/{}".format(str(username_part),str(files[y])),"r",encoding="utf-8") as jsonfile:
+            data = json.load(jsonfile)
+            for d in data:
+                col.insert_one(d)

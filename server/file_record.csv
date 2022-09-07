@@ -58,4 +58,7 @@ file_path,file_name,username,last_download,last_created,download_count
 /var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,10mb.csv,11057028@email.ntou.edu.tw,,2022-08-23,0
 /var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210020.CRD,timtom@gmail.com,,2022-08-25,0
 /var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210020.json,timtom@gmail.com,,2022-08-25,0
-/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210010.CRD,timtom@gmail.com,,2022-08-26,3
+/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210010.CRD,timtom@gmail.com,2022-09-07,2022-08-26,4
+/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210030.CRD,timtom@gmail.com,,2022-08-31,0
+/var/www/html/app-deploy/HydraWeb/server/upload_data/timtom@gmail.com,PPP210030.json,timtom@gmail.com,,2022-08-31,0
+/var/www/html/app-deploy/HydraWeb/server/upload_data/11057028@email.ntou.edu.tw,PPP210010.CRD,11057028@email.ntou.edu.tw,2022-09-07,2022-09-07,1

@@ -11665,25 +11665,26 @@ for file in read_files:
     for f in os.listdir(os.path.join(read_path, file)):
         with open(os.path.join(read_path,file,f), encoding="utf-8") as read_json:
             print(f)
-            data = json.load(read_json)
-            feat = []
-            for info in data["features"]:
-                try:
-                    if(info["geometry"]["type"] == "Point"):
-                        coord = Point(info["geometry"]["coordinates"][0],info["geometry"]["coordinates"][1])
-                        if(coord.within(poly)):
-                            feat.append(info)
-                except:
-                    continue
-            write_json = {
-                "type": "FeatureCollection",
-                "features": feat
-            }
-            if len(write_json["features"])>0:
-                write_file = os.path.join(write_path, file)
-                write_file = write_file+"_part"
-                if not(os.path.exists(write_file)):
-                    os.makedirs(write_file)
-                with open(os.path.join(write_file,f), "w", encoding="utf-8") as jsonf:
-                    jsonString = json.dumps(write_json, ensure_ascii=False,indent=4)
-                    jsonf.write(jsonString)
+            if f!=".ipynb_checkpoints":
+                data = json.load(read_json)
+                feat = []
+                for info in data["features"]:
+                    try:
+                        if(info["geometry"]["type"] == "Point"):
+                            coord = Point(info["geometry"]["coordinates"][0],info["geometry"]["coordinates"][1])
+                            if(coord.within(poly)):
+                                feat.append(info)
+                    except:
+                        continue
+                write_json = {
+                    "type": "FeatureCollection",
+                    "features": feat
+                }
+                if len(write_json["features"])>0:
+                    write_file = os.path.join(write_path, file)
+                    write_file = write_file+"_part"
+                    if not(os.path.exists(write_file)):
+                        os.makedirs(write_file)
+                    with open(os.path.join(write_file,f), "w", encoding="utf-8") as jsonf:
+                        jsonString = json.dumps(write_json, ensure_ascii=False,indent=4)
+                        jsonf.write(jsonString)

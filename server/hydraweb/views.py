@@ -106,6 +106,7 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO 傳到LayerV2.jsx
                 else:
                     word_temp=word_temp+'_'
             user1.append(word_temp)
+        print(user1)
         databases.remove("admin")              
         databases.remove("config")
         databases.remove("local")
@@ -122,10 +123,12 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO 傳到LayerV2.jsx
             counter=0
             if temp.find("part")<0:
                 for i in range(0,len(user1)):
-                    if temp==str(user1[i]):
+                    
+                    if temp.find(str(user1[i]))>=0:
                         counter=1
                         break
                 if counter==0:
+                    print(dt)
                     resultDatabases.append(dt)
         SystemLog.objects.create_log(user=request.user,operation=SystemOperationEnum.USER_READ_HYDRAWEB_LAYER)
         end = time.time()
@@ -178,7 +181,6 @@ class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_e
         databases.remove("config")
         databases.remove("local")
         databases.remove("ps_part")      #file too large, cause rendering slow
-        databases.remove("timtom@gmail_com")
         databases.remove("ps")
         databases.remove("ST_NO")
         databases.remove("tags")
@@ -192,7 +194,7 @@ class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_e
             if temp.find("part")>0:
                 for i in range(0,len(user1)):
                     tempDB = dt.replace("_part", "")
-                    if tempDB==str(user1[i]):
+                    if tempDB.find(str(user1[i]))>=0:
                         counter=1
                         break
                 if counter==0:

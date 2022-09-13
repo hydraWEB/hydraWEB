@@ -63,7 +63,6 @@ export default function App(props) {
     return (
         <>
             <UserProvider initialUser={initialUser}>
-                <Toaster position="bottom-right"/>
                 <ToastProvider placement={"bottom-right"}>
                     <ThemeProvider theme={darkTheme}>
                         <div className={'root-container'}>

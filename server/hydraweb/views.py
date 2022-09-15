@@ -82,9 +82,9 @@ class LayerListAPIView(views.APIView):      #INFLUX + MONGO 傳到LayerV2.jsx
             host='localhost',
             port=3306,
             charset='utf8',
-            user='root',
-            passwd='recast203',
-            db='hydraweb'
+            user=os.environ.get('DB_USER'),
+            passwd=os.environ.get('DB_PASS'),
+            db=os.environ.get('DB_NAME')
         )
         
         cursor = db.cursor()
@@ -153,9 +153,9 @@ class Choushui_editLineLayerListAPIView(views.APIView):  #只傳送在choushui_e
             host='localhost',
             port=3306,
             charset='utf8',
-            user='root',
-            passwd='recast203',
-            db='hydraweb'
+            user=os.environ.get('DB_USER'),
+            passwd=os.environ.get('DB_PASS'),
+            db=os.environ.get('DB_NAME')
         )
         
         cursor = db.cursor()
